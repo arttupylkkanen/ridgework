@@ -1,0 +1,1 @@
+import{o as e}from"./useStore-DCim0WvV.js";import{p as t}from"./index-Ce85sGFo.js";import{t as n}from"./login-page-umZUFdlJ.js";var r=e(),i=()=>(0,r.jsx)(n,{locale:`en`,copy:t});export{i as component};

@@ -1,0 +1,1 @@
+import{o as e}from"./useStore-DCim0WvV.js";import{t}from"./site-shell-BnI3FdvK.js";import{v as n}from"./index-Ce85sGFo.js";import{t as r}from"./home-page-CMpIyJlP.js";var i=e();function a(){return(0,i.jsx)(t,{locale:`en`,copy:n,page:`home`,children:(0,i.jsx)(r,{locale:`en`,copy:n})})}export{a as component};

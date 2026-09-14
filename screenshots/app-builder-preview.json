@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Ultra and trail training plans — Ridgework",
+      "hasCanvas": false,
+      "bodyTextLen": 11360,
+      "bodyTextHash": "ad3fa857aff3727c572ab2399205447fb3355344b77ead2b141334076ada34e2",
+      "bodyTextPrefix": "Guides Notes Example Programs Pricing EN FI FR DE Sign in Start ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Ultra and trail training plans — Ridgework",
+      "hasCanvas": false,
+      "bodyTextLen": 11300,
+      "bodyTextHash": "ac58404e790cb5b795465accb19f319aa0cd9c9b79a1a8acffe0e2c7c7898ae0",
+      "bodyTextPrefix": "EN FI FR DE Menu TRAIL AND ULTRA TRAINING 77 km in six weeks. Wh",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

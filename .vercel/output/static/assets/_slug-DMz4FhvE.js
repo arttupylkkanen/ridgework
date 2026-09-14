@@ -1,0 +1,1 @@
+import{i as e,s as t}from"./locale-Bm-ZgVXI.js";import{o as n}from"./useStore-DCim0WvV.js";import{t as r}from"./index-Ce85sGFo.js";import{t as i}from"./guides-page-CCpxPdTk.js";var a=n();function o(){let{locale:n,slug:o}=r.useParams(),s=e(n)?n:`fi`;return(0,a.jsx)(i,{locale:s,copy:t(s),slug:o})}export{o as component};

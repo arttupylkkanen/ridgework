@@ -1,0 +1,1 @@
+{"Status":0,"TC":false,"RD":true,"RA":true,"AD":false,"CD":false,"Question":[{"name":"ridgework.org.","type":16}],"Answer":[{"name":"ridgework.org.","type":16,"TTL":300,"data":"v=spf1 include:_spf.mx.cloudflare.net ~all"},{"name":"ridgework.org.","type":16,"TTL":300,"data":"1|www.ridgework.org"}],"Comment":"Response from 172.64.34.82."}

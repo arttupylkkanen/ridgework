@@ -1,0 +1,15 @@
+{
+  "name": "Ridgework",
+  "short_name": "Ridgework",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f3ec",
+  "theme_color": "#2f8a4e",
+  "icons": [
+    {
+      "src": "/brand/logo-a.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

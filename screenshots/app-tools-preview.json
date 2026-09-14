@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/app",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Tools — Ridgework",
+      "hasCanvas": false,
+      "bodyTextLen": 266,
+      "bodyTextHash": "b60af6cc7db886057fb11fc3ad373262093d8465542c121b963926e37d15d62a",
+      "bodyTextPrefix": "Field Programs Method Pricing EN FI FR DE Start 14 days free Fou",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-tools-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Tools — Ridgework",
+      "hasCanvas": false,
+      "bodyTextLen": 2826,
+      "bodyTextHash": "f90713d0544c01f6e99eb2b7626cf57a7a8f06c752b7f22f50098204a99a227c",
+      "bodyTextPrefix": "EN FI FR DE Menu FOUNDING TOOLS Test period — all six programs a",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-tools-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-tools-preview.json"
+}

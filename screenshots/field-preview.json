@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/field",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Field notes — Ridgework",
+      "hasCanvas": false,
+      "bodyTextLen": 6093,
+      "bodyTextHash": "10d5718217537db94a6e4358d40d7a2c23f193ccf78dfbcebe613614274226f3",
+      "bodyTextPrefix": "Field Who we are Method Projects Programs Pricing EN FI FR DE St",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/field-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Field notes — Ridgework",
+      "hasCanvas": false,
+      "bodyTextLen": 6029,
+      "bodyTextHash": "517ab6ee66f3dc7994da29a35cfa39a9e2955671bcafeb7a2aed3314a033246a",
+      "bodyTextPrefix": "EN FI FR DE Menu ← Ridgework home FIELD NOTES Limits are real. T",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/field-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/field-preview.json"
+}
