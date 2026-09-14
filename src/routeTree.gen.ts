@@ -26,8 +26,10 @@ import { Route as LocaleGuidesRouteImport } from './routes/$locale/guides'
 import { Route as LocaleLoginRouteImport } from './routes/$locale/login'
 import { Route as LocalePrivacyRouteImport } from './routes/$locale/privacy'
 import { Route as LocaleTermsRouteImport } from './routes/$locale/terms'
+import { Route as GuidesIndexRouteImport } from './routes/guides/index'
 import { Route as GuidesSlugRouteImport } from './routes/guides/$slug'
 import { Route as PassportTokenRouteImport } from './routes/passport.$token'
+import { Route as LocaleGuidesIndexRouteImport } from './routes/$locale/guides/index'
 import { Route as LocaleGuidesSlugRouteImport } from './routes/$locale/guides/$slug'
 import { Route as LocalePassportTokenRouteImport } from './routes/$locale/passport.$token'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
@@ -118,6 +120,11 @@ const LocaleTermsRoute = LocaleTermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => LocaleRoute,
 } as any)
+const GuidesIndexRoute = GuidesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => GuidesRoute,
+} as any)
 const GuidesSlugRoute = GuidesSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -127,6 +134,11 @@ const PassportTokenRoute = PassportTokenRouteImport.update({
   id: '/passport/$token',
   path: '/passport/$token',
   getParentRoute: () => rootRouteImport,
+} as any)
+const LocaleGuidesIndexRoute = LocaleGuidesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LocaleGuidesRoute,
 } as any)
 const LocaleGuidesSlugRoute = LocaleGuidesSlugRouteImport.update({
   id: '/$slug',
@@ -169,34 +181,36 @@ export interface FileRoutesByFullPath {
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
   '/$locale/': typeof LocaleIndexRoute
+  '/guides/': typeof GuidesIndexRoute
   '/$locale/guides/$slug': typeof LocaleGuidesSlugRoute
   '/$locale/passport/$token': typeof LocalePassportTokenRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/polar/webhook': typeof ApiPolarWebhookRoute
+  '/$locale/guides/': typeof LocaleGuidesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app': typeof AppRoute
   '/field': typeof FieldRoute
   '/founding': typeof FoundingRoute
-  '/guides': typeof GuidesRouteWithChildren
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
   '/$locale/app': typeof LocaleAppRoute
   '/$locale/field': typeof LocaleFieldRoute
   '/$locale/founding': typeof LocaleFoundingRoute
-  '/$locale/guides': typeof LocaleGuidesRouteWithChildren
   '/$locale/login': typeof LocaleLoginRoute
   '/$locale/privacy': typeof LocalePrivacyRoute
   '/$locale/terms': typeof LocaleTermsRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
   '/$locale': typeof LocaleIndexRoute
+  '/guides': typeof GuidesIndexRoute
   '/$locale/guides/$slug': typeof LocaleGuidesSlugRoute
   '/$locale/passport/$token': typeof LocalePassportTokenRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/polar/webhook': typeof ApiPolarWebhookRoute
+  '/$locale/guides': typeof LocaleGuidesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -219,10 +233,12 @@ export interface FileRoutesById {
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
   '/$locale/': typeof LocaleIndexRoute
+  '/guides/': typeof GuidesIndexRoute
   '/$locale/guides/$slug': typeof LocaleGuidesSlugRoute
   '/$locale/passport/$token': typeof LocalePassportTokenRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/polar/webhook': typeof ApiPolarWebhookRoute
+  '/$locale/guides/': typeof LocaleGuidesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -246,34 +262,36 @@ export interface FileRouteTypes {
     | '/guides/$slug'
     | '/passport/$token'
     | '/$locale/'
+    | '/guides/'
     | '/$locale/guides/$slug'
     | '/$locale/passport/$token'
     | '/api/auth/$'
     | '/api/polar/webhook'
+    | '/$locale/guides/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/app'
     | '/field'
     | '/founding'
-    | '/guides'
     | '/login'
     | '/privacy'
     | '/terms'
     | '/$locale/app'
     | '/$locale/field'
     | '/$locale/founding'
-    | '/$locale/guides'
     | '/$locale/login'
     | '/$locale/privacy'
     | '/$locale/terms'
     | '/guides/$slug'
     | '/passport/$token'
     | '/$locale'
+    | '/guides'
     | '/$locale/guides/$slug'
     | '/$locale/passport/$token'
     | '/api/auth/$'
     | '/api/polar/webhook'
+    | '/$locale/guides'
   id:
     | '__root__'
     | '/'
@@ -295,10 +313,12 @@ export interface FileRouteTypes {
     | '/guides/$slug'
     | '/passport/$token'
     | '/$locale/'
+    | '/guides/'
     | '/$locale/guides/$slug'
     | '/$locale/passport/$token'
     | '/api/auth/$'
     | '/api/polar/webhook'
+    | '/$locale/guides/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -437,6 +457,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocaleTermsRouteImport
       parentRoute: typeof LocaleRoute
     }
+    '/guides/': {
+      id: '/guides/'
+      path: '/'
+      fullPath: '/guides/'
+      preLoaderRoute: typeof GuidesIndexRouteImport
+      parentRoute: typeof GuidesRoute
+    }
     '/guides/$slug': {
       id: '/guides/$slug'
       path: '/$slug'
@@ -450,6 +477,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/passport/$token'
       preLoaderRoute: typeof PassportTokenRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/$locale/guides/': {
+      id: '/$locale/guides/'
+      path: '/'
+      fullPath: '/$locale/guides/'
+      preLoaderRoute: typeof LocaleGuidesIndexRouteImport
+      parentRoute: typeof LocaleGuidesRoute
     }
     '/$locale/guides/$slug': {
       id: '/$locale/guides/$slug'
@@ -484,10 +518,12 @@ declare module '@tanstack/react-router' {
 
 interface LocaleGuidesRouteChildren {
   LocaleGuidesSlugRoute: typeof LocaleGuidesSlugRoute
+  LocaleGuidesIndexRoute: typeof LocaleGuidesIndexRoute
 }
 
 const LocaleGuidesRouteChildren: LocaleGuidesRouteChildren = {
   LocaleGuidesSlugRoute: LocaleGuidesSlugRoute,
+  LocaleGuidesIndexRoute: LocaleGuidesIndexRoute,
 }
 
 const LocaleGuidesRouteWithChildren = LocaleGuidesRoute._addFileChildren(
@@ -523,10 +559,12 @@ const LocaleRouteWithChildren =
 
 interface GuidesRouteChildren {
   GuidesSlugRoute: typeof GuidesSlugRoute
+  GuidesIndexRoute: typeof GuidesIndexRoute
 }
 
 const GuidesRouteChildren: GuidesRouteChildren = {
   GuidesSlugRoute: GuidesSlugRoute,
+  GuidesIndexRoute: GuidesIndexRoute,
 }
 
 const GuidesRouteWithChildren =

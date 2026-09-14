@@ -30,7 +30,9 @@ import {
   realizeToday,
   visiblePersonalizedWeeks,
 } from "@/lib/plan-engine";
+import type { Locale } from "@/lib/locale";
 import { cn, fillTemplate } from "@/lib/utils";
+import { SessionHowTo } from "./session-how";
 
 function formatDay(iso: string) {
   const [y, m, d] = iso.split("-").map(Number);
@@ -98,11 +100,13 @@ const CALL_TONE: Record<ReadinessCall, string> = {
 };
 
 export function TodayDesk({
+  locale,
   copy,
   profile,
   onPersist,
   onEditProfile,
 }: {
+  locale: Locale;
   copy: Copy;
   profile: AthleteProfile;
   onPersist?: (state: RollingState) => void;
@@ -374,6 +378,12 @@ export function TodayDesk({
             {changed && written ? (
               <p className="mt-1 text-sm text-ink-muted">{fillTemplate(t.was, { session: sessions[written.key] })}</p>
             ) : null}
+            <SessionHowTo
+              locale={locale}
+              sessionKey={shown.key}
+              minutes={shown.minutes}
+              minutesLabel={shown.minutes ? fillTemplate(t.minutes, { n: shown.minutes }) : undefined}
+            />
             <div className="mt-5 flex flex-wrap gap-2">
               <button
                 id="today-done"

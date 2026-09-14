@@ -24,9 +24,8 @@ import {
   type EnrollmentRecord,
 } from "@/lib/training";
 import { cn } from "@/lib/utils";
-import { DecisionLog } from "./tools/decision-log";
 import { Onboarding } from "./tools/onboarding";
-import { PaceGuide } from "./tools/pace-guide";
+import { SessionsGlossary } from "./tools/session-how";
 import { PassportDesk } from "./tools/passport-desk";
 import { MountainDesk } from "./tools/mountain-desk";
 import { isTestAccountEmail, sampleTesterProfile } from "@/lib/test-account";
@@ -364,6 +363,7 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
           <div className="mt-8">
             {tab === "today" && profile ? (
               <TodayDesk
+                locale={locale}
                 copy={copy}
                 profile={profile}
                 onPersist={(s) => void persistRemote(s)}
@@ -371,7 +371,7 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
               />
             ) : null}
             {tab === "plan" ? (
-              <RollingPlan copy={copy} profile={profile} onPersist={(s) => void persistRemote(s)} />
+              <RollingPlan locale={locale} copy={copy} profile={profile} onPersist={(s) => void persistRemote(s)} />
             ) : null}
             {tab === "whatIf" ? (
               <WhatIfDesk copy={copy} profile={profile} onPersist={(s) => void persistRemote(s)} />
@@ -386,13 +386,10 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
                 enrollments={enrollments.map((row) => row.state)}
               />
             ) : null}
-            {tab === "log" ? <DecisionLog copy={copy} /> : null}
+            {tab === "log" ? <SessionsGlossary locale={locale} copy={copy} /> : null}
             {tab === "profile" ? (
               <Onboarding copy={copy} initial={profile} onComplete={completeProfile} />
             ) : null}
-          </div>
-          <div className="mt-10">
-            <PaceGuide copy={copy} />
           </div>
         </>
       )}

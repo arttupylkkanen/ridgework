@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { evaluateMembership, trialEnd } from "./membership.ts";
+import { OWNER_EMAIL } from "./test-account.ts";
 
 const start = "2026-09-14T16:20:00.000Z";
 
@@ -79,7 +80,7 @@ describe("evaluateMembership", () => {
 
   it("never paywalls the owner Google login", () => {
     const m = evaluateMembership({
-      email: "arttu.pylkkanen@gmail.com",
+      email: OWNER_EMAIL,
       createdAt: start,
       now: new Date("2027-01-01T00:00:00.000Z"),
     });

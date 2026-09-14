@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
 import type { Copy } from "@/content/types";
 import type { Locale } from "@/lib/locale";
@@ -6,6 +6,72 @@ import { AuthLink, DeskLink } from "./app-link";
 import type { Membership } from "@/lib/membership";
 import { getMembership } from "@/lib/membership-server";
 import { startFoundingCheckout, cancelMembership, startBillingPortal } from "@/lib/polar-checkout";
+
+function CheckIcon() {
+  return (
+    <svg viewBox="0 0 16 16" className="mt-0.5 h-4 w-4 shrink-0 text-ridge" aria-hidden>
+      <path
+        fill="currentColor"
+        d="M13.2 4.2a.75.75 0 0 1 0 1.06l-6.4 6.4a.75.75 0 0 1-1.06 0L2.8 8.72a.75.75 0 0 1 1.06-1.06l2.4 2.4 5.88-5.86a.75.75 0 0 1 1.06 0Z"
+      />
+    </svg>
+  );
+}
+
+function CheckoutReceipt({
+  copy,
+  action,
+  error,
+}: {
+  copy: Copy;
+  action: ReactNode;
+  error?: string | null;
+}) {
+  return (
+    <div id="checkout" className="grid gap-4 lg:grid-cols-2 lg:gap-6">
+      <div className="rounded-2xl border border-line bg-card p-6 shadow-sm sm:p-8">
+        <div className="flex items-baseline justify-between gap-4">
+          <p className="text-base font-medium text-ink">{copy.checkout.dueToday}</p>
+          <p className="font-display text-3xl font-semibold tabular-nums text-ink sm:text-4xl">
+            {copy.checkout.dueAmount}
+          </p>
+        </div>
+        <p className="mt-1 text-sm text-ink-muted">{copy.pricing.trialBadge}</p>
+        <div className="mt-6">{action}</div>
+        {error ? <p className="mt-3 text-sm text-accent">{error}</p> : null}
+        <p className="mt-5 text-sm leading-relaxed text-ink-muted">{copy.checkout.terms}</p>
+        <ul className="mt-5 flex flex-wrap gap-2">
+          {[copy.checkout.chipCancel, copy.checkout.chipSupport, copy.checkout.chipMerchant].map((chip) => (
+            <li
+              key={chip}
+              className="rounded-full border border-line bg-paper-warm/80 px-3 py-1 text-xs font-medium text-ink"
+            >
+              {chip}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="rounded-2xl border border-ridge/20 bg-ridge/5 p-6 sm:p-8">
+        <p className="font-display text-lg font-semibold text-ink">{copy.checkout.includesTitle}</p>
+        <ul className="mt-5 space-y-3">
+          {copy.checkout.includes.map((item) => (
+            <li key={item} className="flex gap-3 text-sm leading-relaxed text-ink">
+              <CheckIcon />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-8 flex items-baseline justify-between gap-4 border-t border-ridge/15 pt-5">
+          <p className="text-sm text-ink-muted">{copy.checkout.afterLine}</p>
+        </div>
+        <div className="mt-4 flex items-baseline justify-between gap-4">
+          <p className="text-sm font-medium text-ink">{copy.checkout.dueToday}</p>
+          <p className="font-display text-2xl font-semibold tabular-nums text-ink">{copy.checkout.dueAmount}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function CheckoutForm({ locale, copy }: { locale: Locale; copy: Copy }) {
   const { user, isPending } = useCurrentUserState();
@@ -19,29 +85,26 @@ export function CheckoutForm({ locale, copy }: { locale: Locale; copy: Copy }) {
   }, [user?.id]);
 
   if (isPending) {
-    return <div className="h-48 animate-pulse rounded-2xl bg-paper-warm" />;
+    return <div className="h-64 animate-pulse rounded-2xl bg-paper-warm" />;
   }
 
   if (!user) {
     return (
-      <div id="checkout" className="rounded-2xl border border-line bg-card p-6 sm:p-8">
-        <p className="text-sm font-semibold uppercase tracking-wider text-ridge">{copy.checkout.kicker}</p>
-        <h3 className="mt-2 font-display text-2xl font-semibold text-ink">{copy.checkout.h2}</h3>
-        <p className="mt-3 max-w-xl text-ink-muted leading-relaxed">{copy.checkout.lead}</p>
-        <AuthLink
-          locale={locale}
-          className="mt-6 inline-flex min-h-11 items-center justify-center rounded-lg bg-ridge px-6 py-3.5 text-base font-medium text-paper shadow-sm hover:bg-ridge-deep"
-        >
-          {copy.cta.start}
-        </AuthLink>
-        <p className="mt-4 max-w-xl text-sm text-ink-soft leading-relaxed">{copy.checkout.note}</p>
-      </div>
+      <CheckoutReceipt
+        copy={copy}
+        action={
+          <AuthLink
+            locale={locale}
+            className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-ink px-6 py-3.5 text-base font-medium text-paper hover:bg-ridge-deep"
+          >
+            {copy.cta.start}
+          </AuthLink>
+        }
+      />
     );
   }
 
-  return (
-    <PaywallPanel locale={locale} copy={copy} membership={membership} />
-  );
+  return <PaywallPanel locale={locale} copy={copy} membership={membership} />;
 }
 
 export function PaywallPanel({
@@ -74,26 +137,25 @@ export function PaywallPanel({
   }
 
   if (!membership) {
-    return <div className="h-40 animate-pulse rounded-2xl bg-paper-warm" />;
+    return <div className="h-64 animate-pulse rounded-2xl bg-paper-warm" />;
   }
 
   if (membership.status === "expired" || membership.status === "needs_card") {
     return (
-      <div className="rounded-2xl border border-line bg-card p-6 sm:p-8">
-        <p className="text-sm font-semibold uppercase tracking-wider text-accent">{copy.pricing.badge}</p>
-        <h3 className="mt-2 font-display text-2xl font-semibold text-ink">{copy.checkout.payTitle}</h3>
-        <p className="mt-3 max-w-xl text-ink-muted leading-relaxed">{copy.checkout.payBody}</p>
-        <button
-          type="button"
-          onClick={() => void pay()}
-          disabled={pending}
-          className="mt-6 inline-flex min-h-11 items-center justify-center rounded-lg bg-ridge px-6 py-3.5 text-base font-medium text-paper hover:bg-ridge-deep disabled:opacity-60"
-        >
-          {pending ? copy.checkout.paying : copy.checkout.payCta}
-        </button>
-        {error ? <p className="mt-3 text-sm text-accent">{error}</p> : null}
-        <p className="mt-4 text-sm text-ink-soft">{copy.checkout.note}</p>
-      </div>
+      <CheckoutReceipt
+        copy={copy}
+        error={error}
+        action={
+          <button
+            type="button"
+            onClick={() => void pay()}
+            disabled={pending}
+            className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-ink px-6 py-3.5 text-base font-medium text-paper hover:bg-ridge-deep disabled:opacity-60"
+          >
+            {pending ? copy.checkout.paying : copy.checkout.payCta}
+          </button>
+        }
+      />
     );
   }
 
@@ -102,9 +164,7 @@ export function PaywallPanel({
       <p className="text-sm font-semibold uppercase tracking-wider text-ridge">{copy.checkout.kicker}</p>
       <h3 className="mt-2 font-display text-2xl font-semibold text-ink">{copy.checkout.successTitle}</h3>
       <p className="mt-3 text-ink-muted leading-relaxed">
-        {membership.status === "active"
-          ? copy.checkout.subscribed
-          : copy.checkout.trialOn}
+        {membership.status === "active" ? copy.checkout.subscribed : copy.checkout.trialOn}
       </p>
       <p className="mt-3 text-ink-muted leading-relaxed">{copy.checkout.successBody}</p>
       <div className="mt-6 flex flex-wrap gap-3">

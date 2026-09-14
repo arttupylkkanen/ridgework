@@ -195,6 +195,15 @@ export type Copy = {
     subscribed: string;
     payFail: string;
     paying: string;
+    dueToday: string;
+    dueAmount: string;
+    terms: string;
+    includesTitle: string;
+    includes: string[];
+    afterLine: string;
+    chipCancel: string;
+    chipSupport: string;
+    chipMerchant: string;
     cancelCta: string;
     cancelConfirm: string;
     cancelYes: string;

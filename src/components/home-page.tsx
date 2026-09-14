@@ -185,6 +185,11 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
                     </div>
                     {row.tag ? <p className="mt-2 text-xs font-medium text-ridge">{row.tag}</p> : null}
                     <p className="mt-3 text-sm leading-relaxed text-ink-muted">{row.focus}</p>
+                    {row.locked ? (
+                      <p className="mt-3 rounded-lg bg-paper-warm px-3 py-2 text-sm leading-relaxed text-ink">
+                        {row.locked}
+                      </p>
+                    ) : null}
                     <p className="mt-4 text-sm font-medium text-ridge">{copy.programs.cta}</p>
                   </div>
                 </DeskLink>

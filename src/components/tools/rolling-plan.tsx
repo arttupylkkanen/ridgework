@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Copy } from "@/content/types";
+import type { Locale } from "@/lib/locale";
 import { cn, fillTemplate } from "@/lib/utils";
+import { SessionHowTo } from "./session-how";
 import { PROGRAM_MEDIA } from "@/lib/program-media";
 import type { AthleteProfile } from "@/lib/athlete";
 import { overlayToday, realizeToday, visiblePersonalizedWeeks } from "@/lib/plan-engine";
@@ -89,17 +91,18 @@ function WindowCard({
 }
 
 export function RollingPlan({
+  locale,
   copy,
   onPersist,
   profile,
 }: {
+  locale: Locale;
   copy: Copy;
   onPersist?: (state: RollingState | null) => void;
   profile?: AthleteProfile | null;
 }) {
   const t = copy.tools.plan;
   const days = copy.tools.week.days;
-  const types = copy.tools.week.types;
   const athlete = copy.tools.athlete.today;
   const [ready, setReady] = useState(false);
   const [state, setState] = useState<RollingState | null>(null);
@@ -109,6 +112,7 @@ export function RollingPlan({
   const [note, setNote] = useState("");
   const [flash, setFlash] = useState<string | null>(null);
   const [nextPeak, setNextPeak] = useState(() => suggestedPeakOn("fifty"));
+  const [openDay, setOpenDay] = useState<string | null>(null);
 
   useEffect(() => {
     setState(loadPlan());
@@ -281,21 +285,40 @@ export function RollingPlan({
         <p className="mt-1 text-sm text-ink-muted">{phaseLabel(week.phase)}</p>
         {week.eased ? <p className="mt-2 text-xs leading-relaxed text-accent">{t.easedNote}</p> : null}
         <ul className="mt-4 space-y-2">
-          {week.days.map((day, di) => (
-            <li
-              key={`${week.calendar}-${di}`}
-              className={cn("flex gap-2 text-sm", changedDays.has(di) && "rounded-md bg-paper-warm px-1 font-medium text-ridge-deep")}
-            >
-              <span className="w-8 shrink-0 font-medium text-ink-soft">{days[di]}</span>
-              <span className="text-ink">
-                {types[day.kind]}
-                <span className="text-ink-muted"> — {t.sessions[day.key]}</span>
-                {day.minutes ? (
-                  <span className="text-ink-soft"> · {fillTemplate(athlete.minutes, { n: day.minutes })}</span>
+          {week.days.map((day, di) => {
+            const id = `${week.calendar}-${di}`;
+            const open = openDay === id;
+            return (
+              <li
+                key={id}
+                className={cn("text-sm", changedDays.has(di) && "rounded-md bg-paper-warm px-1 font-medium text-ridge-deep")}
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenDay(open ? null : id)}
+                  className="flex w-full items-start gap-2 py-1 text-left"
+                >
+                  <span className="w-8 shrink-0 font-medium text-ink-soft">{days[di]}</span>
+                  <span className="text-ink">
+                    {t.sessions[day.key]}
+                    {day.minutes ? (
+                      <span className="text-ink-soft"> · {fillTemplate(athlete.minutes, { n: day.minutes })}</span>
+                    ) : null}
+                  </span>
+                </button>
+                {open ? (
+                  <div className="pl-10">
+                    <SessionHowTo
+                      locale={locale}
+                      sessionKey={day.key}
+                      minutes={day.minutes}
+                      minutesLabel={day.minutes ? fillTemplate(athlete.minutes, { n: day.minutes }) : undefined}
+                    />
+                  </div>
                 ) : null}
-              </span>
-            </li>
-          ))}
+              </li>
+            );
+          })}
         </ul>
       </article>
     );

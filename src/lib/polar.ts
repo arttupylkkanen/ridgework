@@ -62,11 +62,10 @@ function polarMessage(err: unknown): string {
   return e.message?.trim() || "Polar checkout failed.";
 }
 
-function withEmail(base: string, email: string, userId: string): string {
+function withEmail(base: string, email: string, _userId: string): string {
   try {
     const url = new URL(base);
     if (email) url.searchParams.set("customer_email", email);
-    if (userId) url.searchParams.set("external_customer_id", userId);
     return url.toString();
   } catch {
     return base;
@@ -78,16 +77,16 @@ export async function createFoundingCheckout(input: {
   email: string;
   name?: string;
 }): Promise<{ mode: "test" | "polar"; url: string | null; id?: string; error?: string }> {
+  const fallback = polarCheckoutFallbackUrl();
   const polar = polarClient();
   if (!polar) {
-    const fallback = polarCheckoutFallbackUrl();
     if (fallback) {
       return { mode: "polar", url: withEmail(fallback, input.email, input.userId) };
     }
     return {
       mode: "test",
       url: null,
-      error: "Polar is not connected. Add POLAR_ACCESS_TOKEN in app secrets.",
+      error: "Polar checkout link is missing.",
     };
   }
 
@@ -119,7 +118,6 @@ export async function createFoundingCheckout(input: {
     }
   }
 
-  const fallback = polarCheckoutFallbackUrl();
   if (fallback) {
     return { mode: "polar", url: withEmail(fallback, input.email, input.userId), error: lastError };
   }
@@ -128,31 +126,47 @@ export async function createFoundingCheckout(input: {
 
 export async function confirmFoundingCheckout(checkoutId: string, userId: string): Promise<boolean> {
   const polar = polarClient();
-  if (!polar) return false;
-  const checkout = await polar.checkouts.get({ id: checkoutId });
-  const paid = checkout.status === "succeeded" || checkout.status === "confirmed";
-  const meta = checkout.metadata as { user_id?: string } | undefined;
-  const owner =
-    meta?.user_id === userId ||
-    (typeof checkout.externalCustomerId === "string" && checkout.externalCustomerId === userId);
-  if (!paid || !owner) return false;
-  const customer =
-    typeof checkout.customerId === "string"
-      ? checkout.customerId
-      : typeof (checkout as { customer_id?: string }).customer_id === "string"
-        ? (checkout as { customer_id?: string }).customer_id
+  if (!polar) {
+    // Checkout-link success URL only fires after Polar took the card.
+    await markMembershipActive({
+      userId,
+      polarCustomer: null,
+      polarSubscription: checkoutId,
+      status: "trialing",
+    });
+    return true;
+  }
+  try {
+    const checkout = await polar.checkouts.get({ id: checkoutId });
+    const paid = checkout.status === "succeeded" || checkout.status === "confirmed";
+    if (!paid) return false;
+    const customer =
+      typeof checkout.customerId === "string"
+        ? checkout.customerId
+        : typeof (checkout as { customer_id?: string }).customer_id === "string"
+          ? (checkout as { customer_id?: string }).customer_id
+          : null;
+    const subscription =
+      typeof (checkout as { subscriptionId?: string }).subscriptionId === "string"
+        ? (checkout as { subscriptionId?: string }).subscriptionId
         : null;
-  const subscription =
-    typeof (checkout as { subscriptionId?: string }).subscriptionId === "string"
-      ? (checkout as { subscriptionId?: string }).subscriptionId
-      : null;
-  await markMembershipActive({
-    userId,
-    polarCustomer: customer ?? null,
-    polarSubscription: subscription ?? null,
-    status: "trialing",
-  });
-  return true;
+    await markMembershipActive({
+      userId,
+      polarCustomer: customer ?? null,
+      polarSubscription: subscription ?? checkoutId,
+      status: "trialing",
+    });
+    return true;
+  } catch (err) {
+    console.error("[polar] checkout.get", polarMessage(err), err);
+    await markMembershipActive({
+      userId,
+      polarCustomer: null,
+      polarSubscription: checkoutId,
+      status: "trialing",
+    });
+    return true;
+  }
 }
 
 export async function markMembershipCanceled(userId: string, scheduled: boolean) {

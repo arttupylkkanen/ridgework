@@ -109,13 +109,13 @@ describe("performance passport", () => {
         publicEnabled: true,
         showEvents: true,
         showPbs: true,
-        displayName: "Arttu",
+        displayName: "Alex",
         audience: "coach",
       },
       "2026-09-14",
     );
     assert.ok(shared);
-    assert.equal(shared.displayName, "Arttu");
+    assert.equal(shared.displayName, "Alex");
     assert.equal(shared.events[0]?.lesson, "");
     assert.equal(shared.lessons.length, 0);
     assert.equal(shared.avgConfidence, null);
