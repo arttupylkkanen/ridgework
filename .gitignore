@@ -3,3 +3,11 @@ node_modules/
 .github_repo
 .env
 .env.*
+
+# Identity documents and French filings — never commit
+attachments/pass1.jpg
+attachments/signature*.png
+artifacts/*Pylk*
+artifacts/*Martinol*
+artifacts/*S1106-PUMA-Pylk*
+artifacts/S1106-PUMA-preview.png
