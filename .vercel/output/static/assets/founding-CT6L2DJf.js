@@ -1,1 +1,0 @@
-import{o as e}from"./useStore-DCim0WvV.js";import{t}from"./site-shell-BnI3FdvK.js";import{h as n}from"./index-Ce85sGFo.js";import{t as r}from"./founding-invite-B5gxdZd3.js";var i=e();function a(){return(0,i.jsx)(t,{locale:`en`,copy:n,page:`founding`,children:(0,i.jsx)(r,{locale:`en`,copy:n})})}export{a as component};

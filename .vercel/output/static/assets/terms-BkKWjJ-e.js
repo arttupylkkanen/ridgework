@@ -1,1 +1,0 @@
-import{o as e}from"./useStore-DCim0WvV.js";import{t}from"./site-shell-BnI3FdvK.js";import{d as n}from"./index-Ce85sGFo.js";import{t as r}from"./legal-page-B6mo56bt.js";var i=e();function a(){return(0,i.jsx)(t,{locale:`en`,copy:n,page:`terms`,children:(0,i.jsx)(r,{copy:n,title:n.termsPage.title,updated:n.termsPage.updated,body:n.termsPage.body})})}export{a as component};

@@ -1,1 +1,0 @@
-import{o as e}from"./useStore-DCim0WvV.js";import{t}from"./site-shell-BnI3FdvK.js";import{f as n}from"./index-Ce85sGFo.js";import{t as r}from"./legal-page-B6mo56bt.js";var i=e();function a(){return(0,i.jsx)(t,{locale:`en`,copy:n,page:`privacy`,children:(0,i.jsx)(r,{copy:n,title:n.privacyPage.title,updated:n.privacyPage.updated,body:n.privacyPage.body})})}export{a as component};

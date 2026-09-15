@@ -1,1 +1,0 @@
-import{i as e,s as t}from"./locale-Bm-ZgVXI.js";import{o as n}from"./useStore-DCim0WvV.js";import{a as r}from"./index-Ce85sGFo.js";import{t as i}from"./login-page-umZUFdlJ.js";var a=n();function o(){let{locale:n}=r.useParams(),o=e(n)?n:`fi`,s=t(o);return(0,a.jsx)(i,{locale:o,copy:s})}export{o as component};

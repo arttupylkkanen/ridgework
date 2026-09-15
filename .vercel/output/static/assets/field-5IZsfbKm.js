@@ -1,1 +1,0 @@
-import{o as e}from"./useStore-DCim0WvV.js";import{t}from"./site-shell-BnI3FdvK.js";import{g as n}from"./index-Ce85sGFo.js";import{t as r}from"./field-page-Drbm0_Ke.js";var i=e();function a(){return(0,i.jsx)(t,{locale:`en`,copy:n,page:`field`,children:(0,i.jsx)(r,{locale:`en`,copy:n})})}export{a as component};

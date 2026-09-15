@@ -1,1 +1,0 @@
-import{s as e}from"./locale-Bm-ZgVXI.js";import{o as t}from"./useStore-DCim0WvV.js";import{n}from"./index-Ce85sGFo.js";import{t as r}from"./guides-page-CCpxPdTk.js";var i=t();function a(){let{slug:t}=n.useParams();return(0,i.jsx)(r,{locale:`en`,copy:e(`en`),slug:t})}export{a as component};

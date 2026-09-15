@@ -1,1 +1,0 @@
-import{t as e}from"./app-page-DcDa04B5.js";import{o as t}from"./useStore-DCim0WvV.js";import{t as n}from"./site-shell-BnI3FdvK.js";import{_ as r}from"./index-Ce85sGFo.js";var i=t();function a(){return(0,i.jsx)(n,{locale:`en`,copy:r,page:`app`,children:(0,i.jsx)(e,{locale:`en`,copy:r})})}export{a as component};
