@@ -90,7 +90,7 @@ export const de: Copy = {
     caveats: [
       "Individuelle Reaktion variiert — Alter, Historie, Gelände und Alltagsstress ändern, was „funktioniert“.",
       "Publizierte Mittelwerte sind kein medizinischer Rat und ersetzen keine Fachperson bei Gesundheitsfragen.",
-      "Wir übersetzen Literatur in Checklisten und Wochenstrukturen, damit du mit offenen Augen entscheidest.",
+      "Das schreibt eine Startwoche aus dem, was du angibst. Es sieht dich nicht trainieren und kennt nur die Einheiten, die du einträgst.",
     ],
     sourcesTitle: "Quellen (Crossref-verifiziert)",
     teaserH2: "Was das versprechen kann und was nicht",

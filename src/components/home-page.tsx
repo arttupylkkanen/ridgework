@@ -76,7 +76,7 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
                 {copy.method.teaserCta} →
               </HomeLink>
             </div>
-            <div className="border-l-2 border-ridge pl-6">
+            <div className="self-start border-l-2 border-ridge pl-6">
               <h3 className="font-display text-lg font-semibold text-ink">
                 {copy.method.caveatsTitle}
               </h3>

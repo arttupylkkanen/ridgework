@@ -90,7 +90,7 @@ export const fi: Copy = {
     caveats: [
       "Yksilövaste vaihtelee. Ikä, historia, maasto ja elämän kuorma muuttavat sitä, mikä toimii.",
       "Julkaistut keskiarvot eivät ole lääketieteellistä neuvontaa eivätkä korvaa ammattilaista terveyskysymyksissä.",
-      "Käännämme kirjallisuuden listoiksi ja viikkorakenteiksi, jotta voit päättää silmät auki.",
+      "Tämä kirjoittaa lähtöviikon siitä mitä kerrot sille. Se ei näe sinua treenaamassa ja tietää vain ne treenit jotka kirjaat.",
     ],
     sourcesTitle: "Lähteet",
     teaserH2: "Mitä tämä voi luvata ja mitä ei",

@@ -90,7 +90,7 @@ export const fr: Copy = {
     caveats: [
       "La réponse individuelle varie — âge, historique, terrain et stress de vie changent ce qui “marche”.",
       "Les moyennes publiées ne sont pas un avis médical et ne remplacent pas un clinicien pour les questions de santé.",
-      "Nous traduisons la littérature en checklists et structures de semaine pour décider les yeux ouverts.",
+      "Cela écrit une semaine de départ à partir de ce que vous lui dites. Cela ne vous voit pas vous entraîner et ne connaît que les séances que vous notez.",
     ],
     sourcesTitle: "Sources (vérifiées Crossref)",
     teaserH2: "Ce que cela peut promettre, et ce que cela ne peut pas",

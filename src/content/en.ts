@@ -90,7 +90,7 @@ export const en: Copy = {
     caveats: [
       "Individual response varies. Age, history, terrain, and life stress change what works.",
       "Published averages are not a prescription and do not replace a clinician when health questions arise.",
-      "We turn that literature into a week you can run.",
+      "This writes a starting week from what you tell it. It cannot watch you train, and it only knows the sessions you log.",
     ],
     sourcesTitle: "Sources (Crossref-verified)",
     teaserH2: "What this can promise, and what it cannot",
