@@ -1,9 +1,10 @@
 import type { Copy } from "@/content/types";
 import { KEY_SOURCES } from "@/content";
 import { GUIDES } from "@/content/guides";
+import { planPageFor } from "@/content/plans";
 import type { Locale } from "@/lib/locale";
 import { HERO_PHOTO, METHOD_PHOTO, PROGRAM_MEDIA } from "@/lib/program-media";
-import { AuthLink, DeskLink, GuideLink, HomeLink, SourcesLink } from "./app-link";
+import { AuthLink, DeskLink, GuideLink, HomeLink, PlanLink, SourcesLink } from "./app-link";
 import { CheckoutForm } from "./checkout-form";
 
 export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
@@ -255,13 +256,10 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {copy.programs.rows.map((row, i) => {
               const photo = PROGRAM_MEDIA[row.id];
-              return (
-                <DeskLink
-                  key={row.id}
-                  locale={locale}
-                  program={row.id}
-                  className="group cursor-pointer overflow-hidden rounded-2xl border border-line bg-card hover:border-ridge"
-                >
+              const cardClass =
+                "group cursor-pointer overflow-hidden rounded-2xl border border-line bg-card hover:border-ridge";
+              const inner = (
+                <>
                   <img
                     src={photo.src}
                     alt={row.name}
@@ -291,6 +289,18 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
                     ) : null}
                     <p className="mt-4 text-sm font-medium text-ridge">{copy.programs.cta}</p>
                   </div>
+                </>
+              );
+              // English gets the plan landing page; other locales keep going
+              // straight to the desk, since those pages are English-only.
+              const planSlug = locale === "en" ? planPageFor(row.id)?.slug : undefined;
+              return planSlug ? (
+                <PlanLink key={row.id} slug={planSlug} className={cardClass}>
+                  {inner}
+                </PlanLink>
+              ) : (
+                <DeskLink key={row.id} locale={locale} program={row.id} className={cardClass}>
+                  {inner}
                 </DeskLink>
               );
             })}

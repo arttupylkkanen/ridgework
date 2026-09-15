@@ -18,7 +18,8 @@ type Props = {
     | "guides"
     | "passport"
     | "example"
-    | "sources";
+    | "sources"
+    | "plans";
   children: React.ReactNode;
 };
 

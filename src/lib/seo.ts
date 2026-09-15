@@ -8,6 +8,11 @@ const OG_LOCALE: Record<string, string> = {
   de: "de_DE",
 };
 
+/** Canonical link for a path — pass alongside `meta` in a route's `head`. */
+export function canonical(path: string) {
+  return [{ rel: "canonical", href: `${SITE}${path === "/" ? "/" : path}` }];
+}
+
 export function siteMeta(opts: {
   title: string;
   description: string;

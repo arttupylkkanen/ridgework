@@ -21,7 +21,8 @@ export type PageId =
   | "login"
   | "guides"
   | "example"
-  | "sources";
+  | "sources"
+  | "plans";
 
 export function localePrefix(locale: Locale): string {
   return locale === "en" ? "" : `/${locale}`;

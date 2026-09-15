@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import { UserButton } from "@/lib/auth/gates";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
 import type { Copy } from "@/content/types";
-import { LOCALES, type Locale, homeHash, pagePath } from "@/lib/locale";
+import { LOCALES, type Locale, type PageId, homeHash, pagePath } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 import { AuthLink, DeskLink, FieldLink, GuideLink } from "./app-link";
 
@@ -28,8 +28,20 @@ type Props = {
     | "guides"
     | "passport"
     | "example"
-    | "sources";
+    | "sources"
+    | "plans";
 };
+
+/**
+ * Where the language switcher should land. Plan pages are English-only, so
+ * switching language from one goes to that locale's home rather than a URL
+ * that does not exist.
+ */
+function localeEquivalent(page: Props["page"], target: Locale): PageId {
+  if (page === "passport") return "app";
+  if (page === "plans") return target === "en" ? "plans" : "home";
+  return page;
+}
 
 function AuthSlot({ locale, copy }: { locale: Locale; copy: Copy }) {
   const { user, isPending } = useCurrentUserState();
@@ -138,7 +150,7 @@ export function SiteHeader({ locale, copy, page }: Props) {
             {LOCALES.map((lang) => (
               <Link
                 key={lang}
-                to={pagePath(lang, page === "login" ? "login" : page === "passport" ? "app" : page)}
+                to={pagePath(lang, localeEquivalent(page, lang))}
                 hrefLang={lang}
                 aria-current={lang === locale ? "page" : undefined}
                 className={cn(
