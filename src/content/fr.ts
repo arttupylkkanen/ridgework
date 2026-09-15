@@ -337,7 +337,6 @@ export const fr: Copy = {
       { label: "Sommeil cette nuit", value: "5 heures" },
       { label: "Hier", value: "32 km longue" },
       { label: "Genou droit", value: "2/10" },
-      { label: "Météo dimanche", value: "28°C" },
     ],
     says: "Ce qui change",
     actions: [

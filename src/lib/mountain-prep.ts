@@ -32,15 +32,13 @@ export const WIND = ["calm", "breeze", "strong"] as const;
 export type Wind = (typeof WIND)[number];
 
 export type WeatherInput = {
-  highC: number | null;
-  lowC: number | null;
   precip: Precip;
   wind: Wind;
   freezeM: number | null;
 };
 
 export function emptyWeather(): WeatherInput {
-  return { highC: null, lowC: null, precip: "none", wind: "calm", freezeM: null };
+  return { precip: "none", wind: "calm", freezeM: null };
 }
 
 export type PrepItem = {
@@ -222,12 +220,6 @@ export function buildPrep(opts: {
   // --- Clothing from forecast ---
   items.push(item("clothing", "writeForecast"));
   items.push(item("clothing", "baseLayer"));
-  if (weather.lowC != null && weather.lowC <= 6) {
-    items.push(item("clothing", "warmLayer", { low: weather.lowC }));
-  }
-  if (weather.highC != null && weather.highC >= 22) {
-    items.push(item("clothing", "hotDay", { high: weather.highC }));
-  }
   if (weather.precip === "rain" || weather.precip === "mix") {
     items.push(item("clothing", "rainShell"));
   }

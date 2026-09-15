@@ -15,8 +15,6 @@ export type MountainPrepCopy = {
   sections: Record<PrepSectionId, { title: string; lead: string }>;
   weatherTitle: string;
   weatherLead: string;
-  highC: string;
-  lowC: string;
   precip: string;
   precipOpts: { none: string; rain: string; snow: string; mix: string };
   wind: string;
@@ -140,14 +138,6 @@ const enItems: MountainPrepCopy["items"] = {
   "clothing.baseLayer": {
     label: "A shirt you can hike or run in, plus one thing you can add without stopping long.",
     why: "The base is the day. Spare warmth is for the stop, the summit, or the night.",
-  },
-  "clothing.warmLayer": {
-    label: "Low around {low}°C. Take an insulating layer you have worn while moving.",
-    why: "A puffy that only comes out at the col still has to fit over the pack straps.",
-  },
-  "clothing.hotDay": {
-    label: "High around {high}°C. Cap, extra water, salt you have already used.",
-    why: "Heat is slower than pride. Walk the steep bits and keep talking.",
   },
   "clothing.rainShell": {
     label: "A shell that actually blocks rain, packed where you can reach it.",
@@ -354,8 +344,6 @@ export const mountainEn: MountainPrepCopy = {
   },
   weatherTitle: "Forecast you are packing for",
   weatherLead: "Valley numbers lie. Write what you will actually meet on the ridge or the last climb.",
-  highC: "High °C",
-  lowC: "Low °C",
   precip: "Precipitation",
   precipOpts: { none: "Dry", rain: "Rain", snow: "Snow", mix: "Mix" },
   wind: "Wind",
@@ -402,8 +390,6 @@ export const mountainFi: MountainPrepCopy = {
   },
   weatherTitle: "Ennuste jota vasten pakkaat",
   weatherLead: "Laakson lukemat valehtelevat. Kirjoita se mitä harjanteella tai viimeisessä nousussa oikeasti on.",
-  highC: "Ylin °C",
-  lowC: "Alin °C",
   precip: "Sade",
   precipOpts: { none: "Kuivaa", rain: "Vettä", snow: "Lunta", mix: "Räntää" },
   wind: "Tuuli",
@@ -593,8 +579,6 @@ export const mountainFr: MountainPrepCopy = {
   },
   weatherTitle: "Prévision pour laquelle vous partez",
   weatherLead: "Les chiffres de vallée mentent. Écrivez ce que la crête verra.",
-  highC: "Max °C",
-  lowC: "Min °C",
   precip: "Précipitations",
   precipOpts: { none: "Sec", rain: "Pluie", snow: "Neige", mix: "Mélange" },
   wind: "Vent",
@@ -639,8 +623,6 @@ export const mountainDe: MountainPrepCopy = {
   },
   weatherTitle: "Vorhersage, für die du packst",
   weatherLead: "Talzahlen lügen. Schreib, was der Grat wirklich sieht.",
-  highC: "Max °C",
-  lowC: "Min °C",
   precip: "Niederschlag",
   precipOpts: { none: "Trocken", rain: "Regen", snow: "Schnee", mix: "Mix" },
   wind: "Wind",

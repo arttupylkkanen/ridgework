@@ -331,7 +331,6 @@ export const de: Copy = {
       { label: "Schlaf letzte Nacht", value: "5 Stunden" },
       { label: "Gestern", value: "32 km Langer" },
       { label: "Rechtes Knie", value: "2/10" },
-      { label: "Sonntag Wetter", value: "28°C" },
     ],
     says: "Was sich ändert",
     actions: [

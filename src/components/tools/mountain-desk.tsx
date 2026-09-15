@@ -172,16 +172,6 @@ export function MountainDesk({
         <p className="mt-1 max-w-2xl text-sm leading-relaxed text-ink-muted">{t.weatherLead}</p>
         <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
           <NumField
-            label={t.highC}
-            value={persist.weather.highC}
-            onChange={(n) => write({ ...persist, objective, weather: { ...persist.weather, highC: n } })}
-          />
-          <NumField
-            label={t.lowC}
-            value={persist.weather.lowC}
-            onChange={(n) => write({ ...persist, objective, weather: { ...persist.weather, lowC: n } })}
-          />
-          <NumField
             label={t.freezeM}
             value={persist.weather.freezeM}
             onChange={(n) => write({ ...persist, objective, weather: { ...persist.weather, freezeM: n } })}

@@ -32,7 +32,7 @@ export const GUIDES: GuideCopy[] = [
     body: {
       en: [
         "You are six weeks from a 77 km trail ultra. That is a short window. It is still a written block: keep the long run, keep most days easy, put one quality dose in only if sleep and legs allow, and taper the last 10–14 days.",
-        "Yesterday you ran 32 km. Last night you slept five hours. The right knee is a 2/10 niggle, not a collapse. Sunday’s forecast is 28°C.",
+        "Yesterday you ran 32 km. Last night you slept five hours. The right knee is a 2/10 niggle, not a collapse. Sunday is forecast hot.",
         "Today’s written session was intervals. That session is junk intensity on five hours of sleep and a niggle. Skip it. Do 45–60 minutes easy: walk or jog so slowly you can speak a full sentence. If you have never run, walk the whole 45–60 min. That counts. Flat or gentle trail. If talking breaks, walk until it comes back.",
         "A sample week from here, if sleep returns: Mon rest or 30 min walk. Tue 50 min easy walk/jog (full sentences). Wed rest. Thu 40 min easy. Fri rest. Sat long 90 min walk/jog, still talking — or hike the same minutes. Sun 40 min easy or rest if the knee is louder. Same minutes on a bike if you cannot run: 50 min easy cycling replaces 50 min easy jogging.",
         "Move the next long run to Monday if Sunday stays hot and the knee is louder. On the long, drink on a schedule you have already used — roughly 500–750 ml per hour in the heat, with something salty if you usually need it. Do not invent a new gel.",
@@ -40,7 +40,7 @@ export const GUIDES: GuideCopy[] = [
       ],
       fi: [
         "77 km polku-ultraan on kuusi viikkoa. Ikkuna on lyhyt, mutta viikko kirjoitetaan silti: pitkä juoksu, suurin osa päivistä helppoa, yksi teho vain jos uni ja jalat antavat, kevennys 10–14 päivää ennen.",
-        "Eilen 32 km. Yöllä viisi tuntia unta. Oikea polvi 2/10, ei romahdus. Sunnuntain ennuste 28°C.",
+        "Eilen 32 km. Yöllä viisi tuntia unta. Oikea polvi 2/10, ei romahdus. Sunnuntaista tulee kuuma.",
         "Tänään oli vedot. Viiden tunnin unella ja kolotuksella se on roskaintensiteettiä. Jätä vedot. 45–60 min helppoa: kävele tai hölkkää niin hitaasti että saat kokonaisen lauseen. Jos et ole juossut, kävele koko 45–60 min. Se lasketaan. Tasainen tai loiva polku. Jos puhe katkeaa, kävele kunnes se palaa.",
         "Esimerkkiviikko jos uni palaa: ma lepo tai 30 min kävely. ti 50 min kevyt kävely/hölkkä (kokonaisia lauseita). ke lepo. to 40 min kevyt. pe lepo. la pitkä 90 min kävely/hölkkä, yhä puhetta — tai vaella samat minuutit. su 40 min kevyt tai lepo jos polvi on äänekkäämpi. Pyörällä samat minuutit: 50 min helppoa pyörää korvaa 50 min hölkkää.",
         "Siirrä pitkä maanantaille jos sunnuntai on kuuma ja polvi äänekkäämpi. Pitkällä juo jo harjoiteltu määrä — kuumassa noin 500–750 ml/h, suolaista jos yleensä tarvitset. Älä kokeile uutta geeliä.",
@@ -48,14 +48,14 @@ export const GUIDES: GuideCopy[] = [
       ],
       fr: [
         "Ultra trail de 77 km dans six semaines. Fenêtre courte, semaine quand même écrite : garder la sortie longue, garder l’essentiel facile, une séance qualité seulement si le sommeil et les jambes le permettent, taper 10–14 jours.",
-        "Hier 32 km. Cinq heures de sommeil. Genou droit 2/10. Dimanche : 28°C.",
+        "Hier 32 km. Cinq heures de sommeil. Genou droit 2/10. Dimanche sera chaud.",
         "Aujourd’hui c’était des intervalles. Avec cinq heures de sommeil, c’est de l’intensité pour rien. 45–60 min facile. Si vous parlez en phrases, vous êtes dans le travail.",
         "Déplacez la longue au lundi s’il fait chaud et que le genou parle. Buvez un protocole déjà testé, ~500–750 ml/h s’il fait chaud. Pas de nouveau gel.",
         "Réévaluez demain. Un jour facile ne perd pas les 77 km. Un mardi cassé peut. La date de pic reste.",
       ],
       de: [
         "77-km-Trail-Ultra in sechs Wochen. Kurzes Fenster, Woche trotzdem geschrieben: Langer Lauf bleibt, die meisten Tage locker, eine Qualitätseinheit nur bei Schlaf und Beinen, Taper 10–14 Tage.",
-        "Gestern 32 km. Fünf Stunden Schlaf. Rechtes Knie 2/10. Sonntag 28°C.",
+        "Gestern 32 km. Fünf Stunden Schlaf. Rechtes Knie 2/10. Sonntag wird heiß.",
         "Heute standen Intervalle. Bei fünf Stunden Schlaf ist das Müllintensität. 45–60 Min locker. Volle Sätze = richtige Intensität.",
         "Langen Lauf auf Montag, wenn Sonntag heiß bleibt. Trinken wie schon geübt, in der Hitze etwa 500–750 ml/h. Kein neues Gel.",
         "Morgen neu bewerten. Ein lockerer Tag verliert die 77 km nicht. Ein kaputter Dienstag kann. Das Peak-Datum bleibt.",
@@ -186,25 +186,25 @@ export const GUIDES: GuideCopy[] = [
     },
     body: {
       en: [
-        "Fatigue is not a mood. It is last night’s sleep, yesterday’s long, a knee at 2/10, and 28°C on the forecast. Those facts change Tuesday. They do not cancel the race.",
+        "Fatigue is not a mood. It is last night’s sleep, yesterday’s long, a knee at 2/10, and heat on the forecast. Those facts change Tuesday. They do not cancel the race.",
         "Ridgework uses four marks: fresh, fine, tired, wrecked. Fresh keeps the written week. Fine keeps load but does not add a second hard day. Tired turns hard and steady into easy. Wrecked turns them into rest; easy stays easy.",
         "This is how load monitoring is used in the endurance literature: as a planning input, not a diagnosis. If it feels like injury or illness, see a doctor. The app only changes the week.",
         "The mistake is doing the intervals because they were on the card. Commitment to a session is not fitness. The 77 km still happens if Tuesday is 50 minutes easy.",
       ],
       fi: [
-        "Väsymys ei ole fiilis. Se on viime yön uni, eilinen pitkä, polvi 2/10 ja 28°C ennusteessa. Ne muuttavat tiistain. Ne eivät peru kisaa.",
+        "Väsymys ei ole fiilis. Se on viime yön uni, eilinen pitkä, polvi 2/10 ja helle ennusteessa. Ne muuttavat tiistain. Ne eivät peru kisaa.",
         "Neljä merkkiä: virkeä, ok, väsynyt, hajalla. Väsynyt tekee tehoista helppoa. Hajalla tekee niistä lepoa.",
         "Kuormaa käytetään suunnitteluun, ei diagnoosiin. Jos kyse on vammasta tai sairaudesta, mene lääkäriin. Sovellus muuttaa vain viikkoa.",
         "Virhe on tehdä vedot koska ne olivat kortilla. 77 km tapahtuu silti jos tiistai on 50 min helppoa.",
       ],
       fr: [
-        "La fatigue n’est pas une humeur. C’est le sommeil, la longue d’hier, un genou à 2/10, 28°C. Ça change mardi. Ça n’annule pas la course.",
+        "La fatigue n’est pas une humeur. C’est le sommeil, la longue d’hier, un genou à 2/10, la chaleur. Ça change mardi. Ça n’annule pas la course.",
         "Quatre marques : frais, correct, fatigué, cassé. Fatigué : le dur devient facile. Cassé : repos.",
         "La charge sert à planifier, pas à diagnostiquer. Blessure ou maladie: voyez un médecin. L’app ne change que la semaine.",
         "L’erreur est de faire les intervalles parce qu’ils étaient écrits. Les 77 km tiennent si mardi fait 50 min facile.",
       ],
       de: [
-        "Müdigkeit ist keine Stimmung. Schlaf, Langer von gestern, Knie 2/10, 28°C. Das ändert Dienstag. Das sagt das Rennen nicht ab.",
+        "Müdigkeit ist keine Stimmung. Schlaf, Langer von gestern, Knie 2/10, Hitze. Das ändert Dienstag. Das sagt das Rennen nicht ab.",
         "Vier Marken: frisch, okay, müde, kaputt. Müde macht hart zu locker. Kaputt macht Pause.",
         "Last ist Planung, keine Diagnose. Verletzung oder Krankheit: zum Arzt. Die App ändert nur die Woche.",
         "Der Fehler ist, Intervalle zu machen weil sie auf der Karte standen. Die 77 km halten, wenn Dienstag 50 Min locker ist.",

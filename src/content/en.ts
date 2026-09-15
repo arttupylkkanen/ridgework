@@ -354,7 +354,6 @@ export const en: Copy = {
       { label: "Sleep last night", value: "5 hours" },
       { label: "Yesterday", value: "32 km long run" },
       { label: "Right knee", value: "2/10 discomfort" },
-      { label: "Sunday forecast", value: "28°C" },
     ],
     says: "What changes",
     actions: [

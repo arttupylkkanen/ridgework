@@ -7,7 +7,7 @@ import type {
   ReadinessResult,
   StoredDaily,
 } from "./daily-readiness.ts";
-import { assessReadiness, baselineFrom, emptyLoad } from "./daily-readiness.ts";
+import { assessReadiness, emptyLoad } from "./daily-readiness.ts";
 import {
   HARD_KEYS,
   HORIZON,
@@ -526,11 +526,9 @@ export function loadContextFor(
   state: RollingState,
   profile: AthleteProfile | null,
   today: string,
-  history: StoredDaily[],
+  _history: StoredDaily[],
 ): LoadContext {
   const load = emptyLoad();
-  load.rhrBaseline = baselineFrom(history, "rhr");
-  load.hrvBaseline = baselineFrom(history, "hrv");
   if (!profile) return load;
   for (let back = 1; back <= 7; back += 1) {
     const date = addDaysIso(today, -back);

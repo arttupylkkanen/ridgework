@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Copy } from "@/content/types";
-import type { AccessFlag, AthleteProfile } from "@/lib/athlete";
-import { ACCESS_FLAGS, windowsOf } from "@/lib/athlete";
+import type { AthleteProfile } from "@/lib/athlete";
+import { windowsOf } from "@/lib/athlete";
 import {
   SCALE,
   emptyInputs,
@@ -137,8 +137,6 @@ export function TodayDesk({
         motivation: existing.motivation,
         fatigue: existing.fatigue,
         stress: existing.stress,
-        rhr: existing.rhr,
-        hrv: existing.hrv,
         lastEffort: existing.lastEffort,
       });
       setOverridden(existing.overridden);
@@ -190,8 +188,6 @@ export function TodayDesk({
           motivation: inputs.motivation,
           fatigue: inputs.fatigue,
           stress: inputs.stress,
-          rhr: inputs.rhr,
-          hrv: inputs.hrv,
           lastEffort: inputs.lastEffort,
         },
         call: view.call,
@@ -457,40 +453,6 @@ export function TodayDesk({
           ))}
         </div>
         <div className="mt-6 grid gap-3 sm:grid-cols-3">
-          <label className="text-sm font-medium text-ink">
-            {t.rhr}
-            <input
-              id="ready-rhr"
-              type="number"
-              min={30}
-              max={120}
-              value={inputs.rhr ?? ""}
-              onChange={(e) =>
-                setInputs((prev) => ({
-                  ...prev,
-                  rhr: e.target.value ? Number(e.target.value) : undefined,
-                }))
-              }
-              className="mt-2 w-full rounded-lg border border-line bg-paper px-3 py-2.5 text-sm"
-            />
-          </label>
-          <label className="text-sm font-medium text-ink">
-            {t.hrv}
-            <input
-              id="ready-hrv"
-              type="number"
-              min={10}
-              max={250}
-              value={inputs.hrv ?? ""}
-              onChange={(e) =>
-                setInputs((prev) => ({
-                  ...prev,
-                  hrv: e.target.value ? Number(e.target.value) : undefined,
-                }))
-              }
-              className="mt-2 w-full rounded-lg border border-line bg-paper px-3 py-2.5 text-sm"
-            />
-          </label>
           <div>
             <p className="text-sm font-medium text-ink">{t.lastEffort}</p>
             <div className="mt-2 grid grid-cols-5 gap-1.5">
@@ -553,36 +515,6 @@ export function TodayDesk({
             </button>
           ) : null}
         </label>
-        <div className="rounded-2xl border border-line bg-card p-4">
-          <p className="text-sm font-medium text-ink">{t.accessTitle}</p>
-          <div className="mt-3 grid grid-cols-2 gap-2">
-            {ACCESS_FLAGS.map((flag) => {
-              const blocked = (state.blockedAccess ?? []).includes(flag);
-              return (
-                <button
-                  key={flag}
-                  id={`access-${flag}`}
-                  type="button"
-                  aria-pressed={!blocked}
-                  onClick={() => {
-                    const current = new Set(state.blockedAccess ?? []);
-                    if (blocked) current.delete(flag);
-                    else current.add(flag);
-                    persist({ ...state, blockedAccess: [...current] as AccessFlag[] });
-                  }}
-                  className={cn(
-                    "min-h-11 rounded-lg border px-3 text-sm",
-                    blocked
-                      ? "border-line bg-paper text-ink-muted"
-                      : "border-ridge bg-paper-warm text-ink",
-                  )}
-                >
-                  {t.access[flag]}
-                </button>
-              );
-            })}
-          </div>
-        </div>
       </section>
 
       {ahead.length > 1 ? (

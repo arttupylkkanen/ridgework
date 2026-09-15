@@ -57,8 +57,6 @@ export type AthleteCopy = {
     scaleLow: Record<"sleep" | "soreness" | "motivation" | "fatigue" | "stress", string>;
     scaleHigh: Record<"sleep" | "soreness" | "motivation" | "fatigue" | "stress", string>;
     optionalTitle: string;
-    rhr: string;
-    hrv: string;
     lastEffort: string;
     sessionToday: string;
     minutes: string;
@@ -68,8 +66,6 @@ export type AthleteCopy = {
     didTomorrow: string;
     travellingUntil: string;
     clearTravel: string;
-    accessTitle: string;
-    access: Record<"trail" | "mountain" | "gym" | "climbing", string>;
     whyChanged: string;
     whyWeek: string;
     peakLocked: string;
@@ -137,8 +133,6 @@ const reasonsEn: Record<string, string> = {
   stressHigh: "Stress {n}/5.",
   loadCluster: "The last three days already held {n} hard or long sessions.",
   yesterdayHard: "Yesterday was a hard or long day.",
-  rhrUp: "Resting HR {rhr} is {delta} bpm above your recent baseline ({baseline}).",
-  hrvDown: "HRV {hrv} is {pct}% below your recent baseline ({baseline}).",
   normalLoad: "Recent load is ordinary ({n} hard/long days in the last three).",
   runToHikeCycle: "You cannot run, so aerobic days are hiking or cycling.",
   illnessEase: "Easy return through week {n}. Quality waits.",
@@ -248,8 +242,6 @@ export const athleteEn: AthleteCopy = {
       stress: "High",
     },
     optionalTitle: "If you track them",
-    rhr: "Resting HR",
-    hrv: "HRV (ms)",
     lastEffort: "Yesterday's effort",
     sessionToday: "Today's session",
     minutes: "{n} min",
@@ -259,8 +251,6 @@ export const athleteEn: AthleteCopy = {
     didTomorrow: "I did tomorrow's session today",
     travellingUntil: "Travelling until",
     clearTravel: "Not travelling",
-    accessTitle: "Access this week",
-    access: { trail: "Trail", mountain: "Mountain", gym: "Gym", climbing: "Climbing kit" },
     whyChanged: "Why this changed",
     whyWeek: "Why this week looks like this",
     peakLocked: "Ready date {peak} — it moves only if you change it.",
@@ -331,8 +321,6 @@ const reasonsFi: Record<string, string> = {
   stressHigh: "Stressi {n}/5.",
   loadCluster: "Kolmena viime päivänä oli jo {n} kovaa tai pitkää sessiota.",
   yesterdayHard: "Eilen oli kova tai pitkä päivä.",
-  rhrUp: "Leposyke {rhr} on {delta} lyöntiä yli oman baselinen ({baseline}).",
-  hrvDown: "HRV {hrv} on {pct} % alle oman baselinen ({baseline}).",
   normalLoad: "Viime päivien kuorma on tavallinen ({n} kovaa/pitkää kolmessa päivässä).",
   runToHikeCycle: "Et voi juosta, joten aerobiset päivät ovat vaellusta tai pyörää.",
   illnessEase: "Helppo paluu viikkoon {n} asti. Tehot odottavat.",
@@ -442,8 +430,6 @@ export const athleteFi: AthleteCopy = {
       stress: "Korkea",
     },
     optionalTitle: "Jos seuraat",
-    rhr: "Leposyke",
-    hrv: "HRV (ms)",
     lastEffort: "Eilisen rasitus",
     sessionToday: "Tämän päivän sessio",
     minutes: "{n} min",
@@ -453,8 +439,6 @@ export const athleteFi: AthleteCopy = {
     didTomorrow: "Tein huomisen session tänään",
     travellingUntil: "Matkalla asti",
     clearTravel: "En ole matkalla",
-    accessTitle: "Pääsy tällä viikolla",
-    access: { trail: "Polku", mountain: "Vuori", gym: "Sali", climbing: "Kiipeilykamat" },
     whyChanged: "Miksi tämä muuttui",
     whyWeek: "Miksi viikko näyttää tältä",
     peakLocked: "Tavoitepäivä {peak} — siirtyy vain jos siirrät sen.",
@@ -525,8 +509,6 @@ const reasonsFr: Record<string, string> = {
   stressHigh: "Stress {n}/5.",
   loadCluster: "Les trois derniers jours avaient déjà {n} séances dures ou longues.",
   yesterdayHard: "Hier était un jour dur ou long.",
-  rhrUp: "FC repos {rhr} : +{delta} bpm vs votre base récente ({baseline}).",
-  hrvDown: "HRV {hrv} : {pct} % sous votre base récente ({baseline}).",
   normalLoad: "Charge récente ordinaire ({n} dur/long sur trois jours).",
   runToHikeCycle:
     "Vous ne pouvez pas courir : les jours aérobies deviennent de la rando ou du vélo.",
@@ -636,8 +618,6 @@ export const athleteFr: AthleteCopy = {
       stress: "Haut",
     },
     optionalTitle: "Si vous les suivez",
-    rhr: "FC repos",
-    hrv: "HRV (ms)",
     lastEffort: "Effort d’hier",
     sessionToday: "Séance du jour",
     minutes: "{n} min",
@@ -647,8 +627,6 @@ export const athleteFr: AthleteCopy = {
     didTomorrow: "J’ai fait la séance de demain aujourd’hui",
     travellingUntil: "En voyage jusqu’au",
     clearTravel: "Pas en voyage",
-    accessTitle: "Accès cette semaine",
-    access: { trail: "Trail", mountain: "Montagne", gym: "Salle", climbing: "Matériel d’escalade" },
     whyChanged: "Pourquoi ça a changé",
     whyWeek: "Pourquoi la semaine ressemble à ça",
     peakLocked: "Date cible {peak} — elle ne bouge que si vous la changez.",
@@ -722,8 +700,6 @@ const reasonsDe: Record<string, string> = {
   stressHigh: "Stress {n}/5.",
   loadCluster: "Die letzten drei Tage hatten schon {n} harte oder lange Einheiten.",
   yesterdayHard: "Gestern war hart oder lang.",
-  rhrUp: "Ruhe-HF {rhr} ist {delta} bpm über deiner Baseline ({baseline}).",
-  hrvDown: "HRV {hrv} ist {pct} % unter deiner Baseline ({baseline}).",
   normalLoad: "Letzte Last gewöhnlich ({n} hart/lang in drei Tagen).",
   runToHikeCycle: "Du kannst nicht laufen: aerobe Tage werden Wanderung oder Rad.",
   illnessEase: "Lockere Rückkehr bis Woche {n}. Qualität wartet.",
@@ -831,8 +807,6 @@ export const athleteDe: AthleteCopy = {
       stress: "Hoch",
     },
     optionalTitle: "Falls du sie trackst",
-    rhr: "Ruhe-HF",
-    hrv: "HRV (ms)",
     lastEffort: "Gestrige Anstrengung",
     sessionToday: "Heutige Einheit",
     minutes: "{n} min",
@@ -842,8 +816,6 @@ export const athleteDe: AthleteCopy = {
     didTomorrow: "Ich habe die morgige Einheit heute gemacht",
     travellingUntil: "Unterwegs bis",
     clearTravel: "Nicht unterwegs",
-    accessTitle: "Zugang diese Woche",
-    access: { trail: "Trail", mountain: "Berg", gym: "Gym", climbing: "Klettermaterial" },
     whyChanged: "Warum das geändert hat",
     whyWeek: "Warum die Woche so aussieht",
     peakLocked: "Zieldatum {peak} — bewegt sich nur, wenn du es änderst.",

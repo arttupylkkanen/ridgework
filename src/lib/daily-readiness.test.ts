@@ -39,23 +39,7 @@ describe("transparent readiness", () => {
     assert.ok(result.drivers.some((r) => r.id === "loadCluster" && r.values.n === 2));
   });
 
-  it("uses resting HR only when it is 7 bpm above the athlete's own baseline", () => {
-    const load: LoadContext = { ...emptyLoad(), rhrBaseline: 52 };
-    const quiet = assessReadiness(inputs({ rhr: 55 }), load);
-    assert.equal(quiet.call, "ready");
-    const up = assessReadiness(inputs({ rhr: 60 }), load);
-    assert.equal(up.call, "reduce");
-    assert.ok(up.drivers.some((r) => r.id === "rhrUp" && r.values.delta === 8));
-  });
 
-  it("uses HRV only when it is 20% below the athlete's own baseline", () => {
-    const load: LoadContext = { ...emptyLoad(), hrvBaseline: 80 };
-    const ok = assessReadiness(inputs({ hrv: 70 }), load);
-    assert.equal(ok.call, "ready");
-    const down = assessReadiness(inputs({ hrv: 60 }), load);
-    assert.equal(down.call, "reduce");
-    assert.ok(down.drivers.some((r) => r.id === "hrvDown" && r.values.pct === 25));
-  });
 
   it("never invents a hidden score — the call is the strictest firing rule", () => {
     const result = assessReadiness(inputs({ sleep: 2, fatigue: 5, soreness: 4 }), {

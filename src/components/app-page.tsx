@@ -212,8 +212,6 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
             motivation: latest.motivation,
             fatigue: latest.fatigue,
             stress: latest.stress,
-            rhr: latest.rhr,
-            hrv: latest.hrv,
             lastEffort: latest.lastEffort,
           },
           call: latest.call,

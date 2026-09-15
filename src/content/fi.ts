@@ -333,7 +333,6 @@ export const fi: Copy = {
       { label: "Uni viime yönä", value: "5 tuntia" },
       { label: "Eilen", value: "32 km pitkä juoksu" },
       { label: "Oikea polvi", value: "2/10" },
-      { label: "Sunnuntain ennuste", value: "28°C" },
     ],
     says: "Mitä viikko tekee",
     actions: [
