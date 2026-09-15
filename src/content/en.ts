@@ -94,6 +94,25 @@ export const en: Copy = {
     ],
     sourcesTitle: "Sources (Crossref-verified)",
   },
+  rollingEngine: {
+    kicker: "Always ahead",
+    h2: "The plan never goes stale",
+    lead: "Most training plans are a PDF you download once. Ridgework keeps writing: up to three weeks are always on the calendar, and every one of them gets rewritten around how you actually trained, not how you were supposed to.",
+    points: [
+      {
+        title: "Three weeks, always written",
+        body: "Log today's session and the week ahead updates. There is always something real to look at, never a blank calendar waiting on you.",
+      },
+      {
+        title: "A tired week trains less. It does not restart.",
+        body: "Poor sleep, a missed session, a heavy week at work — the plan adjusts around it. The peak date only moves when you move it.",
+      },
+      {
+        title: "Not a template with your name on it",
+        body: "A static PDF cannot see that you slept five hours last night. This can — and it rewrites the week because of it.",
+      },
+    ],
+  },
   projects: {
     kicker: "Example projects",
     h2: "Compact project briefs",

@@ -330,6 +330,32 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
         </div>
       </section>
 
+      {copy.rollingEngine ? (
+        <section id="rolling-engine" className="scroll-mt-20 border-b border-line bg-paper-warm/40">
+          <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
+            <p className="text-sm font-semibold uppercase tracking-wider text-ridge">
+              {copy.rollingEngine.kicker}
+            </p>
+            <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+              {copy.rollingEngine.h2}
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted">
+              {copy.rollingEngine.lead}
+            </p>
+            <dl className="mt-10 grid gap-8 sm:grid-cols-3">
+              {copy.rollingEngine.points.map((point) => (
+                <div key={point.title}>
+                  <dt className="font-display text-lg font-semibold text-ridge-deep">
+                    {point.title}
+                  </dt>
+                  <dd className="mt-2 text-sm leading-relaxed text-ink-muted">{point.body}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+      ) : null}
+
       <section id="pricing" className="scroll-mt-20 border-b border-line bg-ridge-deep text-paper">
         <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24">
           <p className="text-sm font-medium uppercase tracking-[0.12em] text-accent-soft">

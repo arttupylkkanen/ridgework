@@ -110,6 +110,17 @@ export type Copy = {
     caveats: string[];
     sourcesTitle: string;
   };
+  /**
+   * Optional: the rolling-plan-engine explainer section. English-only for
+   * now (one language at a time) — the homepage renders nothing where this
+   * is absent, so fi/fr/de need no placeholder.
+   */
+  rollingEngine?: {
+    kicker: string;
+    h2: string;
+    lead: string;
+    points: { title: string; body: string }[];
+  };
   projects: {
     kicker: string;
     h2: string;
