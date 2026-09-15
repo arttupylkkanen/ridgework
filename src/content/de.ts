@@ -323,6 +323,10 @@ export const de: Copy = {
     kicker: "Beispiel",
     h2: "Ein echter Dienstag, kein Slogan",
     setup: "77-km-Ultra in sechs Wochen.",
+    weekTitle: "Und so sieht die Woche aus, die daraus entsteht",
+    writtenLabel: "Geschrieben",
+    shownLabel: "Nach einer Fünf-Stunden-Nacht",
+    changeNote: "Eine Einheit hat sich geändert, und der Plan sagt warum. Der Rest der Woche bleibt, das Renndatum auch.",
     facts: [
       { label: "Schlaf letzte Nacht", value: "5 Stunden" },
       { label: "Gestern", value: "32 km Langer" },

@@ -7,6 +7,7 @@ import type { Locale } from "@/lib/locale";
 import { HERO_PHOTO, METHOD_PHOTO, PROGRAM_MEDIA } from "@/lib/program-media";
 import { AuthLink, DeskLink, GuideLink, HomeLink, PlanLink, SourcesLink } from "./app-link";
 import { CheckoutForm } from "./checkout-form";
+import { ExampleWeekStrip } from "./example-week-strip";
 
 export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
   const scenarioPhoto = PROGRAM_MEDIA.ultra100;
@@ -171,6 +172,9 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
                 {copy.guidesIndex.cta}
               </GuideLink>
             </article>
+          </div>
+          <div className="mt-10">
+            <ExampleWeekStrip copy={copy} />
           </div>
         </div>
       </section>

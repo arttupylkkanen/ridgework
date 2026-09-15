@@ -346,6 +346,10 @@ export const en: Copy = {
     kicker: "Example",
     h2: "A real Tuesday, not a slogan",
     setup: "You have 6 weeks until your 77 km ultra.",
+    weekTitle: "And here is the week it writes",
+    writtenLabel: "Written",
+    shownLabel: "After a five-hour night",
+    changeNote: "One session changed, and the plan says why. The rest of the week is untouched and the race date did not move.",
     facts: [
       { label: "Sleep last night", value: "5 hours" },
       { label: "Yesterday", value: "32 km long run" },

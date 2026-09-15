@@ -325,6 +325,10 @@ export const fi: Copy = {
     kicker: "Esimerkki",
     h2: "Oikea tiistai, ei iskulausetta",
     setup: "77 km ultraan on kuusi viikkoa.",
+    weekTitle: "Ja tässä viikko jonka se kirjoittaa",
+    writtenLabel: "Kirjoitettu",
+    shownLabel: "Viiden tunnin yön jälkeen",
+    changeNote: "Yksi treeni muuttui, ja suunnitelma kertoo miksi. Muu viikko on koskematon eikä kisapäivä siirtynyt.",
     facts: [
       { label: "Uni viime yönä", value: "5 tuntia" },
       { label: "Eilen", value: "32 km pitkä juoksu" },

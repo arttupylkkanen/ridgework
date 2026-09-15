@@ -160,6 +160,10 @@ export type Copy = {
     kicker: string;
     h2: string;
     setup: string;
+    weekTitle: string;
+    writtenLabel: string;
+    shownLabel: string;
+    changeNote: string;
     facts: { label: string; value: string }[];
     says: string;
     actions: string[];

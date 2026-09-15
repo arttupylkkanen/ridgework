@@ -329,6 +329,10 @@ export const fr: Copy = {
     kicker: "Exemple",
     h2: "Un vrai mardi, pas un slogan",
     setup: "Ultra de 77 km dans six semaines.",
+    weekTitle: "Et voici la semaine qu’il écrit",
+    writtenLabel: "Écrit",
+    shownLabel: "Après une nuit de cinq heures",
+    changeNote: "Une séance a changé, et le plan dit pourquoi. Le reste de la semaine est intact et la date de course n’a pas bougé.",
     facts: [
       { label: "Sommeil cette nuit", value: "5 heures" },
       { label: "Hier", value: "32 km longue" },
