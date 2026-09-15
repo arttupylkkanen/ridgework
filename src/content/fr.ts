@@ -588,6 +588,8 @@ export const fr: Copy = {
     haveAccount: "Déjà un compte ? Connexion",
     noAccount: "Pas encore de compte ? Créez-en un",
     error: "Connexion impossible. Vérifiez e-mail et mot de passe.",
+    verifyTitle: "Vérifiez votre e-mail",
+    verifyBody: "Nous avons envoyé un lien de confirmation à cette adresse. Ouvrez-le pour entrer — le compte n’est pas actif avant.",
     testNote: "14 jours gratuits. Sans carte. Ajoutez-en une quand vous voulez pour continuer.",
   },
   dashboard: {

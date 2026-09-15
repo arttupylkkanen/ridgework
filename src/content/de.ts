@@ -578,6 +578,8 @@ export const de: Copy = {
     haveAccount: "Schon ein Konto? Anmelden",
     noAccount: "Noch kein Konto? Erstellen",
     error: "Anmeldung fehlgeschlagen. E-Mail und Passwort prüfen.",
+    verifyTitle: "Sieh in deinem Postfach nach",
+    verifyBody: "Wir haben einen Bestätigungslink an diese Adresse geschickt. Öffne ihn, dann bist du drin — vorher ist das Konto nicht aktiv.",
     testNote: "14 Tage kostenlos. Ohne Karte. Füge jederzeit eine hinzu, um weiterzutrainieren.",
   },
   dashboard: {

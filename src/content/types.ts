@@ -311,6 +311,8 @@ export type Copy = {
     haveAccount: string;
     noAccount: string;
     error: string;
+    verifyTitle: string;
+    verifyBody: string;
     testNote: string;
   };
   dashboard: {

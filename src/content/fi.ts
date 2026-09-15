@@ -593,6 +593,8 @@ export const fi: Copy = {
     haveAccount: "Onko tili jo? Kirjaudu",
     noAccount: "Ei tiliä vielä? Luo tili",
     error: "Kirjautuminen ei onnistunut. Tarkista sähköposti ja salasana.",
+    verifyTitle: "Tarkista sähköpostisi",
+    verifyBody: "Lähetimme vahvistuslinkin siihen osoitteeseen. Avaa se niin pääset sisään — tili ei ole käytössä ennen sitä.",
     testNote: "14 päivää ilmaiseksi. Ei korttia. Lisää se milloin tahansa jatkaaksesi.",
   },
   dashboard: {

@@ -623,6 +623,8 @@ export const en: Copy = {
     haveAccount: "Already have an account? Sign in",
     noAccount: "No account yet? Create one",
     error: "Could not sign in. Check email and password.",
+    verifyTitle: "Check your email",
+    verifyBody: "We sent a confirmation link to that address. Open it and you are in — the account is not active until you do.",
     testNote: "14 days free. No card needed. Add one anytime to keep training after.",
   },
   dashboard: {

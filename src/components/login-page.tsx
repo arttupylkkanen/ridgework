@@ -24,6 +24,7 @@ export function LoginPage({ locale, copy }: { locale: Locale; copy: Copy }) {
   const [email, setEmail] = useState(qa ? TEST_ACCOUNT.email : "");
   const [password, setPassword] = useState(qa ? TEST_ACCOUNT.password : "");
   const [error, setError] = useState<string | null>(null);
+  const [verifySent, setVerifySent] = useState(false);
   const [pending, setPending] = useState(false);
   const dest = program ? appProgramPath(locale, program) : pagePath(locale, "app");
   const a = copy.auth;
@@ -41,6 +42,14 @@ export function LoginPage({ locale, copy }: { locale: Locale; copy: Copy }) {
           callbackURL: dest,
         });
         if (err) throw new Error(err.message ?? a.error);
+        // With verification required there is no session yet, so redirecting
+        // would bounce straight back here with nothing explained.
+        const { data: session } = await authClient.getSession();
+        if (!session) {
+          setVerifySent(true);
+          setPending(false);
+          return;
+        }
       } else {
         const { error: err } = await authClient.signIn.email({
           email: email.trim(),
@@ -97,6 +106,13 @@ export function LoginPage({ locale, copy }: { locale: Locale; copy: Copy }) {
         <p className="mt-8 text-center text-xs font-medium uppercase tracking-wider text-ink-soft">
           {a.or}
         </p>
+
+        {verifySent ? (
+          <div className="mt-6 rounded-2xl border border-ridge bg-paper-warm/70 p-5">
+            <p className="font-display text-lg font-semibold text-ink">{a.verifyTitle}</p>
+            <p className="mt-2 text-sm leading-relaxed text-ink-muted">{a.verifyBody}</p>
+          </div>
+        ) : null}
 
         <form onSubmit={(e) => void onSubmit(e)} className="mt-6 space-y-4">
           {mode === "signup" ? (
