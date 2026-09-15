@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { authMiddleware } from "@/lib/auth/middleware";
-import { canCharge } from "@/lib/billing";
+import { CHECKOUT_OPEN, canCharge } from "@/lib/billing";
 import { getSql } from "@/lib/db";
 import { evaluateMembership, type Membership } from "@/lib/membership";
 import { confirmFoundingCheckout } from "@/lib/polar";
@@ -39,6 +39,7 @@ export const getMembership = createServerFn({ method: "GET" })
       createdAt: user?.createdAt ?? new Date().toISOString(),
       billingStatus,
       charging: canCharge(),
+      checkoutOpen: CHECKOUT_OPEN,
       canCancel:
         Boolean(mem[0]?.polar_customer_id || mem[0]?.polar_subscription_id) ||
         billingStatus === "trialing" ||
