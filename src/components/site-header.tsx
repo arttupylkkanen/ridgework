@@ -17,7 +17,17 @@ const MOBILE_SECTION_KEYS = ["example", "programs", "pricing", "faq"] as const;
 type Props = {
   locale: Locale;
   copy: Copy;
-  page: "home" | "founding" | "terms" | "privacy" | "app" | "field" | "login" | "guides" | "passport";
+  page:
+    | "home"
+    | "founding"
+    | "terms"
+    | "privacy"
+    | "app"
+    | "field"
+    | "login"
+    | "guides"
+    | "passport"
+    | "example";
 };
 
 function AuthSlot({ locale, copy }: { locale: Locale; copy: Copy }) {
@@ -55,14 +65,17 @@ export function SiteHeader({ locale, copy, page }: Props) {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
+  const sectionHref = (
+    key: (typeof SECTION_KEYS)[number] | (typeof MOBILE_SECTION_KEYS)[number],
+  ) => (key === "example" ? pagePath(locale, "example") : homeHash(locale, key));
   const sections = SECTION_KEYS.map((key) => ({
     key,
-    href: homeHash(locale, key),
+    href: sectionHref(key),
     label: copy.nav[key],
   }));
   const mobileSections = MOBILE_SECTION_KEYS.map((key) => ({
     key,
-    href: homeHash(locale, key),
+    href: sectionHref(key),
     label: copy.nav[key],
   }));
 
@@ -88,11 +101,20 @@ export function SiteHeader({ locale, copy, page }: Props) {
           />
         </Link>
 
-        <nav className="hidden items-center gap-2.5 text-sm text-ink-muted xl:flex" aria-label="Primary">
-          <GuideLink locale={locale} className={cn("hover:text-ink", page === "guides" && "font-medium text-ink")}>
+        <nav
+          className="hidden items-center gap-2.5 text-sm text-ink-muted xl:flex"
+          aria-label="Primary"
+        >
+          <GuideLink
+            locale={locale}
+            className={cn("hover:text-ink", page === "guides" && "font-medium text-ink")}
+          >
             {copy.nav.guides}
           </GuideLink>
-          <FieldLink locale={locale} className={cn("hover:text-ink", page === "field" && "font-medium text-ink")}>
+          <FieldLink
+            locale={locale}
+            className={cn("hover:text-ink", page === "field" && "font-medium text-ink")}
+          >
             {copy.nav.field}
           </FieldLink>
           {sections.map((item) => (
@@ -101,7 +123,10 @@ export function SiteHeader({ locale, copy, page }: Props) {
             </a>
           ))}
           {user ? (
-            <Link to={toolsHref} className={cn("hover:text-ink", page === "app" && "font-medium text-ink")}>
+            <Link
+              to={toolsHref}
+              className={cn("hover:text-ink", page === "app" && "font-medium text-ink")}
+            >
               {copy.nav.app}
             </Link>
           ) : null}
@@ -158,10 +183,7 @@ export function SiteHeader({ locale, copy, page }: Props) {
       </div>
 
       {open ? (
-        <div
-          id="mobile-nav"
-          className="border-t border-line bg-paper px-4 py-4 xl:hidden"
-        >
+        <div id="mobile-nav" className="border-t border-line bg-paper px-4 py-4 xl:hidden">
           <nav className="flex flex-col gap-1" aria-label="Mobile">
             <GuideLink
               locale={locale}

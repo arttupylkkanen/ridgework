@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LocaleRouteImport } from './routes/$locale'
 import { Route as AppRouteImport } from './routes/app'
+import { Route as ExampleRouteImport } from './routes/example'
 import { Route as FieldRouteImport } from './routes/field'
 import { Route as FoundingRouteImport } from './routes/founding'
 import { Route as GuidesRouteImport } from './routes/guides'
@@ -20,6 +21,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as LocaleIndexRouteImport } from './routes/$locale/index'
 import { Route as LocaleAppRouteImport } from './routes/$locale/app'
+import { Route as LocaleExampleRouteImport } from './routes/$locale/example'
 import { Route as LocaleFieldRouteImport } from './routes/$locale/field'
 import { Route as LocaleFoundingRouteImport } from './routes/$locale/founding'
 import { Route as LocaleGuidesRouteImport } from './routes/$locale/guides'
@@ -48,6 +50,11 @@ const LocaleRoute = LocaleRouteImport.update({
 const AppRoute = AppRouteImport.update({
   id: '/app',
   path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExampleRoute = ExampleRouteImport.update({
+  id: '/example',
+  path: '/example',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FieldRoute = FieldRouteImport.update({
@@ -88,6 +95,11 @@ const LocaleIndexRoute = LocaleIndexRouteImport.update({
 const LocaleAppRoute = LocaleAppRouteImport.update({
   id: '/app',
   path: '/app',
+  getParentRoute: () => LocaleRoute,
+} as any)
+const LocaleExampleRoute = LocaleExampleRouteImport.update({
+  id: '/example',
+  path: '/example',
   getParentRoute: () => LocaleRoute,
 } as any)
 const LocaleFieldRoute = LocaleFieldRouteImport.update({
@@ -165,6 +177,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$locale': typeof LocaleRouteWithChildren
   '/app': typeof AppRoute
+  '/example': typeof ExampleRoute
   '/field': typeof FieldRoute
   '/founding': typeof FoundingRoute
   '/guides': typeof GuidesRouteWithChildren
@@ -172,6 +185,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
   '/$locale/app': typeof LocaleAppRoute
+  '/$locale/example': typeof LocaleExampleRoute
   '/$locale/field': typeof LocaleFieldRoute
   '/$locale/founding': typeof LocaleFoundingRoute
   '/$locale/guides': typeof LocaleGuidesRouteWithChildren
@@ -191,12 +205,14 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app': typeof AppRoute
+  '/example': typeof ExampleRoute
   '/field': typeof FieldRoute
   '/founding': typeof FoundingRoute
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
   '/$locale/app': typeof LocaleAppRoute
+  '/$locale/example': typeof LocaleExampleRoute
   '/$locale/field': typeof LocaleFieldRoute
   '/$locale/founding': typeof LocaleFoundingRoute
   '/$locale/login': typeof LocaleLoginRoute
@@ -217,6 +233,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/$locale': typeof LocaleRouteWithChildren
   '/app': typeof AppRoute
+  '/example': typeof ExampleRoute
   '/field': typeof FieldRoute
   '/founding': typeof FoundingRoute
   '/guides': typeof GuidesRouteWithChildren
@@ -224,6 +241,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
   '/$locale/app': typeof LocaleAppRoute
+  '/$locale/example': typeof LocaleExampleRoute
   '/$locale/field': typeof LocaleFieldRoute
   '/$locale/founding': typeof LocaleFoundingRoute
   '/$locale/guides': typeof LocaleGuidesRouteWithChildren
@@ -246,6 +264,7 @@ export interface FileRouteTypes {
     | '/'
     | '/$locale'
     | '/app'
+    | '/example'
     | '/field'
     | '/founding'
     | '/guides'
@@ -253,6 +272,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/terms'
     | '/$locale/app'
+    | '/$locale/example'
     | '/$locale/field'
     | '/$locale/founding'
     | '/$locale/guides'
@@ -272,12 +292,14 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/app'
+    | '/example'
     | '/field'
     | '/founding'
     | '/login'
     | '/privacy'
     | '/terms'
     | '/$locale/app'
+    | '/$locale/example'
     | '/$locale/field'
     | '/$locale/founding'
     | '/$locale/login'
@@ -297,6 +319,7 @@ export interface FileRouteTypes {
     | '/'
     | '/$locale'
     | '/app'
+    | '/example'
     | '/field'
     | '/founding'
     | '/guides'
@@ -304,6 +327,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/terms'
     | '/$locale/app'
+    | '/$locale/example'
     | '/$locale/field'
     | '/$locale/founding'
     | '/$locale/guides'
@@ -325,6 +349,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LocaleRoute: typeof LocaleRouteWithChildren
   AppRoute: typeof AppRoute
+  ExampleRoute: typeof ExampleRoute
   FieldRoute: typeof FieldRoute
   FoundingRoute: typeof FoundingRoute
   GuidesRoute: typeof GuidesRouteWithChildren
@@ -357,6 +382,13 @@ declare module '@tanstack/react-router' {
       path: '/app'
       fullPath: '/app'
       preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/example': {
+      id: '/example'
+      path: '/example'
+      fullPath: '/example'
+      preLoaderRoute: typeof ExampleRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/field': {
@@ -413,6 +445,13 @@ declare module '@tanstack/react-router' {
       path: '/app'
       fullPath: '/$locale/app'
       preLoaderRoute: typeof LocaleAppRouteImport
+      parentRoute: typeof LocaleRoute
+    }
+    '/$locale/example': {
+      id: '/$locale/example'
+      path: '/example'
+      fullPath: '/$locale/example'
+      preLoaderRoute: typeof LocaleExampleRouteImport
       parentRoute: typeof LocaleRoute
     }
     '/$locale/field': {
@@ -532,6 +571,7 @@ const LocaleGuidesRouteWithChildren = LocaleGuidesRoute._addFileChildren(
 
 interface LocaleRouteChildren {
   LocaleAppRoute: typeof LocaleAppRoute
+  LocaleExampleRoute: typeof LocaleExampleRoute
   LocaleFieldRoute: typeof LocaleFieldRoute
   LocaleFoundingRoute: typeof LocaleFoundingRoute
   LocaleGuidesRoute: typeof LocaleGuidesRouteWithChildren
@@ -544,6 +584,7 @@ interface LocaleRouteChildren {
 
 const LocaleRouteChildren: LocaleRouteChildren = {
   LocaleAppRoute: LocaleAppRoute,
+  LocaleExampleRoute: LocaleExampleRoute,
   LocaleFieldRoute: LocaleFieldRoute,
   LocaleFoundingRoute: LocaleFoundingRoute,
   LocaleGuidesRoute: LocaleGuidesRouteWithChildren,
@@ -574,6 +615,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LocaleRoute: LocaleRouteWithChildren,
   AppRoute: AppRoute,
+  ExampleRoute: ExampleRoute,
   FieldRoute: FieldRoute,
   FoundingRoute: FoundingRoute,
   GuidesRoute: GuidesRouteWithChildren,

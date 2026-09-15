@@ -7,7 +7,17 @@ import { SiteHeader } from "./site-header";
 type Props = {
   locale: Locale;
   copy: Copy;
-  page: "home" | "founding" | "terms" | "privacy" | "app" | "field" | "login" | "guides" | "passport";
+  page:
+    | "home"
+    | "founding"
+    | "terms"
+    | "privacy"
+    | "app"
+    | "field"
+    | "login"
+    | "guides"
+    | "passport"
+    | "example";
   children: React.ReactNode;
 };
 

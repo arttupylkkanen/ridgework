@@ -11,7 +11,8 @@ export function isPathLocale(value: string): value is PathLocale {
   return (PATH_LOCALES as readonly string[]).includes(value);
 }
 
-export type PageId = "home" | "founding" | "terms" | "privacy" | "app" | "field" | "login" | "guides";
+export type PageId =
+  "home" | "founding" | "terms" | "privacy" | "app" | "field" | "login" | "guides" | "example";
 
 export function localePrefix(locale: Locale): string {
   return locale === "en" ? "" : `/${locale}`;

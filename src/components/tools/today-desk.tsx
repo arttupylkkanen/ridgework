@@ -31,7 +31,7 @@ import {
   visiblePersonalizedWeeks,
 } from "@/lib/plan-engine";
 import type { Locale } from "@/lib/locale";
-import { cn, fillTemplate } from "@/lib/utils";
+import { cn, fillTemplate, reasonText } from "@/lib/utils";
 import { SessionHowTo } from "./session-how";
 
 function formatDay(iso: string) {
@@ -43,12 +43,7 @@ function formatDay(iso: string) {
   });
 }
 
-function reasonText(copy: Copy, id: string, values: Record<string, string | number>) {
-  const template = copy.tools.athlete.today.reasons[id] ?? id;
-  return fillTemplate(template, values);
-}
-
-function ScaleRow({
+export function ScaleRow({
   label,
   low,
   high,
@@ -81,7 +76,9 @@ function ScaleRow({
             onClick={() => onChange(n)}
             className={cn(
               "min-h-11 rounded-lg border text-sm",
-              value === n ? "border-ridge bg-paper-warm font-medium text-ink" : "border-line bg-card text-ink-muted hover:bg-paper-warm/60",
+              value === n
+                ? "border-ridge bg-paper-warm font-medium text-ink"
+                : "border-line bg-card text-ink-muted hover:bg-paper-warm/60",
             )}
           >
             {n}
@@ -168,7 +165,10 @@ export function TodayDesk({
     return built ? overlayToday(built, view) : null;
   }, [state, view, profile]);
 
-  const ahead = useMemo(() => (state ? visiblePersonalizedWeeks(state, profile) : []), [state, profile]);
+  const ahead = useMemo(
+    () => (state ? visiblePersonalizedWeeks(state, profile) : []),
+    [state, profile],
+  );
 
   useEffect(() => {
     if (!view) return;
@@ -221,12 +221,16 @@ export function TodayDesk({
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="text-sm font-semibold uppercase tracking-wider text-ridge">{t.kicker}</p>
-          <h2 className="mt-2 font-display text-2xl font-semibold text-ink sm:text-3xl">{formatDay(today)}</h2>
+          <h2 className="mt-2 font-display text-2xl font-semibold text-ink sm:text-3xl">
+            {formatDay(today)}
+          </h2>
           <p className="mt-2 text-sm text-ridge-deep">
             {copy.tools.plan.objectives[state.objective].name}
             {profile.eventName ? ` · ${profile.eventName}` : ""}
           </p>
-          <p className="mt-1 text-sm text-ink-muted">{fillTemplate(t.peakLocked, { peak: state.peakOn })}</p>
+          <p className="mt-1 text-sm text-ink-muted">
+            {fillTemplate(t.peakLocked, { peak: state.peakOn })}
+          </p>
         </div>
         {onEditProfile ? (
           <button
@@ -269,7 +273,10 @@ export function TodayDesk({
               max={120}
               value={inputs.rhr ?? ""}
               onChange={(e) =>
-                setInputs((prev) => ({ ...prev, rhr: e.target.value ? Number(e.target.value) : undefined }))
+                setInputs((prev) => ({
+                  ...prev,
+                  rhr: e.target.value ? Number(e.target.value) : undefined,
+                }))
               }
               className="mt-2 w-full rounded-lg border border-line bg-paper px-3 py-2.5 text-sm"
             />
@@ -283,7 +290,10 @@ export function TodayDesk({
               max={250}
               value={inputs.hrv ?? ""}
               onChange={(e) =>
-                setInputs((prev) => ({ ...prev, hrv: e.target.value ? Number(e.target.value) : undefined }))
+                setInputs((prev) => ({
+                  ...prev,
+                  hrv: e.target.value ? Number(e.target.value) : undefined,
+                }))
               }
               className="mt-2 w-full rounded-lg border border-line bg-paper px-3 py-2.5 text-sm"
             />
@@ -313,28 +323,44 @@ export function TodayDesk({
         </div>
       </section>
 
-      <section className={cn("rounded-2xl border p-5 sm:p-6", CALL_TONE[call])} data-readiness-call={call}>
-        <p className="text-xs font-semibold uppercase tracking-wider text-accent">{t.calls[call].title}</p>
+      <section
+        className={cn("rounded-2xl border p-5 sm:p-6", CALL_TONE[call])}
+        data-readiness-call={call}
+      >
+        <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+          {t.calls[call].title}
+        </p>
         <p className="mt-2 font-display text-xl font-semibold text-ink">{t.calls[call].action}</p>
         <ul className="mt-4 space-y-1.5 text-sm leading-relaxed text-ink">
-          {(view?.readiness.drivers.length ? view.readiness.drivers : view?.readiness.reasons.slice(0, 3) ?? []).map(
-            (reason, i) => (
-              <li key={`${reason.id}-${i}`}>{reasonText(copy, reason.id, reason.values)}</li>
-            ),
-          )}
+          {(view?.readiness.drivers.length
+            ? view.readiness.drivers
+            : (view?.readiness.reasons.slice(0, 3) ?? [])
+          ).map((reason, i) => (
+            <li key={`${reason.id}-${i}`}>{reasonText(copy, reason.id, reason.values)}</li>
+          ))}
         </ul>
         {changed && view ? (
           <div className="mt-4 rounded-xl border border-line bg-card/80 p-4" data-why-changed="1">
-            <p className="text-xs font-semibold uppercase tracking-wider text-accent">{t.whyChanged}</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+              {t.whyChanged}
+            </p>
             <p className="mt-2 text-sm text-ink">
               {sessions[view.written.key]} → {sessions[view.shown.key]}
               {view.shown.minutes ? ` · ${fillTemplate(t.minutes, { n: view.shown.minutes })}` : ""}
             </p>
             <p className="mt-1 text-sm text-ink-muted">
-              {reasonText(copy, view.call === "rest" ? "todayRest" : view.call === "easy" ? "qualityToEasy" : "reduceMinutes", {
-                from: view.written.key,
-                to: view.shown.key,
-              })}
+              {reasonText(
+                copy,
+                view.call === "rest"
+                  ? "todayRest"
+                  : view.call === "easy"
+                    ? "qualityToEasy"
+                    : "reduceMinutes",
+                {
+                  from: view.written.key,
+                  to: view.shown.key,
+                },
+              )}
             </p>
           </div>
         ) : null}
@@ -368,21 +394,32 @@ export function TodayDesk({
       </section>
 
       <section className="rounded-2xl border border-line bg-card p-5 sm:p-6">
-        <p className="text-xs font-semibold uppercase tracking-wider text-accent">{t.sessionToday}</p>
+        <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+          {t.sessionToday}
+        </p>
         {shown ? (
           <>
             <h3 className="mt-2 font-display text-xl font-semibold text-ink">
               {sessions[shown.key]}
-              {shown.minutes ? <span className="text-ink-muted"> · {fillTemplate(t.minutes, { n: shown.minutes })}</span> : null}
+              {shown.minutes ? (
+                <span className="text-ink-muted">
+                  {" "}
+                  · {fillTemplate(t.minutes, { n: shown.minutes })}
+                </span>
+              ) : null}
             </h3>
             {changed && written ? (
-              <p className="mt-1 text-sm text-ink-muted">{fillTemplate(t.was, { session: sessions[written.key] })}</p>
+              <p className="mt-1 text-sm text-ink-muted">
+                {fillTemplate(t.was, { session: sessions[written.key] })}
+              </p>
             ) : null}
             <SessionHowTo
               locale={locale}
               sessionKey={shown.key}
               minutes={shown.minutes}
-              minutesLabel={shown.minutes ? fillTemplate(t.minutes, { n: shown.minutes }) : undefined}
+              minutesLabel={
+                shown.minutes ? fillTemplate(t.minutes, { n: shown.minutes }) : undefined
+              }
             />
             <div className="mt-5 flex flex-wrap gap-2">
               <button
@@ -442,19 +479,29 @@ export function TodayDesk({
               return (
                 <li
                   key={`${week.calendar}-${i}`}
-                  className={cn("flex items-start gap-3 px-4 py-3 text-sm", isToday && "bg-paper-warm")}
+                  className={cn(
+                    "flex items-start gap-3 px-4 py-3 text-sm",
+                    isToday && "bg-paper-warm",
+                  )}
                 >
                   <span className="w-10 shrink-0 font-medium text-ink-soft">{dayNames[i]}</span>
                   <span className="min-w-0 flex-1 text-ink">
                     {sessions[day.key]}
-                    {day.minutes ? <span className="text-ink-muted"> · {fillTemplate(t.minutes, { n: day.minutes })}</span> : null}
+                    {day.minutes ? (
+                      <span className="text-ink-muted">
+                        {" "}
+                        · {fillTemplate(t.minutes, { n: day.minutes })}
+                      </span>
+                    ) : null}
                   </span>
                 </li>
               );
             })}
           </ul>
           <div className="mt-4 rounded-2xl border border-line bg-paper-warm/50 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wider text-accent">{t.whyWeek}</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+              {t.whyWeek}
+            </p>
             <ul className="mt-2 space-y-1.5 text-sm leading-relaxed text-ink">
               {week.reasons.slice(0, 6).map((reason, i) => (
                 <li key={`${reason.id}-${i}`}>{reasonText(copy, reason.id, reason.values)}</li>
@@ -469,7 +516,10 @@ export function TodayDesk({
           <h3 className="font-display text-lg font-semibold text-ink">{t.whyChanged}</h3>
           <ul className="mt-3 space-y-2">
             {state.adjustments.slice(0, 6).map((adj) => (
-              <li key={adj.at} className="rounded-xl border border-line bg-card px-4 py-3 text-sm text-ink">
+              <li
+                key={adj.at}
+                className="rounded-xl border border-line bg-card px-4 py-3 text-sm text-ink"
+              >
                 {reasonText(copy, adj.reason.id, adj.reason.values)}
               </li>
             ))}
@@ -517,7 +567,9 @@ export function TodayDesk({
                   }}
                   className={cn(
                     "min-h-11 rounded-lg border px-3 text-sm",
-                    blocked ? "border-line bg-paper text-ink-muted" : "border-ridge bg-paper-warm text-ink",
+                    blocked
+                      ? "border-line bg-paper text-ink-muted"
+                      : "border-ridge bg-paper-warm text-ink",
                   )}
                 >
                   {t.access[flag]}
@@ -530,7 +582,11 @@ export function TodayDesk({
 
       {ahead.length > 1 ? (
         <p className="text-xs text-ink-soft">
-          {copy.tools.plan.ahead}: {ahead.slice(1).map((w) => fillTemplate(copy.tools.plan.weekLabel, { n: w.calendar })).join(" · ")}
+          {copy.tools.plan.ahead}:{" "}
+          {ahead
+            .slice(1)
+            .map((w) => fillTemplate(copy.tools.plan.weekLabel, { n: w.calendar }))
+            .join(" · ")}
         </p>
       ) : null}
     </div>

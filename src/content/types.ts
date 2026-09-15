@@ -229,6 +229,16 @@ export type Copy = {
   };
   termsPage: { title: string; updated: string; body: string[] };
   privacyPage: { title: string; updated: string; body: string[] };
+  examplePage: {
+    title: string;
+    description: string;
+    back: string;
+    kicker: string;
+    h1: string;
+    lead: string;
+    noteTitle: string;
+    noteBody: string;
+  };
   appPage: {
     title: string;
     kicker: string;

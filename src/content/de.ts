@@ -505,6 +505,17 @@ export const de: Copy = {
       "Rights: access, rectification, erasure, restriction, portability, objection where applicable; complaint to a French/EU authority.",
     ],
   },
+  examplePage: {
+    title: "Probier einen echten Tag aus — Ridgework",
+    description: "Bewege die Regler. Sieh, wie sich die Einheit ändert. Kein Konto nötig.",
+    back: "← Ridgework",
+    kicker: "Live-Beispiel",
+    h1: "Das ist ein echter Tag, kein Screenshot",
+    lead: "Bewege die Regler unten so, wie du dich an manchen Morgen wirklich fühlst. Sieh, wie sich die heutige Einheit und die Begründung mitändern — derselbe Tisch, den ein angemeldeter Athlet sieht, auf einem Beispiel-50-km-Ultraplan.",
+    noteTitle: "Hier wird nichts gespeichert",
+    noteBody:
+      "Dieses Beispiel setzt sich zurück, wenn du gehst. Leg ein Konto an für deine eigene Woche, gebaut aus deiner Sportart, deinem Ziel und deinem Peak-Datum — 14 Tage kostenlos, ohne Karte.",
+  },
   appPage: {
     title: "Tools — Ridgework",
     kicker: "Tools",

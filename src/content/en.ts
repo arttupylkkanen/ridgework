@@ -532,6 +532,17 @@ export const en: Copy = {
       "Not medical data. Ridgework is not a medical service and is not intended to process health diagnoses. Do not submit sensitive medical information you are not comfortable sharing for account/support purposes.",
     ],
   },
+  examplePage: {
+    title: "Try a real day — Ridgework",
+    description: "Move the sliders. Watch the session change. No account needed.",
+    back: "← Ridgework home",
+    kicker: "Live example",
+    h1: "This is a real day, not a screenshot",
+    lead: "Drag the sliders below the way you actually feel some mornings. Watch today's session and the reasoning change with them — this is the same desk a signed-in athlete sees, running on a sample 50 km ultra plan.",
+    noteTitle: "Nothing here is saved",
+    noteBody:
+      "This example resets when you leave. Sign up to get your own week, built from your own sport, goal, and peak date — 14 days free, no card needed.",
+  },
   appPage: {
     title: "This week, Ridgework",
     kicker: "This week",

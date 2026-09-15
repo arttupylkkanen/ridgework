@@ -521,6 +521,17 @@ export const fi: Copy = {
       "Älä lähetä terveystietoja joita et halua tukeen. Ridgework ei ole terveyspalvelu.",
     ],
   },
+  examplePage: {
+    title: "Kokeile oikeaa päivää — Ridgework",
+    description: "Siirrä liukusäätimiä. Katso miten treeni muuttuu. Ei vaadi tiliä.",
+    back: "← Ridgework",
+    kicker: "Live-esimerkki",
+    h1: "Tämä on oikea päivä, ei kuvakaappaus",
+    lead: "Vedä alla olevia liukusäätimiä sen mukaan miltä oikeasti tuntuu jonain aamuna. Katso miten tämän päivän treeni ja perustelut muuttuvat mukana — sama pöytä jonka kirjautunut käyttäjä näkee, ajaen esimerkki-50 km-ultraohjelmaa.",
+    noteTitle: "Mitään ei tallenneta",
+    noteBody:
+      "Tämä esimerkki nollautuu kun poistut. Tee tili saadaksesi oman viikkosi, rakennettu omasta lajistasi, tavoitteestasi ja tavoitepäivästä — 14 päivää ilmaiseksi, ei korttia.",
+  },
   appPage: {
     title: "Tämä viikko, Ridgework",
     kicker: "Treeni",

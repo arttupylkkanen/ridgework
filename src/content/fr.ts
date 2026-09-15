@@ -515,6 +515,17 @@ export const fr: Copy = {
       "Rights: access, rectification, erasure, restriction, portability, objection where applicable; complaint to a French/EU authority.",
     ],
   },
+  examplePage: {
+    title: "Essayez une vraie journée — Ridgework",
+    description: "Bougez les curseurs. Regardez la séance changer. Sans compte.",
+    back: "← Ridgework",
+    kicker: "Exemple en direct",
+    h1: "Une vraie journée, pas une capture d’écran",
+    lead: "Déplacez les curseurs ci-dessous comme vous vous sentez vraiment certains matins. Regardez la séance du jour et les explications changer avec eux — c’est le même bureau qu’un athlète connecté, sur un plan exemple de 50 km ultra.",
+    noteTitle: "Rien n’est enregistré ici",
+    noteBody:
+      "Cet exemple se réinitialise quand vous partez. Créez un compte pour obtenir votre propre semaine, construite pour votre sport, votre objectif et votre date de pic — 14 jours gratuits, sans carte.",
+  },
   appPage: {
     title: "Outils — Ridgework",
     kicker: "Outils",
