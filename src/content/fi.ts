@@ -499,7 +499,7 @@ export const fi: Copy = {
       },
       {
         q: "Miten saan apua?",
-        a: "support@ridgework.org. Pyrimme vastaamaan muutamassa arkipäivässä.",
+        a: "support@ridgework.org. Vastaamme 24–48 tunnissa.",
       },
     ],
   },

@@ -520,7 +520,7 @@ export const en: Copy = {
       },
       {
         q: "How do I get help?",
-        a: "support@ridgework.org. We try to answer within a few working days.",
+        a: "support@ridgework.org. We answer within 24–48 hours.",
       },
     ],
   },

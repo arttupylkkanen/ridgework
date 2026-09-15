@@ -495,7 +495,7 @@ export const fr: Copy = {
         q: "Données personnelles ?",
         a: "Attentes UE/France. Voir Confidentialité. Pas de vente pour la pub.",
       },
-      { q: "Support ?", a: "support@ridgework.org — réponse sous quelques jours ouvrés." },
+      { q: "Support ?", a: "support@ridgework.org — réponse sous 24–48 heures." },
     ],
   },
   disclaimer: {

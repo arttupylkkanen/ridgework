@@ -486,7 +486,7 @@ export const de: Copy = {
       },
       { q: "Welche Sprachen?", a: "Englisch, Finnisch, Französisch, Deutsch." },
       { q: "Daten?", a: "EU/Frankreich-Erwartungen. Siehe Privacy. Kein Verkauf für Ads." },
-      { q: "Support?", a: "support@ridgework.org — Antwort in wenigen Werktagen." },
+      { q: "Support?", a: "support@ridgework.org — Antwort innerhalb von 24–48 Stunden." },
     ],
   },
   disclaimer: {
