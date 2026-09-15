@@ -2,6 +2,7 @@ import type { Copy } from "@/content/types";
 import type { Locale } from "@/lib/locale";
 import type { SessionKey } from "@/lib/rolling-plan";
 import { howLabels, sessionHowByLocale } from "@/content/session-how";
+import { fillTemplate } from "@/lib/utils";
 import { PaceGuide } from "./pace-guide";
 
 const KEYS: SessionKey[] = [
@@ -18,6 +19,7 @@ const KEYS: SessionKey[] = [
   "mountain",
   "climb",
   "strength",
+  "me",
   "rest",
 ];
 
@@ -26,14 +28,18 @@ export function SessionHowTo({
   sessionKey,
   minutes,
   minutesLabel,
+  loadKg,
 }: {
   locale: Locale;
   sessionKey: SessionKey;
   minutes?: number;
   minutesLabel?: string;
+  /** Current pack weight (kg) for "pack"/"me" sessions — see `packLoadKg`. */
+  loadKg?: number;
 }) {
   const how = sessionHowByLocale[locale][sessionKey];
   const labels = howLabels[locale];
+  const doText = loadKg != null ? fillTemplate(how.do, { kg: loadKg }) : how.do;
   return (
     <div className="mt-4 space-y-4 border-t border-line pt-4 text-sm leading-relaxed text-ink">
       {minutes && minutesLabel ? <p className="font-medium text-ink">{minutesLabel}</p> : null}
@@ -43,7 +49,7 @@ export function SessionHowTo({
       </div>
       <div>
         <p className="text-xs font-semibold uppercase tracking-wider text-accent">{labels.do}</p>
-        <p className="mt-1 text-ink-muted">{how.do}</p>
+        <p className="mt-1 text-ink-muted">{doText}</p>
       </div>
       <div>
         <p className="text-xs font-semibold uppercase tracking-wider text-accent">{labels.swap}</p>

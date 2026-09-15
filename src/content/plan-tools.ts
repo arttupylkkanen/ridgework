@@ -67,11 +67,13 @@ export const planEn: PlanToolsCopy = {
   peakTitle: "2. When does it need to be ready?",
   peakLead: "The suggestion is a full build. Move the date. The weeks follow.",
   peakLabel: "Ready date",
-  peakHint: "This date is a suggestion from the full window. Change it if the race or the trip sits on another week.",
+  peakHint:
+    "This date is a suggestion from the full window. Change it if the race or the trip sits on another week.",
   windowLabel: "{weeks} weeks left",
   recommendedLabel: "Full build: {n} weeks",
   phaseSplit: "{base} wk base · {specific} wk specific · {taper} wk easy-down",
-  longerBetter: "If you have time, easy running can accumulate. That is why six months beats a six-week scramble.",
+  longerBetter:
+    "If you have time, easy running can accumulate. That is why six months beats a six-week scramble.",
   seasonsKey:
     "One race does not make fitness. The next season starts higher than this one, if this one was actually run.",
   quality: {
@@ -111,7 +113,8 @@ export const planEn: PlanToolsCopy = {
   historyTitle: "Logged weeks",
   historyEmpty: "No weeks logged yet. The first three are already written.",
   checkinTitle: "How does the body feel this week?",
-  checkinLead: "Tap a mark. This week's sessions change now. Tired means less work. Wrecked means rest instead of quality. The ready date stays.",
+  checkinLead:
+    "Tap a mark. This week's sessions change now. Tired means less work. Wrecked means rest instead of quality. The ready date stays.",
   good: "Fresh. Keep the written week.",
   ok: "Fine. Keep the load, no extra.",
   problem: "Tired. Train less this week.",
@@ -143,17 +146,20 @@ export const planEn: PlanToolsCopy = {
     trail20: {
       name: "20 km trail",
       length: "Recommended 10 weeks",
-      blurb: "Already running. Easy volume, one quality dose, a long that grows toward 90–110 min. Peak on race week.",
+      blurb:
+        "Already running. Easy volume, one quality dose, a long that grows toward 90–110 min. Peak on race week.",
     },
     fifty: {
       name: "50 km ultra",
       length: "Recommended 24 weeks / 6 months",
-      blurb: "Long aerobic base, then long-run progression with one quality session, easy-down into race week.",
+      blurb:
+        "Long aerobic base, then long-run progression with one quality session, easy-down into race week.",
     },
     ultra100: {
       name: "80–120 km ultra",
       length: "Recommended 36 weeks / 9 months",
-      blurb: "Aerobic months first. The specific block is time on feet and one quality dose. Back-to-back days late. Then three to four weeks easy-down.",
+      blurb:
+        "Aerobic months first. The specific block is time on feet and one quality dose. Back-to-back days late. Then three to four weeks easy-down.",
     },
     alpine: {
       name: "Alpine day",
@@ -189,6 +195,7 @@ export const planEn: PlanToolsCopy = {
     engine: "Low heart-rate",
     climb: "Climbing",
     strength: "Strength",
+    me: "Muscular endurance",
   },
 };
 
@@ -208,7 +215,8 @@ export const planFi: PlanToolsCopy = {
   windowLabel: "{weeks} viikkoa jäljellä",
   recommendedLabel: "Täysi valmistautuminen: {n} viikkoa",
   phaseSplit: "{base} vk peruskunto · {specific} vk kisajakso · {taper} vk kevennys",
-  longerBetter: "Jos aikaa on, kevyt juoksu ehtii kertyä. Siksi puoli vuotta voittaa kuuden viikon rypistyksen.",
+  longerBetter:
+    "Jos aikaa on, kevyt juoksu ehtii kertyä. Siksi puoli vuotta voittaa kuuden viikon rypistyksen.",
   seasonsKey:
     "Yksi kisa ei tee kuntoa. Seuraava kausi lähtee ylempää kuin tämä, jos tämä kausi juostiin.",
   quality: {
@@ -248,7 +256,8 @@ export const planFi: PlanToolsCopy = {
   historyTitle: "Kirjatut viikot",
   historyEmpty: "Ei kirjattuja viikkoja vielä. Ensimmäiset kolme on jo kirjoitettu.",
   checkinTitle: "Miltä kroppa tuntuu tällä viikolla?",
-  checkinLead: "Napauta merkki. Tämän viikon treenit muuttuvat heti. Väsynyt: vähemmän työtä. Hajalla: tehoista lepoa. Tavoitepäivä pysyy.",
+  checkinLead:
+    "Napauta merkki. Tämän viikon treenit muuttuvat heti. Väsynyt: vähemmän työtä. Hajalla: tehoista lepoa. Tavoitepäivä pysyy.",
   good: "Virkeä. Pidä kirjoitettu viikko.",
   ok: "Ihan ok. Pidä kuorma, ei lisää.",
   problem: "Väsynyt. Treenaa vähemmän tällä viikolla.",
@@ -257,8 +266,10 @@ export const planFi: PlanToolsCopy = {
   submit: "Kirjaa viikko ja rullaa eteen",
   afterGood: "Seuraavat viikot on kirjoitettu. Tavoitepäivä pysyy.",
   afterOk: "Kuorma pidetty. Tavoitepäivä ennallaan.",
-  afterProblem: "Tämä viikko treenasi vähemmän. Seuraava viikko alkaa kirjoitetusta suunnitelmasta. Tavoitepäivä pysyy.",
-  afterWrecked: "Tehot muuttuivat lepoksi. Seuraava viikko kirjoitetaan uudestaan. Tavoitepäivä pysyy.",
+  afterProblem:
+    "Tämä viikko treenasi vähemmän. Seuraava viikko alkaa kirjoitetusta suunnitelmasta. Tavoitepäivä pysyy.",
+  afterWrecked:
+    "Tehot muuttuivat lepoksi. Seuraava viikko kirjoitetaan uudestaan. Tavoitepäivä pysyy.",
   changed: "Muuttui tällä viikolla",
   doneTitle: "Tavoiteviikko on kirjassa",
   doneBody:
@@ -280,17 +291,20 @@ export const planFi: PlanToolsCopy = {
     trail20: {
       name: "20 km polku",
       length: "Suositus 10 viikkoa",
-      blurb: "Olettaa että juokset jo. Kevyt juoksu, yksi teho, pitkä kasvaa 90–110 minuuttiin. Huippu kisaviikolla.",
+      blurb:
+        "Olettaa että juokset jo. Kevyt juoksu, yksi teho, pitkä kasvaa 90–110 minuuttiin. Huippu kisaviikolla.",
     },
     fifty: {
       name: "50 km ultra",
       length: "Suositus 24 vk / 6 kk",
-      blurb: "Pitkä peruskunto, sitten pitkän lenkin progressio ja yksi teho, kevennys kisaviikolle.",
+      blurb:
+        "Pitkä peruskunto, sitten pitkän lenkin progressio ja yksi teho, kevennys kisaviikolle.",
     },
     ultra100: {
       name: "80–120 km ultra",
       length: "Suositus 36 vk / 9 kk",
-      blurb: "Ensin kevyet kuukaudet. Kisajakso on aika jaloilla ja yksi teho. Peräkkäiset päivät myöhään. Sitten 3–4 viikon kevennys.",
+      blurb:
+        "Ensin kevyet kuukaudet. Kisajakso on aika jaloilla ja yksi teho. Peräkkäiset päivät myöhään. Sitten 3–4 viikon kevennys.",
     },
     alpine: {
       name: "Alppipäivä",
@@ -326,6 +340,7 @@ export const planFi: PlanToolsCopy = {
     engine: "Matala syke",
     climb: "Kiipeily",
     strength: "Voima",
+    me: "Lihaskestävyys",
   },
 };
 
@@ -339,13 +354,15 @@ export const planFr: PlanToolsCopy = {
   ],
   pickTitle: "1. Choisissez la sortie",
   peakTitle: "2. Choisissez quand vous voulez être au pic",
-  peakLead: "Toute date convient. La suggestion est la construction complète recommandée. Déplacez-la — les semaines se réécrivent.",
+  peakLead:
+    "Toute date convient. La suggestion est la construction complète recommandée. Déplacez-la — les semaines se réécrivent.",
   peakLabel: "Date de pic",
   peakHint: "Suggestion de la fenêtre recommandée. Changez-la. Le plan suit.",
   windowLabel: "{weeks} semaines jusqu’au pic",
   recommendedLabel: "Construction complète recommandée : {n} semaines",
   phaseSplit: "{base} sem. base · {specific} sem. spécifique · {taper} sem. affûtage",
-  longerBetter: "Une préparation plus longue est toujours meilleure. Les semaines extra restent en base aérobie.",
+  longerBetter:
+    "Une préparation plus longue est toujours meilleure. Les semaines extra restent en base aérobie.",
   seasonsKey:
     "La clé d’un grand résultat n’est pas un bloc héroïque. C’est le développement continu, saison après saison — chaque pic part d’un plancher plus haut.",
   quality: {
@@ -385,7 +402,8 @@ export const planFr: PlanToolsCopy = {
   historyTitle: "Semaines notées",
   historyEmpty: "Aucune semaine notée — les trois premières sont déjà écrites.",
   checkinTitle: "Comment le corps se sent-il cette semaine ?",
-  checkinLead: "Touchez une marque — les séances de cette semaine changent tout de suite. Fatigué = moins de travail. Cassé = repos à la place de la qualité. La date de pic reste.",
+  checkinLead:
+    "Touchez une marque — les séances de cette semaine changent tout de suite. Fatigué = moins de travail. Cassé = repos à la place de la qualité. La date de pic reste.",
   good: "Frais — garder la semaine écrite",
   ok: "Correct — garder la charge, pas d’extra",
   problem: "Fatigué — s’entraîner moins cette semaine",
@@ -394,8 +412,10 @@ export const planFr: PlanToolsCopy = {
   submit: "Noter la semaine et avancer",
   afterGood: "Les semaines suivantes sont écrites. La date de pic reste.",
   afterOk: "Charge gardée. Date de pic inchangée.",
-  afterProblem: "Cette semaine a moins travaillé. La suivante repart du plan écrit. La date de pic reste.",
-  afterWrecked: "La qualité est devenue repos. La semaine suivante est réécrite. La date de pic reste.",
+  afterProblem:
+    "Cette semaine a moins travaillé. La suivante repart du plan écrit. La date de pic reste.",
+  afterWrecked:
+    "La qualité est devenue repos. La semaine suivante est réécrite. La date de pic reste.",
   changed: "Changé cette semaine",
   doneTitle: "La semaine de pic est dans le livre",
   doneBody:
@@ -403,8 +423,10 @@ export const planFr: PlanToolsCopy = {
   nextSeason: "Démarrer la saison suivante",
   nextSeasonBody: "Même type de sortie. Nouvelle date de pic. Vous partez d’un plancher plus haut.",
   nextSeasonPeak: "Prochaine date de pic",
-  easedNote: "Allégé parce que vous êtes fatigué — volume facile, pas de dose de qualité. Date de pic inchangée.",
-  disclaimer: "Pas un avis médical. Vous restez responsable des décisions d’entraînement et de montagne.",
+  easedNote:
+    "Allégé parce que vous êtes fatigué — volume facile, pas de dose de qualité. Date de pic inchangée.",
+  disclaimer:
+    "Pas un avis médical. Vous restez responsable des décisions d’entraînement et de montagne.",
   phases: { base: "Base aérobie", specific: "Bloc spécifique", taper: "Affûtage" },
   donePhase: "Semaine de pic",
   objectives: {
@@ -417,17 +439,20 @@ export const planFr: PlanToolsCopy = {
     trail20: {
       name: "Trail 20 km",
       length: "Recommandé 10 semaines",
-      blurb: "Vous courez déjà. Volume facile, une dose de qualité, une longue vers 90–110 min. Pic la semaine de course.",
+      blurb:
+        "Vous courez déjà. Volume facile, une dose de qualité, une longue vers 90–110 min. Pic la semaine de course.",
     },
     fifty: {
       name: "Ultra 50 km",
       length: "Recommandé 24 sem. / 6 mois",
-      blurb: "Longue base aérobie, puis progression de la longue avec une séance de qualité, affûtage la semaine de course.",
+      blurb:
+        "Longue base aérobie, puis progression de la longue avec une séance de qualité, affûtage la semaine de course.",
     },
     ultra100: {
       name: "Ultra 80–120 km",
       length: "Recommandé 36 sem. / 9 mois",
-      blurb: "Des mois aérobies d’abord. Le spécifique est du temps sur les pieds et une dose de qualité. Back-to-backs tard. Affûtage de quatre semaines.",
+      blurb:
+        "Des mois aérobies d’abord. Le spécifique est du temps sur les pieds et une dose de qualité. Back-to-backs tard. Affûtage de quatre semaines.",
     },
     alpine: {
       name: "Journée alpine",
@@ -463,6 +488,7 @@ export const planFr: PlanToolsCopy = {
     engine: "Pouls bas",
     climb: "Escalade",
     strength: "Force",
+    me: "Endurance musculaire",
   },
 };
 
@@ -476,7 +502,8 @@ export const planDe: PlanToolsCopy = {
   ],
   pickTitle: "1. Tour wählen",
   peakTitle: "2. Wähle, wann du peak sein willst",
-  peakLead: "Jedes Datum geht. Der Vorschlag ist der empfohlene volle Aufbau. Verschiebe ihn — die Wochen schreiben sich neu.",
+  peakLead:
+    "Jedes Datum geht. Der Vorschlag ist der empfohlene volle Aufbau. Verschiebe ihn — die Wochen schreiben sich neu.",
   peakLabel: "Peak-Datum",
   peakHint: "Vorschlag aus dem empfohlenen Fenster. Ändere es. Der Plan folgt.",
   windowLabel: "{weeks} Wochen bis zum Peak",
@@ -522,7 +549,8 @@ export const planDe: PlanToolsCopy = {
   historyTitle: "Eingetragene Wochen",
   historyEmpty: "Noch keine Woche eingetragen — die ersten drei sind schon geschrieben.",
   checkinTitle: "Wie fühlt sich der Körper diese Woche?",
-  checkinLead: "Tippe eine Marke — die Einheiten dieser Woche ändern sich sofort. Müde = weniger Arbeit. Kaputt = Pause statt Qualität. Peak-Datum bleibt.",
+  checkinLead:
+    "Tippe eine Marke — die Einheiten dieser Woche ändern sich sofort. Müde = weniger Arbeit. Kaputt = Pause statt Qualität. Peak-Datum bleibt.",
   good: "Frisch — geschriebene Woche behalten",
   ok: "In Ordnung — Last behalten, nichts extra",
   problem: "Müde — diese Woche weniger trainieren",
@@ -531,7 +559,8 @@ export const planDe: PlanToolsCopy = {
   submit: "Woche eintragen und weiterrollen",
   afterGood: "Nächste Wochen sind geschrieben. Peak-Datum bleibt.",
   afterOk: "Last behalten. Peak-Datum unverändert.",
-  afterProblem: "Diese Woche hat weniger trainiert. Nächste startet vom geschriebenen Plan. Peak-Datum bleibt.",
+  afterProblem:
+    "Diese Woche hat weniger trainiert. Nächste startet vom geschriebenen Plan. Peak-Datum bleibt.",
   afterWrecked: "Qualität wurde Pause. Nächste Woche wird neu geschrieben. Peak-Datum bleibt.",
   changed: "Diese Woche geändert",
   doneTitle: "Peak-Woche steht im Buch",
@@ -540,8 +569,10 @@ export const planDe: PlanToolsCopy = {
   nextSeason: "Nächste Saison starten",
   nextSeasonBody: "Gleicher Tour-Typ. Neues Peak-Datum. Du startest von einem höheren Boden.",
   nextSeasonPeak: "Nächstes Peak-Datum",
-  easedNote: "Erleichtert weil du müde bist — lockeres Volumen, keine Qualitätsdosis. Peak-Datum unverändert.",
-  disclaimer: "Kein medizinischer Rat. Du bleibst verantwortlich für Trainings- und Bergentscheidungen.",
+  easedNote:
+    "Erleichtert weil du müde bist — lockeres Volumen, keine Qualitätsdosis. Peak-Datum unverändert.",
+  disclaimer:
+    "Kein medizinischer Rat. Du bleibst verantwortlich für Trainings- und Bergentscheidungen.",
   phases: { base: "Aerobe Basis", specific: "Spezifischer Block", taper: "Taper" },
   donePhase: "Peak-Woche",
   objectives: {
@@ -554,17 +585,20 @@ export const planDe: PlanToolsCopy = {
     trail20: {
       name: "20-km-Trail",
       length: "Empfohlen 10 Wochen",
-      blurb: "Du läufst schon. Lockeres Volumen, eine Qualitätsdosis, der Lange wächst auf 90–110 min. Peak in der Rennwoche.",
+      blurb:
+        "Du läufst schon. Lockeres Volumen, eine Qualitätsdosis, der Lange wächst auf 90–110 min. Peak in der Rennwoche.",
     },
     fifty: {
       name: "50-km-Ultra",
       length: "Empfohlen 24 Wochen / 6 Monate",
-      blurb: "Lange aerobe Basis, dann Long-run-Progression mit einer Qualitätseinheit, Taper auf die Rennwoche.",
+      blurb:
+        "Lange aerobe Basis, dann Long-run-Progression mit einer Qualitätseinheit, Taper auf die Rennwoche.",
     },
     ultra100: {
       name: "80–120-km-Ultra",
       length: "Empfohlen 36 Wochen / 9 Monate",
-      blurb: "Zuerst aerobe Monate. Spezifisch ist Zeit auf den Füßen und eine Qualitätsdosis. Back-to-backs spät. Vier Wochen Taper.",
+      blurb:
+        "Zuerst aerobe Monate. Spezifisch ist Zeit auf den Füßen und eine Qualitätsdosis. Back-to-backs spät. Vier Wochen Taper.",
     },
     alpine: {
       name: "Alpentag",
@@ -600,5 +634,6 @@ export const planDe: PlanToolsCopy = {
     engine: "Niedriger Puls",
     climb: "Klettern",
     strength: "Kraft",
+    me: "Muskuläre Ausdauer",
   },
 };

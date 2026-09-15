@@ -8,19 +8,41 @@ export type SessionHow = {
   watch: string;
 };
 
-export const howLabels: Record<Locale, { feel: string; do: string; swap: string; watch: string }> = {
-  en: { feel: "How it should feel", do: "Do this", swap: "Same session if you cannot run", watch: "Watch, or none" },
-  fi: { feel: "Miltä sen pitää tuntua", do: "Tee näin", swap: "Sama treeni jos et juokse", watch: "Kello, tai ilman" },
-  fr: { feel: "Ce que ça doit donner", do: "Faites ceci", swap: "Même séance sans courir", watch: "Montre, ou rien" },
-  de: { feel: "So soll es sich anfühlen", do: "Mach das", swap: "Dieselbe Einheit ohne Laufen", watch: "Uhr, oder keine" },
-};
+export const howLabels: Record<Locale, { feel: string; do: string; swap: string; watch: string }> =
+  {
+    en: {
+      feel: "How it should feel",
+      do: "Do this",
+      swap: "Same session if you cannot run",
+      watch: "Watch, or none",
+    },
+    fi: {
+      feel: "Miltä sen pitää tuntua",
+      do: "Tee näin",
+      swap: "Sama treeni jos et juokse",
+      watch: "Kello, tai ilman",
+    },
+    fr: {
+      feel: "Ce que ça doit donner",
+      do: "Faites ceci",
+      swap: "Même séance sans courir",
+      watch: "Montre, ou rien",
+    },
+    de: {
+      feel: "So soll es sich anfühlen",
+      do: "Mach das",
+      swap: "Dieselbe Einheit ohne Laufen",
+      watch: "Uhr, oder keine",
+    },
+  };
 
 export const sessionHowEn: Record<SessionKey, SessionHow> = {
   easy: {
     feel: "You can say a full sentence out loud. Breathing is quiet. The pace looks almost too slow. That is correct.",
     do: "Put on shoes you can walk in. Go outside. Start walking. If jogging still lets you talk, jog. If talking breaks, walk until you can talk again. Keep going until the minutes are done. Speed does not count. The clock does. If you have never trained, walk the whole time. That is the session.",
     swap: "Walk, hike a path, easy bike, or easy ski for the same minutes. 120 min walking = 120 min easy jogging = 120 min easy cycling. No gasping hills.",
-    watch: "No watch: talk test. Watch: zone 1–2, roughly 60–75% of max heart rate. A phone timer is enough.",
+    watch:
+      "No watch: talk test. Watch: zone 1–2, roughly 60–75% of max heart rate. A phone timer is enough.",
   },
   engine: {
     feel: "Same as easy: full sentences. Heart rate stays low on purpose. You finish wanting a little more, not empty.",
@@ -38,19 +60,22 @@ export const sessionHowEn: Record<SessionKey, SessionHow> = {
     feel: "Still conversational. Tired in the last third is normal. Gasping is not. Eat and drink as you already practised.",
     do: "This is time on feet. Start walking or very easy jogging. Take a walk break before talking breaks, not after. Carry water if it is over about 75 min. Do not test new shoes or new food today.",
     swap: "Hike the same minutes. Easy bike about 1.2× the minutes (90 min run ≈ 110 min easy bike). Mix walk and jog. Gentle trail hills are fine if you can still talk on them.",
-    watch: "Zone 1–2 the whole time. If the long is 120 min and you have never gone over 40, do 60–75 min this time and walk the rest. Next long can grow.",
+    watch:
+      "Zone 1–2 the whole time. If the long is 120 min and you have never gone over 40, do 60–75 min this time and walk the rest. Next long can grow.",
   },
   steady: {
     feel: "Short phrases only. Controlled. Not a race. You could hold this maybe 40–60 min, not hours.",
     do: "10 min easy walk/jog first. Then the written minutes at “I can answer, not tell a story.” 10 min easy to finish. If you have never done a harder day, skip this and do easy instead.",
     swap: "Uphill hike that still allows short phrases, or bike at that same breathing.",
-    watch: "High zone 2 / low 3, about 75–85% max HR. No watch: you can answer a question, not tell a story.",
+    watch:
+      "High zone 2 / low 3, about 75–85% max HR. No watch: you can answer a question, not tell a story.",
   },
   quality: {
     feel: "A few words. Breathing is loud. This is the only hard session this week.",
     do: "Warm up 15 min easy walking then jogging. Then quality: for example 5×3 min where talking is a few words, with 2 min walk between. Cool down 10 min walk. If you have never done intervals, do 4×1 min slightly quicker than easy, walk 2 min. Stop if a niggle gets worse.",
     swap: "Hill repeats: walk or jog up 60–90 sec, walk down. Same hard minutes. Bike intervals if you cannot run.",
-    watch: "Zone 3–4 on the hard bits only. Easy bits stay easy. No watch: hard = a few words; rest = full sentences again.",
+    watch:
+      "Zone 3–4 on the hard bits only. Easy bits stay easy. No watch: hard = a few words; rest = full sentences again.",
   },
   sharpness: {
     feel: "Short and snappy, not a new long run. You should talk again within a minute.",
@@ -72,15 +97,23 @@ export const sessionHowEn: Record<SessionKey, SessionHow> = {
   },
   pack: {
     feel: "Heavier pack, still mostly talking. The extra weight is the work, not speed.",
-    do: "Pack 6–10 kg (water bottles work). Walk the minutes on a path so you can talk. If you have never carried a pack, start at 4–6 kg.",
+    do: "Pack {kg} kg today (water bottles work). Walk the minutes on a path so you can talk. New to this: start lighter and build up over the coming weeks.",
     swap: "A weighted vest walk, or a backpack with books. Same minutes. Do not run with a heavy pack.",
     watch: "Talk test. Heart rate sits a bit higher than an empty easy day. That is expected.",
+  },
+  me: {
+    feel: "Legs burn slowly, not sharply. Breathing stays controlled — this is not an interval sprint. You keep moving for a long time at an effort you could not push much harder.",
+    do: "Pack {kg} kg today. Find a sustained uphill — 45–90 min of continuous climbing, no flat recovery sections. Move at a pace you could hold for the whole time: hard, but not a race. If the legs need a break, slow down instead of stopping. This is the main specific-phase session for a big mountain day: it trains the legs to keep working under load for hours, not minutes.",
+    swap: "A long stair climb, a steep treadmill held at a fixed incline, or repeated hill laps with the pack on. Ski touring uphill counts. A flat run does not — the sustained climbing angle is the point.",
+    watch:
+      "Zone 3, roughly 80–88% of max heart rate, held steady rather than spiking and recovering like intervals. No watch: breathing is hard but rhythmic, and a sentence takes real effort.",
   },
   mountain: {
     feel: "Hiking to the climb stays conversational. The climbing itself is its own effort, not a heart-rate zone.",
     do: "Use a line you already know, or a gym session plus a hike. Approach easy. Climb pitches or problems with rests. Descend with care. This is not a first-time unroped ridge.",
     swap: "No mountain: long hike with pack plus a climbing-gym session the same day or the day before. If you have never climbed, book a gym intro. Do not solo.",
-    watch: "Ignore zones on the wall. Count quality pitches or problems, then stop while technique is still clean.",
+    watch:
+      "Ignore zones on the wall. Count quality pitches or problems, then stop while technique is still clean.",
   },
   climb: {
     feel: "Grip and skill, not jogging. Arms and fingers work. Legs can often still talk between efforts.",
@@ -90,7 +123,7 @@ export const sessionHowEn: Record<SessionKey, SessionHow> = {
   },
   strength: {
     feel: "Short and hard on the muscles, then done. You should walk home, not crawl.",
-    do: "20–40 min. If you have never lifted: 2 rounds of 8 bodyweight squats, 5–8 knee push-ups or rows, 20 sec plank, 8 step-ups per leg. Rest a minute between moves. Next weeks add a little, not a new circus.",
+    do: "20–40 min. If you have never lifted: 2 rounds of 8 bodyweight squats, 5–8 knee push-ups or rows, 20 sec plank, 8 step-ups per leg. Training for a mountain day: add slow single-leg step-downs (this is what saves your knees on the descent) and step-ups with your pack on. Rest a minute between moves. Next weeks add a little, not a new circus.",
     swap: "Gym if you have one. At home: pack as weight, a step, a towel for rows. No barbell needed.",
     watch: "Irrelevant. Count reps with clean form. Stop two reps before failure.",
   },
@@ -107,7 +140,8 @@ export const sessionHowFi: Record<SessionKey, SessionHow> = {
     feel: "Saat sanottua kokonaisen lauseen ääneen. Hengitys on rauhallinen. Vauhti näyttää melkein liian hitaalta. Se on oikein.",
     do: "Kengät jalkaan, ulos. Aloita kävellen. Jos hölkkä sujuu niin että pystyt puhumaan, hölkkää. Jos puhe katkeaa, kävele kunnes puhe palaa. Jatka kunnes minuutit täyttyvät. Nopeus ei lasketa. Kello lasketaan. Jos et ole treenannut, kävele koko aika. Se on treeni.",
     swap: "Kävely, polku, helppo pyörä tai hiihto samoilla minuuteilla. 120 min kävelyä = 120 min hölkkää = 120 min helppoa pyörää. Ei hengästyttäviä mäkiä.",
-    watch: "Ilman kelloa: puhetesti. Kellolla: vyöhyke 1–2, noin 60–75 % maksimisykkeestä. Puhelimen ajastin riittää.",
+    watch:
+      "Ilman kelloa: puhetesti. Kellolla: vyöhyke 1–2, noin 60–75 % maksimisykkeestä. Puhelimen ajastin riittää.",
   },
   engine: {
     feel: "Sama kuin kevyt: kokonaisia lauseita. Syke pidetään matalana tarkoituksella. Lopetat niin että voisit jatkaa, et tyhjänä.",
@@ -125,19 +159,22 @@ export const sessionHowFi: Record<SessionKey, SessionHow> = {
     feel: "Yhä puhevauhtia. Viimeisessä kolmanneksessa väsymys on normaalia. Haukkova hengitys ei. Syö ja juo niin kuin olet jo harjoitellut.",
     do: "Aika jaloilla. Aloita kävellen tai hyvin hitaasti hölkäten. Kävelytauko ennen kuin puhe katkeaa, ei jälkeen. Vettä mukaan jos yli noin 75 min. Älä kokeile uusia kenkiä tai uutta ruokaa.",
     swap: "Vaella samat minuutit. Helppo pyörä noin 1,2× minuutit (90 min juoksu ≈ 110 min pyörää). Kävely+hölkkä. Loiva polku on parempi kuin rata, jos mäessäkin pystyy puhumaan.",
-    watch: "Koko ajan vyöhyke 1–2. Jos pitkä on 120 min etkä ole mennyt yli 40:n, tee 60–75 min ja kävele loput. Seuraava pitkä saa kasvaa.",
+    watch:
+      "Koko ajan vyöhyke 1–2. Jos pitkä on 120 min etkä ole mennyt yli 40:n, tee 60–75 min ja kävele loput. Seuraava pitkä saa kasvaa.",
   },
   steady: {
     feel: "Vain lyhyitä lauseita. Hallittua. Ei kisa. Tätä jaksaisi ehkä 40–60 min, ei tunteja.",
     do: "10 min helppoa kävelyä tai hölkkää. Sitten kirjoitetut minuutit vauhdilla vastaan, en kerro tarinaa. 10 min helppoa loppuun. Jos et ole tehnyt tehopäivää, jätä tämä ja tee kevyt.",
     swap: "Nousu jossa lyhyet lauseet vielä onnistuvat, tai pyörä samalla hengityksellä.",
-    watch: "Korkea Z2 / matala Z3, noin 75–85 % max-syke. Ilman kelloa: vastaan kysymykseen, en kerro tarinaa.",
+    watch:
+      "Korkea Z2 / matala Z3, noin 75–85 % max-syke. Ilman kelloa: vastaan kysymykseen, en kerro tarinaa.",
   },
   quality: {
     feel: "Muutama sana. Hengitys kuuluu. Viikon ainoa kova.",
     do: "Alkuun 15 min kävelyä sitten hölkkää. Sitten teho: esim. 5×3 min jolloin puhut muutaman sanan, välissä 2 min kävelyä. Loppuun 10 min kävely. Jos et ole tehnyt vetoja, tee 4×1 min hieman kevyttä napakammin, 2 min kävely. Lopeta jos kolotus pahenee.",
     swap: "Mäkivedot: 60–90 s ylös, kävely alas. Sama kova minuuttimäärä. Pyörävedot käyvät jos et juokse.",
-    watch: "Tehoissa Z3–4, palautuksissa kevyt. Ilman kelloa: kova = muutama sana; palautus = taas kokonaisia lauseita.",
+    watch:
+      "Tehoissa Z3–4, palautuksissa kevyt. Ilman kelloa: kova = muutama sana; palautus = taas kokonaisia lauseita.",
   },
   sharpness: {
     feel: "Lyhyt ja napakka, ei uusi pitkä. Minuutissa puhut taas.",
@@ -159,15 +196,23 @@ export const sessionHowFi: Record<SessionKey, SessionHow> = {
   },
   pack: {
     feel: "Raskaampi rinkka, yhä enimmäkseen puhetta. Paino on työ, ei vauhti.",
-    do: "Rinkkaan 6–10 kg (vesipullot käyvät). Kävele minuutit polulla niin että pystyt puhumaan. Jos et ole kantanut, aloita 4–6 kg.",
+    do: "Rinkkaan {kg} kg tänään (vesipullot käyvät). Kävele minuutit polulla niin että pystyt puhumaan. Jos et ole kantanut ennen, aloita kevyemmällä ja lisää painoa viikko viikolta.",
     swap: "Painoliivi tai rinkka jossa kirjoja. Samat minuutit. Älä juokse raskaalla rinkalla.",
     watch: "Puhetesti. Syke on hieman korkeampi kuin tyhjällä kevyellä. Se on odotettua.",
+  },
+  me: {
+    feel: "Jalat polttavat hitaasti, ei terävästi. Hengitys pysyy hallinnassa — tämä ei ole intervalli. Liikut pitkään teholla jota et jaksaisi paljon kovempana.",
+    do: "Rinkkaan {kg} kg tänään. Etsi yhtäjaksoinen nousu — 45–90 min jatkuvaa kiipeämistä ilman tasaisia palautusosuuksia. Liiku tempolla jonka jaksaisit koko ajan: kova, mutta ei kilpailu. Jos jalat tarvitsevat taukoa, hidasta äläkä pysähdy. Tämä on tarkemman jakson pääharjoitus isolle vuoristopäivälle: se opettaa jalat toimimaan kuorman alla tunteja, ei minuutteja.",
+    swap: "Pitkä porraskiipeily, jyrkkä juoksumatto kiinteällä nousukulmalla, tai toistetut mäkilenkit rinkka päällä. Nousu-hiihto vuorisuksilla kelpaa. Tasainen juoksu ei — jatkuva nousukulma on koko pointti.",
+    watch:
+      "Alue 3, noin 80–88 % maksimisykkeestä, tasaisena — ei piikkejä ja palautumista kuten intervalleissa. Ilman kelloa: hengitys on kovaa mutta tasaista, ja lause vaatii oikeaa ponnistusta.",
   },
   mountain: {
     feel: "Nousu kiipeilyyn puhevauhtia. Itse kiipeily on oma ponnistus, ei sykevyöhyke.",
     do: "Valitse reitti jonka tunnet, tai sali plus vaellus. Lähestyminen kevyttä. Kiivetään pätkissä, palautetaan. Alas varovasti. Tämä ei ole ensimmäinen köydetön harjanne.",
     swap: "Jos ei ole vuorta: pitkä rinkkavaellus plus kiipeilysali samana tai edellisenä päivänä. Jos et ole kiivennyt, varaa salin alkeet. Älä sooloa.",
-    watch: "Seinällä ei vyöhykkeitä. Laske laadukkaat pätkät ja lopeta kun tekniikka on vielä siisti.",
+    watch:
+      "Seinällä ei vyöhykkeitä. Laske laadukkaat pätkät ja lopeta kun tekniikka on vielä siisti.",
   },
   climb: {
     feel: "Ote ja taito, ei hölkkä. Kädet ja sormet tekevät. Jalat voivat puhua ponnistusten välissä.",
@@ -177,9 +222,10 @@ export const sessionHowFi: Record<SessionKey, SessionHow> = {
   },
   strength: {
     feel: "Lyhyt ja lihaksille kova, sitten ohi. Kävelet kotiin, et ryömi.",
-    do: "20–40 min. Jos et ole nostanut: 2 kierrosta 8 kyykkyä, 5–8 polvipunnerrusta tai soutua, 20 s lankku, 8 askelnousua per jalka. Minuutti lepoa liikkeiden välissä. Seuraavilla viikoilla lisää vähän.",
+    do: "20–40 min. Jos et ole nostanut: 2 kierrosta 8 kyykkyä, 5–8 polvipunnerrusta tai soutua, 20 s lankku, 8 askelnousua per jalka. Vuoripäivään treenatessa: lisää hitaat yhden jalan alastulot (nämä säästävät polvet laskeutumisessa) ja askelnousut rinkka päällä. Minuutti lepoa liikkeiden välissä. Seuraavilla viikoilla lisää vähän.",
     swap: "Sali jos on. Kotona: rinkka painoksi, porras, pyyhe soutuun. Tankoa ei tarvita.",
-    watch: "Ei merkitse. Laske toistot puhtaalla tekniikalla. Lopeta kaksi toistoa ennen uupumusta.",
+    watch:
+      "Ei merkitse. Laske toistot puhtaalla tekniikalla. Lopeta kaksi toistoa ennen uupumusta.",
   },
   rest: {
     feel: "Tavallinen päivä. Pieni jäykkyys eilisestä on ok. Terävä kipu ei.",
@@ -194,7 +240,8 @@ export const sessionHowFr: Record<SessionKey, SessionHow> = {
     feel: "Vous dites une phrase complète à voix haute. La respiration est calme. L’allure paraît trop lente. C’est correct.",
     do: "Chaussures de marche. Sortez. Commencez à marcher. Si le footing laisse parler, trottez. Si la phrase casse, marchez. Continuez jusqu’aux minutes. La vitesse ne compte pas. L’horloge oui. Jamais entraîné : marchez tout le temps. C’est la séance.",
     swap: "Marche, sentier, vélo facile ou ski, mêmes minutes. 120 min de marche = 120 min de footing facile = 120 min de vélo facile.",
-    watch: "Sans montre : test de parole. Avec : zone 1–2, ~60–75 % FC max. Un minuteur de téléphone suffit.",
+    watch:
+      "Sans montre : test de parole. Avec : zone 1–2, ~60–75 % FC max. Un minuteur de téléphone suffit.",
   },
   engine: {
     feel: "Comme le facile : phrases complètes. Le pouls reste bas exprès.",
@@ -212,7 +259,8 @@ export const sessionHowFr: Record<SessionKey, SessionHow> = {
     feel: "Encore conversationnel. Fatigué au dernier tiers : normal. Haleter : non.",
     do: "Temps sur les pieds. Marche ou footing très facile. Pause marche avant que la phrase casse. Eau si > ~75 min. Pas de nouvelles chaussures ni de nouvel aliment.",
     swap: "Rando les mêmes minutes. Vélo facile ≈ 1,2× (90 min course ≈ 110 min vélo).",
-    watch: "Zone 1–2 tout du long. Si 120 min et jamais plus de 40 : 60–75 min cette fois, le reste à pied.",
+    watch:
+      "Zone 1–2 tout du long. Si 120 min et jamais plus de 40 : 60–75 min cette fois, le reste à pied.",
   },
   steady: {
     feel: "Phrases courtes. Contrôlé. Pas une course.",
@@ -246,9 +294,16 @@ export const sessionHowFr: Record<SessionKey, SessionHow> = {
   },
   pack: {
     feel: "Sac plus lourd, encore surtout de la parole. Le poids est le travail.",
-    do: "6–10 kg (bouteilles). Marchez en parlant. Jamais porté : 4–6 kg.",
+    do: "{kg} kg aujourd’hui (bouteilles). Marchez en parlant. Jamais porté : commencez plus léger et augmentez chaque semaine.",
     swap: "Gilet lesté ou sac de livres. Ne courez pas avec un sac lourd.",
     watch: "Test de parole. FC un peu plus haute : normal.",
+  },
+  me: {
+    feel: "Les jambes brûlent lentement, pas vivement. La respiration reste contrôlée — ce n’est pas un sprint. Vous bougez longtemps à un effort que vous ne pourriez pas pousser beaucoup plus fort.",
+    do: "{kg} kg aujourd’hui. Trouvez une montée continue — 45–90 min d’ascension sans section plate de récupération. Allure tenable pour toute la durée : dur, mais pas une course. Si les jambes ont besoin d’une pause, ralentissez plutôt que de vous arrêter. C’est la séance principale du bloc spécifique pour une grosse journée en montagne.",
+    swap: "Un long escalier, un tapis roulant incliné en continu, ou des répétitions de côte avec le sac. Le ski de randonnée en montée compte. Une course plate non — l’angle de montée continu est le point.",
+    watch:
+      "Zone 3, environ 80–88 % de la FC max, tenue stable plutôt que des pics comme en intervalles. Sans montre : la respiration est dure mais régulière, une phrase demande un vrai effort.",
   },
   mountain: {
     feel: "L’approche reste conversationnelle. L’escalade est un effort à part.",
@@ -264,7 +319,7 @@ export const sessionHowFr: Record<SessionKey, SessionHow> = {
   },
   strength: {
     feel: "Court et dur pour les muscles, puis fini. Vous rentrez à pied.",
-    do: "20–40 min. Jamais soulevé : 2 tours de 8 squats, 5–8 pompes genoux ou rowing, 20 s planche, 8 step-ups par jambe.",
+    do: "20–40 min. Jamais soulevé : 2 tours de 8 squats, 5–8 pompes genoux ou rowing, 20 s planche, 8 step-ups par jambe. Pour un objectif montagne : ajoutez des descentes lentes sur une jambe (ça protège les genoux à la descente) et des step-ups avec le sac.",
     swap: "Salle, ou sac comme poids, une marche, une serviette. Pas besoin de barre.",
     watch: "Comptez des reps propres. Stop deux reps avant l’échec.",
   },
@@ -333,9 +388,16 @@ export const sessionHowDe: Record<SessionKey, SessionHow> = {
   },
   pack: {
     feel: "Schwererer Pack, noch meistens reden. Das Gewicht ist die Arbeit.",
-    do: "6–10 kg (Flaschen). Gehen und reden. Nie getragen: 4–6 kg.",
+    do: "{kg} kg heute (Flaschen). Gehen und reden. Nie getragen: leichter starten und Woche für Woche steigern.",
     swap: "Gewichtsweste oder Bücher-Rucksack. Nicht mit schwerem Pack laufen.",
     watch: "Sprechtest. HF etwas höher: erwartet.",
+  },
+  me: {
+    feel: "Die Beine brennen langsam, nicht scharf. Die Atmung bleibt kontrolliert — das ist kein Intervall-Sprint. Du bewegst dich lange bei einer Anstrengung, die du nicht viel härter durchhalten könntest.",
+    do: "{kg} kg heute. Finde einen durchgehenden Aufstieg — 45–90 min ununterbrochenes Steigen ohne flache Erholungsabschnitte. Tempo, das du die ganze Zeit halten könntest: hart, aber kein Rennen. Wenn die Beine eine Pause brauchen, verlangsame statt anzuhalten. Das ist die zentrale Einheit der spezifischen Phase für einen großen Bergtag.",
+    swap: "Ein langer Treppenaufstieg, ein Steigungslauf auf dem Laufband bei fester Neigung, oder wiederholte Hügelrunden mit Pack. Skitourengehen bergauf zählt. Ein flacher Lauf nicht — der durchgehende Steigungswinkel ist der Punkt.",
+    watch:
+      "Zone 3, etwa 80–88 % der maximalen Herzfrequenz, konstant gehalten statt Spitzen wie bei Intervallen. Ohne Uhr: die Atmung ist hart, aber rhythmisch, ein Satz braucht echte Anstrengung.",
   },
   mountain: {
     feel: "Zustieg gesprächig. Klettern ist eigene Arbeit.",
@@ -351,7 +413,7 @@ export const sessionHowDe: Record<SessionKey, SessionHow> = {
   },
   strength: {
     feel: "Kurz und hart für die Muskeln, dann fertig. Du gehst nach Hause.",
-    do: "20–40 Min. Nie gehoben: 2 Runden 8 Kniebeugen, 5–8 Knie-Liegestütze oder Rudern, 20 s Plank, 8 Step-ups pro Bein.",
+    do: "20–40 Min. Nie gehoben: 2 Runden 8 Kniebeugen, 5–8 Knie-Liegestütze oder Rudern, 20 s Plank, 8 Step-ups pro Bein. Für einen Bergtag: langsame Einbein-Abstiege dazu (das schont die Knie beim Abstieg) und Step-ups mit Pack.",
     swap: "Gym, oder Pack als Gewicht, eine Stufe, ein Handtuch. Keine Langhantel nötig.",
     watch: "Saubere Wiederholungen. Zwei vor dem Versagen stoppen.",
   },

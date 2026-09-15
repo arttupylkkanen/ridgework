@@ -26,7 +26,8 @@ export type SessionKey =
   | "rest"
   | "engine"
   | "climb"
-  | "strength";
+  | "strength"
+  | "me";
 
 export type DaySession = { kind: SessionKind; key: SessionKey; minutes?: number };
 
@@ -260,6 +261,25 @@ export function phaseOf(state: RollingState, calendar = state.calendar): PhaseId
   return "base";
 }
 
+/**
+ * Load-carrying progression (kg) for "pack" and "me" sessions: a flat
+ * introductory weight through base and taper, ramping from 8 kg to 16 kg
+ * across the specific phase so the pack gets heavier as the objective gets
+ * closer — never re-derived from `SPECS` directly, since a compressed or
+ * stretched plan (see `fitSpec`) can shrink or grow the specific block.
+ */
+export function packLoadKg(state: RollingState, calendar = state.calendar): number {
+  const phase = phaseOf(state, calendar);
+  if (phase !== "specific") return 6;
+  const spec = fitSpec(state.objective, planLength(state));
+  const rem = remainingWeeks(state, calendar);
+  const weeksLeftInSpecific = rem - spec.taper;
+  const weekInSpecific = spec.specific - weeksLeftInSpecific + 1;
+  const span = Math.max(1, spec.specific - 1);
+  const kg = 8 + Math.round(((weekInSpecific - 1) / span) * 8);
+  return Math.min(16, Math.max(8, kg));
+}
+
 export function phaseAt(progress: number, id: ObjectiveId, extraBase: number): PhaseId {
   // Kept for older call sites: count forward through a recommended (or extra-base) build.
   const s = SPECS[id];
@@ -315,7 +335,11 @@ const TAPER_WEEK: DaySession[] = [
   { kind: "rest", key: "rest" },
 ];
 
-function daysFor(phase: Exclude<PhaseId, "done">, objective: ObjectiveId, eased: boolean): DaySession[] {
+function daysFor(
+  phase: Exclude<PhaseId, "done">,
+  objective: ObjectiveId,
+  eased: boolean,
+): DaySession[] {
   if (eased) return EASED_WEEK;
   if (phase === "taper") {
     if (objective === "engine") {
@@ -359,7 +383,7 @@ function daysFor(phase: Exclude<PhaseId, "done">, objective: ObjectiveId, eased:
         { kind: "easy", key: "easy" },
         { kind: "easy", key: "hike" },
         { kind: "rest", key: "rest" },
-        { kind: "easy", key: "easy" },
+        { kind: "hard", key: "strength" },
         { kind: "rest", key: "rest" },
         { kind: "easy", key: "long" },
         { kind: "easy", key: "easy" },
@@ -370,7 +394,7 @@ function daysFor(phase: Exclude<PhaseId, "done">, objective: ObjectiveId, eased:
         { kind: "easy", key: "easy" },
         { kind: "steady", key: "climb" },
         { kind: "rest", key: "rest" },
-        { kind: "easy", key: "easy" },
+        { kind: "hard", key: "strength" },
         { kind: "rest", key: "rest" },
         { kind: "easy", key: "hike" },
         { kind: "easy", key: "easy" },
@@ -381,7 +405,7 @@ function daysFor(phase: Exclude<PhaseId, "done">, objective: ObjectiveId, eased:
   if (objective === "expedition") {
     return [
       { kind: "easy", key: "easy" },
-      { kind: "steady", key: "climb" },
+      { kind: "hard", key: "me" },
       { kind: "easy", key: "easy" },
       { kind: "rest", key: "rest" },
       { kind: "rest", key: "rest" },
@@ -394,7 +418,7 @@ function daysFor(phase: Exclude<PhaseId, "done">, objective: ObjectiveId, eased:
       { kind: "easy", key: "easy" },
       { kind: "hard", key: "climb" },
       { kind: "easy", key: "easy" },
-      { kind: "hard", key: "strength" },
+      { kind: "hard", key: "me" },
       { kind: "rest", key: "rest" },
       { kind: "steady", key: "mountain" },
       { kind: "easy", key: "easy" },
@@ -433,7 +457,11 @@ function daysFor(phase: Exclude<PhaseId, "done">, objective: ObjectiveId, eased:
   ];
 }
 
-export function templateDays(phase: Exclude<PhaseId, "done">, objective: ObjectiveId, eased = false): DaySession[] {
+export function templateDays(
+  phase: Exclude<PhaseId, "done">,
+  objective: ObjectiveId,
+  eased = false,
+): DaySession[] {
   return daysFor(phase, objective, eased).map((day) => ({ ...day }));
 }
 
@@ -450,10 +478,15 @@ export const HARD_KEYS = new Set<SessionKey>([
   "long",
   "climb",
   "strength",
+  "me",
 ]);
 
 /** Rewrite this week's days from how the body feels — preview before log. */
-export function adaptWeek(week: PlannedWeek, result: CheckResult, _objective?: ObjectiveId): PlannedWeek {
+export function adaptWeek(
+  week: PlannedWeek,
+  result: CheckResult,
+  _objective?: ObjectiveId,
+): PlannedWeek {
   if (result === "good" || result === "ok") {
     return { ...week, eased: false, days: week.days };
   }
@@ -462,7 +495,8 @@ export function adaptWeek(week: PlannedWeek, result: CheckResult, _objective?: O
       ...week,
       eased: true,
       days: week.days.map((day) => {
-        if (day.kind === "hard" || day.kind === "steady") return { ...day, kind: "easy" as const, key: "easy" };
+        if (day.kind === "hard" || day.kind === "steady")
+          return { ...day, kind: "easy" as const, key: "easy" };
         if (HARD_KEYS.has(day.key)) return { ...day, kind: "easy" as const, key: "recovery" };
         return day;
       }),
@@ -523,7 +557,8 @@ export function applyStateFlags(week: PlannedWeek, state: RollingState): Planned
   const blocked = state.blockedAccess ?? [];
   if (blocked.includes("mountain")) {
     days = days.map((day) => {
-      if (day.key !== "mountain" && day.key !== "vert" && day.key !== "pack") return day;
+      if (day.key !== "mountain" && day.key !== "vert" && day.key !== "pack" && day.key !== "me")
+        return day;
       swappedMountain = true;
       return { kind: "easy" as const, key: "hike" as const, minutes: day.minutes };
     });
@@ -557,7 +592,9 @@ export function applyStateFlags(week: PlannedWeek, state: RollingState): Planned
   }
 
   if (state.makeupCalendar != null && week.calendar === state.makeupCalendar) {
-    const idx = days.findIndex((day) => day.key === "easy" || day.key === "recovery" || day.key === "hike");
+    const idx = days.findIndex(
+      (day) => day.key === "easy" || day.key === "recovery" || day.key === "hike",
+    );
     if (idx >= 0) {
       const current = days[idx]!;
       days[idx] = { kind: "hard", key: "quality", minutes: current.minutes ?? 45 };
@@ -659,9 +696,16 @@ export function applyCheckin(state: RollingState, result: CheckResult, note: str
 }
 
 /** Peak date only moves when the athlete sets a new one. Tired weeks do not. */
-export function retargetPeak(state: RollingState, peakOn: string, at = new Date().toISOString()): RollingState {
+export function retargetPeak(
+  state: RollingState,
+  peakOn: string,
+  at = new Date().toISOString(),
+): RollingState {
   if (peakOn === state.peakOn) return state;
-  const extra = Math.max(0, weeksBetween(state.startedOn, peakOn) - weeksBetween(state.startedOn, state.peakOn));
+  const extra = Math.max(
+    0,
+    weeksBetween(state.startedOn, peakOn) - weeksBetween(state.startedOn, state.peakOn),
+  );
   const adj: Adjustment = {
     at,
     date: todayIso(),
@@ -689,7 +733,12 @@ export function syncCalendarToToday(state: RollingState, today = todayIso()): Ro
 }
 
 export function upsertLog(state: RollingState, log: SessionLog): RollingState {
-  const logs = [...(state.logs ?? []).filter((row) => !(row.date === log.date && row.dayIndex === log.dayIndex)), log];
+  const logs = [
+    ...(state.logs ?? []).filter(
+      (row) => !(row.date === log.date && row.dayIndex === log.dayIndex),
+    ),
+    log,
+  ];
   return { ...state, logs };
 }
 
@@ -697,8 +746,14 @@ export function pushAdjustment(state: RollingState, adj: Adjustment): RollingSta
   return { ...state, adjustments: [adj, ...(state.adjustments ?? [])].slice(0, 40) };
 }
 
-export function logFor(state: RollingState, date: string, dayIndex?: number): SessionLog | undefined {
-  return (state.logs ?? []).find((row) => row.date === date && (dayIndex === undefined || row.dayIndex === dayIndex));
+export function logFor(
+  state: RollingState,
+  date: string,
+  dayIndex?: number,
+): SessionLog | undefined {
+  return (state.logs ?? []).find(
+    (row) => row.date === date && (dayIndex === undefined || row.dayIndex === dayIndex),
+  );
 }
 
 export function isRollingState(value: unknown): value is RollingState {
@@ -732,7 +787,8 @@ export function loadPlan(): RollingState | null {
       substituteMode: parsed.substituteMode === "hikeCycle" ? "hikeCycle" : null,
       secondPeakOn: parsed.secondPeakOn ?? null,
       easeThrough: typeof parsed.easeThrough === "number" ? parsed.easeThrough : null,
-      easeMode: parsed.easeMode === "wrecked" || parsed.easeMode === "problem" ? parsed.easeMode : null,
+      easeMode:
+        parsed.easeMode === "wrecked" || parsed.easeMode === "problem" ? parsed.easeMode : null,
       makeupCalendar: typeof parsed.makeupCalendar === "number" ? parsed.makeupCalendar : null,
       history: Array.isArray(parsed.history) ? parsed.history : [],
     };

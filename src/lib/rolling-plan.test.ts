@@ -7,6 +7,7 @@ import {
   fitSpec,
   nextSeason,
   OBJECTIVES,
+  packLoadKg,
   phaseOf,
   qualityFor,
   recommendedWeeks,
@@ -214,7 +215,10 @@ describe("rolling plan", () => {
     const diffs = weekChanges(week, tired);
     assert.ok(diffs.length >= 2);
     const wrecked = adaptWeek(week, "wrecked");
-    assert.ok(wrecked.days.filter((day) => day.kind === "rest").length > week.days.filter((day) => day.kind === "rest").length);
+    assert.ok(
+      wrecked.days.filter((day) => day.kind === "rest").length >
+        week.days.filter((day) => day.kind === "rest").length,
+    );
     assert.deepEqual(adaptWeek(week, "ok").days, week.days);
   });
 
@@ -230,7 +234,10 @@ describe("rolling plan", () => {
   it("ultra100 reaches specific after 14 counted weeks", () => {
     const state = roll(start("ultra100"), 14);
     assert.equal(phaseOf(state), "specific");
-    assert.equal(visibleWeeks(state)[0]?.days.some((day) => day.key === "long"), true);
+    assert.equal(
+      visibleWeeks(state)[0]?.days.some((day) => day.key === "long"),
+      true,
+    );
   });
 
   it("expedition specific week uses hike and pack", () => {
@@ -241,14 +248,39 @@ describe("rolling plan", () => {
     assert.ok(week?.days.some((day) => day.key === "pack"));
   });
 
-  it("alpine specific week includes climbing and strength, not only walking", () => {
+  it("alpine specific week includes climbing and muscular endurance, not only walking", () => {
     const state = roll(start("alpine"), 6);
     const week = visibleWeeks(state)[0];
     assert.equal(week?.phase, "specific");
     assert.ok(week?.days.some((day) => day.key === "climb"));
-    assert.ok(week?.days.some((day) => day.key === "strength"));
+    assert.ok(week?.days.some((day) => day.key === "me"));
     const tired = adaptWeek(week!, "problem");
-    assert.ok(!tired.days.some((day) => day.key === "climb" || day.key === "strength"));
+    assert.ok(!tired.days.some((day) => day.key === "climb" || day.key === "me"));
+  });
+
+  it("alpine base week includes strength, moved earlier than the specific block", () => {
+    const state = roll(start("alpine"), 2);
+    const week = visibleWeeks(state)[0];
+    assert.equal(week?.phase, "base");
+    assert.ok(week?.days.some((day) => day.key === "strength"));
+  });
+
+  it("expedition specific week swaps climbing for a muscular-endurance day", () => {
+    const state = roll(start("expedition"), 22);
+    const week = visibleWeeks(state)[0];
+    assert.equal(week?.phase, "specific");
+    assert.ok(week?.days.some((day) => day.key === "me"));
+    assert.ok(!week?.days.some((day) => day.key === "climb"));
+  });
+
+  it("packLoadKg ramps 8→16 kg across the specific block, flat 6 kg in base and taper", () => {
+    const state = start("alpine"); // base 6, specific 3, taper 1
+    assert.equal(packLoadKg(state, 1), 6);
+    assert.equal(packLoadKg(state, 6), 6);
+    assert.equal(packLoadKg(state, 7), 8);
+    assert.equal(packLoadKg(state, 8), 12);
+    assert.equal(packLoadKg(state, 9), 16);
+    assert.equal(packLoadKg(state, 10), 6);
   });
 
   it("next season increments and asks for a new peak", () => {

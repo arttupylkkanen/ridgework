@@ -1,6 +1,12 @@
 import type { AthleteProfile, AccessFlag, Equipment } from "./athlete.ts";
 import { longestMinutes, weeklyMinutes } from "./athlete.ts";
-import type { DailyInputs, LoadContext, ReadinessCall, ReadinessResult, StoredDaily } from "./daily-readiness.ts";
+import type {
+  DailyInputs,
+  LoadContext,
+  ReadinessCall,
+  ReadinessResult,
+  StoredDaily,
+} from "./daily-readiness.ts";
 import { assessReadiness, baselineFrom, emptyLoad } from "./daily-readiness.ts";
 import {
   HARD_KEYS,
@@ -44,7 +50,7 @@ export type TodayView = {
 };
 
 const QUALITY_KEYS = new Set<SessionKey>(["quality", "sharpness", "climb", "strength", "steady"]);
-const LONG_KEYS = new Set<SessionKey>(["long", "pack", "mountain"]);
+const LONG_KEYS = new Set<SessionKey>(["long", "pack", "mountain", "me"]);
 const LOAD_KEYS = new Set<SessionKey>([...HARD_KEYS]);
 
 function cloneDay(day: DaySession, patch: Partial<DaySession> = {}): DaySession {
@@ -96,19 +102,30 @@ function kindFor(key: SessionKey): DaySession["kind"] {
   return "easy";
 }
 
-function swapAccess(day: DaySession, profile: AthleteProfile, state: RollingState, reasons: Reason[]): DaySession {
+function swapAccess(
+  day: DaySession,
+  profile: AthleteProfile,
+  state: RollingState,
+  reasons: Reason[],
+): DaySession {
   const climbOk =
     (profile.terrain === "mountain" || profile.terrain === "highAlpine") &&
     (hasGear(profile, "crampons") || hasGear(profile, "iceAxe") || hasGear(profile, "gym")) &&
     !accessBlocked(state, "climbing");
   const mountainOk =
-    (profile.terrain === "mountain" || profile.terrain === "highAlpine" || profile.terrain === "rolling") &&
+    (profile.terrain === "mountain" ||
+      profile.terrain === "highAlpine" ||
+      profile.terrain === "rolling") &&
     !accessBlocked(state, "mountain");
   const gymOk = hasGear(profile, "gym") && !accessBlocked(state, "gym");
   const packOk = hasGear(profile, "pack") && !accessBlocked(state, "mountain");
 
   if (day.key === "climb") {
-    if (climbOk && (hasGear(profile, "crampons") || hasGear(profile, "iceAxe")) && !accessBlocked(state, "climbing")) {
+    if (
+      climbOk &&
+      (hasGear(profile, "crampons") || hasGear(profile, "iceAxe")) &&
+      !accessBlocked(state, "climbing")
+    ) {
       return day;
     }
     if (gymOk) {
@@ -130,7 +147,7 @@ function swapAccess(day: DaySession, profile: AthleteProfile, state: RollingStat
     }
     return day;
   }
-  if (day.key === "pack") {
+  if (day.key === "pack" || day.key === "me") {
     if (!packOk) {
       reasons.push({ id: "noPack", values: {} });
       return cloneDay(day, { kind: "easy", key: "hike" });
@@ -163,7 +180,10 @@ function placeWork(
     phase === "taper"
       ? seed.find((d) => d.key === "sharpness" || QUALITY_KEYS.has(d.key))
       : seed.find((d) => QUALITY_KEYS.has(d.key) || d.key === "climb" || d.key === "engine");
-  const seedEasy = seed.filter((d) => !LONG_KEYS.has(d.key) && !QUALITY_KEYS.has(d.key) && d.key !== "rest" && d.key !== "engine");
+  const seedEasy = seed.filter(
+    (d) =>
+      !LONG_KEYS.has(d.key) && !QUALITY_KEYS.has(d.key) && d.key !== "rest" && d.key !== "engine",
+  );
 
   const weekendFirst = [...slots].sort((a, b) => {
     const rank = (i: number) => (i === 5 ? 0 : i === 6 ? 1 : 2 + (6 - i));
@@ -172,7 +192,12 @@ function placeWork(
   const longSlot = weekendFirst[0] ?? slots[slots.length - 1]!;
 
   const qMin = qualityMinutes(profile, phase);
-  const skillKey = seedQuality && (seedQuality.key === "climb" || seedQuality.key === "engine" || seedQuality.key === "hike" || seedQuality.key === "strength");
+  const skillKey =
+    seedQuality &&
+    (seedQuality.key === "climb" ||
+      seedQuality.key === "engine" ||
+      seedQuality.key === "hike" ||
+      seedQuality.key === "strength");
   const allowQuality =
     Boolean(seedQuality) &&
     n >= 3 &&
@@ -188,7 +213,11 @@ function placeWork(
   if (allowQuality && seedQuality) {
     qualitySlot = slots.find((i) => i !== longSlot && Math.abs(i - longSlot) >= 2);
     if (qualitySlot === undefined) qualitySlot = slots.find((i) => i !== longSlot);
-    if (profile.constraints.includes("shiftWork") && qualitySlot !== undefined && qualitySlot <= 1) {
+    if (
+      profile.constraints.includes("shiftWork") &&
+      qualitySlot !== undefined &&
+      qualitySlot <= 1
+    ) {
       const later = slots.find((i) => i !== longSlot && i >= 2 && Math.abs(i - longSlot) >= 2);
       if (later !== undefined) qualitySlot = later;
       reasons.push({ id: "shiftNoEarlyQuality", values: {} });
@@ -219,7 +248,10 @@ function placeWork(
   });
 
   // Alpine/traverse base still wants a hike on an available non-long day
-  if ((profile.goal === "alpine" || profile.goal === "traverse" || profile.goal === "expedition") && phase !== "taper") {
+  if (
+    (profile.goal === "alpine" || profile.goal === "traverse" || profile.goal === "expedition") &&
+    phase !== "taper"
+  ) {
     const hikeSlot = remaining.find((i) => out[i]?.key === "easy");
     if (hikeSlot !== undefined && !remaining.some((i) => out[i]?.key === "hike")) {
       out[hikeSlot] = { kind: "easy", key: "hike" };
@@ -229,7 +261,12 @@ function placeWork(
   return out;
 }
 
-function assignMinutes(days: DaySession[], profile: AthleteProfile, phase: PlannedWeek["phase"], reasons: Reason[]): DaySession[] {
+function assignMinutes(
+  days: DaySession[],
+  profile: AthleteProfile,
+  phase: PlannedWeek["phase"],
+  reasons: Reason[],
+): DaySession[] {
   const weekly = weeklyMinutes(profile.weeklyHours);
   let cap = Math.round(longestMinutes(profile.longest) * longFactor(phase));
   if (profile.constraints.includes("youngKids")) {
@@ -252,7 +289,12 @@ function assignMinutes(days: DaySession[], profile: AthleteProfile, phase: Plann
       remaining -= minutes;
       return { ...day, minutes };
     }
-    if (QUALITY_KEYS.has(day.key) || day.key === "climb" || day.key === "strength" || day.key === "sharpness") {
+    if (
+      QUALITY_KEYS.has(day.key) ||
+      day.key === "climb" ||
+      day.key === "strength" ||
+      day.key === "sharpness"
+    ) {
       const minutes = Math.max(25, qMin || 40);
       remaining -= minutes;
       return { ...day, minutes };
@@ -264,9 +306,15 @@ function assignMinutes(days: DaySession[], profile: AthleteProfile, phase: Plann
   return stamped.map((day, i) => (easyIdx.includes(i) ? { ...day, minutes: each } : day));
 }
 
-function applyMissedStack(days: DaySession[], state: RollingState, calendar: number, reasons: Reason[]): DaySession[] {
+function applyMissedStack(
+  days: DaySession[],
+  state: RollingState,
+  calendar: number,
+  reasons: Reason[],
+): DaySession[] {
   const missedHard = (state.logs ?? []).filter(
-    (log) => log.weekCalendar === calendar && log.status === "missed" && LOAD_KEYS.has(log.plannedKey),
+    (log) =>
+      log.weekCalendar === calendar && log.status === "missed" && LOAD_KEYS.has(log.plannedKey),
   );
   if (!missedHard.length) return days;
   reasons.push({ id: "missedNoStack", values: { n: missedHard.length } });
@@ -274,7 +322,10 @@ function applyMissedStack(days: DaySession[], state: RollingState, calendar: num
   return days.map((day, i) => {
     const alreadyMissed = missedHard.some((log) => log.dayIndex === i);
     if (alreadyMissed) return restDay();
-    if (dropped === 0 && (QUALITY_KEYS.has(day.key) || day.key === "climb" || day.key === "strength")) {
+    if (
+      dropped === 0 &&
+      (QUALITY_KEYS.has(day.key) || day.key === "climb" || day.key === "strength")
+    ) {
       dropped += 1;
       return easyDay(Math.max(30, Math.round((day.minutes ?? 45) * 0.8)), "easy");
     }
@@ -282,11 +333,22 @@ function applyMissedStack(days: DaySession[], state: RollingState, calendar: num
   });
 }
 
-function applyTravel(days: DaySession[], dates: string[], state: RollingState, reasons: Reason[]): DaySession[] {
+function applyTravel(
+  days: DaySession[],
+  dates: string[],
+  state: RollingState,
+  reasons: Reason[],
+): DaySession[] {
   let swapped = false;
   const next = days.map((day, i) => {
     if (!travellingOn(state, dates[i] ?? "")) return day;
-    if (day.key === "mountain" || day.key === "climb" || day.key === "pack" || day.key === "vert" || day.key === "hike") {
+    if (
+      day.key === "mountain" ||
+      day.key === "climb" ||
+      day.key === "pack" ||
+      day.key === "vert" ||
+      day.key === "hike"
+    ) {
       swapped = true;
       return easyDay(Math.min(day.minutes ?? 50, 60), "easy");
     }
@@ -300,7 +362,11 @@ function applyTravel(days: DaySession[], dates: string[], state: RollingState, r
   return next;
 }
 
-export function buildWeek(state: RollingState, calendar: number, profile: AthleteProfile): RealizedWeek | null {
+export function buildWeek(
+  state: RollingState,
+  calendar: number,
+  profile: AthleteProfile,
+): RealizedWeek | null {
   const phase = phaseOf(state, calendar);
   if (phase === "done") return null;
   const reasons: Reason[] = [];
@@ -317,10 +383,10 @@ export function buildWeek(state: RollingState, calendar: number, profile: Athlet
     );
     reasons.push({ id: "engineConversational", values: {} });
   }
-  const flagged = applyStateFlags(
-    { calendar, phase, eased: false, days, reasons },
-    state,
-  );
+  if (profile.terrain === "highAlpine" && (phase === "specific" || phase === "taper")) {
+    reasons.push({ id: "altitudeAcclimatization", values: {} });
+  }
+  const flagged = applyStateFlags({ calendar, phase, eased: false, days, reasons }, state);
   reasons.push({ id: "peakUnchanged", values: { peak: state.peakOn } });
   return {
     calendar,
@@ -344,7 +410,10 @@ function dedupeReasons(reasons: Reason[]): Reason[] {
   return out;
 }
 
-export function applyCallToDay(day: DaySession, call: ReadinessCall): { shown: DaySession; action: string } {
+export function applyCallToDay(
+  day: DaySession,
+  call: ReadinessCall,
+): { shown: DaySession; action: string } {
   if (call === "ready") return { shown: day, action: "keepWritten" };
   if (call === "rest") {
     if (day.key === "rest") return { shown: day, action: "keepWritten" };
@@ -354,20 +423,40 @@ export function applyCallToDay(day: DaySession, call: ReadinessCall): { shown: D
     if (day.key === "rest" || (day.kind === "easy" && !LOAD_KEYS.has(day.key))) {
       return { shown: day, action: "keepWritten" };
     }
-    return { shown: easyDay(Math.max(30, Math.round((day.minutes ?? 45) * 0.7)), "recovery"), action: "qualityToEasy" };
+    return {
+      shown: easyDay(Math.max(30, Math.round((day.minutes ?? 45) * 0.7)), "recovery"),
+      action: "qualityToEasy",
+    };
   }
   // reduce
   if (day.key === "rest") return { shown: day, action: "keepWritten" };
-  if (QUALITY_KEYS.has(day.key) || day.key === "climb" || day.key === "strength" || day.key === "sharpness") {
-    return { shown: easyDay(Math.max(30, Math.round((day.minutes ?? 50) * 0.75)), "easy"), action: "qualityToEasy" };
+  if (
+    QUALITY_KEYS.has(day.key) ||
+    day.key === "climb" ||
+    day.key === "strength" ||
+    day.key === "sharpness"
+  ) {
+    return {
+      shown: easyDay(Math.max(30, Math.round((day.minutes ?? 50) * 0.75)), "easy"),
+      action: "qualityToEasy",
+    };
   }
   if (LONG_KEYS.has(day.key)) {
-    return { shown: easyDay(Math.max(40, Math.round((day.minutes ?? 90) * 0.7)), "recovery"), action: "longToEasy" };
+    return {
+      shown: easyDay(Math.max(40, Math.round((day.minutes ?? 90) * 0.7)), "recovery"),
+      action: "longToEasy",
+    };
   }
-  return { shown: cloneDay(day, { minutes: Math.max(25, Math.round((day.minutes ?? 45) * 0.85)) }), action: "reduceMinutes" };
+  return {
+    shown: cloneDay(day, { minutes: Math.max(25, Math.round((day.minutes ?? 45) * 0.85)) }),
+    action: "reduceMinutes",
+  };
 }
 
-export function visiblePersonalizedWeeks(state: RollingState, profile: AthleteProfile): RealizedWeek[] {
+export function visiblePersonalizedWeeks(
+  state: RollingState,
+  profile: AthleteProfile,
+): RealizedWeek[] {
   const out: RealizedWeek[] = [];
   for (let i = 0; i < HORIZON; i += 1) {
     const week = buildWeek(state, state.calendar + i, profile);
@@ -394,7 +483,8 @@ export function loadContextFor(
     const week = buildWeek(state, ptr.calendar, profile);
     const planned = week?.days[ptr.dayIndex];
     const log = logFor(state, date, ptr.dayIndex);
-    const key = log?.status === "missed" ? "rest" : log?.status === "done" ? log.actualKey : planned?.key;
+    const key =
+      log?.status === "missed" ? "rest" : log?.status === "done" ? log.actualKey : planned?.key;
     if (!key) continue;
     const hard = LOAD_KEYS.has(key);
     if (back <= 3 && hard) load.hardOrLongLast3Days += 1;
@@ -421,7 +511,9 @@ export function realizeToday(
   if (!week) return null;
   const written = week.days[ptr.dayIndex] ?? restDay();
   const load = loadContextFor(state, profile, today, history);
-  const readiness = inputs ? assessReadiness(inputs, load) : { call: "ready" as const, reasons: [], drivers: [] };
+  const readiness = inputs
+    ? assessReadiness(inputs, load)
+    : { call: "ready" as const, reasons: [], drivers: [] };
   const call = overridden ? "ready" : readiness.call;
   const { shown, action } = applyCallToDay(written, call);
   const reasons: Reason[] = [
@@ -429,7 +521,8 @@ export function realizeToday(
     ...readiness.drivers,
     { id: action, values: { from: written.key, to: shown.key, minutes: shown.minutes ?? 0 } },
   ];
-  const changes: WeekChange[] = written.key === shown.key ? [] : [{ day: ptr.dayIndex, from: written.key, to: shown.key }];
+  const changes: WeekChange[] =
+    written.key === shown.key ? [] : [{ day: ptr.dayIndex, from: written.key, to: shown.key }];
   return {
     date: today,
     calendar: ptr.calendar,
@@ -466,7 +559,13 @@ export function markToday(
     status,
     at: new Date().toISOString(),
   };
-  let next = { ...state, logs: [...(state.logs ?? []).filter((row) => !(row.date === today && row.dayIndex === ptr.dayIndex)), log] };
+  let next = {
+    ...state,
+    logs: [
+      ...(state.logs ?? []).filter((row) => !(row.date === today && row.dayIndex === ptr.dayIndex)),
+      log,
+    ],
+  };
   if (status !== "missed") return { state: next };
 
   const adj: Adjustment = {
@@ -520,7 +619,9 @@ export function markMoved(
     reason: { id: "noMakeup", values: { from: fromDate, to: toDate } },
   };
   const logs = (state.logs ?? []).filter(
-    (row) => !(row.date === fromDate && row.dayIndex === fromPtr.dayIndex) && !(row.date === toDate && row.dayIndex === toPtr.dayIndex),
+    (row) =>
+      !(row.date === fromDate && row.dayIndex === fromPtr.dayIndex) &&
+      !(row.date === toDate && row.dayIndex === toPtr.dayIndex),
   );
   return {
     state: {
@@ -536,7 +637,10 @@ export function overlayToday(week: RealizedWeek, view: TodayView | null): Realiz
   if (!view || view.calendar !== week.calendar) return week;
   const days = week.days.map((day, i) => (i === view.dayIndex ? view.shown : day));
   const reasons = view.changes.length
-    ? [...week.reasons, { id: "whyChangedToday", values: { from: view.written.key, to: view.shown.key } }]
+    ? [
+        ...week.reasons,
+        { id: "whyChangedToday", values: { from: view.written.key, to: view.shown.key } },
+      ]
     : week.reasons;
   return { ...week, days, reasons, eased: view.call !== "ready" || week.eased };
 }

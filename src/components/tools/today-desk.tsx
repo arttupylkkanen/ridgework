@@ -16,6 +16,7 @@ import { saveDailyRemote } from "@/lib/athlete-server";
 import {
   addDaysIso,
   loadPlan,
+  packLoadKg,
   PLAN_EVENT,
   savePlan,
   syncCalendarToToday,
@@ -420,6 +421,7 @@ export function TodayDesk({
               minutesLabel={
                 shown.minutes ? fillTemplate(t.minutes, { n: shown.minutes }) : undefined
               }
+              loadKg={shown.key === "pack" || shown.key === "me" ? packLoadKg(state) : undefined}
             />
             <div className="mt-5 flex flex-wrap gap-2">
               <button

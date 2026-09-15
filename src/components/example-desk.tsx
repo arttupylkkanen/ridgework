@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import type { Copy } from "@/content/types";
 import { emptyInputs, type DailyInputs, type ReadinessCall } from "@/lib/daily-readiness";
-import { startPlan, todayIso, type RollingState } from "@/lib/rolling-plan";
+import { packLoadKg, startPlan, todayIso, type RollingState } from "@/lib/rolling-plan";
 import { buildWeek, overlayToday, realizeToday } from "@/lib/plan-engine";
 import { sampleTesterProfile } from "@/lib/test-account";
 import { fillTemplate, cn, reasonText } from "@/lib/utils";
@@ -112,6 +112,7 @@ export function ExampleDesk({ locale, copy }: { locale: Locale; copy: Copy }) {
           sessionKey={shown.key}
           minutes={shown.minutes}
           minutesLabel={shown.minutes ? fillTemplate(t.minutes, { n: shown.minutes }) : undefined}
+          loadKg={shown.key === "pack" || shown.key === "me" ? packLoadKg(state) : undefined}
         />
       </section>
 

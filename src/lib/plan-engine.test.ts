@@ -31,7 +31,10 @@ function profile(over: Partial<AthleteProfile> = {}): AthleteProfile {
   });
 }
 
-function plan(over: Partial<AthleteProfile> = {}): { state: RollingState; athlete: AthleteProfile } {
+function plan(over: Partial<AthleteProfile> = {}): {
+  state: RollingState;
+  athlete: AthleteProfile;
+} {
   const athlete = profile(over);
   return { athlete, state: startPlan(athlete.goal, athlete.peakOn, FROM) };
 }
@@ -93,6 +96,25 @@ describe("personalized plan engine", () => {
     assert.ok(week.reasons.some((r) => r.id === "gymInsteadOfClimb"));
   });
 
+  it("adds an altitude-acclimatization reason in the specific phase for high-alpine terrain", () => {
+    const athlete = profile({
+      goal: "alpine",
+      peakOn: "2026-03-16",
+      experience: "experienced",
+      terrain: "highAlpine",
+      equipment: ["trailShoes", "pack", "crampons"],
+    });
+    const state = startPlan("alpine", athlete.peakOn, FROM);
+    const base = buildWeek({ ...state, calendar: 2, progress: 1 }, 2, athlete);
+    const specific = buildWeek({ ...state, calendar: 7, progress: 6 }, 7, athlete);
+    assert.ok(base);
+    assert.ok(specific);
+    assert.equal(base.phase, "base");
+    assert.equal(specific.phase, "specific");
+    assert.ok(!base.reasons?.some((r) => r.id === "altitudeAcclimatization"));
+    assert.ok(specific.reasons?.some((r) => r.id === "altitudeAcclimatization"));
+  });
+
   it("turns mountain days into hotel easy while travelling", () => {
     const athlete = profile({
       goal: "alpine",
@@ -109,7 +131,9 @@ describe("personalized plan engine", () => {
     };
     const week = buildWeek(state, 7, athlete);
     assert.ok(week);
-    assert.ok(!week.days.some((d) => d.key === "mountain" || d.key === "climb" || d.key === "pack"));
+    assert.ok(
+      !week.days.some((d) => d.key === "mountain" || d.key === "climb" || d.key === "pack"),
+    );
     assert.ok(week.reasons.some((r) => r.id === "travelSwap"));
   });
 
@@ -126,7 +150,9 @@ describe("personalized plan engine", () => {
     assert.ok(after);
     assert.equal(after.days[qualityIndex]?.key, "rest");
     assert.ok(after.reasons.some((r) => r.id === "missedNoStack"));
-    const remainingHard = after.days.filter((d, i) => i !== qualityIndex && (d.key === "quality" || d.kind === "hard"));
+    const remainingHard = after.days.filter(
+      (d, i) => i !== qualityIndex && (d.key === "quality" || d.kind === "hard"),
+    );
     assert.equal(remainingHard.length, 0);
   });
 
@@ -162,12 +188,7 @@ describe("personalized plan engine", () => {
     const qi = week.days.findIndex((d) => d.key === "quality");
     assert.ok(qi >= 0);
     const date = week.dates[qi]!;
-    const view = realizeToday(
-      specific,
-      athlete,
-      { ...emptyInputs(), sleep: 2, fatigue: 3 },
-      date,
-    );
+    const view = realizeToday(specific, athlete, { ...emptyInputs(), sleep: 2, fatigue: 3 }, date);
     assert.ok(view);
     assert.equal(view.call, "easy");
     assert.equal(view.written.key, "quality");
