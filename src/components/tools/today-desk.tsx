@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Copy } from "@/content/types";
 import type { AccessFlag, AthleteProfile } from "@/lib/athlete";
-import { ACCESS_FLAGS } from "@/lib/athlete";
+import { ACCESS_FLAGS, windowsOf } from "@/lib/athlete";
 import {
   SCALE,
   emptyInputs,
@@ -215,6 +215,8 @@ export function TodayDesk({
   const call = view?.call ?? "ready";
   const shown = view?.shown;
   const written = view?.written;
+  // The athlete's own start time for this weekday, if they gave one.
+  const todayStartAt = windowsOf(profile)[view ? view.dayIndex : 0]?.startAt ?? null;
   const changed = Boolean(view && written && shown && written.key !== shown.key);
 
   return (
@@ -408,6 +410,7 @@ export function TodayDesk({
                   · {fillTemplate(t.minutes, { n: shown.minutes })}
                 </span>
               ) : null}
+              {todayStartAt ? <span className="text-ink-muted"> · {todayStartAt}</span> : null}
             </h3>
             {changed && written ? (
               <p className="mt-1 text-sm text-ink-muted">

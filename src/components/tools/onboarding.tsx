@@ -13,8 +13,11 @@ import {
   availableCount,
   emptyProfile,
   toggleList,
+  windowsOf,
   type AthleteProfile,
   type AvailableDays,
+  type DayWindow,
+  type DayWindows,
 } from "@/lib/athlete";
 import { OBJECTIVES, suggestedPeakOn, todayIso, type ObjectiveId } from "@/lib/rolling-plan";
 import { PROGRAM_MEDIA } from "@/lib/program-media";
@@ -73,6 +76,15 @@ export function Onboarding({
 
   function patch(partial: Partial<AthleteProfile>) {
     setDraft((prev) => ({ ...prev, ...partial }));
+  }
+
+  const windows = windowsOf(draft);
+
+  function patchWindow(index: number, partial: Partial<DayWindow>) {
+    const next = windowsOf(draft).map((w, i) =>
+      i === index ? { ...w, ...partial } : w,
+    ) as DayWindows;
+    patch({ dayWindows: next });
   }
 
   const canNext = useMemo(() => {
@@ -249,6 +261,53 @@ export function Onboarding({
             ))}
           </div>
           {availableCount(draft.availableDays) < 2 ? <p className="text-sm text-warn">{t.needDays}</p> : null}
+
+          <div className="border-t border-line pt-5">
+            <p className="text-sm font-medium text-ink">{t.windowTitle}</p>
+            <p className="mt-1 max-w-xl text-xs leading-relaxed text-ink-soft">{t.windowHint}</p>
+            <div className="mt-4 space-y-2">
+              {days.map((label, i) =>
+                draft.availableDays[i] ? (
+                  <div
+                    key={label}
+                    className="grid grid-cols-[3.5rem_1fr_1fr] items-center gap-2 sm:max-w-md"
+                  >
+                    <span className="text-sm font-medium uppercase tracking-wider text-ink-soft">
+                      {label}
+                    </span>
+                    <label className="block">
+                      <span className="sr-only">{t.windowMinutes}</span>
+                      <input
+                        type="number"
+                        min={20}
+                        step={5}
+                        inputMode="numeric"
+                        placeholder={t.windowMinutes}
+                        value={windows[i]?.minutes ?? ""}
+                        onChange={(e) =>
+                          patchWindow(i, {
+                            minutes: e.target.value === "" ? null : Number(e.target.value),
+                          })
+                        }
+                        className="w-full rounded-lg border border-line bg-paper px-3 py-2 text-sm"
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="sr-only">{t.windowTime}</span>
+                      <input
+                        type="time"
+                        value={windows[i]?.startAt ?? ""}
+                        onChange={(e) =>
+                          patchWindow(i, { startAt: e.target.value || null })
+                        }
+                        className="w-full rounded-lg border border-line bg-paper px-3 py-2 text-sm"
+                      />
+                    </label>
+                  </div>
+                ) : null,
+              )}
+            </div>
+          </div>
         </div>
       ) : null}
 
@@ -335,7 +394,8 @@ export function Onboarding({
       ) : null}
 
       <div className="flex flex-wrap gap-3">
-        {onCancel ? (
+        {/* Only one "Back" at a time: leaving the wizard, or stepping within it. */}
+        {onCancel && step === 0 ? (
           <button
             type="button"
             onClick={onCancel}

@@ -38,6 +38,10 @@ export type AthleteCopy = {
     constraints: Record<Constraint, string>;
     units: Record<Units, string>;
     availableTitle: string;
+    windowTitle: string;
+    windowHint: string;
+    windowMinutes: string;
+    windowTime: string;
     peakLabel: string;
   };
   today: {
@@ -91,6 +95,7 @@ export type AthleteCopy = {
 
 const reasonsEn: Record<string, string> = {
   availableDays: "You have {n} training days. Rest sits on the others.",
+  dayWindowCap: "{n} session(s) were trimmed to fit the time you said those days have.",
   beginnerNoQuality:
     "Base weeks stay easy while you are still building the habit. Quality waits for the specific block.",
   noQualityBase: "This is still aerobic base. No quality dose this week.",
@@ -211,6 +216,10 @@ export const athleteEn: AthleteCopy = {
     },
     units: { km: "Kilometres", miles: "Miles" },
     availableTitle: "Days you can train",
+    windowTitle: "How long do those days actually have?",
+    windowHint: "Optional. Leave a day blank and we spend the weekly budget as usual. The clock time is only there if it helps you — the plan does not need it.",
+    windowMinutes: "Minutes",
+    windowTime: "Start (optional)",
     peakLabel: "Day you want to be ready",
   },
   today: {
@@ -283,6 +292,7 @@ export const athleteEn: AthleteCopy = {
 
 const reasonsFi: Record<string, string> = {
   availableDays: "Treenipäiviä on {n}. Muut ovat lepoa.",
+  dayWindowCap: "{n} treeni(ä) lyhennettiin mahtumaan siihen aikaan jonka noille päiville annoit.",
   beginnerNoQuality: "Pohjaviikot pysyvät kevyinä. Tehot tulevat vasta kisajaksoon.",
   noQualityBase: "Tämä on vielä peruskuntoa. Ei tehoannosta tällä viikolla.",
   gymInsteadOfClimb: "Jää- tai kalliokamoja ei ole, joten kiipeily on salivoimaa.",
@@ -400,6 +410,10 @@ export const athleteFi: AthleteCopy = {
     },
     units: { km: "Kilometrit", miles: "Mailit" },
     availableTitle: "Päivät jolloin voit treenata",
+    windowTitle: "Paljonko noilla päivillä oikeasti on aikaa?",
+    windowHint: "Valinnainen. Jätä päivä tyhjäksi niin viikkobudjetti jaetaan kuten ennenkin. Kellonaika on vain sinua varten — suunnitelma ei tarvitse sitä.",
+    windowMinutes: "Minuuttia",
+    windowTime: "Alkaa (valinnainen)",
     peakLabel: "Päivä jolloin haluat olla valmis",
   },
   today: {
@@ -472,6 +486,7 @@ export const athleteFi: AthleteCopy = {
 
 const reasonsFr: Record<string, string> = {
   availableDays: "Vous avez {n} jours d’entraînement. Le reste est du repos.",
+  dayWindowCap: "{n} séance(s) ont été raccourcies pour tenir dans le temps indiqué pour ces jours.",
   beginnerNoQuality: "La base reste facile. La qualité attend le bloc spécifique.",
   noQualityBase: "Encore de la base aérobie. Pas de qualité cette semaine.",
   gymInsteadOfClimb: "Pas de matériel glace/rocher : l’escalade devient de la force en salle.",
@@ -589,6 +604,10 @@ export const athleteFr: AthleteCopy = {
     },
     units: { km: "Kilomètres", miles: "Miles" },
     availableTitle: "Jours où vous pouvez vous entraîner",
+    windowTitle: "Combien de temps ces jours ont-ils vraiment ?",
+    windowHint: "Facultatif. Laissez un jour vide et le budget hebdomadaire est réparti comme avant. L’heure n’est là que si elle vous aide.",
+    windowMinutes: "Minutes",
+    windowTime: "Début (facultatif)",
     peakLabel: "Jour où vous voulez être prêt",
   },
   today: {
@@ -664,6 +683,7 @@ export const athleteFr: AthleteCopy = {
 
 const reasonsDe: Record<string, string> = {
   availableDays: "Du hast {n} Trainingstage. Der Rest ist Ruhe.",
+  dayWindowCap: "{n} Einheit(en) wurden gekürzt, damit sie in die angegebene Zeit passen.",
   beginnerNoQuality: "Basiswochen bleiben locker. Qualität kommt erst im Spezifischen.",
   noQualityBase: "Noch aerobe Basis. Keine Qualität diese Woche.",
   gymInsteadOfClimb: "Kein Eis-/Felsmaterial: Klettern wird Kraft im Gym.",
@@ -779,6 +799,10 @@ export const athleteDe: AthleteCopy = {
     },
     units: { km: "Kilometer", miles: "Meilen" },
     availableTitle: "Tage, an denen du trainieren kannst",
+    windowTitle: "Wie viel Zeit haben diese Tage wirklich?",
+    windowHint: "Optional. Lass einen Tag leer, dann wird das Wochenbudget wie bisher verteilt. Die Uhrzeit ist nur für dich da.",
+    windowMinutes: "Minuten",
+    windowTime: "Beginn (optional)",
     peakLabel: "Tag, an dem du bereit sein willst",
   },
   today: {
