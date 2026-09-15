@@ -1,5 +1,6 @@
 import type { Copy } from "@/content/types";
 import { KEY_SOURCES } from "@/content";
+import { CHECKOUT_OPEN } from "@/lib/billing";
 import { GUIDES } from "@/content/guides";
 import { planPageFor } from "@/content/plans";
 import type { Locale } from "@/lib/locale";
@@ -421,20 +422,24 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
                 <h3 className="font-display text-2xl font-semibold sm:text-3xl">
                   {copy.pricing.name}
                 </h3>
-                <div className="mt-4 flex flex-wrap items-baseline gap-2">
-                  {copy.pricing.anchorPrice ? (
-                    <span className="font-display text-2xl font-medium text-ink-soft line-through decoration-2">
-                      {copy.pricing.anchorPrice}
-                    </span>
-                  ) : null}
-                  <span className="flex items-baseline gap-1">
-                    <span className="font-display text-5xl font-semibold tracking-tight sm:text-6xl">
-                      {copy.pricing.price}
-                    </span>
-                    <span className="text-lg text-ink-muted">{copy.pricing.per}</span>
-                  </span>
-                </div>
-                <p className="mt-4 max-w-md text-sm text-ink-muted">{copy.pricing.blurb}</p>
+                {CHECKOUT_OPEN ? (
+                  <>
+                    <div className="mt-4 flex items-baseline gap-1">
+                      <span className="font-display text-5xl font-semibold tracking-tight sm:text-6xl">
+                        {copy.pricing.price}
+                      </span>
+                      <span className="text-lg text-ink-muted">{copy.pricing.per}</span>
+                    </div>
+                    <p className="mt-4 max-w-md text-sm text-ink-muted">{copy.pricing.blurb}</p>
+                  </>
+                ) : (
+                  <>
+                    <div className="mt-4 font-display text-5xl font-semibold tracking-tight sm:text-6xl">
+                      {copy.pricing.freeTag}
+                    </div>
+                    <p className="mt-4 max-w-md text-sm text-ink-muted">{copy.pricing.freeNow}</p>
+                  </>
+                )}
               </div>
               <AuthLink
                 locale={locale}
