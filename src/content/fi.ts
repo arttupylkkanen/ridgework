@@ -43,7 +43,7 @@ export const fi: Copy = {
     kicker: "Vuoritreeni",
     h1: "77 km kuuden viikon päästä. Mitä juokset tiistaina?",
     lead: "Viisi tuntia unta. Eilen pitkä. Polvi kolottaa. Sunnuntaina 28 astetta. Tästä syntyy viikko: vedot pois, tilalle helppoa, pitkä maanantaille. Kisapäivä ei muutu.",
-    trial: "Kortti nyt. 14 päivää 0 €. Sitten 5 €/kk. Peru sitä ennen, niin ei veloiteta.",
+    trial: "14 päivää ilmaiseksi. Ei korttia. Lisää se milloin tahansa jatkaaksesi.",
   },
   about: {
     kicker: "Mitä tämä on",
@@ -102,14 +102,19 @@ export const fi: Copy = {
       {
         title: "Alppiviikonlopun tavoite",
         fields: [
-          { label: "Tavoite", value: "Saapua alppipäivään jalat tallella, ei rikkinäisenä tiistaina" },
+          {
+            label: "Tavoite",
+            value: "Saapua alppipäivään jalat tallella, ei rikkinäisenä tiistaina",
+          },
           {
             label: "Suunnitelma",
-            value: "10 viikkoa: 6 vk peruskuntoa ja nousua, 3 vk tarkempi jakso, 10–14 pv kevennys säähän",
+            value:
+              "10 viikkoa: 6 vk peruskuntoa ja nousua, 3 vk tarkempi jakso, 10–14 pv kevennys säähän",
           },
           {
             label: "Fokus",
-            value: "Pidä helppo helppona. Lisää puhevauhdin nousua. Huippu sääikkunaan, ei lisäkilometreihin.",
+            value:
+              "Pidä helppo helppona. Lisää puhevauhdin nousua. Huippu sääikkunaan, ei lisäkilometreihin.",
           },
           {
             label: "Väsymys",
@@ -123,11 +128,13 @@ export const fi: Copy = {
           { label: "Tavoite", value: "Maaliin hallitusti: tankkaus ja vauhti kunnossa" },
           {
             label: "Suunnitelma",
-            value: "Noin puoli vuotta: 10 vk peruskunto, 12 vk pitkän kasvatus, 10–14 pv kevennys kisaviikolle",
+            value:
+              "Noin puoli vuotta: 10 vk peruskunto, 12 vk pitkän kasvatus, 10–14 pv kevennys kisaviikolle",
           },
           {
             label: "Fokus",
-            value: "Ensin kevyt juoksu, sitten pitkän progressio ja yksi teho. Huippu kisaviikolla.",
+            value:
+              "Ensin kevyt juoksu, sitten pitkän progressio ja yksi teho. Huippu kisaviikolla.",
           },
           {
             label: "Avainharjoitus",
@@ -140,7 +147,10 @@ export const fi: Copy = {
       {
         title: "Tuvasta tupaan",
         fields: [
-          { label: "Tavoite", value: "Kolme ketjutettua päivää, koska toisen päivän treeni sai kutistua" },
+          {
+            label: "Tavoite",
+            value: "Kolme ketjutettua päivää, koska toisen päivän treeni sai kutistua",
+          },
           {
             label: "Suunnitelma",
             value:
@@ -148,11 +158,13 @@ export const fi: Copy = {
           },
           {
             label: "Fokus",
-            value: "Jalat pohjakuukausina. Tarkempi jakso on rinkka ja peräkkäiset päivät. Huippu päivälle 1, ei romahdus päivälle 3.",
+            value:
+              "Jalat pohjakuukausina. Tarkempi jakso on rinkka ja peräkkäiset päivät. Huippu päivälle 1, ei romahdus päivälle 3.",
           },
           {
             label: "Väsymys",
-            value: "Jos päivän 1 jäänteet istuvat jaloissa, leikkaa päivän 2 määrä. Päivä 3 tarvitsee varaa.",
+            value:
+              "Jos päivän 1 jäänteet istuvat jaloissa, leikkaa päivän 2 määrä. Päivä 3 tarvitsee varaa.",
           },
         ],
       },
@@ -184,7 +196,8 @@ export const fi: Copy = {
         name: "20 km polku",
         duration: "Kymmenen viikkoa riittää useimmille",
         focus: "Kevyttä pohjaa, yksi teho, pitkä 90–110 min.",
-        locked: "Viikko 8: kuusi kertaa 3 min kympin teholla, 2 min kevyttä välissä. Sitten viikon kevennys.",
+        locked:
+          "Viikko 8: kuusi kertaa 3 min kympin teholla, 2 min kevyttä välissä. Sitten viikon kevennys.",
         layout: "sessionLead",
       },
       {
@@ -202,7 +215,8 @@ export const fi: Copy = {
         name: "80–120 km ultra",
         duration: "Usein yhdeksän kuukautta",
         focus: "Kuukausia kevyttä juoksua. Lopussa kaksi pitkää peräkkäin, sitten reilu kevennys.",
-        locked: "Viikko 30: lauantai 4–5 tuntia kevyttä, sunnuntai 2,5–3 tuntia. Arki pysyy puheella.",
+        locked:
+          "Viikko 30: lauantai 4–5 tuntia kevyttä, sunnuntai 2,5–3 tuntia. Arki pysyy puheella.",
       },
       {
         id: "alpine",
@@ -219,15 +233,18 @@ export const fi: Copy = {
         name: "Usean päivän alppireitti",
         duration: "Noin kahdeksan kuukautta",
         focus: "Vaelluspohja, sitten kiipeilyä ja rinkkaa peräkkäisinä päivinä.",
-        locked: "Viikko 28: kiipeilypäivä, seuraavana kevyt rinkkavaellus. Lyhennä kakkospäivä jos jalat ovat täynnä.",
+        locked:
+          "Viikko 28: kiipeilypäivä, seuraavana kevyt rinkkavaellus. Lyhennä kakkospäivä jos jalat ovat täynnä.",
         layout: "compact",
       },
       {
         id: "expedition",
         name: "Korkean paikan retkikunta",
         duration: "Noin kymmenen kuukautta",
-        focus: "Kevyttä juoksua pitkään, sitten rinkkaa ja sen verran kiipeilyä ettei vuori ole ensimmäinen veto.",
-        locked: "Viikko 34: 3–4 tuntia rinkalla. Lepo perään. Kevennys on unta ja pakkaamista, ei lisäkorkeutta.",
+        focus:
+          "Kevyttä juoksua pitkään, sitten rinkkaa ja sen verran kiipeilyä ettei vuori ole ensimmäinen veto.",
+        locked:
+          "Viikko 34: 3–4 tuntia rinkalla. Lepo perään. Kevennys on unta ja pakkaamista, ei lisäkorkeutta.",
         pull: "Kevennys on unta ja pakkaamista.",
       },
     ],
@@ -277,10 +294,26 @@ export const fi: Copy = {
   week: {
     h2: "Miten viikko kulkee",
     steps: [
-      { day: "Ma", title: "Rakenna tämä viikko", body: "Tavoitepäivä on jo kalenterissa. Suurin osa päivistä on kevyttä juoksua. Jos nukuit hyvin, yksi kovempi treeni. Pitkä lenkki tulee viikon loppuun." },
-      { day: "Ti", title: "Katso uni ja jalat", body: "Viisi tuntia unta? Vedot muuttuvat 45–60 min helpoksi. Kisapäivä ei siirry." },
-      { day: "To", title: "Pidä kevyet kevyinä", body: "Suurin osa viikosta vauhdissa jossa saat puhuttua. Jos lause tulee ulos, olet oikealla alueella." },
-      { day: "Su", title: "Kirjaa mitä tapahtui", body: "Kirjaa pitkä lenkki, helle ja jos jokin kolotti. Seuraava viikko rakennetaan siitä, ei viikosta jota toivoit." },
+      {
+        day: "Ma",
+        title: "Rakenna tämä viikko",
+        body: "Tavoitepäivä on jo kalenterissa. Suurin osa päivistä on kevyttä juoksua. Jos nukuit hyvin, yksi kovempi treeni. Pitkä lenkki tulee viikon loppuun.",
+      },
+      {
+        day: "Ti",
+        title: "Katso uni ja jalat",
+        body: "Viisi tuntia unta? Vedot muuttuvat 45–60 min helpoksi. Kisapäivä ei siirry.",
+      },
+      {
+        day: "To",
+        title: "Pidä kevyet kevyinä",
+        body: "Suurin osa viikosta vauhdissa jossa saat puhuttua. Jos lause tulee ulos, olet oikealla alueella.",
+      },
+      {
+        day: "Su",
+        title: "Kirjaa mitä tapahtui",
+        body: "Kirjaa pitkä lenkki, helle ja jos jokin kolotti. Seuraava viikko rakennetaan siitä, ei viikosta jota toivoit.",
+      },
     ],
   },
   scenario: {
@@ -308,10 +341,26 @@ export const fi: Copy = {
     h2: "Mitä tapahtuu kun kirjaudut",
     lead: "Valitse tavoitepäivä. Kolme viikkoa ilmestyy kalenteriin. Jos sessio oli rikki tai johonkin sattuu, seuraavat päivät kirjoitetaan uusiksi. Retki pysyy siinä mihin sen laitoit.",
     days: [
-      { day: "Päivä 1", title: "Valitse tavoite ja rakenna viikko", body: "77 km, alppipäivä tai pelkkä moottori. Seuraavat kolme viikkoa ilmestyvät kalenteriin." },
-      { day: "Päivä 3", title: "Merkitse miltä tiistai tuntui", body: "Lyhyt uni, kolotus, tai treeni joka tuntui rikkinäiseltä: merkitset sen. Seuraava kova päivä kirjoitetaan kevyemmäksi. Tavoitepäivä pysyy." },
-      { day: "Päivä 6", title: "Juokse ensimmäinen pitkä", body: "Niin kevyttä että puhut. Sama juoma jota jo käytät. Jos viikko oli sekava, tämä lenkki on lyhyempi. Älä kiritä kilometreillä." },
-      { day: "Päivä 7", title: "Kirjaa viikko jonka oikeasti juoksit", body: "Mitä teit, mitä jätit, mikä kolotti. Viikko kaksi rakennetaan siitä, ei viikosta jonka aioit juosta." },
+      {
+        day: "Päivä 1",
+        title: "Valitse tavoite ja rakenna viikko",
+        body: "77 km, alppipäivä tai pelkkä moottori. Seuraavat kolme viikkoa ilmestyvät kalenteriin.",
+      },
+      {
+        day: "Päivä 3",
+        title: "Merkitse miltä tiistai tuntui",
+        body: "Lyhyt uni, kolotus, tai treeni joka tuntui rikkinäiseltä: merkitset sen. Seuraava kova päivä kirjoitetaan kevyemmäksi. Tavoitepäivä pysyy.",
+      },
+      {
+        day: "Päivä 6",
+        title: "Juokse ensimmäinen pitkä",
+        body: "Niin kevyttä että puhut. Sama juoma jota jo käytät. Jos viikko oli sekava, tämä lenkki on lyhyempi. Älä kiritä kilometreillä.",
+      },
+      {
+        day: "Päivä 7",
+        title: "Kirjaa viikko jonka oikeasti juoksit",
+        body: "Mitä teit, mitä jätit, mikä kolotti. Viikko kaksi rakennetaan siitä, ei viikosta jonka aioit juosta.",
+      },
     ],
   },
   guidesIndex: {
@@ -324,27 +373,28 @@ export const fi: Copy = {
   pricing: {
     kicker: "Hinta",
     h2: "14 päivää kalenterissa. Sitten 5 €/kk.",
-    lead: "Kortti nyt. 14 päivää 0 €. Sitten 5 €/kk jos jatkat. Peru 14 päivän aikana, niin Polar ei veloita.",
+    lead: "14 päivää ilmaiseksi, ei korttia. Lisää se myöhemmin jatkaaksesi 5 €/kk hintaan.",
     badge: "Nykyinen hinta",
     trialBadge: "14 päivää ilmaiseksi",
     name: "Ridgework-jäsenyys",
     price: "€5",
     per: "/kk",
-    blurb: "Kortti nyt. 14 päivää 0 €. Sitten 5 €/kk. Peru milloin tahansa.",
+    blurb:
+      "14 päivää ilmaiseksi, ei korttia. 5 €/kk jos lisäät sen myöhemmin. Peru milloin tahansa.",
     features: [
       "Seitsemän ohjelmaa: aerobinen moottori, polku, ultra ja alppipäivät",
-      "Kortti kassalla, 14 päivää 0 €, sitten 5 €/kk",
+      "Ei korttia 14 päivään — lisää se milloin tahansa jatkaaksesi 5 €/kk hintaan",
       "Peru 14 päivän aikana, niin Polar ei veloita",
       "Treeniviikkoja, ei lääketieteellisiä väitteitä",
     ],
     laterTitle: "14 päivän jälkeen",
     laterBody:
-      "Jos jatkat, tilaus jatkuu 5 €/kk. Jos perut 14 päivän aikana, sinua ei veloiteta. Myöhemmin peruminen: pääsy kestää jo maksetun jakson loppuun. Tällä sivulla ei ole muita hintoja.",
+      "Lisää kortti milloin tahansa jatkaaksesi 5 €/kk hintaan. Mitään ei koskaan veloiteta automaattisesti — ilman korttia pöytä vain pysähtyy kunnes lisäät sen. Tällä sivulla ei ole muita hintoja.",
   },
   checkout: {
     kicker: "Aloita",
     h2: "Kirjoita tämä viikko",
-    lead: "Tee tili. Polar ottaa kortin. 14 päivää 0 €, sitten 5 €/kk ellet peru.",
+    lead: "Tee tili. Ei korttia 14 päivään. Lisää se milloin tahansa jatkaaksesi.",
     name: "Nimi",
     email: "Sähköposti",
     submit: "Aloita 14 pv ilmaiseksi",
@@ -352,10 +402,11 @@ export const fi: Copy = {
     successTitle: "Kortti tallessa",
     successBody: "14 päivää 0 €. Sitten 5 €/kk ellet peru ensin.",
     daysLeft: "päivää jäljellä kokeilussa",
-    payTitle: "Lisää kortti aloitukseen",
-    payBody: "Polar ottaa kortin. Tänään 0 €. 14 päivän jälkeen 5 €/kk ellet peru ensin.",
+    payTitle: "Lisää kortti jatkaaksesi",
+    payBody: "Ilmainen kokeilusi on päättynyt. Lisää kortti jatkaaksesi — 5 €/kk ellet peru ensin.",
     payCta: "Maksa kortilla",
     trialLeft: "{n} päivää jäljellä kokeilussa",
+    trialNoCard: "{n} päivää jäljellä, ei korttia vielä. Lisää se milloin tahansa jatkaaksesi.",
     trialOn: "Kortti tallessa. Ensimmäinen veloitus 14 päivän jälkeen, ellet peru.",
     subscribed: "Tilaus voimassa · 5 €/kk",
     payFail: "Kassa ei auennut. Yritä uudelleen, tai kirjoita support@ridgework.org mitä näit.",
@@ -376,7 +427,8 @@ export const fi: Copy = {
     chipSupport: "support@ridgework.org",
     chipMerchant: "Laskuttaja Polar",
     cancelCta: "Peru",
-    cancelConfirm: "Perutaanko nyt? 14 päivän kokeilussa Polar ei veloita. Maksetun kuukauden jälkeen pääsy kestää sen kuun loppuun.",
+    cancelConfirm:
+      "Perutaanko nyt? 14 päivän kokeilussa Polar ei veloita. Maksetun kuukauden jälkeen pääsy kestää sen kuun loppuun.",
     cancelYes: "Kyllä, peru",
     cancelKeep: "Pidä",
     canceling: "Perutaan…",
@@ -394,19 +446,19 @@ export const fi: Copy = {
       },
       {
         q: "Mitä 5 euroa kuussa tarkoittaa?",
-        a: "Se on nykyinen hinta. Polar ottaa kortin alussa. 14 päivää 0 €. Sitten 5 €/kk ellet peru ensin.",
+        a: "Se on nykyinen hinta 14 ilmaisen päivän jälkeen. Korttia ei tarvita aloittaessa — lisää se milloin tahansa jatkaaksesi päivän 14 jälkeen.",
       },
       {
         q: "Voiko perua?",
-        a: "Kyllä, milloin tahansa. Pöydässä on Peru-nappi. 14 päivän aikana Polar ei veloita. Maksetun kuukauden jälkeen pääsy kestää sen kuun loppuun. Vieressä on Kortti ja laskut.",
+        a: "Kyllä, milloin tahansa kortin lisäämisen jälkeen. Pöydässä on Peru-nappi. Ilman korttia mitään ei veloiteta lainkaan. Maksetun kuukauden jälkeen pääsy kestää sen kuun loppuun.",
       },
       {
         q: "Mitä tapahtuu 14 päivän jälkeen?",
-        a: "Jos et perunut, tilaus jatkuu 5 €/kk. Se on ainoa hinta tällä sivulla.",
+        a: "Jos et lisännyt korttia, pöytä pysähtyy kunnes lisäät sen — mitään ei veloiteta automaattisesti. Jos lisäsit kortin, tilaus jatkuu 5 €/kk ellet peru ensin.",
       },
       {
         q: "Pitääkö kortti antaa heti?",
-        a: "Kyllä. Polar ottaa kortin nyt. 14 päivää 0 €. Sitten 5 €/kk ellet peru ensin.",
+        a: "Ei. Aloita ilmaiseksi 14 päiväksi ilman sitä. Lisää kortti milloin tahansa, kokeilun aikana tai sen jälkeen, jatkaaksesi 5 €/kk hintaan.",
       },
       {
         q: "Onko tämä lääketiedettä tai valmennusta livenä?",
@@ -446,8 +498,8 @@ export const fi: Copy = {
     kicker: "Perustajille",
     h1: "Aloita 14 päivää ilmaiseksi",
     lead: "Sama treeni. 14 päivää ilmaiseksi, sitten 5 €/kk.",
-    trial: "Kortti nyt. 14 päivää 0 €. Sitten 5 €/kk. Peru sitä ennen, niin ei veloiteta.",
-    note: "Polar ottaa kortin. 14 päivää 0 €, sitten 5 €/kk ellet peru. Se on ainoa hinta tällä sivulla.",
+    trial: "14 päivää ilmaiseksi. Ei korttia. Lisää se milloin tahansa jatkaaksesi.",
+    note: "Ei korttia 14 päivään. Lisää se myöhemmin jatkaaksesi 5 €/kk hintaan. Se on ainoa hinta tällä sivulla.",
     back: "← Ridgework",
     title: "Perustajahinta, Ridgework",
     description: "Viikkotreeni. 14 päivää ilmaiseksi, sitten 5 €/kk. Peru milloin tahansa.",
@@ -477,10 +529,18 @@ export const fi: Copy = {
     lockedTitle: "Kirjaudu jotta viikko tallentuu",
     lockedBody: "Tilin takana ohjelma, viikko ja loki pysyvät tallessa.",
     trialLabel: "14 päivän kokeilu",
-    testBanner:
-      "Kortti nyt. 14 päivää 0 €. Sitten 5 €/kk ellet peru.",
-    signInToTrain: "Kirjaudu, lisää kortti, valitse tavoitepäivä. 14 päivää 0 €, sitten 5 €/kk.",
-    tabs: { today: "Tänään", plan: "Ohjelma", week: "Viikko", prep: "Päivä", log: "Näin teet", profile: "Sinä", whatIf: "Entä jos", passport: "Passi" },
+    testBanner: "14 päivää ilmaiseksi, ei korttia. Sitten 5 €/kk jos lisäät sen.",
+    signInToTrain: "Kirjaudu, valitse tavoitepäivä. 14 päivää ilmaiseksi, ei korttia.",
+    tabs: {
+      today: "Tänään",
+      plan: "Ohjelma",
+      week: "Viikko",
+      prep: "Päivä",
+      log: "Näin teet",
+      profile: "Sinä",
+      whatIf: "Entä jos",
+      passport: "Passi",
+    },
   },
   auth: {
     title: "Kirjaudu",
@@ -496,12 +556,12 @@ export const fi: Copy = {
     haveAccount: "Onko tili jo? Kirjaudu",
     noAccount: "Ei tiliä vielä? Luo tili",
     error: "Kirjautuminen ei onnistunut. Tarkista sähköposti ja salasana.",
-    testNote: "Kortti nyt. 14 päivää 0 €. Sitten 5 €/kk ellet peru.",
+    testNote: "14 päivää ilmaiseksi. Ei korttia. Lisää se milloin tahansa jatkaaksesi.",
   },
   dashboard: {
     enrollments: "Ohjelmasi",
     empty: "Tällä tilillä ei ole vielä ohjelmaa. Valitse alta.",
-    billingTest: "Kortti nyt. 14 päivää 0 €, sitten 5 €/kk.",
+    billingTest: "14 päivää ilmaiseksi, ei korttia.",
     peak: "Tavoite",
     statusTest: "Testi",
     saved: "Tallennettu tilillesi",
@@ -514,7 +574,8 @@ export const fi: Copy = {
       types: { easy: "Kevyt", steady: "Tasainen", hard: "Kova", rest: "Lepo" },
       session: "Mitä oikeasti juoksit",
       readiness: "Miltä kroppa tuntuu tällä viikolla?",
-      readinessLead: "Tämä muuttaa vain treeniä. Väsynyt = vähemmän työtä. Rikki = lepo laadun sijaan.",
+      readinessLead:
+        "Tämä muuttaa vain treeniä. Väsynyt = vähemmän työtä. Rikki = lepo laadun sijaan.",
       levels: { fresh: "Virkeä", ok: "Ihan ok", tired: "Väsynyt", wrecked: "Rikki" },
       notes: {
         fresh: "Pidä kirjoitettu viikko. Ei extra-sankarointia.",
@@ -536,7 +597,8 @@ export const fi: Copy = {
         {
           zone: "Helppo · vyöhyke 1–2",
           feel: "Kokonaisia lauseita. Suurin osa viikosta asuu tässä.",
-          watch: "Noin 60–75 % max-sykkeestä, tai alle aerobisen kynnyksen jos sinulla on testi. Polarisoitu suunnitelma pitää ~80 % ajasta tässä.",
+          watch:
+            "Noin 60–75 % max-sykkeestä, tai alle aerobisen kynnyksen jos sinulla on testi. Polarisoitu suunnitelma pitää ~80 % ajasta tässä.",
           none: "Puhetesti. Jos mäki vie lauseen, kävele kunnes puhe palaa.",
         },
         {
@@ -548,7 +610,8 @@ export const fi: Copy = {
         {
           zone: "Kova / laatu · Z3–4",
           feel: "Muutama sana. Yksi annos viikossa, tai ei yhtään jos väsyttää.",
-          watch: "Kynnys: ~85–92 % max HR, tai vauhti jota jaksaisit ~30–40 min. Pidä se viikon ainoana kovana.",
+          watch:
+            "Kynnys: ~85–92 % max HR, tai vauhti jota jaksaisit ~30–40 min. Pidä se viikon ainoana kovana.",
           none: "Hengitys on äänekästä. Et juttelisi. Lopeta jos tekniikka tai kolotus pahenee.",
         },
         {

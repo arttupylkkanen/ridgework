@@ -191,6 +191,7 @@ export type Copy = {
     payBody: string;
     payCta: string;
     trialLeft: string;
+    trialNoCard: string;
     trialOn: string;
     subscribed: string;
     payFail: string;
@@ -238,7 +239,16 @@ export type Copy = {
     trialLabel: string;
     testBanner: string;
     signInToTrain: string;
-    tabs: { week: string; plan: string; prep: string; log: string; today: string; profile: string; whatIf: string; passport: string };
+    tabs: {
+      week: string;
+      plan: string;
+      prep: string;
+      log: string;
+      today: string;
+      profile: string;
+      whatIf: string;
+      passport: string;
+    };
   };
   auth: {
     title: string;

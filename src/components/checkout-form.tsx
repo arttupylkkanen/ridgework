@@ -2,8 +2,9 @@ import { useEffect, useState, type ReactNode } from "react";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
 import type { Copy } from "@/content/types";
 import type { Locale } from "@/lib/locale";
+import { fillTemplate } from "@/lib/utils";
 import { AuthLink, DeskLink } from "./app-link";
-import type { Membership } from "@/lib/membership";
+import { isNoCardTrial, type Membership } from "@/lib/membership";
 import { getMembership } from "@/lib/membership-server";
 import { startFoundingCheckout, cancelMembership, startBillingPortal } from "@/lib/polar-checkout";
 
@@ -41,14 +42,16 @@ function CheckoutReceipt({
         {error ? <p className="mt-3 text-sm text-accent">{error}</p> : null}
         <p className="mt-5 text-sm leading-relaxed text-ink-muted">{copy.checkout.terms}</p>
         <ul className="mt-5 flex flex-wrap gap-2">
-          {[copy.checkout.chipCancel, copy.checkout.chipSupport, copy.checkout.chipMerchant].map((chip) => (
-            <li
-              key={chip}
-              className="rounded-full border border-line bg-paper-warm/80 px-3 py-1 text-xs font-medium text-ink"
-            >
-              {chip}
-            </li>
-          ))}
+          {[copy.checkout.chipCancel, copy.checkout.chipSupport, copy.checkout.chipMerchant].map(
+            (chip) => (
+              <li
+                key={chip}
+                className="rounded-full border border-line bg-paper-warm/80 px-3 py-1 text-xs font-medium text-ink"
+              >
+                {chip}
+              </li>
+            ),
+          )}
         </ul>
       </div>
       <div className="rounded-2xl border border-ridge/20 bg-ridge/5 p-6 sm:p-8">
@@ -66,7 +69,9 @@ function CheckoutReceipt({
         </div>
         <div className="mt-4 flex items-baseline justify-between gap-4">
           <p className="text-sm font-medium text-ink">{copy.checkout.dueToday}</p>
-          <p className="font-display text-2xl font-semibold tabular-nums text-ink">{copy.checkout.dueAmount}</p>
+          <p className="font-display text-2xl font-semibold tabular-nums text-ink">
+            {copy.checkout.dueAmount}
+          </p>
         </div>
       </div>
     </div>
@@ -159,14 +164,26 @@ export function PaywallPanel({
     );
   }
 
+  const noCardTrial = isNoCardTrial(membership);
+
   return (
     <div className="rounded-2xl border border-line bg-card p-6 sm:p-8">
-      <p className="text-sm font-semibold uppercase tracking-wider text-ridge">{copy.checkout.kicker}</p>
-      <h3 className="mt-2 font-display text-2xl font-semibold text-ink">{copy.checkout.successTitle}</h3>
-      <p className="mt-3 text-ink-muted leading-relaxed">
-        {membership.status === "active" ? copy.checkout.subscribed : copy.checkout.trialOn}
+      <p className="text-sm font-semibold uppercase tracking-wider text-ridge">
+        {copy.checkout.kicker}
       </p>
-      <p className="mt-3 text-ink-muted leading-relaxed">{copy.checkout.successBody}</p>
+      <h3 className="mt-2 font-display text-2xl font-semibold text-ink">
+        {noCardTrial ? copy.pricing.trialBadge : copy.checkout.successTitle}
+      </h3>
+      <p className="mt-3 text-ink-muted leading-relaxed">
+        {membership.status === "active"
+          ? copy.checkout.subscribed
+          : noCardTrial
+            ? fillTemplate(copy.checkout.trialNoCard, { n: membership.daysLeft })
+            : copy.checkout.trialOn}
+      </p>
+      {noCardTrial ? null : (
+        <p className="mt-3 text-ink-muted leading-relaxed">{copy.checkout.successBody}</p>
+      )}
       <div className="mt-6 flex flex-wrap gap-3">
         <DeskLink
           locale={locale}
@@ -174,8 +191,19 @@ export function PaywallPanel({
         >
           {copy.cta.openTools}
         </DeskLink>
+        {noCardTrial ? (
+          <button
+            type="button"
+            onClick={() => void pay()}
+            disabled={pending}
+            className="inline-flex min-h-11 items-center justify-center rounded-lg border border-line px-6 py-3.5 text-base font-medium text-ink hover:bg-paper-warm disabled:opacity-60"
+          >
+            {pending ? copy.checkout.paying : copy.checkout.payCta}
+          </button>
+        ) : null}
         <BillingActions copy={copy} membership={membership} />
       </div>
+      {noCardTrial && error ? <p className="mt-3 text-sm text-accent">{error}</p> : null}
     </div>
   );
 }
@@ -192,7 +220,9 @@ export function BillingActions({
   const [ask, setAsk] = useState(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [done, setDone] = useState<"now" | "later" | null>(membership.cancelScheduled ? "later" : null);
+  const [done, setDone] = useState<"now" | "later" | null>(
+    membership.cancelScheduled ? "later" : null,
+  );
 
   if (!membership.canCancel && !membership.cancelScheduled && !done) return null;
 

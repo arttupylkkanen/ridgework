@@ -8,7 +8,7 @@ import type { Copy } from "./types";
 export const en: Copy = {
   metaTitle: "Ultra and trail training plans — Ridgework",
   metaDescription:
-    "What to run this week for a 20 km trail, 50 km or 100 km ultra, or an alpine day. You pick the peak date. 14 days at €0 with a card, then €5/month.",
+    "What to run this week for a 20 km trail, 50 km or 100 km ultra, or an alpine day. You pick the peak date. 14 days free, no card needed.",
   footerTag: "Mountain training that follows the week you actually have.",
   legalEntity: "Ridgework, France.",
   support: "support@ridgework.org",
@@ -43,7 +43,7 @@ export const en: Copy = {
     kicker: "Mountain training",
     h1: "77 km in six weeks. What do you run on Tuesday?",
     lead: "You slept five hours. Long run yesterday. Knee at 2/10. Heat on Sunday. From that, the week is: skip intervals, run easy, move the long. Race day does not move.",
-    trial: "Card now. €0 for 14 days. Then €5/month. Cancel before then and you are not billed.",
+    trial: "14 days free. No card needed. Add one anytime to keep training after.",
   },
   about: {
     kicker: "What this is",
@@ -102,32 +102,43 @@ export const en: Copy = {
       {
         title: "Alpine weekend objective",
         fields: [
-          { label: "Goal", value: "Arrive on the alpine day with unused legs, not a wrecked Tuesday" },
+          {
+            label: "Goal",
+            value: "Arrive on the alpine day with unused legs, not a wrecked Tuesday",
+          },
           {
             label: "Plan",
-            value: "10 weeks — 6 wk aerobic + vert base, 3 wk specific, 10–14 day taper into the forecast window",
+            value:
+              "10 weeks — 6 wk aerobic + vert base, 3 wk specific, 10–14 day taper into the forecast window",
           },
           {
             label: "Focus",
-            value: "Keep easy volume easy; add conversational vert; peak for the weather window, not extra kilometres",
+            value:
+              "Keep easy volume easy; add conversational vert; peak for the weather window, not extra kilometres",
           },
           {
             label: "Fatigue / load",
-            value: "If sleep or legs are gone, drop the quality session. The weekend is the peak, not Tuesday.",
+            value:
+              "If sleep or legs are gone, drop the quality session. The weekend is the peak, not Tuesday.",
           },
         ],
       },
       {
         title: "First 50 km trail",
         fields: [
-          { label: "Goal", value: "Finish well, not just finish — fueling and pacing under control" },
+          {
+            label: "Goal",
+            value: "Finish well, not just finish — fueling and pacing under control",
+          },
           {
             label: "Plan",
-            value: "6 months (24 weeks) — 10 wk aerobic base, 12 wk long-run build, 10–14 day taper to peak race week",
+            value:
+              "6 months (24 weeks) — 10 wk aerobic base, 12 wk long-run build, 10–14 day taper to peak race week",
           },
           {
             label: "Focus",
-            value: "Easy volume first, then long-run progression and one quality session; peak on race week",
+            value:
+              "Easy volume first, then long-run progression and one quality session; peak on race week",
           },
           {
             label: "Key session recipe",
@@ -140,7 +151,10 @@ export const en: Copy = {
       {
         title: "Hut-to-hut alpine traverse",
         fields: [
-          { label: "Goal", value: "Three days linked because day-two training was allowed to shrink" },
+          {
+            label: "Goal",
+            value: "Three days linked because day-two training was allowed to shrink",
+          },
           {
             label: "Plan",
             value:
@@ -148,11 +162,13 @@ export const en: Copy = {
           },
           {
             label: "Focus",
-            value: "Build legs in the base months; specific block is pack + back-to-backs; peak for day 1, not a dump on day 3",
+            value:
+              "Build legs in the base months; specific block is pack + back-to-backs; peak for day 1, not a dump on day 3",
           },
           {
             label: "Fatigue / load",
-            value: "If day-one leftovers sit in the legs, cut day-two volume. Day three still needs a reserve.",
+            value:
+              "If day-one leftovers sit in the legs, cut day-two volume. Day three still needs a reserve.",
           },
         ],
       },
@@ -184,7 +200,8 @@ export const en: Copy = {
         name: "20 km trail",
         duration: "Ten weeks is enough for most",
         focus: "Easy volume, one quality dose, a long toward 90–110 min",
-        locked: "Week 8: 6×3 min at 10k effort on rolling trail, 2 min easy. Long 90–110 min. Then a 7-day taper.",
+        locked:
+          "Week 8: 6×3 min at 10k effort on rolling trail, 2 min easy. Long 90–110 min. Then a 7-day taper.",
         layout: "sessionLead",
       },
       {
@@ -202,14 +219,16 @@ export const en: Copy = {
         name: "80–120 km ultra",
         duration: "Often nine months",
         focus: "Months of easy time on feet, late back-to-backs, four-week taper",
-        locked: "Week 30: Sat 4–5 h easy trail, Sun 2.5–3 h easy. Midweek stays conversational. Then 3–4 weeks taper.",
+        locked:
+          "Week 30: Sat 4–5 h easy trail, Sun 2.5–3 h easy. Midweek stays conversational. Then 3–4 weeks taper.",
       },
       {
         id: "alpine",
         name: "Alpine day",
         duration: "About ten weeks",
         focus: "Aerobic approaches, climbing and strength, then a mountain day",
-        locked: "Week 8: climbing session (rock, ice, or gym) plus 30–40 min of strength. Approaches stay easy. Tired? Climbing becomes hiking.",
+        locked:
+          "Week 8: climbing session (rock, ice, or gym) plus 30–40 min of strength. Approaches stay easy. Tired? Climbing becomes hiking.",
         tag: "Includes climbing",
         layout: "sessionLead",
       },
@@ -218,7 +237,8 @@ export const en: Copy = {
         name: "Multi-day alpine route",
         duration: "About eight months",
         focus: "Hiking base, then climbing plus pack back-to-backs, peak on day 1",
-        locked: "Week 28: climbing day, then a linked hike with pack. Cut day 2 if leftovers sit in the legs.",
+        locked:
+          "Week 28: climbing day, then a linked hike with pack. Cut day 2 if leftovers sit in the legs.",
         layout: "compact",
       },
       {
@@ -226,7 +246,8 @@ export const en: Copy = {
         name: "High-altitude expedition",
         duration: "About ten months",
         focus: "Hiking and easy volume, pack carries. The last weeks are sleep and kit.",
-        locked: "Week 34: pack carry 3–4 h on a hike, then a rest day. One night out if life allows. The last weeks are sleep and packing, not extra altitude.",
+        locked:
+          "Week 34: pack carry 3–4 h on a hike, then a rest day. One night out if life allows. The last weeks are sleep and packing, not extra altitude.",
       },
     ],
     lockHint: "This week’s key session",
@@ -322,10 +343,26 @@ export const en: Copy = {
     h2: "What happens after you sign in",
     lead: "You pick a peak date. Three weeks land on the calendar. If a session is wrecked or something hurts, the next days are rewritten. The outing stays where you put it.",
     days: [
-      { day: "Day 1", title: "Pick the peak and build the week", body: "77 km, alpine day, or just the engine. The next three weeks appear on the calendar." },
-      { day: "Day 3", title: "Mark how Tuesday went", body: "Short sleep, a niggle, or a session that felt wrecked: you mark it. The next hard day is rewritten easier. The peak date stays." },
-      { day: "Day 6", title: "Do the first long outing", body: "Easy enough to talk. Same drink you already use. If the week was messy, this run is shorter. Don't add kilometres to catch up." },
-      { day: "Day 7", title: "Log the week you actually ran", body: "What you did, what you skipped, what niggled. Week two is built from that, not from the week you meant to have." },
+      {
+        day: "Day 1",
+        title: "Pick the peak and build the week",
+        body: "77 km, alpine day, or just the engine. The next three weeks appear on the calendar.",
+      },
+      {
+        day: "Day 3",
+        title: "Mark how Tuesday went",
+        body: "Short sleep, a niggle, or a session that felt wrecked: you mark it. The next hard day is rewritten easier. The peak date stays.",
+      },
+      {
+        day: "Day 6",
+        title: "Do the first long outing",
+        body: "Easy enough to talk. Same drink you already use. If the week was messy, this run is shorter. Don't add kilometres to catch up.",
+      },
+      {
+        day: "Day 7",
+        title: "Log the week you actually ran",
+        body: "What you did, what you skipped, what niggled. Week two is built from that, not from the week you meant to have.",
+      },
     ],
   },
   guidesIndex: {
@@ -338,27 +375,27 @@ export const en: Copy = {
   pricing: {
     kicker: "Pricing",
     h2: "14 days on the calendar. Then €5/month.",
-    lead: "Card now. €0 for 14 days. Then €5/month if you stay. Cancel during the 14 days and Polar does not charge.",
+    lead: "14 days free, no card needed. Add one anytime after to keep training at €5/month.",
     badge: "Current price",
     trialBadge: "14 days free",
     name: "Ridgework membership",
     price: "€5",
     per: "/month",
-    blurb: "Card now. €0 for 14 days. Then €5/month. Cancel anytime.",
+    blurb: "14 days free, no card. €5/month if you add one after. Cancel anytime.",
     features: [
       "Seven programs from aerobic engine to 100 km and alpine days",
-      "Card at checkout, €0 for 14 days, then €5/month",
+      "No card for 14 days — add one anytime to keep training at €5/month",
       "Cancel during the 14 days and Polar does not charge",
       "Training weeks, not medical claims",
     ],
     laterTitle: "After the 14 days",
     laterBody:
-      "If you stay, Polar charges €5/month. If you cancel during the 14 days, you are not billed. Cancel later and access lasts through the period already paid. No other price is listed on this site.",
+      "Add a card anytime to keep training at €5/month. Nothing is ever charged automatically — without a card, the desk simply pauses until you add one. No other price is listed on this site.",
   },
   checkout: {
     kicker: "Start",
     h2: "Write this week",
-    lead: "Create an account. Polar takes a card. €0 for 14 days, then €5/month unless you cancel.",
+    lead: "Create an account. No card needed for 14 days. Add one anytime to keep training after.",
     name: "Name",
     email: "Email",
     submit: "Start 14 days free",
@@ -366,10 +403,12 @@ export const en: Copy = {
     successTitle: "Card on file",
     successBody: "€0 for 14 days. Then €5/month unless you cancel first.",
     daysLeft: "days left of the free trial",
-    payTitle: "Add a card to start",
-    payBody: "Polar takes the card. €0 today. After 14 days it is €5/month unless you cancel first.",
+    payTitle: "Add a card to keep training",
+    payBody:
+      "Your free trial has ended. Add a card to keep training — €5/month unless you cancel first.",
     payCta: "Pay with card",
     trialLeft: "{n} days left of the free trial",
+    trialNoCard: "{n} days left, no card yet. Add one anytime to keep training after.",
     trialOn: "Card on file. First charge after 14 days unless you cancel.",
     subscribed: "Subscribed · €5/month",
     payFail: "Checkout did not open. Try again, or write support@ridgework.org with what you saw.",
@@ -390,7 +429,8 @@ export const en: Copy = {
     chipSupport: "support@ridgework.org",
     chipMerchant: "Billed by Polar",
     cancelCta: "Cancel",
-    cancelConfirm: "Cancel now? During the 14 days Polar does not charge. After a paid month, access lasts through that month.",
+    cancelConfirm:
+      "Cancel now? During the 14 days Polar does not charge. After a paid month, access lasts through that month.",
     cancelYes: "Yes, cancel",
     cancelKeep: "Keep it",
     canceling: "Canceling…",
@@ -408,19 +448,19 @@ export const en: Copy = {
       },
       {
         q: "What does €5/month mean?",
-        a: "That is the current price. Polar takes a card at the start. €0 for 14 days. Then €5/month unless you cancel first.",
+        a: "That is the current price, after your 14 free days. No card is needed to start — add one anytime to keep training past day 14.",
       },
       {
         q: "Can I cancel?",
-        a: "Yes. There is a Cancel button in the desk. During the 14 days Polar does not charge. After a paid month, access lasts through that month. Card and invoices is next to it.",
+        a: "Yes. There is a Cancel button in the desk once you have added a card. Without a card, nothing is ever charged — just stop, or let the trial end. After a paid month, access lasts through that month.",
       },
       {
         q: "What happens after the 14 days?",
-        a: "If you have not cancelled, the subscription continues at €5/month. That is the only price on this site.",
+        a: "If you have not added a card, the desk pauses until you add one — nothing is charged automatically. If you did add a card, it continues at €5/month unless you cancel first.",
       },
       {
         q: "Do I need a card for the trial?",
-        a: "Yes. Polar takes the card now. €0 for 14 days. Then €5/month unless you cancel first.",
+        a: "No. Start free for 14 days without one. Add a card anytime, during or after the trial, to keep training at €5/month.",
       },
       {
         q: "Is this medical advice?",
@@ -459,9 +499,9 @@ export const en: Copy = {
   foundingPage: {
     kicker: "Founding",
     h1: "Start with 14 days free",
-    lead: "Same weeks. Card now, €0 for 14 days, then €5/month.",
-    trial: "Card now. €0 for 14 days. Then €5/month. Cancel before then and you are not billed.",
-    note: "Polar takes a card. €0 for 14 days, then €5/month unless you cancel. That is the only price listed here.",
+    lead: "Same weeks. 14 days free, no card needed.",
+    trial: "14 days free. No card needed. Add one anytime to keep training after.",
+    note: "No card needed for 14 days. Add one anytime after to keep training at €5/month. That is the only price listed here.",
     back: "← Ridgework home",
     title: "Founding invite, Ridgework",
     description: "Weekly training. 14 days free, then €5/month. Cancel anytime.",
@@ -470,10 +510,10 @@ export const en: Copy = {
     title: "Terms of Service",
     updated: "Last updated: September 2026",
     body: [
-      "Ridgework writes training weeks for trail and mountain. Not medical care, no diagnoses. Price: card at Polar, €0 for 14 days, then €5/month. Cancel during the 14 days and you are not billed (support@ridgework.org). You remain responsible for training and mountain safety. Mandatory consumer rights under French/EU law are not limited.",
+      "Ridgework writes training weeks for trail and mountain. Not medical care, no diagnoses. Price: 14 days free, no card needed. Add a card anytime after to keep training at €5/month (support@ridgework.org). You remain responsible for training and mountain safety. Mandatory consumer rights under French/EU law are not limited.",
       "Service. Ridgework provides weekly training plans for trail and mountain. It is not medical care and makes no diagnoses.",
-      "Price and trial. Current price is €5/month. Polar takes a card at checkout. The first 14 days are €0. If you stay after those 14 days, Polar charges €5/month. Cancel during the 14 days and you are not billed. That is the only listed price.",
-      "Cancel anytime. Use the Cancel button in the desk, or Card and invoices. Cancel during the 14 days and you are not billed. After that, access continues through the end of the period already paid.",
+      "Price and trial. Current price is €5/month, after 14 free days. No card is needed to start. If you add a card and stay after those 14 days, Polar charges €5/month. Without a card, nothing is ever charged automatically — the desk pauses at day 14 until you add one. That is the only listed price.",
+      "Cancel anytime. Use the Cancel button in the desk, or Card and invoices, once a card is on file. Without a card, nothing is charged in the first place. After a paid month, access continues through the end of the period already paid.",
       "Your responsibility. You remain solely responsible for training and mountain safety decisions. Ridgework does not provide rescue, guiding, or emergency services.",
       "Liability. To the extent permitted by French and EU consumer law, the service is provided as-is. Nothing in these terms limits mandatory consumer rights.",
       "Contact. support@ridgework.org. Ridgework, France.",
@@ -500,9 +540,8 @@ export const en: Copy = {
     lockedTitle: "Sign in to save the week",
     lockedBody: "Create an account to keep the program, the week, and the log on this login.",
     trialLabel: "14-day trial",
-    testBanner:
-      "Card now. €0 for 14 days. Then €5/month unless you cancel.",
-    signInToTrain: "Sign in, add a card, pick a peak date. €0 for 14 days, then €5/month.",
+    testBanner: "14 days free, no card needed. Then €5/month if you add one.",
+    signInToTrain: "Sign in, pick a peak date. 14 days free, no card needed.",
     tabs: {
       today: "Today",
       plan: "Program",
@@ -528,12 +567,12 @@ export const en: Copy = {
     haveAccount: "Already have an account? Sign in",
     noAccount: "No account yet? Create one",
     error: "Could not sign in. Check email and password.",
-    testNote: "Card now. €0 for 14 days. Then €5/month unless you cancel.",
+    testNote: "14 days free. No card needed. Add one anytime to keep training after.",
   },
   dashboard: {
     enrollments: "Your programs",
     empty: "No program saved on this account yet. Pick one below.",
-    billingTest: "Card now. €0 for 14 days, then €5/month.",
+    billingTest: "14 days free, no card needed.",
     peak: "Peak",
     statusTest: "Test",
     saved: "Saved to your account",
@@ -546,7 +585,8 @@ export const en: Copy = {
       types: { easy: "Easy", steady: "Steady", hard: "Hard", rest: "Rest" },
       session: "What you actually ran",
       readiness: "How does the body feel this week?",
-      readinessLead: "This only changes training. Tired means less work — hard sessions become easy. Wrecked means rest instead of quality.",
+      readinessLead:
+        "This only changes training. Tired means less work — hard sessions become easy. Wrecked means rest instead of quality.",
       levels: { fresh: "Fresh", ok: "Fine", tired: "Tired", wrecked: "Wrecked" },
       notes: {
         fresh: "Keep the written week. No extra heroics needed.",
@@ -568,7 +608,8 @@ export const en: Copy = {
         {
           zone: "Easy · Zone 1–2",
           feel: "Full sentences. Most of the week lives here.",
-          watch: "Roughly 60–75% of max HR, or below aerobic threshold if you have a lab/field test. Polarized plans put ~80% of time here.",
+          watch:
+            "Roughly 60–75% of max HR, or below aerobic threshold if you have a lab/field test. Polarized plans put ~80% of time here.",
           none: "Talk test. If a hill steals the sentence, walk until speech comes back.",
         },
         {
@@ -580,7 +621,8 @@ export const en: Copy = {
         {
           zone: "Hard / quality · Z3–4",
           feel: "A few words. One dose per week, or none if tired.",
-          watch: "Threshold-ish: ~85–92% max HR, or the pace you could hold ~30–40 min. Keep it the only hard run.",
+          watch:
+            "Threshold-ish: ~85–92% max HR, or the pace you could hold ~30–40 min. Keep it the only hard run.",
           none: "Breathing is loud. You would not chat. Stop if form or a niggle gets worse.",
         },
         {

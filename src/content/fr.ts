@@ -102,14 +102,19 @@ export const fr: Copy = {
       {
         title: "Objectif week-end alpin",
         fields: [
-          { label: "Objectif", value: "Journée de montagne sûre et efficace avec règles de demi-tour claires" },
+          {
+            label: "Objectif",
+            value: "Journée de montagne sûre et efficace avec règles de demi-tour claires",
+          },
           {
             label: "Plan",
-            value: "10 semaines — 6 sem. base aérobie + dénivelé, 3 sem. spécifique, affûtage 10–14 j. dans la fenêtre météo",
+            value:
+              "10 semaines — 6 sem. base aérobie + dénivelé, 3 sem. spécifique, affûtage 10–14 j. dans la fenêtre météo",
           },
           {
             label: "Focus",
-            value: "Garder le volume facile facile ; ajouter du D+ conversationnel ; piquer la fenêtre météo, pas les kilomètres extra",
+            value:
+              "Garder le volume facile facile ; ajouter du D+ conversationnel ; piquer la fenêtre météo, pas les kilomètres extra",
           },
           {
             label: "Risque / décision",
@@ -120,14 +125,19 @@ export const fr: Copy = {
       {
         title: "Premier 50 km trail",
         fields: [
-          { label: "Objectif", value: "Finir bien, pas seulement finir — ravitaillement et allure sous contrôle" },
+          {
+            label: "Objectif",
+            value: "Finir bien, pas seulement finir — ravitaillement et allure sous contrôle",
+          },
           {
             label: "Plan",
-            value: "6 mois (24 sem.) — 10 sem. base aérobie, 12 sem. construction de la longue, affûtage 10–14 j. pour la semaine de course",
+            value:
+              "6 mois (24 sem.) — 10 sem. base aérobie, 12 sem. construction de la longue, affûtage 10–14 j. pour la semaine de course",
           },
           {
             label: "Focus",
-            value: "Volume facile d’abord, puis progression de la longue et une séance de qualité ; pic la semaine de course",
+            value:
+              "Volume facile d’abord, puis progression de la longue et une séance de qualité ; pic la semaine de course",
           },
           {
             label: "Recette de séance",
@@ -140,7 +150,10 @@ export const fr: Copy = {
       {
         title: "Traversée refuge à refuge",
         fields: [
-          { label: "Objectif", value: "Trois jours liés, décisions météo et matériel déjà écrites" },
+          {
+            label: "Objectif",
+            value: "Trois jours liés, décisions météo et matériel déjà écrites",
+          },
           {
             label: "Plan",
             value:
@@ -148,11 +161,13 @@ export const fr: Copy = {
           },
           {
             label: "Focus",
-            value: "Les jambes se font dans les mois de base ; le spécifique est sac + jours liés ; pic pour le jour 1, pas un crash le jour 3",
+            value:
+              "Les jambes se font dans les mois de base ; le spécifique est sac + jours liés ; pic pour le jour 1, pas un crash le jour 3",
           },
           {
             label: "Risque / décision",
-            value: "Convection l’après-midi, neige versants nord, vallée de repli, fatigue après le jour 1",
+            value:
+              "Convection l’après-midi, neige versants nord, vallée de repli, fatigue après le jour 1",
           },
         ],
       },
@@ -173,7 +188,8 @@ export const fr: Copy = {
         id: "engine",
         name: "Moteur aérobie",
         duration: "Recommandé 16 semaines / 4 mois",
-        focus: "Plus de travail à allure conversationnelle. Gras comme carburant par défaut. Pas de course obligatoire.",
+        focus:
+          "Plus de travail à allure conversationnelle. Gras comme carburant par défaut. Pas de course obligatoire.",
         locked:
           "La plupart des jours conversationnels. La longue vers 90 min. Si vous parlez en phrases, vous êtes dans le travail. Pas de dose de qualité — le moteur est la qualité.",
         pull: "Si vous sortez une phrase entière, vous êtes dans le travail.",
@@ -184,7 +200,8 @@ export const fr: Copy = {
         name: "Trail 20 km",
         duration: "Recommandé 10 semaines",
         focus: "Volume facile, une dose de qualité, longue vers 90–110 min",
-        locked: "Semaine 8 : 6×3 min à allure 10 km sur trail roulant, 2 min facile. Longue 90–110 min. Puis 7 jours d’affûtage.",
+        locked:
+          "Semaine 8 : 6×3 min à allure 10 km sur trail roulant, 2 min facile. Longue 90–110 min. Puis 7 jours d’affûtage.",
         layout: "sessionLead",
       },
       {
@@ -202,15 +219,18 @@ export const fr: Copy = {
         id: "ultra100",
         name: "Ultra 80–120 km",
         duration: "Recommandé 36 sem. / 9 mois",
-        focus: "Des mois de temps facile sur les pieds, back-to-backs tard, affûtage de quatre semaines",
-        locked: "Semaine 30 : sam. 4–5 h trail facile, dim. 2,5–3 h facile. La semaine reste conversationnelle. Puis 3–4 semaines d’affûtage.",
+        focus:
+          "Des mois de temps facile sur les pieds, back-to-backs tard, affûtage de quatre semaines",
+        locked:
+          "Semaine 30 : sam. 4–5 h trail facile, dim. 2,5–3 h facile. La semaine reste conversationnelle. Puis 3–4 semaines d’affûtage.",
       },
       {
         id: "alpine",
         name: "Journée alpine",
         duration: "Recommandé 10 semaines",
         focus: "Approches aérobies, escalade et force, puis journée montagne",
-        locked: "Semaine 8 : séance d’escalade (rocher/glace/salle) + 1 200–1 800 m d’approche conversationnelle. Force 30–40 min. Fatigué : l’escalade devient rando facile.",
+        locked:
+          "Semaine 8 : séance d’escalade (rocher/glace/salle) + 1 200–1 800 m d’approche conversationnelle. Force 30–40 min. Fatigué : l’escalade devient rando facile.",
         tag: "Avec de l’escalade",
         layout: "sessionLead",
       },
@@ -219,7 +239,8 @@ export const fr: Copy = {
         name: "Itinéraire alpin de plusieurs jours",
         duration: "Recommandé 32 sem. / 8 mois",
         focus: "Base rando, puis sac et back-to-backs, pic le jour 1",
-        locked: "Semaine 28 : deux jours liés, sac léger. Couper le jour 2 si les restes sont dans les jambes.",
+        locked:
+          "Semaine 28 : deux jours liés, sac léger. Couper le jour 2 si les restes sont dans les jambes.",
         layout: "compact",
       },
       {
@@ -227,7 +248,8 @@ export const fr: Copy = {
         name: "Expédition en altitude",
         duration: "Recommandé 40 sem. / 10 mois",
         focus: "Rando et volume facile, portages, l’affûtage est sommeil et matériel",
-        locked: "Semaine 34 : portage 3–4 h en rando, puis un jour de repos. Une nuit dehors si la vie le permet. L’affûtage est sommeil et matériel, pas l’altitude extra.",
+        locked:
+          "Semaine 34 : portage 3–4 h en rando, puis un jour de repos. Une nuit dehors si la vie le permet. L’affûtage est sommeil et matériel, pas l’altitude extra.",
       },
     ],
     lockHint: "Séance clé",
@@ -251,19 +273,51 @@ export const fr: Copy = {
   what: {
     h2: "Ce que vous obtenez",
     items: [
-      { n: "01", title: "Plan depuis votre date de pic", body: "Vous choisissez quand piquer. Les semaines s’écrivent dans cette fenêtre — base, spécifique, affûtage. Plus long est toujours mieux." },
-      { n: "02", title: "Le journal change le lendemain", body: "Vous notez comment la dernière séance a été. Si elle était cassée, ou si ça fait mal, le prochain jour dur est réécrit plus facile. Foster (2001) et Bourdon et al. (2017) : la charge interne est un chiffre de planification, pas un diagnostic. La date de pic reste." },
-      { n: "03", title: "Matériel et ravitaillement", body: "Chaussures, couches, boisson et sommeil pour la semaine réelle." },
-      { n: "04", title: "Journal d’entraînement", body: "Notez ce que vous avez fait et pourquoi la charge a changé." },
+      {
+        n: "01",
+        title: "Plan depuis votre date de pic",
+        body: "Vous choisissez quand piquer. Les semaines s’écrivent dans cette fenêtre — base, spécifique, affûtage. Plus long est toujours mieux.",
+      },
+      {
+        n: "02",
+        title: "Le journal change le lendemain",
+        body: "Vous notez comment la dernière séance a été. Si elle était cassée, ou si ça fait mal, le prochain jour dur est réécrit plus facile. Foster (2001) et Bourdon et al. (2017) : la charge interne est un chiffre de planification, pas un diagnostic. La date de pic reste.",
+      },
+      {
+        n: "03",
+        title: "Matériel et ravitaillement",
+        body: "Chaussures, couches, boisson et sommeil pour la semaine réelle.",
+      },
+      {
+        n: "04",
+        title: "Journal d’entraînement",
+        body: "Notez ce que vous avez fait et pourquoi la charge a changé.",
+      },
     ],
   },
   week: {
     h2: "Comment se déroule une semaine",
     steps: [
-      { day: "Lun", title: "Construire la semaine", body: "La date de pic est déjà au calendrier. La plupart des jours sont faciles. Si vous avez bien dormi, une séance plus dure. Une sortie longue plus tard dans la semaine." },
-      { day: "Mar", title: "Sommeil et jambes", body: "Cinq heures de sommeil ? Les intervalles deviennent 45–60 min facile. La date de course ne bouge pas." },
-      { day: "Jeu", title: "Garder les jours faciles faciles", body: "Le gros de la semaine reste à une allure où vous parlez. Si la phrase sort, vous êtes dans la bonne zone." },
-      { day: "Dim", title: "Noter ce qui s’est passé", body: "Notez la sortie longue, la chaleur, et ce qui a tiré. La semaine suivante part de là, pas du plan rêvé." },
+      {
+        day: "Lun",
+        title: "Construire la semaine",
+        body: "La date de pic est déjà au calendrier. La plupart des jours sont faciles. Si vous avez bien dormi, une séance plus dure. Une sortie longue plus tard dans la semaine.",
+      },
+      {
+        day: "Mar",
+        title: "Sommeil et jambes",
+        body: "Cinq heures de sommeil ? Les intervalles deviennent 45–60 min facile. La date de course ne bouge pas.",
+      },
+      {
+        day: "Jeu",
+        title: "Garder les jours faciles faciles",
+        body: "Le gros de la semaine reste à une allure où vous parlez. Si la phrase sort, vous êtes dans la bonne zone.",
+      },
+      {
+        day: "Dim",
+        title: "Noter ce qui s’est passé",
+        body: "Notez la sortie longue, la chaleur, et ce qui a tiré. La semaine suivante part de là, pas du plan rêvé.",
+      },
     ],
   },
   scenario: {
@@ -291,10 +345,26 @@ export const fr: Copy = {
     h2: "Ce qui se passe après la connexion",
     lead: "Vous choisissez une date de pic. Trois semaines arrivent au calendrier. Si une séance est cassée ou si ça fait mal, les jours suivants sont réécrits. La sortie reste où vous l’avez mise.",
     days: [
-      { day: "Jour 1", title: "Choisir le pic et bâtir la semaine", body: "77 km, journée alpine, ou le moteur. Trois semaines apparaissent." },
-      { day: "Jour 3", title: "Noter comment mardi s’est passé", body: "Sommeil court, une gène, ou une séance cassée : vous la marquez. Le prochain jour dur est réécrit plus facile. La date de pic reste." },
-      { day: "Jour 6", title: "Faire la première sortie longue", body: "Assez facile pour parler. La même boisson que d’habitude. Si la semaine était brouillonne, cette sortie est plus courte. Pas de kilomètres de rattrapage." },
-      { day: "Jour 7", title: "Noter la semaine réellement courue", body: "Ce que vous avez fait, ce que vous avez sauté, ce qui a tiré. La semaine deux part de là, pas de la semaine prévue." },
+      {
+        day: "Jour 1",
+        title: "Choisir le pic et bâtir la semaine",
+        body: "77 km, journée alpine, ou le moteur. Trois semaines apparaissent.",
+      },
+      {
+        day: "Jour 3",
+        title: "Noter comment mardi s’est passé",
+        body: "Sommeil court, une gène, ou une séance cassée : vous la marquez. Le prochain jour dur est réécrit plus facile. La date de pic reste.",
+      },
+      {
+        day: "Jour 6",
+        title: "Faire la première sortie longue",
+        body: "Assez facile pour parler. La même boisson que d’habitude. Si la semaine était brouillonne, cette sortie est plus courte. Pas de kilomètres de rattrapage.",
+      },
+      {
+        day: "Jour 7",
+        title: "Noter la semaine réellement courue",
+        body: "Ce que vous avez fait, ce que vous avez sauté, ce qui a tiré. La semaine deux part de là, pas de la semaine prévue.",
+      },
     ],
   },
   guidesIndex: {
@@ -327,7 +397,7 @@ export const fr: Copy = {
   checkout: {
     kicker: "Essai",
     h2: "Commencer 14 jours à 0 €",
-    lead: "Créez un compte. Polar prend une carte. 14 jours à 0 €, puis 5 €/mois sauf résiliation.",
+    lead: "Créez un compte. Sans carte pendant 14 jours. Ajoutez-en une quand vous voulez pour continuer.",
     name: "Nom",
     email: "E-mail",
     submit: "Ajouter une carte",
@@ -335,10 +405,13 @@ export const fr: Copy = {
     successTitle: "Carte enregistrée",
     successBody: "14 jours à 0 €. Puis 5 €/mois sauf résiliation avant.",
     daysLeft: "jours restants d’essai",
-    payTitle: "Ajouter une carte pour commencer",
-    payBody: "Polar prend la carte. 0 € aujourd’hui. Après 14 jours : 5 €/mois sauf résiliation avant.",
+    payTitle: "Ajoutez une carte pour continuer",
+    payBody:
+      "Votre essai gratuit est terminé. Ajoutez une carte pour continuer — 5 €/mois sauf résiliation.",
     payCta: "Payer par carte",
     trialLeft: "{n} jours restants d’essai",
+    trialNoCard:
+      "Plus que {n} jours, sans carte pour l’instant. Ajoutez-en une quand vous voulez pour continuer.",
     trialOn: "Carte enregistrée. Premier prélèvement après 14 jours sauf résiliation.",
     subscribed: "Abonné · 5 €/mois",
     payFail: "Le paiement ne s’est pas ouvert. Écrivez à support@ridgework.org.",
@@ -359,7 +432,8 @@ export const fr: Copy = {
     chipSupport: "support@ridgework.org",
     chipMerchant: "Facturé par Polar",
     cancelCta: "Résilier",
-    cancelConfirm: "Résilier maintenant ? Pendant les 14 jours Polar ne facture pas. Après un mois payé, l’accès dure jusqu’à la fin de ce mois.",
+    cancelConfirm:
+      "Résilier maintenant ? Pendant les 14 jours Polar ne facture pas. Après un mois payé, l’accès dure jusqu’à la fin de ce mois.",
     cancelYes: "Oui, résilier",
     cancelKeep: "Garder",
     canceling: "Résiliation…",
@@ -371,12 +445,30 @@ export const fr: Copy = {
   faq: {
     h2: "FAQ",
     items: [
-      { q: "Qu’est-ce que Ridgework ?", a: "Une semaine d’entraînement écrite pour le trail, l’ultra et les jours alpins. Vous dites quand il faut être prêt. La semaine arrive au calendrier." },
-      { q: "Comment marche le prix ?", a: "14 jours gratuits. Puis 5 €/mois si vous restez. Résiliez pendant les 14 jours : rien n’est facturé." },
-      { q: "Puis-je résilier à tout moment ?", a: "Oui. Un bouton Résilier est dans le bureau. Pendant les 14 jours Polar ne facture pas. Après un mois payé, l’accès dure jusqu’à la fin de ce mois. Carte et factures est à côté." },
-      { q: "Après les 14 jours ?", a: "Si vous n’avez pas résilié, l’abonnement continue à 5 €/mois. C’est le seul tarif sur ce site." },
-      { q: "Carte pour l’essai ?", a: "Oui. Polar prend la carte maintenant. 14 jours à 0 €. Puis 5 €/mois sauf résiliation avant." },
-      { q: "Est-ce un avis médical ?", a: "Non. Pas de diagnostic ni de traitement. Pour la santé, consultez un professionnel." },
+      {
+        q: "Qu’est-ce que Ridgework ?",
+        a: "Une semaine d’entraînement écrite pour le trail, l’ultra et les jours alpins. Vous dites quand il faut être prêt. La semaine arrive au calendrier.",
+      },
+      {
+        q: "Comment marche le prix ?",
+        a: "14 jours gratuits. Puis 5 €/mois si vous restez. Résiliez pendant les 14 jours : rien n’est facturé.",
+      },
+      {
+        q: "Puis-je résilier à tout moment ?",
+        a: "Oui. Un bouton Résilier est dans le bureau. Pendant les 14 jours Polar ne facture pas. Après un mois payé, l’accès dure jusqu’à la fin de ce mois. Carte et factures est à côté.",
+      },
+      {
+        q: "Après les 14 jours ?",
+        a: "Si vous n’avez pas ajouté de carte, le bureau se met en pause jusqu’à ce que vous en ajoutiez une — rien n’est facturé automatiquement. Si vous en avez ajouté une, l’abonnement continue à 5 €/mois sauf résiliation.",
+      },
+      {
+        q: "Faut-il une carte pour l’essai ?",
+        a: "Non. Commencez gratuitement pendant 14 jours sans carte. Ajoutez-en une quand vous voulez, pendant ou après l’essai, pour continuer à 5 €/mois.",
+      },
+      {
+        q: "Est-ce un avis médical ?",
+        a: "Non. Pas de diagnostic ni de traitement. Pour la santé, consultez un professionnel.",
+      },
       {
         q: "Le programme s’écrit-il tout seul au fil des semaines ?",
         a: "Oui — dans le produit, pas dans un chat bot. Vous choisissez la date de pic. L’onglet Programme garde toujours trois semaines écrites dans cette fenêtre. Une bonne semaine ajoute la suivante. Une semaine fatiguée s’entraîne moins ; la date de pic reste. Après la sortie, la saison suivante part d’un plancher plus haut.",
@@ -386,7 +478,10 @@ export const fr: Copy = {
         a: "Ridgework, France. support@ridgework.org.",
       },
       { q: "Quelles langues ?", a: "Anglais, finnois, français, allemand." },
-      { q: "Données personnelles ?", a: "Attentes UE/France. Voir Confidentialité. Pas de vente pour la pub." },
+      {
+        q: "Données personnelles ?",
+        a: "Attentes UE/France. Voir Confidentialité. Pas de vente pour la pub.",
+      },
       { q: "Support ?", a: "support@ridgework.org — réponse sous quelques jours ouvrés." },
     ],
   },
@@ -399,10 +494,11 @@ export const fr: Copy = {
     h1: "Commencez 14 jours gratuits",
     lead: "Les mêmes semaines. 14 jours gratuits, puis 5 €/mois.",
     trial: "14 jours gratuits. Puis 5 €/mois. Résiliez à tout moment.",
-    note: "Polar prend une carte. 14 jours à 0 €, puis 5 €/mois sauf résiliation. C’est le seul tarif affiché ici.",
+    note: "Sans carte pendant 14 jours. Ajoutez-en une quand vous voulez pour continuer à 5 €/mois. C’est le seul tarif affiché ici.",
     back: "← Ridgework",
     title: "Founding — Ridgework",
-    description: "Entraînement hebdomadaire. 14 jours gratuits, puis 5 €/mois. Résiliez à tout moment.",
+    description:
+      "Entraînement hebdomadaire. 14 jours gratuits, puis 5 €/mois. Résiliez à tout moment.",
   },
   termsPage: {
     title: "Conditions d’utilisation",
@@ -425,12 +521,21 @@ export const fr: Copy = {
     h1: "L’entraînement de la semaine",
     lead: "Choisissez le jour où vous voulez être au pic. Le programme glissant écrit les semaines dans cette fenêtre. Fatigué : moins de travail. Rien ici n’est un avis médical.",
     lockedTitle: "Compte requis",
-    lockedBody: "Créez un compte pour les 14 jours gratuits : programme, semaine, préparation du jour et journal. Puis 5 €/mois si vous restez.",
+    lockedBody:
+      "Créez un compte pour les 14 jours gratuits : programme, semaine, préparation du jour et journal. Puis 5 €/mois si vous restez.",
     trialLabel: "Essai 14 jours",
-    testBanner:
-      "Carte maintenant. 14 jours à 0 €. Puis 5 €/mois sauf résiliation.",
-    signInToTrain: "Connectez-vous, ajoutez une carte, choisissez une date de pic. 14 jours à 0 €, puis 5 €/mois.",
-    tabs: { today: "Aujourd’hui", plan: "Programme", week: "Semaine", prep: "Le jour", log: "Comment faire", profile: "Vous", whatIf: "Et si", passport: "Passeport" },
+    testBanner: "14 jours gratuits, sans carte. Puis 5 €/mois si vous en ajoutez une.",
+    signInToTrain: "Connectez-vous, choisissez une date de pic. 14 jours gratuits, sans carte.",
+    tabs: {
+      today: "Aujourd’hui",
+      plan: "Programme",
+      week: "Semaine",
+      prep: "Le jour",
+      log: "Comment faire",
+      profile: "Vous",
+      whatIf: "Et si",
+      passport: "Passeport",
+    },
   },
   auth: {
     title: "Connexion",
@@ -446,12 +551,12 @@ export const fr: Copy = {
     haveAccount: "Déjà un compte ? Connexion",
     noAccount: "Pas encore de compte ? Créez-en un",
     error: "Connexion impossible. Vérifiez e-mail et mot de passe.",
-    testNote: "Carte maintenant. 14 jours à 0 €. Puis 5 €/mois sauf résiliation.",
+    testNote: "14 jours gratuits. Sans carte. Ajoutez-en une quand vous voulez pour continuer.",
   },
   dashboard: {
     enrollments: "Vos programmes",
     empty: "Aucun programme sur ce compte. Choisissez ci-dessous.",
-    billingTest: "Carte maintenant. 14 jours à 0 €, puis 5 €/mois.",
+    billingTest: "14 jours gratuits, sans carte.",
     peak: "Pic",
     statusTest: "Test",
     saved: "Enregistré sur votre compte",
@@ -464,13 +569,15 @@ export const fr: Copy = {
       types: { easy: "Facile", steady: "Soutenu", hard: "Dur", rest: "Repos" },
       session: "Ce que vous avez vraiment couru",
       readiness: "Comment le corps sent-il cette semaine ?",
-      readinessLead: "Cela ne change que l’entraînement. Fatigué = moins de travail. Cassé = repos à la place de la qualité.",
+      readinessLead:
+        "Cela ne change que l’entraînement. Fatigué = moins de travail. Cassé = repos à la place de la qualité.",
       levels: { fresh: "Frais", ok: "Correct", tired: "Fatigué", wrecked: "Cassé" },
       notes: {
         fresh: "Garder la semaine écrite. Pas d’héroïsme extra.",
         ok: "Garder la charge. Pas de second jour dur.",
         tired: "Les séances dures et soutenues passent en facile. Vous vous entraînez moins.",
-        wrecked: "Dur et soutenu deviennent repos. Le facile reste facile. Reprise la semaine suivante.",
+        wrecked:
+          "Dur et soutenu deviennent repos. Le facile reste facile. Reprise la semaine suivante.",
       },
     },
     pace: {

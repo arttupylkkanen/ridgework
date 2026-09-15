@@ -105,11 +105,13 @@ export const de: Copy = {
           { label: "Ziel", value: "Sicherer, effizienter Bergtag mit klaren Umkehrregeln" },
           {
             label: "Plan",
-            value: "10 Wochen — 6 Wo. aerobe + Vert-Basis, 3 Wo. spezifisch, 10–14 Tage Taper ins Wetterfenster",
+            value:
+              "10 Wochen — 6 Wo. aerobe + Vert-Basis, 3 Wo. spezifisch, 10–14 Tage Taper ins Wetterfenster",
           },
           {
             label: "Fokus",
-            value: "Leichtes Volumen leicht halten; Gesprächs-Vert dazu; Peak fürs Wetterfenster, nicht für Extra-Kilometer",
+            value:
+              "Leichtes Volumen leicht halten; Gesprächs-Vert dazu; Peak fürs Wetterfenster, nicht für Extra-Kilometer",
           },
           {
             label: "Risiko / Entscheidung",
@@ -120,14 +122,19 @@ export const de: Copy = {
       {
         title: "Erster 50-km-Trail",
         fields: [
-          { label: "Ziel", value: "Gut ankommen, nicht nur ankommen — Ernährung und Tempo unter Kontrolle" },
+          {
+            label: "Ziel",
+            value: "Gut ankommen, nicht nur ankommen — Ernährung und Tempo unter Kontrolle",
+          },
           {
             label: "Plan",
-            value: "6 Monate (24 Wochen) — 10 Wo. aerobe Basis, 12 Wo. Long-run-Aufbau, 10–14 Tage Taper auf die Rennwoche",
+            value:
+              "6 Monate (24 Wochen) — 10 Wo. aerobe Basis, 12 Wo. Long-run-Aufbau, 10–14 Tage Taper auf die Rennwoche",
           },
           {
             label: "Fokus",
-            value: "Zuerst leichtes Volumen, dann Long-run-Progression und eine Qualitätseinheit; Peak in der Rennwoche",
+            value:
+              "Zuerst leichtes Volumen, dann Long-run-Progression und eine Qualitätseinheit; Peak in der Rennwoche",
           },
           {
             label: "Session-Rezept",
@@ -140,7 +147,10 @@ export const de: Copy = {
       {
         title: "Hütte-zu-Hütte-Traverse",
         fields: [
-          { label: "Ziel", value: "Drei verbundene Tage, Wetter- und Materialentscheidungen schon notiert" },
+          {
+            label: "Ziel",
+            value: "Drei verbundene Tage, Wetter- und Materialentscheidungen schon notiert",
+          },
           {
             label: "Plan",
             value:
@@ -148,7 +158,8 @@ export const de: Copy = {
           },
           {
             label: "Fokus",
-            value: "Beine in den Basismonaten; spezifisch ist Pack + Hintereinander-Tage; Peak für Tag 1, kein Dump an Tag 3",
+            value:
+              "Beine in den Basismonaten; spezifisch ist Pack + Hintereinander-Tage; Peak für Tag 1, kein Dump an Tag 3",
           },
           {
             label: "Risiko / Entscheidung",
@@ -184,7 +195,8 @@ export const de: Copy = {
         name: "20-km-Trail",
         duration: "Empfohlen 10 Wochen",
         focus: "Lockeres Volumen, eine Qualitätsdosis, Langer auf 90–110 min",
-        locked: "Woche 8: 6×3 min im 10-km-Tempo auf rollendem Trail, 2 min locker. Langer 90–110 min. Dann 7 Tage Taper.",
+        locked:
+          "Woche 8: 6×3 min im 10-km-Tempo auf rollendem Trail, 2 min locker. Langer 90–110 min. Dann 7 Tage Taper.",
         layout: "sessionLead",
       },
       {
@@ -203,14 +215,16 @@ export const de: Copy = {
         name: "80–120-km-Ultra",
         duration: "Empfohlen 36 Wochen / 9 Monate",
         focus: "Monate lockere Zeit auf den Füßen, späte Back-to-backs, vier Wochen Taper",
-        locked: "Woche 30: Sa 4–5 h lockerer Trail, So 2,5–3 h locker. Die Woche bleibt gesprächig. Dann 3–4 Wochen Taper.",
+        locked:
+          "Woche 30: Sa 4–5 h lockerer Trail, So 2,5–3 h locker. Die Woche bleibt gesprächig. Dann 3–4 Wochen Taper.",
       },
       {
         id: "alpine",
         name: "Alpentag",
         duration: "Empfohlen 10 Wochen",
         focus: "Aerobe Zustiege, Klettern und Kraft, dann Bergtag",
-        locked: "Woche 8: Klettereinheit (Fels/Eis/Halle) + 1.200–1.800 m Zustieg im Gesprächstempo. Kraft 30–40 Min. Müde: Klettern wird leichtes Wandern.",
+        locked:
+          "Woche 8: Klettereinheit (Fels/Eis/Halle) + 1.200–1.800 m Zustieg im Gesprächstempo. Kraft 30–40 Min. Müde: Klettern wird leichtes Wandern.",
         tag: "Mit Klettern",
         layout: "sessionLead",
       },
@@ -219,7 +233,8 @@ export const de: Copy = {
         name: "Mehrtägige Alpenroute",
         duration: "Empfohlen 32 Wochen / 8 Monate",
         focus: "Wander-Basis, dann Pack und Back-to-backs, Peak an Tag 1",
-        locked: "Woche 28: zwei verbundene Tage, leichter Pack. Tag 2 kürzen, wenn Reste in den Beinen sitzen.",
+        locked:
+          "Woche 28: zwei verbundene Tage, leichter Pack. Tag 2 kürzen, wenn Reste in den Beinen sitzen.",
         layout: "compact",
       },
       {
@@ -227,7 +242,8 @@ export const de: Copy = {
         name: "Höhenexpedition",
         duration: "Empfohlen 40 Wochen / 10 Monate",
         focus: "Wandern und lockeres Volumen, Packtragen, Taper ist Schlaf und Kit",
-        locked: "Woche 34: Packtragen 3–4 h auf einer Wanderung, dann Ruhe. Eine Nacht draußen, wenn das Leben es erlaubt. Taper ist Schlaf und Kit, nicht extra Höhe.",
+        locked:
+          "Woche 34: Packtragen 3–4 h auf einer Wanderung, dann Ruhe. Eine Nacht draußen, wenn das Leben es erlaubt. Taper ist Schlaf und Kit, nicht extra Höhe.",
       },
     ],
     lockHint: "Schlüsseleinheit",
@@ -251,19 +267,51 @@ export const de: Copy = {
   what: {
     h2: "Was du bekommst",
     items: [
-      { n: "01", title: "Plan vom Peak-Datum", body: "Du wählst, wann du peaken willst. Die Wochen werden in dieses Fenster geschrieben — Basis, spezifisch, Taper. Länger ist immer besser." },
-      { n: "02", title: "Das Log ändert den nächsten Tag", body: "Du markierst, wie die letzte Einheit war. War sie kaputt, oder tut etwas weh, wird der nächste harte Tag leichter geschrieben. Foster (2001) und Bourdon et al. (2017): interne Last ist eine Planungszahl, keine Diagnose. Das Peak-Datum bleibt." },
-      { n: "03", title: "Kit und Verpflegung", body: "Schuhe, Lagen, Trinken und Schlaf für die echte Woche." },
-      { n: "04", title: "Trainingslog", body: "Was du getan hast und warum die Last sich änderte." },
+      {
+        n: "01",
+        title: "Plan vom Peak-Datum",
+        body: "Du wählst, wann du peaken willst. Die Wochen werden in dieses Fenster geschrieben — Basis, spezifisch, Taper. Länger ist immer besser.",
+      },
+      {
+        n: "02",
+        title: "Das Log ändert den nächsten Tag",
+        body: "Du markierst, wie die letzte Einheit war. War sie kaputt, oder tut etwas weh, wird der nächste harte Tag leichter geschrieben. Foster (2001) und Bourdon et al. (2017): interne Last ist eine Planungszahl, keine Diagnose. Das Peak-Datum bleibt.",
+      },
+      {
+        n: "03",
+        title: "Kit und Verpflegung",
+        body: "Schuhe, Lagen, Trinken und Schlaf für die echte Woche.",
+      },
+      {
+        n: "04",
+        title: "Trainingslog",
+        body: "Was du getan hast und warum die Last sich änderte.",
+      },
     ],
   },
   week: {
     h2: "So läuft eine Woche",
     steps: [
-      { day: "Mo", title: "Woche aufbauen", body: "Das Peak-Datum steht schon im Kalender. Die meisten Tage sind lockeres Laufen. Wenn du gut geschlafen hast, eine härtere Einheit. Ein langer Lauf später in der Woche." },
-      { day: "Di", title: "Schlaf und Beine", body: "Fünf Stunden Schlaf? Intervalle werden 45–60 Min locker. Der Renntag rückt nicht." },
-      { day: "Do", title: "Lockere Tage bleiben locker", body: "Der Großteil der Woche bleibt in einem Tempo, in dem du sprechen kannst. Kommt der Satz, bist du in der richtigen Zone." },
-      { day: "So", title: "Loggen was passiert ist", body: "Langer Lauf, Hitze, Ziepen aufschreiben. Die nächste Woche startet dort, nicht beim Wunschplan." },
+      {
+        day: "Mo",
+        title: "Woche aufbauen",
+        body: "Das Peak-Datum steht schon im Kalender. Die meisten Tage sind lockeres Laufen. Wenn du gut geschlafen hast, eine härtere Einheit. Ein langer Lauf später in der Woche.",
+      },
+      {
+        day: "Di",
+        title: "Schlaf und Beine",
+        body: "Fünf Stunden Schlaf? Intervalle werden 45–60 Min locker. Der Renntag rückt nicht.",
+      },
+      {
+        day: "Do",
+        title: "Lockere Tage bleiben locker",
+        body: "Der Großteil der Woche bleibt in einem Tempo, in dem du sprechen kannst. Kommt der Satz, bist du in der richtigen Zone.",
+      },
+      {
+        day: "So",
+        title: "Loggen was passiert ist",
+        body: "Langer Lauf, Hitze, Ziepen aufschreiben. Die nächste Woche startet dort, nicht beim Wunschplan.",
+      },
     ],
   },
   scenario: {
@@ -291,10 +339,26 @@ export const de: Copy = {
     h2: "Was nach dem Login passiert",
     lead: "Du wählst ein Peak-Datum. Drei Wochen stehen im Kalender. War eine Einheit kaputt oder tut etwas weh, werden die nächsten Tage neu geschrieben. Der Termin bleibt, wo du ihn hingesetzt hast.",
     days: [
-      { day: "Tag 1", title: "Peak wählen, Woche bauen", body: "77 km, Alpentag oder Motor. Drei Wochen erscheinen." },
-      { day: "Tag 3", title: "Dienstag markieren", body: "Kurzer Schlaf, ein Ziepen, oder eine kaputte Einheit: du markierst es. Der nächste harte Tag wird leichter geschrieben. Das Peak-Datum bleibt." },
-      { day: "Tag 6", title: "Die erste lange Einheit laufen", body: "Locker genug zum Sprechen. Das Getränk, das du schon nutzt. War die Woche unruhig, ist dieser Lauf kürzer. Keine Extra-Kilometer zum Aufholen." },
-      { day: "Tag 7", title: "Die Woche loggen, die du wirklich gelaufen bist", body: "Was du getan, was du gestrichen, was gezogen hat. Woche zwei kommt daraus, nicht aus der Woche, die du vorhattest." },
+      {
+        day: "Tag 1",
+        title: "Peak wählen, Woche bauen",
+        body: "77 km, Alpentag oder Motor. Drei Wochen erscheinen.",
+      },
+      {
+        day: "Tag 3",
+        title: "Dienstag markieren",
+        body: "Kurzer Schlaf, ein Ziepen, oder eine kaputte Einheit: du markierst es. Der nächste harte Tag wird leichter geschrieben. Das Peak-Datum bleibt.",
+      },
+      {
+        day: "Tag 6",
+        title: "Die erste lange Einheit laufen",
+        body: "Locker genug zum Sprechen. Das Getränk, das du schon nutzt. War die Woche unruhig, ist dieser Lauf kürzer. Keine Extra-Kilometer zum Aufholen.",
+      },
+      {
+        day: "Tag 7",
+        title: "Die Woche loggen, die du wirklich gelaufen bist",
+        body: "Was du getan, was du gestrichen, was gezogen hat. Woche zwei kommt daraus, nicht aus der Woche, die du vorhattest.",
+      },
     ],
   },
   guidesIndex: {
@@ -327,7 +391,7 @@ export const de: Copy = {
   checkout: {
     kicker: "Start",
     h2: "14 Tage zu 0 € starten",
-    lead: "Konto anlegen. Polar nimmt eine Karte. 14 Tage 0 €, dann 5 €/Monat, außer du kündigst.",
+    lead: "Konto anlegen. 14 Tage ohne Karte. Füge jederzeit eine hinzu, um weiterzutrainieren.",
     name: "Name",
     email: "E-Mail",
     submit: "Karte hinterlegen",
@@ -335,10 +399,13 @@ export const de: Copy = {
     successTitle: "Karte hinterlegt",
     successBody: "14 Tage 0 €. Dann 5 €/Monat, außer du kündigst vorher.",
     daysLeft: "Tage übrig im Test",
-    payTitle: "Karte hinterlegen zum Start",
-    payBody: "Polar nimmt die Karte. Heute 0 €. Nach 14 Tagen 5 €/Monat, außer du kündigst vorher.",
+    payTitle: "Karte hinzufügen zum Weitermachen",
+    payBody:
+      "Deine kostenlose Testphase ist vorbei. Füge eine Karte hinzu, um weiterzumachen — 5 €/Monat, außer du kündigst.",
     payCta: "Mit Karte zahlen",
     trialLeft: "{n} Tage übrig im Test",
+    trialNoCard:
+      "Noch {n} Tage, bisher ohne Karte. Füge jederzeit eine hinzu, um weiterzutrainieren.",
     trialOn: "Karte hinterlegt. Erste Abbuchung nach 14 Tagen, außer du kündigst.",
     subscribed: "Abo aktiv · 5 €/Monat",
     payFail: "Kasse hat nicht geöffnet. Mail an support@ridgework.org.",
@@ -359,7 +426,8 @@ export const de: Copy = {
     chipSupport: "support@ridgework.org",
     chipMerchant: "Abrechnung über Polar",
     cancelCta: "Kündigen",
-    cancelConfirm: "Jetzt kündigen? In den 14 Tagen belastet Polar nicht. Nach einem bezahlten Monat bleibt der Zugang bis Monatsende.",
+    cancelConfirm:
+      "Jetzt kündigen? In den 14 Tagen belastet Polar nicht. Nach einem bezahlten Monat bleibt der Zugang bis Monatsende.",
     cancelYes: "Ja, kündigen",
     cancelKeep: "Behalten",
     canceling: "Wird gekündigt…",
@@ -371,12 +439,30 @@ export const de: Copy = {
   faq: {
     h2: "FAQ",
     items: [
-      { q: "Was ist Ridgework?", a: "Eine geschriebene Trainingswoche für Trail, Ultra und Alpentage. Du sagst, wann du ready sein musst. Die Woche steht im Kalender." },
-      { q: "Wie funktioniert der Preis?", a: "14 Tage kostenlos. Dann 5 €/Monat, wenn du bleibst. Kündigung in den 14 Tagen: keine Rechnung." },
-      { q: "Jederzeit kündbar?", a: "Ja. Am Tisch gibt es Kündigen. In den 14 Tagen belastet Polar nicht. Nach einem bezahlten Monat bleibt der Zugang bis Monatsende. Daneben: Karte und Rechnungen." },
-      { q: "Was passiert nach den 14 Tagen?", a: "Ohne Kündigung läuft das Abo weiter zu 5 €/Monat. Das ist der einzige Preis auf dieser Seite." },
-      { q: "Karte für die Testphase?", a: "Ja. Polar nimmt die Karte jetzt. 14 Tage 0 €. Dann 5 €/Monat, außer du kündigst vorher." },
-      { q: "Ist das medizinisch?", a: "Nein. Keine Diagnosen, keine Behandlung. Bei Gesundheit: Fachperson." },
+      {
+        q: "Was ist Ridgework?",
+        a: "Eine geschriebene Trainingswoche für Trail, Ultra und Alpentage. Du sagst, wann du ready sein musst. Die Woche steht im Kalender.",
+      },
+      {
+        q: "Wie funktioniert der Preis?",
+        a: "14 Tage kostenlos. Dann 5 €/Monat, wenn du bleibst. Kündigung in den 14 Tagen: keine Rechnung.",
+      },
+      {
+        q: "Jederzeit kündbar?",
+        a: "Ja. Am Tisch gibt es Kündigen. In den 14 Tagen belastet Polar nicht. Nach einem bezahlten Monat bleibt der Zugang bis Monatsende. Daneben: Karte und Rechnungen.",
+      },
+      {
+        q: "Was passiert nach den 14 Tagen?",
+        a: "Ohne Karte pausiert der Tisch, bis du eine hinzufügst — es wird nichts automatisch belastet. Mit Karte läuft das Abo weiter zu 5 €/Monat, außer du kündigst.",
+      },
+      {
+        q: "Brauche ich eine Karte für die Testphase?",
+        a: "Nein. Starte 14 Tage kostenlos ohne Karte. Füge jederzeit eine hinzu, während oder nach der Testphase, um bei 5 €/Monat weiterzutrainieren.",
+      },
+      {
+        q: "Ist das medizinisch?",
+        a: "Nein. Keine Diagnosen, keine Behandlung. Bei Gesundheit: Fachperson.",
+      },
       {
         q: "Schreibt sich der Plan von allein weiter?",
         a: "Ja — im Produkt, nicht in einem Chat-Bot. Du wählst das Peak-Datum. Der Programm-Tab hält immer drei Wochen in diesem Fenster bereit. Eine frische Woche schreibt den nächsten Block. Eine müde Woche trainiert weniger; das Peak-Datum bleibt. Nach der Tour startet die nächste Saison höher.",
@@ -399,7 +485,7 @@ export const de: Copy = {
     h1: "Starte mit 14 Tagen kostenlos",
     lead: "Dieselben Wochen. 14 Tage kostenlos, dann 5 €/Monat.",
     trial: "14 Tage kostenlos. Dann 5 €/Monat. Jederzeit kündbar.",
-    note: "Polar nimmt eine Karte. 14 Tage 0 €, dann 5 €/Monat, außer du kündigst. Das ist der einzige Preis hier.",
+    note: "14 Tage ohne Karte. Füge jederzeit eine hinzu, um für 5 €/Monat weiterzutrainieren. Das ist der einzige Preis hier.",
     back: "← Ridgework",
     title: "Founding — Ridgework",
     description: "Wöchentliches Training. 14 Tage kostenlos, dann 5 €/Monat. Jederzeit kündbar.",
@@ -425,12 +511,21 @@ export const de: Copy = {
     h1: "Training dieser Woche",
     lead: "Wähle den Tag, an dem du peak sein willst. Der rollende Plan schreibt die Wochen in dieses Fenster. Müde: weniger trainieren. Nichts hiervon ist medizinischer Rat.",
     lockedTitle: "Konto nötig",
-    lockedBody: "Konto anlegen für 14 Tage kostenlos: Plan, Woche, Tagesvorbereitung und Log. Dann 5 €/Monat, wenn du bleibst.",
+    lockedBody:
+      "Konto anlegen für 14 Tage kostenlos: Plan, Woche, Tagesvorbereitung und Log. Dann 5 €/Monat, wenn du bleibst.",
     trialLabel: "14-Tage-Test",
-    testBanner:
-      "Karte jetzt. 14 Tage 0 €. Dann 5 €/Monat, außer du kündigst.",
-    signInToTrain: "Anmelden, Karte hinterlegen, Peak-Datum wählen. 14 Tage 0 €, dann 5 €/Monat.",
-    tabs: { today: "Heute", plan: "Programm", week: "Woche", prep: "Der Tag", log: "So geht’s", profile: "Du", whatIf: "Was wäre", passport: "Pass" },
+    testBanner: "14 Tage kostenlos, ohne Karte. Dann 5 €/Monat, wenn du eine hinzufügst.",
+    signInToTrain: "Anmelden, Peak-Datum wählen. 14 Tage kostenlos, ohne Karte.",
+    tabs: {
+      today: "Heute",
+      plan: "Programm",
+      week: "Woche",
+      prep: "Der Tag",
+      log: "So geht’s",
+      profile: "Du",
+      whatIf: "Was wäre",
+      passport: "Pass",
+    },
   },
   auth: {
     title: "Anmelden",
@@ -446,12 +541,12 @@ export const de: Copy = {
     haveAccount: "Schon ein Konto? Anmelden",
     noAccount: "Noch kein Konto? Erstellen",
     error: "Anmeldung fehlgeschlagen. E-Mail und Passwort prüfen.",
-    testNote: "Karte jetzt. 14 Tage 0 €. Dann 5 €/Monat, außer du kündigst.",
+    testNote: "14 Tage kostenlos. Ohne Karte. Füge jederzeit eine hinzu, um weiterzutrainieren.",
   },
   dashboard: {
     enrollments: "Deine Programme",
     empty: "Noch kein Programm auf diesem Konto. Unten wählen.",
-    billingTest: "Karte jetzt. 14 Tage 0 €, dann 5 €/Monat.",
+    billingTest: "14 Tage kostenlos, ohne Karte.",
     peak: "Peak",
     statusTest: "Test",
     saved: "Auf dem Konto gespeichert",
@@ -464,7 +559,8 @@ export const de: Copy = {
       types: { easy: "Locker", steady: "Steady", hard: "Hart", rest: "Ruhe" },
       session: "Was du wirklich gelaufen bist",
       readiness: "Wie fühlt sich der Körper diese Woche?",
-      readinessLead: "Das ändert nur das Training. Müde = weniger Arbeit. Kaputt = Ruhe statt Qualität.",
+      readinessLead:
+        "Das ändert nur das Training. Müde = weniger Arbeit. Kaputt = Ruhe statt Qualität.",
       levels: { fresh: "Frisch", ok: "In Ordnung", tired: "Müde", wrecked: "Kaputt" },
       notes: {
         fresh: "Die geschriebene Woche behalten. Kein Extra-Heldentum.",

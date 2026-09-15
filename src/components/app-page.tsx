@@ -5,7 +5,7 @@ import { useCurrentUserState } from "@/lib/auth/use-current-user";
 import type { Copy } from "@/content/types";
 import type { Locale } from "@/lib/locale";
 import { getFounding, grantFounding } from "@/lib/founding";
-import type { Membership } from "@/lib/membership";
+import { isNoCardTrial, type Membership } from "@/lib/membership";
 import { confirmMembershipCheckout, getMembership } from "@/lib/membership-server";
 import { homeHash, pagePath } from "@/lib/locale";
 import {
@@ -17,13 +17,18 @@ import {
 } from "@/lib/athlete";
 import { loadAthleteBundle, saveAthleteProfileRemote, saveDailyRemote } from "@/lib/athlete-server";
 import { recentDaily } from "@/lib/daily-readiness";
-import { retargetPeak, savePlan, startPlan, loadPlan, OBJECTIVES, suggestedPeakOn, type ObjectiveId, type RollingState } from "@/lib/rolling-plan";
 import {
-  listEnrollments,
-  saveEnrollmentState,
-  type EnrollmentRecord,
-} from "@/lib/training";
-import { cn } from "@/lib/utils";
+  retargetPeak,
+  savePlan,
+  startPlan,
+  loadPlan,
+  OBJECTIVES,
+  suggestedPeakOn,
+  type ObjectiveId,
+  type RollingState,
+} from "@/lib/rolling-plan";
+import { listEnrollments, saveEnrollmentState, type EnrollmentRecord } from "@/lib/training";
+import { cn, fillTemplate } from "@/lib/utils";
 import { Onboarding } from "./tools/onboarding";
 import { SessionsGlossary } from "./tools/session-how";
 import { PassportDesk } from "./tools/passport-desk";
@@ -37,13 +42,17 @@ import { WhatIfDesk } from "./tools/what-if";
 type Tab = "today" | "plan" | "whatIf" | "passport" | "prep" | "log" | "profile";
 
 function programFromSearch(searchStr: string): ObjectiveId | null {
-  const raw = new URLSearchParams(searchStr.startsWith("?") ? searchStr.slice(1) : searchStr).get("program");
+  const raw = new URLSearchParams(searchStr.startsWith("?") ? searchStr.slice(1) : searchStr).get(
+    "program",
+  );
   if (!raw) return null;
   return (OBJECTIVES as readonly string[]).includes(raw) ? (raw as ObjectiveId) : null;
 }
 
 function checkoutFromSearch(searchStr: string): string | null {
-  return new URLSearchParams(searchStr.startsWith("?") ? searchStr.slice(1) : searchStr).get("checkout_id");
+  return new URLSearchParams(searchStr.startsWith("?") ? searchStr.slice(1) : searchStr).get(
+    "checkout_id",
+  );
 }
 
 export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
@@ -110,7 +119,9 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
             if (nextProfile) {
               nextProfile = { ...nextProfile, goal: want, peakOn: peak };
               saveProfile(nextProfile);
-              void saveAthleteProfileRemote({ data: { profile: nextProfile } }).catch(() => undefined);
+              void saveAthleteProfileRemote({ data: { profile: nextProfile } }).catch(
+                () => undefined,
+              );
             } else {
               nextProfile = emptyProfile({ goal: want, peakOn: peak });
               saveProfile(nextProfile);
@@ -244,7 +255,11 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
 
   if (!user) {
     const want = wantProgram;
-    return <RedirectToSignIn to={want ? `${pagePath(locale, "login")}?program=${want}` : pagePath(locale, "login")} />;
+    return (
+      <RedirectToSignIn
+        to={want ? `${pagePath(locale, "login")}?program=${want}` : pagePath(locale, "login")}
+      />
+    );
   }
 
   const hasProfile = profileReady(profile);
@@ -269,15 +284,21 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
-      <p className="text-sm font-medium uppercase tracking-wider text-accent">{copy.appPage.kicker}</p>
+      <p className="text-sm font-medium uppercase tracking-wider text-accent">
+        {copy.appPage.kicker}
+      </p>
       {membership?.status === "trialing" ? (
         <p className="mt-4 max-w-2xl rounded-2xl border border-line bg-paper-warm/70 px-4 py-3 text-sm leading-relaxed text-ink">
-          {copy.checkout.trialOn}
+          {isNoCardTrial(membership)
+            ? fillTemplate(copy.checkout.trialNoCard, { n: membership.daysLeft })
+            : copy.checkout.trialOn}
         </p>
       ) : null}
       <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="font-display text-4xl font-semibold tracking-tight text-ink">{copy.appPage.h1}</h1>
+          <h1 className="font-display text-4xl font-semibold tracking-tight text-ink">
+            {copy.appPage.h1}
+          </h1>
           <p className="mt-3 max-w-2xl text-ink-muted leading-relaxed">{copy.appPage.lead}</p>
         </div>
         <p className="rounded-full border border-line bg-card px-3 py-1 text-xs font-medium text-ink-muted">
@@ -286,23 +307,23 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
               ? copy.checkout.canceledLater
               : copy.checkout.subscribed
             : membership?.status === "trialing"
-              ? copy.checkout.trialOn
+              ? isNoCardTrial(membership)
+                ? fillTemplate(copy.checkout.trialLeft, { n: membership.daysLeft })
+                : copy.checkout.trialOn
               : copy.dashboard.billingTest}
         </p>
       </div>
       {membership && (membership.canCancel || membership.cancelScheduled) ? (
         <div className="mt-4 max-w-xl">
-          <BillingActions
-            copy={copy}
-            membership={membership}
-            onChanged={setMembership}
-          />
+          <BillingActions copy={copy} membership={membership} onChanged={setMembership} />
         </div>
       ) : null}
 
       {loaded && enrollments.length > 0 ? (
         <section className="mt-8" aria-label={copy.dashboard.enrollments}>
-          <p className="text-sm font-semibold uppercase tracking-wider text-ridge">{copy.dashboard.enrollments}</p>
+          <p className="text-sm font-semibold uppercase tracking-wider text-ridge">
+            {copy.dashboard.enrollments}
+          </p>
           <ul className="mt-3 grid gap-3 sm:grid-cols-2">
             {enrollments.map((row) => (
               <li key={row.id} className="rounded-2xl border border-line bg-card p-4">
@@ -323,9 +344,7 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
         <p className="mt-8 text-sm text-ink-muted">{copy.dashboard.empty}</p>
       ) : null}
 
-      {savedFlash ? (
-        <p className="mt-4 text-sm text-ridge">{copy.dashboard.saved}</p>
-      ) : null}
+      {savedFlash ? <p className="mt-4 text-sm text-ridge">{copy.dashboard.saved}</p> : null}
 
       {!hasProfile || editing ? (
         <div className="mt-10">
@@ -353,7 +372,9 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
                 onClick={() => setTab(item.id)}
                 className={cn(
                   "min-h-11 rounded-lg px-4 py-2 text-sm font-medium",
-                  tab === item.id ? "bg-ridge text-paper" : "border border-line bg-card text-ink-muted hover:bg-paper-warm",
+                  tab === item.id
+                    ? "bg-ridge text-paper"
+                    : "border border-line bg-card text-ink-muted hover:bg-paper-warm",
                 )}
               >
                 {item.label}
@@ -371,13 +392,22 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
               />
             ) : null}
             {tab === "plan" ? (
-              <RollingPlan locale={locale} copy={copy} profile={profile} onPersist={(s) => void persistRemote(s)} />
+              <RollingPlan
+                locale={locale}
+                copy={copy}
+                profile={profile}
+                onPersist={(s) => void persistRemote(s)}
+              />
             ) : null}
             {tab === "whatIf" ? (
               <WhatIfDesk copy={copy} profile={profile} onPersist={(s) => void persistRemote(s)} />
             ) : null}
             {tab === "passport" ? (
-              <PassportDesk locale={locale} copy={copy} enrollments={enrollments.map((row) => row.state)} />
+              <PassportDesk
+                locale={locale}
+                copy={copy}
+                enrollments={enrollments.map((row) => row.state)}
+              />
             ) : null}
             {tab === "prep" && profile ? (
               <MountainDesk
@@ -394,7 +424,10 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
         </>
       )}
       <p className="mt-10 text-sm">
-        <a href={homeHash(locale, "disclaimer")} className="text-ridge underline-offset-2 hover:underline">
+        <a
+          href={homeHash(locale, "disclaimer")}
+          className="text-ridge underline-offset-2 hover:underline"
+        >
           {copy.disclaimer.h2}
         </a>
       </p>

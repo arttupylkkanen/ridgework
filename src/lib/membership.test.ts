@@ -6,11 +6,24 @@ import { OWNER_EMAIL } from "./test-account.ts";
 const start = "2026-09-14T16:20:00.000Z";
 
 describe("evaluateMembership", () => {
-  it("blocks the desk until Polar has a card on file", () => {
+  it("opens the desk for the first 14 days with no card at all", () => {
     const m = evaluateMembership({
       email: "a@b.c",
       createdAt: start,
       now: new Date("2026-09-20T12:00:00.000Z"),
+    });
+    assert.equal(m.status, "trialing");
+    assert.equal(m.canUseDesk, true);
+    assert.equal(m.canCancel, false);
+    assert.equal(m.cancelScheduled, false);
+    assert.equal(m.daysLeft, 9);
+  });
+
+  it("blocks the desk once the free trial window has closed with no card", () => {
+    const m = evaluateMembership({
+      email: "a@b.c",
+      createdAt: start,
+      now: new Date("2026-10-01T00:00:00.000Z"),
     });
     assert.equal(m.status, "needs_card");
     assert.equal(m.canUseDesk, false);

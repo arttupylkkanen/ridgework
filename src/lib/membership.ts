@@ -15,6 +15,11 @@ export type Membership = {
   cancelScheduled: boolean;
 };
 
+/** A "trialing" membership with no Polar subscription behind it yet — no card on file. */
+export function isNoCardTrial(membership: Membership): boolean {
+  return membership.status === "trialing" && !membership.canCancel;
+}
+
 export function trialEnd(createdAt: string | Date): Date {
   const start = new Date(createdAt).getTime();
   return new Date(start + TRIAL_DAYS * MS_DAY);
@@ -59,10 +64,50 @@ export function evaluateMembership(input: {
   }
   if (OPEN_STATUSES.has(input.billingStatus ?? "")) {
     const status: MembershipStatus = input.billingStatus === "trialing" ? "trialing" : "active";
-    return { status, trialEndsOn, daysLeft: 0, canUseDesk: true, charging, canCancel, cancelScheduled: false };
+    return {
+      status,
+      trialEndsOn,
+      daysLeft: 0,
+      canUseDesk: true,
+      charging,
+      canCancel,
+      cancelScheduled: false,
+    };
   }
   if (input.billingStatus === "canceled" || input.billingStatus === "expired") {
-    return { status: "expired", trialEndsOn, daysLeft: 0, canUseDesk: false, charging, canCancel: false, cancelScheduled: false };
+    return {
+      status: "expired",
+      trialEndsOn,
+      daysLeft: 0,
+      canUseDesk: false,
+      charging,
+      canCancel: false,
+      cancelScheduled: false,
+    };
   }
-  return { status: "needs_card", trialEndsOn, daysLeft: TRIAL_DAYS, canUseDesk: false, charging, canCancel: false, cancelScheduled: false };
+  // Self-service trial: no card, no Polar checkout — access follows signup
+  // date alone for the first TRIAL_DAYS. Only reachable with no billing
+  // status at all (never started checkout, or abandoned it), since a real
+  // Polar state (open/canceling/canceled, handled above) always wins.
+  if (now.getTime() < end.getTime()) {
+    const daysLeft = Math.ceil((end.getTime() - now.getTime()) / MS_DAY);
+    return {
+      status: "trialing",
+      trialEndsOn,
+      daysLeft,
+      canUseDesk: true,
+      charging,
+      canCancel: false,
+      cancelScheduled: false,
+    };
+  }
+  return {
+    status: "needs_card",
+    trialEndsOn,
+    daysLeft: 0,
+    canUseDesk: false,
+    charging,
+    canCancel: false,
+    cancelScheduled: false,
+  };
 }
