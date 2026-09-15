@@ -31,6 +31,7 @@ import { Route as LocaleLoginRouteImport } from './routes/$locale/login'
 import { Route as LocalePrivacyRouteImport } from './routes/$locale/privacy'
 import { Route as LocaleSourcesRouteImport } from './routes/$locale/sources'
 import { Route as LocaleTermsRouteImport } from './routes/$locale/terms'
+import { Route as CalendarTokenRouteImport } from './routes/calendar.$token'
 import { Route as GuidesIndexRouteImport } from './routes/guides/index'
 import { Route as GuidesSlugRouteImport } from './routes/guides/$slug'
 import { Route as PassportTokenRouteImport } from './routes/passport.$token'
@@ -152,6 +153,11 @@ const LocaleTermsRoute = LocaleTermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => LocaleRoute,
 } as any)
+const CalendarTokenRoute = CalendarTokenRouteImport.update({
+  id: '/calendar/$token',
+  path: '/calendar/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GuidesIndexRoute = GuidesIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -225,6 +231,7 @@ export interface FileRoutesByFullPath {
   '/$locale/privacy': typeof LocalePrivacyRoute
   '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
+  '/calendar/$token': typeof CalendarTokenRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
   '/plans/$slug': typeof PlansSlugRoute
@@ -256,6 +263,7 @@ export interface FileRoutesByTo {
   '/$locale/privacy': typeof LocalePrivacyRoute
   '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
+  '/calendar/$token': typeof CalendarTokenRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
   '/plans/$slug': typeof PlansSlugRoute
@@ -291,6 +299,7 @@ export interface FileRoutesById {
   '/$locale/privacy': typeof LocalePrivacyRoute
   '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
+  '/calendar/$token': typeof CalendarTokenRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
   '/plans/$slug': typeof PlansSlugRoute
@@ -327,6 +336,7 @@ export interface FileRouteTypes {
     | '/$locale/privacy'
     | '/$locale/sources'
     | '/$locale/terms'
+    | '/calendar/$token'
     | '/guides/$slug'
     | '/passport/$token'
     | '/plans/$slug'
@@ -358,6 +368,7 @@ export interface FileRouteTypes {
     | '/$locale/privacy'
     | '/$locale/sources'
     | '/$locale/terms'
+    | '/calendar/$token'
     | '/guides/$slug'
     | '/passport/$token'
     | '/plans/$slug'
@@ -392,6 +403,7 @@ export interface FileRouteTypes {
     | '/$locale/privacy'
     | '/$locale/sources'
     | '/$locale/terms'
+    | '/calendar/$token'
     | '/guides/$slug'
     | '/passport/$token'
     | '/plans/$slug'
@@ -418,6 +430,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SourcesRoute: typeof SourcesRoute
   TermsRoute: typeof TermsRoute
+  CalendarTokenRoute: typeof CalendarTokenRoute
   PassportTokenRoute: typeof PassportTokenRoute
   PlansSlugRoute: typeof PlansSlugRoute
   PlansIndexRoute: typeof PlansIndexRoute
@@ -581,6 +594,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocaleTermsRouteImport
       parentRoute: typeof LocaleRoute
     }
+    '/calendar/$token': {
+      id: '/calendar/$token'
+      path: '/calendar/$token'
+      fullPath: '/calendar/$token'
+      preLoaderRoute: typeof CalendarTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/guides/': {
       id: '/guides/'
       path: '/'
@@ -725,6 +745,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SourcesRoute: SourcesRoute,
   TermsRoute: TermsRoute,
+  CalendarTokenRoute: CalendarTokenRoute,
   PassportTokenRoute: PassportTokenRoute,
   PlansSlugRoute: PlansSlugRoute,
   PlansIndexRoute: PlansIndexRoute,

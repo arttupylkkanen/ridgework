@@ -325,6 +325,35 @@ export type Copy = {
   };
   fieldPage: FieldPage;
   tools: {
+    /** Calendar subscription and intervals.icu push. */
+    sync: {
+      tab: string;
+      kicker: string;
+      title: string;
+      lead: string;
+      calendarTitle: string;
+      calendarLead: string;
+      calendarCta: string;
+      calendarNote: string;
+      copy: string;
+      copied: string;
+      rotate: string;
+      intervalsTitle: string;
+      intervalsLead: string;
+      intervalsNote: string;
+      athleteId: string;
+      apiKey: string;
+      apiKeyHint: string;
+      connect: string;
+      connected: string;
+      connectedAs: string;
+      disconnect: string;
+      push: string;
+      pushing: string;
+      pushed: string;
+      lastPushed: string;
+      failed: string;
+    };
     week: {
       save: string;
       saved: string;

@@ -35,11 +35,12 @@ import { PassportDesk } from "./tools/passport-desk";
 import { MountainDesk } from "./tools/mountain-desk";
 import { isTestAccountEmail, sampleTesterProfile } from "@/lib/test-account";
 import { PaywallPanel, BillingActions } from "./checkout-form";
+import { SyncDesk } from "./tools/sync-desk";
 import { RollingPlan } from "./tools/rolling-plan";
 import { TodayDesk } from "./tools/today-desk";
 import { WhatIfDesk } from "./tools/what-if";
 
-type Tab = "today" | "plan" | "whatIf" | "passport" | "prep" | "log" | "profile";
+type Tab = "today" | "plan" | "whatIf" | "passport" | "prep" | "log" | "profile" | "sync";
 
 function programFromSearch(searchStr: string): ObjectiveId | null {
   const raw = new URLSearchParams(searchStr.startsWith("?") ? searchStr.slice(1) : searchStr).get(
@@ -282,6 +283,7 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
     { id: "prep", label: copy.appPage.tabs.prep },
     { id: "log", label: copy.appPage.tabs.log },
     { id: "profile", label: copy.appPage.tabs.profile },
+    { id: "sync", label: copy.tools.sync.tab },
   ];
   const activeMore = moreTabs.find((item) => item.id === tab);
 
@@ -445,6 +447,7 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
             {tab === "profile" ? (
               <Onboarding copy={copy} initial={profile} onComplete={completeProfile} />
             ) : null}
+            {tab === "sync" ? <SyncDesk copy={copy} /> : null}
           </div>
         </>
       )}
