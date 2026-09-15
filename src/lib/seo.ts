@@ -1,4 +1,4 @@
-const SITE = "https://ridgework.org";
+export const SITE = "https://ridgework.org";
 const OG_IMAGE = `${SITE}/og.jpg`;
 
 const OG_LOCALE: Record<string, string> = {

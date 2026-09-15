@@ -415,6 +415,9 @@ export const fi: Copy = {
     trialOn: "Kortti tallessa. Ensimmäinen veloitus 14 päivän jälkeen, ellet peru.",
     subscribed: "Tilaus voimassa · 9 €/kk",
     payFail: "Kassa ei auennut. Yritä uudelleen, tai kirjoita support@ridgework.org mitä näit.",
+    closedTitle: "Korttimaksut eivät ole vielä auki",
+    closedBody:
+      "Ridgework ei ota maksuja ennen kuin yhtiön rekisteröinti on valmis. 14 päivääsi jatkuu normaalisti, eikä mitään voi veloittaa sillä välin — korttia ei tallenneta mihinkään.",
     paying: "Avataan kassaa…",
     dueToday: "Maksettavaa tänään",
     dueAmount: "0 €",

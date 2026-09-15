@@ -8,7 +8,7 @@ import type { Copy } from "./types";
 export const fr: Copy = {
   metaTitle: "Ridgework — Programmes d’entraînement trail, alpin et altitude",
   metaDescription:
-    "Sept programmes : moteur aérobie, trail 20 km, 50 km, ultra, journée alpine, itinéraire de plusieurs jours, expédition. Fatigué : moins de travail. 14 jours gratuits, puis 9 €/mois.",
+    "Que courir cette semaine pour un trail 20 km, un ultra 50 ou 100 km, ou une journée alpine. Une semaine fatiguée s’allège. 14 jours gratuits, sans carte.",
   footerTag: "Un entraînement de montagne qui suit la semaine que vous avez vraiment.",
   legalEntity: "Ridgework, France.",
   support: "support@ridgework.org",
@@ -420,6 +420,9 @@ export const fr: Copy = {
     trialOn: "Carte enregistrée. Premier prélèvement après 14 jours sauf résiliation.",
     subscribed: "Abonné · 9 €/mois",
     payFail: "Le paiement ne s’est pas ouvert. Écrivez à support@ridgework.org.",
+    closedTitle: "Les paiements par carte ne sont pas encore ouverts",
+    closedBody:
+      "Ridgework ne prend aucun paiement tant que l’immatriculation de la société n’est pas terminée. Vos 14 jours continuent, et rien ne peut être débité entre-temps.",
     paying: "Ouverture du paiement…",
     dueToday: "À régler aujourd’hui",
     dueAmount: "0 €",

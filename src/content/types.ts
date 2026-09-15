@@ -214,6 +214,9 @@ export type Copy = {
     subscribed: string;
     payFail: string;
     paying: string;
+    /** Shown while CHECKOUT_OPEN is false — no card can be taken yet. */
+    closedTitle: string;
+    closedBody: string;
     dueToday: string;
     dueAmount: string;
     terms: string;

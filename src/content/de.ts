@@ -8,7 +8,7 @@ import type { Copy } from "./types";
 export const de: Copy = {
   metaTitle: "Ridgework — Trainingsprogramme für Trail, Alpin und Höhe",
   metaDescription:
-    "Sieben Programme: aerober Motor, 20-km-Trail, 50 km, Ultra, Alpentag, mehrtägige Route, Höhenexpedition. Müde heißt weniger trainieren. 14 Tage kostenlos, dann 9 €/Monat.",
+    "Was du diese Woche läufst — 20-km-Trail, 50 oder 100 km Ultra, Alpentag. Eine müde Woche wird leichter. 14 Tage kostenlos, ohne Karte.",
   footerTag: "Bergtraining, das der Woche folgt, die du wirklich hast.",
   legalEntity: "Ridgework, Frankreich.",
   support: "support@ridgework.org",
@@ -414,6 +414,9 @@ export const de: Copy = {
     trialOn: "Karte hinterlegt. Erste Abbuchung nach 14 Tagen, außer du kündigst.",
     subscribed: "Abo aktiv · 9 €/Monat",
     payFail: "Kasse hat nicht geöffnet. Mail an support@ridgework.org.",
+    closedTitle: "Kartenzahlung ist noch nicht offen",
+    closedBody:
+      "Ridgework nimmt keine Zahlung an, bis die Registrierung des Unternehmens abgeschlossen ist. Deine 14 Tage laufen weiter, und in der Zwischenzeit kann nichts belastet werden.",
     paying: "Kasse wird geöffnet…",
     dueToday: "Heute fällig",
     dueAmount: "0 €",

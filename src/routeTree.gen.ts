@@ -18,6 +18,7 @@ import { Route as FoundingRouteImport } from './routes/founding'
 import { Route as GuidesRouteImport } from './routes/guides'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SourcesRouteImport } from './routes/sources'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as LocaleIndexRouteImport } from './routes/$locale/index'
@@ -84,6 +85,11 @@ const LoginRoute = LoginRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SourcesRoute = SourcesRouteImport.update({
@@ -207,6 +213,7 @@ export interface FileRoutesByFullPath {
   '/guides': typeof GuidesRouteWithChildren
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sources': typeof SourcesRoute
   '/terms': typeof TermsRoute
   '/$locale/app': typeof LocaleAppRoute
@@ -238,6 +245,7 @@ export interface FileRoutesByTo {
   '/founding': typeof FoundingRoute
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sources': typeof SourcesRoute
   '/terms': typeof TermsRoute
   '/$locale/app': typeof LocaleAppRoute
@@ -271,6 +279,7 @@ export interface FileRoutesById {
   '/guides': typeof GuidesRouteWithChildren
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sources': typeof SourcesRoute
   '/terms': typeof TermsRoute
   '/$locale/app': typeof LocaleAppRoute
@@ -306,6 +315,7 @@ export interface FileRouteTypes {
     | '/guides'
     | '/login'
     | '/privacy'
+    | '/sitemap.xml'
     | '/sources'
     | '/terms'
     | '/$locale/app'
@@ -337,6 +347,7 @@ export interface FileRouteTypes {
     | '/founding'
     | '/login'
     | '/privacy'
+    | '/sitemap.xml'
     | '/sources'
     | '/terms'
     | '/$locale/app'
@@ -369,6 +380,7 @@ export interface FileRouteTypes {
     | '/guides'
     | '/login'
     | '/privacy'
+    | '/sitemap.xml'
     | '/sources'
     | '/terms'
     | '/$locale/app'
@@ -403,6 +415,7 @@ export interface RootRouteChildren {
   GuidesRoute: typeof GuidesRouteWithChildren
   LoginRoute: typeof LoginRoute
   PrivacyRoute: typeof PrivacyRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SourcesRoute: typeof SourcesRoute
   TermsRoute: typeof TermsRoute
   PassportTokenRoute: typeof PassportTokenRoute
@@ -475,6 +488,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sources': {
@@ -702,6 +722,7 @@ const rootRouteChildren: RootRouteChildren = {
   GuidesRoute: GuidesRouteWithChildren,
   LoginRoute: LoginRoute,
   PrivacyRoute: PrivacyRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SourcesRoute: SourcesRoute,
   TermsRoute: TermsRoute,
   PassportTokenRoute: PassportTokenRoute,

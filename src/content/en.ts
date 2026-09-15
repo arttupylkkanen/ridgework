@@ -437,6 +437,9 @@ export const en: Copy = {
     trialOn: "Card on file. First charge after 14 days unless you cancel.",
     subscribed: "Subscribed · €9/month",
     payFail: "Checkout did not open. Try again, or write support@ridgework.org with what you saw.",
+    closedTitle: "Card payments are not open yet",
+    closedBody:
+      "Ridgework is not taking payment until the company registration is finished. Your 14 days are unaffected, and nothing can be charged in the meantime — no card is stored anywhere.",
     paying: "Opening checkout…",
     dueToday: "Total due today",
     dueAmount: "€0",
