@@ -41,9 +41,9 @@ export const fi: Copy = {
   },
   hero: {
     kicker: "Vuoritreeni",
-    h1: "77 km kuuden viikon päästä. Mitä juokset tiistaina?",
-    lead: "Viisi tuntia unta. Eilen pitkä. Polvi kolottaa. Sunnuntaina 28 astetta. Tästä syntyy viikko: vedot pois, tilalle helppoa, pitkä maanantaille. Kisapäivä ei muutu.",
-    trial: "14 päivää ilmaiseksi. Ei korttia. Lisää se milloin tahansa jatkaaksesi.",
+    h1: "Treenaa sitä päivää varten jolla on väliä.",
+    lead: "Valitse päivä jolloin sinun pitää olla valmis. Jokainen viikko kirjoitetaan siitä taaksepäin — ja kirjoitetaan uusiksi kun elämä tulee väliin.",
+    trial: "Ilmainen niin kauan kuin yhtiön rekisteröinti on kesken. Ei korttia, ei mitään peruttavaa.",
   },
   about: {
     kicker: "Mitä tämä on",

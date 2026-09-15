@@ -41,9 +41,9 @@ export const en: Copy = {
   },
   hero: {
     kicker: "Mountain training",
-    h1: "77 km in six weeks. What do you run on Tuesday?",
-    lead: "You slept five hours. Long run yesterday. Knee at 2/10. Heat on Sunday. From that, the week is: skip intervals, run easy, move the long. Race day does not move.",
-    trial: "14 days free. No card needed. Add one anytime to keep training after.",
+    h1: "Train for the day that matters.",
+    lead: "Pick the day you need to be ready. Every week is written backwards from it — and rewritten when life gets in the way.",
+    trial: "Free while we finish registering the company. No card, nothing to cancel.",
   },
   about: {
     kicker: "What this is",
@@ -100,21 +100,21 @@ export const en: Copy = {
     allSourcesCta: "All sources, and what each one is used for",
   },
   rollingEngine: {
-    kicker: "Always ahead",
-    h2: "The plan never goes stale",
-    lead: "Most training plans are a PDF you download once. Ridgework keeps writing: up to three weeks are always on the calendar, and every one of them gets rewritten around how you actually trained, not how you were supposed to.",
+    kicker: "Why this is not a PDF",
+    h2: "A week that answers back",
+    lead: "A spreadsheet cannot see that you slept five hours. A generic AI chatbot will happily tell you something, then forget it by Thursday and leave no plan behind it. Ridgework keeps three weeks on the calendar and rewrites them from what you actually did.",
     points: [
       {
         title: "Three weeks, always written",
-        body: "Log today's session and the week ahead updates. There is always something real to look at, never a blank calendar waiting on you.",
+        body: "Log today's session and the weeks ahead update. There is always something real to look at, never a blank calendar waiting on you to fill it in.",
       },
       {
         title: "A tired week trains less. It does not restart.",
-        body: "Poor sleep, a missed session, a heavy week at work — the plan adjusts around it. The peak date only moves when you move it.",
+        body: "Poor sleep, a missed session, a heavy week at work — the plan bends around it and names the reason in writing. The peak date only moves when you move it.",
       },
       {
-        title: "Not a template with your name on it",
-        body: "A static PDF cannot see that you slept five hours last night. This can — and it rewrites the week because of it.",
+        title: "It remembers what a chatbot forgets",
+        body: "Every change is recorded against the date it was made, so a season reads as one continuous plan instead of a pile of disconnected answers.",
       },
     ],
   },

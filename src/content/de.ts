@@ -41,9 +41,9 @@ export const de: Copy = {
   },
   hero: {
     kicker: "Bergtraining",
-    h1: "77 km in sechs Wochen. Was läufst du am Dienstag?",
-    lead: "Fünf Stunden Schlaf. Langer Lauf gestern. Knie 2/10. Hitze am Sonntag. Daraus wird die Woche: Intervalle streichen, locker laufen, den Langen verschieben. Der Renntag rückt nicht.",
-    trial: "14 Tage kostenlos. Dann 19 €/Monat. Jederzeit kündbar.",
+    h1: "Trainiere für den Tag, auf den es ankommt.",
+    lead: "Wähle den Tag, an dem du bereit sein musst. Jede Woche wird von dort rückwärts geschrieben — und neu geschrieben, wenn das Leben dazwischenkommt.",
+    trial: "Kostenlos, solange die Registrierung des Unternehmens läuft. Keine Karte, nichts zu kündigen.",
   },
   about: {
     kicker: "Was das ist",

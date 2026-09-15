@@ -41,9 +41,9 @@ export const fr: Copy = {
   },
   hero: {
     kicker: "Entraînement en montagne",
-    h1: "77 km dans six semaines. Qu’est-ce que vous courez mardi ?",
-    lead: "Cinq heures de sommeil. Longue hier. Genou à 2/10. Chaleur dimanche. La semaine devient : pas d’intervalles, facile à la place, longue déplacée. Le jour de course ne bouge pas.",
-    trial: "14 jours gratuits. Puis 19 €/mois. Résiliez à tout moment.",
+    h1: "Entraînez-vous pour le jour qui compte.",
+    lead: "Choisissez le jour où vous devez être prêt. Chaque semaine est écrite à rebours depuis cette date — et réécrite quand la vie s’en mêle.",
+    trial: "Gratuit tant que l’immatriculation de la société n’est pas terminée. Sans carte, rien à résilier.",
   },
   about: {
     kicker: "Ce que c’est",
