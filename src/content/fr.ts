@@ -8,7 +8,7 @@ import type { Copy } from "./types";
 export const fr: Copy = {
   metaTitle: "Ridgework — Programmes d’entraînement trail, alpin et altitude",
   metaDescription:
-    "Sept programmes : moteur aérobie, trail 20 km, 50 km, ultra, journée alpine, itinéraire de plusieurs jours, expédition. Fatigué : moins de travail. 14 jours gratuits, puis 5 €/mois.",
+    "Sept programmes : moteur aérobie, trail 20 km, 50 km, ultra, journée alpine, itinéraire de plusieurs jours, expédition. Fatigué : moins de travail. 14 jours gratuits, puis 9 €/mois.",
   footerTag: "Un entraînement de montagne qui suit la semaine que vous avez vraiment.",
   legalEntity: "Ridgework, France.",
   support: "support@ridgework.org",
@@ -43,7 +43,7 @@ export const fr: Copy = {
     kicker: "Entraînement en montagne",
     h1: "77 km dans six semaines. Qu’est-ce que vous courez mardi ?",
     lead: "Cinq heures de sommeil. Longue hier. Genou à 2/10. Chaleur dimanche. La semaine devient : pas d’intervalles, facile à la place, longue déplacée. Le jour de course ne bouge pas.",
-    trial: "14 jours gratuits. Puis 5 €/mois. Résiliez à tout moment.",
+    trial: "14 jours gratuits. Puis 9 €/mois. Résiliez à tout moment.",
   },
   about: {
     kicker: "Ce que c’est",
@@ -376,23 +376,23 @@ export const fr: Copy = {
   },
   pricing: {
     kicker: "Tarifs",
-    h2: "14 jours sur le calendrier. Puis 5 €/mois.",
-    lead: "Courez d’abord une vraie semaine. Ensuite 5 €/mois si vous restez. Résiliez à tout moment, y compris pendant les 14 jours.",
+    h2: "14 jours sur le calendrier. Puis 9 €/mois.",
+    lead: "Courez d’abord une vraie semaine. Ensuite 9 €/mois si vous restez. Résiliez à tout moment, y compris pendant les 14 jours.",
     badge: "Prix actuel",
     trialBadge: "14 jours gratuits",
     name: "Abonnement Ridgework",
-    price: "€5",
+    price: "€9",
     per: "/mois",
-    blurb: "14 jours gratuits. Puis 5 €/mois. Résiliez à tout moment.",
+    blurb: "14 jours gratuits. Puis 9 €/mois. Résiliez à tout moment.",
     features: [
       "Sept programmes, du moteur aérobie au 100 km et aux journées alpines",
-      "5 €/mois tant que l’abonnement continue",
+      "9 €/mois tant que l’abonnement continue",
       "Résiliation à tout moment, y compris pendant les 14 jours — alors rien n’est facturé",
       "Des semaines d’entraînement, pas de claims médicaux",
     ],
     laterTitle: "Après les 14 jours",
     laterBody:
-      "Si vous restez, Polar facture 5 €/mois. Si vous résiliez pendant les 14 jours, vous n’êtes pas facturé. Plus tard, l’accès dure jusqu’à la fin de la période déjà payée. Aucun autre tarif n’est affiché sur ce site.",
+      "Si vous restez, Polar facture 9 €/mois. Si vous résiliez pendant les 14 jours, vous n’êtes pas facturé. Plus tard, l’accès dure jusqu’à la fin de la période déjà payée. Aucun autre tarif n’est affiché sur ce site.",
   },
   checkout: {
     kicker: "Essai",
@@ -403,23 +403,23 @@ export const fr: Copy = {
     submit: "Ajouter une carte",
     note: "Résiliez dans le bureau. Pendant les 14 jours, Polar ne facture pas. Pas de diagnostics. Vous restez responsable de la sécurité en montagne et à l’entraînement.",
     successTitle: "Carte enregistrée",
-    successBody: "14 jours à 0 €. Puis 5 €/mois sauf résiliation avant.",
+    successBody: "14 jours à 0 €. Puis 9 €/mois sauf résiliation avant.",
     daysLeft: "jours restants d’essai",
     payTitle: "Ajoutez une carte pour continuer",
     payBody:
-      "Votre essai gratuit est terminé. Ajoutez une carte pour continuer — 5 €/mois sauf résiliation.",
+      "Votre essai gratuit est terminé. Ajoutez une carte pour continuer — 9 €/mois sauf résiliation.",
     payCta: "Payer par carte",
     trialLeft: "{n} jours restants d’essai",
     trialNoCard:
       "Plus que {n} jours, sans carte pour l’instant. Ajoutez-en une quand vous voulez pour continuer.",
     trialOn: "Carte enregistrée. Premier prélèvement après 14 jours sauf résiliation.",
-    subscribed: "Abonné · 5 €/mois",
+    subscribed: "Abonné · 9 €/mois",
     payFail: "Le paiement ne s’est pas ouvert. Écrivez à support@ridgework.org.",
     paying: "Ouverture du paiement…",
     dueToday: "À régler aujourd’hui",
     dueAmount: "0 €",
     terms:
-      "Polar enregistre la carte. 0 € aujourd’hui pour 14 jours. Puis 5 €/mois sauf résiliation avant la fin des 14 jours. Ensuite, renouvellement chaque mois jusqu’à résiliation dans le bureau. Montants en EUR. Polar est le marchand de record.",
+      "Polar enregistre la carte. 0 € aujourd’hui pour 14 jours. Puis 9 €/mois sauf résiliation avant la fin des 14 jours. Ensuite, renouvellement chaque mois jusqu’à résiliation dans le bureau. Montants en EUR. Polar est le marchand de record.",
     includesTitle: "Les 14 jours comprennent",
     includes: [
       "Les séances de la semaine, écrites : quoi faire, ce que ça doit donner, combien de temps",
@@ -427,7 +427,7 @@ export const fr: Copy = {
       "Marche, footing, rando ou vélo — les mêmes minutes comptent",
       "Résiliez dans les 14 jours : Polar ne facture rien",
     ],
-    afterLine: "Après le 14e jour, l’abonnement est à 5 €/mois jusqu’à résiliation.",
+    afterLine: "Après le 14e jour, l’abonnement est à 9 €/mois jusqu’à résiliation.",
     chipCancel: "Résiliation à tout moment",
     chipSupport: "support@ridgework.org",
     chipMerchant: "Facturé par Polar",
@@ -451,7 +451,7 @@ export const fr: Copy = {
       },
       {
         q: "Comment marche le prix ?",
-        a: "14 jours gratuits. Puis 5 €/mois si vous restez. Résiliez pendant les 14 jours : rien n’est facturé.",
+        a: "14 jours gratuits. Puis 9 €/mois si vous restez. Résiliez pendant les 14 jours : rien n’est facturé.",
       },
       {
         q: "Puis-je résilier à tout moment ?",
@@ -459,11 +459,11 @@ export const fr: Copy = {
       },
       {
         q: "Après les 14 jours ?",
-        a: "Si vous n’avez pas ajouté de carte, le bureau se met en pause jusqu’à ce que vous en ajoutiez une — rien n’est facturé automatiquement. Si vous en avez ajouté une, l’abonnement continue à 5 €/mois sauf résiliation.",
+        a: "Si vous n’avez pas ajouté de carte, le bureau se met en pause jusqu’à ce que vous en ajoutiez une — rien n’est facturé automatiquement. Si vous en avez ajouté une, l’abonnement continue à 9 €/mois sauf résiliation.",
       },
       {
         q: "Faut-il une carte pour l’essai ?",
-        a: "Non. Commencez gratuitement pendant 14 jours sans carte. Ajoutez-en une quand vous voulez, pendant ou après l’essai, pour continuer à 5 €/mois.",
+        a: "Non. Commencez gratuitement pendant 14 jours sans carte. Ajoutez-en une quand vous voulez, pendant ou après l’essai, pour continuer à 9 €/mois.",
       },
       {
         q: "Est-ce un avis médical ?",
@@ -492,19 +492,19 @@ export const fr: Copy = {
   foundingPage: {
     kicker: "Founding",
     h1: "Commencez 14 jours gratuits",
-    lead: "Les mêmes semaines. 14 jours gratuits, puis 5 €/mois.",
-    trial: "14 jours gratuits. Puis 5 €/mois. Résiliez à tout moment.",
-    note: "Sans carte pendant 14 jours. Ajoutez-en une quand vous voulez pour continuer à 5 €/mois. C’est le seul tarif affiché ici.",
+    lead: "Les mêmes semaines. 14 jours gratuits, puis 9 €/mois.",
+    trial: "14 jours gratuits. Puis 9 €/mois. Résiliez à tout moment.",
+    note: "Sans carte pendant 14 jours. Ajoutez-en une quand vous voulez pour continuer à 9 €/mois. C’est le seul tarif affiché ici.",
     back: "← Ridgework",
     title: "Founding — Ridgework",
     description:
-      "Entraînement hebdomadaire. 14 jours gratuits, puis 5 €/mois. Résiliez à tout moment.",
+      "Entraînement hebdomadaire. 14 jours gratuits, puis 9 €/mois. Résiliez à tout moment.",
   },
   termsPage: {
     title: "Conditions d’utilisation",
     updated: "Dernière mise à jour : septembre 2026",
     body: [
-      "Ridgework fournit des plans d’entraînement hebdomadaires — pas de soins médicaux, pas de diagnostics. Prix : 14 jours gratuits, puis 5 €/mois. Résiliez à tout moment (support@ridgework.org). Pendant les 14 jours, la résiliation signifie aucune facture. Vous restez responsable de la sécurité en montagne et à l’entraînement. Les droits impératifs des consommateurs français/UE ne sont pas limités.",
+      "Ridgework fournit des plans d’entraînement hebdomadaires — pas de soins médicaux, pas de diagnostics. Prix : 14 jours gratuits, puis 9 €/mois. Résiliez à tout moment (support@ridgework.org). Pendant les 14 jours, la résiliation signifie aucune facture. Vous restez responsable de la sécurité en montagne et à l’entraînement. Les droits impératifs des consommateurs français/UE ne sont pas limités.",
     ],
   },
   privacyPage: {
@@ -533,9 +533,9 @@ export const fr: Copy = {
     lead: "Choisissez le jour où vous voulez être au pic. Le programme glissant écrit les semaines dans cette fenêtre. Fatigué : moins de travail. Rien ici n’est un avis médical.",
     lockedTitle: "Compte requis",
     lockedBody:
-      "Créez un compte pour les 14 jours gratuits : programme, semaine, préparation du jour et journal. Puis 5 €/mois si vous restez.",
+      "Créez un compte pour les 14 jours gratuits : programme, semaine, préparation du jour et journal. Puis 9 €/mois si vous restez.",
     trialLabel: "Essai 14 jours",
-    testBanner: "14 jours gratuits, sans carte. Puis 5 €/mois si vous en ajoutez une.",
+    testBanner: "14 jours gratuits, sans carte. Puis 9 €/mois si vous en ajoutez une.",
     signInToTrain: "Connectez-vous, choisissez une date de pic. 14 jours gratuits, sans carte.",
     tabs: {
       today: "Aujourd’hui",

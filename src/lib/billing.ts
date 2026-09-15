@@ -11,11 +11,17 @@ import { isBillingExemptEmail } from "./test-account.ts";
  */
 
 export const BILLING_REQUIRED = true;
-export const FOUNDING_PRICE_CENTS = 500;
+export const FOUNDING_PRICE_CENTS = 900;
+export const REGULAR_PRICE_CENTS = 1900;
 export const FOUNDING_CURRENCY = "eur";
 export const TEST_BILLING_STATUS = "trial" as const;
 
-/** Polar product: Ridgework Founding (€5/month). Not a secret. */
+/**
+ * Polar product: Ridgework Founding (€9/month, shown against a €19/month
+ * regular-price anchor — see `copy.pricing`). The actual charged price lives
+ * in Polar's own dashboard on this product; these constants are documentation,
+ * not something Polar reads.
+ */
 export const POLAR_FOUNDING_PRODUCT_ID = "0cfe768e-74ff-44a9-a2bd-f6ee93212d44";
 
 /** Public Polar checkout link. Card form lives on Polar. */
@@ -27,8 +33,7 @@ export const POLAR_SUCCESS_URL = "https://ridgework.org/app?checkout_id={CHECKOU
 export type BillingStatus = "trial" | "active" | "past_due" | "canceled";
 
 export function polarAccessToken(): string | null {
-  const token =
-    typeof process !== "undefined" ? process.env.POLAR_ACCESS_TOKEN?.trim() : undefined;
+  const token = typeof process !== "undefined" ? process.env.POLAR_ACCESS_TOKEN?.trim() : undefined;
   return token || null;
 }
 

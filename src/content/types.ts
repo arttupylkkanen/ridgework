@@ -169,6 +169,8 @@ export type Copy = {
     badge: string;
     trialBadge: string;
     name: string;
+    /** Struck through next to `price` when set — a comparison anchor, not a second buyable tier. */
+    anchorPrice?: string;
     price: string;
     per: string;
     blurb: string;
