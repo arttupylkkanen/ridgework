@@ -576,6 +576,7 @@ export const fi: Copy = {
       profile: "Sinä",
       whatIf: "Entä jos",
       passport: "Passi",
+      more: "Lisää",
     },
   },
   auth: {

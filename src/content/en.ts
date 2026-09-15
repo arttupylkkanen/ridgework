@@ -606,6 +606,7 @@ export const en: Copy = {
       profile: "You",
       whatIf: "What if",
       passport: "Passport",
+      more: "More",
     },
   },
   auth: {

@@ -294,6 +294,7 @@ export type Copy = {
       profile: string;
       whatIf: string;
       passport: string;
+      more: string;
     };
   };
   auth: {

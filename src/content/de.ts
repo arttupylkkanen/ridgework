@@ -561,6 +561,7 @@ export const de: Copy = {
       profile: "Du",
       whatIf: "Was wäre",
       passport: "Pass",
+      more: "Mehr",
     },
   },
   auth: {

@@ -247,6 +247,196 @@ export function TodayDesk({
       </div>
 
       <section className="rounded-2xl border border-line bg-card p-5 sm:p-6">
+        <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+          {t.sessionToday}
+        </p>
+        {shown ? (
+          <>
+            <h3 className="mt-2 font-display text-xl font-semibold text-ink">
+              {sessions[shown.key]}
+              {shown.minutes ? (
+                <span className="text-ink-muted">
+                  {" "}
+                  · {fillTemplate(t.minutes, { n: shown.minutes })}
+                </span>
+              ) : null}
+              {todayStartAt ? <span className="text-ink-muted"> · {todayStartAt}</span> : null}
+            </h3>
+            {changed && written ? (
+              <p className="mt-1 text-sm text-ink-muted">
+                {fillTemplate(t.was, { session: sessions[written.key] })}
+              </p>
+            ) : null}
+            <SessionHowTo
+              locale={locale}
+              sessionKey={shown.key}
+              minutes={shown.minutes}
+              minutesLabel={
+                shown.minutes ? fillTemplate(t.minutes, { n: shown.minutes }) : undefined
+              }
+              loadKg={shown.key === "pack" || shown.key === "me" ? packLoadKg(state) : undefined}
+            />
+            <div className="mt-5 flex flex-wrap gap-2">
+              <button
+                id="today-done"
+                type="button"
+                onClick={() => {
+                  const next = markToday(state, profile, "done", today, view);
+                  persist(next.state);
+                  setFlash(t.doneFlash);
+                }}
+                className="inline-flex min-h-11 items-center rounded-lg bg-ridge px-4 py-2 text-sm font-medium text-paper hover:bg-ridge-deep"
+              >
+                {t.markDone}
+              </button>
+              <button
+                id="today-missed"
+                type="button"
+                onClick={() => {
+                  const next = markToday(state, profile, "missed", today, view);
+                  persist(next.state);
+                  setFlash(t.missedFlash);
+                }}
+                className="inline-flex min-h-11 items-center rounded-lg border border-line bg-paper px-4 py-2 text-sm text-ink hover:bg-paper-warm"
+              >
+                {t.markMissed}
+              </button>
+              <button
+                id="today-early"
+                type="button"
+                onClick={() => {
+                  const next = markMoved(state, profile, addDaysIso(today, 1), today);
+                  persist(next.state);
+                  setFlash(t.doneFlash);
+                }}
+                className="inline-flex min-h-11 items-center rounded-lg border border-line bg-paper px-4 py-2 text-sm text-ink-muted hover:bg-paper-warm"
+              >
+                {t.didTomorrow}
+              </button>
+            </div>
+            {flash ? <p className="mt-3 text-sm text-ridge-deep">{flash}</p> : null}
+            {view?.log ? (
+              <p className="mt-3 text-xs uppercase tracking-wider text-accent">{view.log.status}</p>
+            ) : null}
+          </>
+        ) : (
+          <p className="mt-2 text-sm text-ink-muted">{t.noSession}</p>
+        )}
+      </section>
+
+      <section
+        className={cn("rounded-2xl border p-5 sm:p-6", CALL_TONE[call])}
+        data-readiness-call={call}
+      >
+        <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+          {t.calls[call].title}
+        </p>
+        <p className="mt-2 font-display text-xl font-semibold text-ink">{t.calls[call].action}</p>
+        <ul className="mt-4 space-y-1.5 text-sm leading-relaxed text-ink">
+          {(view?.readiness.drivers.length
+            ? view.readiness.drivers
+            : (view?.readiness.reasons.slice(0, 3) ?? [])
+          ).map((reason, i) => (
+            <li key={`${reason.id}-${i}`}>{reasonText(copy, reason.id, reason.values)}</li>
+          ))}
+        </ul>
+        {changed && view ? (
+          <div className="mt-4 rounded-xl border border-line bg-card/80 p-4" data-why-changed="1">
+            <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+              {t.whyChanged}
+            </p>
+            <p className="mt-2 text-sm text-ink">
+              {sessions[view.written.key]} → {sessions[view.shown.key]}
+              {view.shown.minutes ? ` · ${fillTemplate(t.minutes, { n: view.shown.minutes })}` : ""}
+            </p>
+            <p className="mt-1 text-sm text-ink-muted">
+              {reasonText(
+                copy,
+                view.call === "rest"
+                  ? "todayRest"
+                  : view.call === "easy"
+                    ? "qualityToEasy"
+                    : "reduceMinutes",
+                {
+                  from: view.written.key,
+                  to: view.shown.key,
+                },
+              )}
+            </p>
+          </div>
+        ) : null}
+        <p className="mt-4 text-xs leading-relaxed text-ink-soft">{t.safety}</p>
+        {call !== "ready" && !overridden ? (
+          <div className="mt-4 space-y-3 border-t border-line/80 pt-4">
+            <label className="flex items-start gap-3 text-sm text-ink">
+              <input
+                id="ready-override"
+                type="checkbox"
+                checked={confirmOverride}
+                onChange={(e) => setConfirmOverride(e.target.checked)}
+                className="mt-1 h-4 w-4 accent-ridge"
+              />
+              <span>{t.overrideLabel}</span>
+            </label>
+            <button
+              id="ready-keep-written"
+              type="button"
+              disabled={!confirmOverride}
+              onClick={() => {
+                setOverridden(true);
+                setConfirmOverride(false);
+              }}
+              className="inline-flex min-h-11 items-center rounded-lg border border-line bg-card px-4 py-2 text-sm font-medium text-ink disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {t.overrideKeep}
+            </button>
+          </div>
+        ) : null}
+      </section>
+
+      {week ? (
+        <section>
+          <h3 className="font-display text-lg font-semibold text-ink">{t.thisWeek}</h3>
+          <ul className="mt-3 divide-y divide-line overflow-hidden rounded-2xl border border-line bg-card">
+            {week.days.map((day, i) => {
+              const date = week.dates[i];
+              const isToday = date === today;
+              return (
+                <li
+                  key={`${week.calendar}-${i}`}
+                  className={cn(
+                    "flex items-start gap-3 px-4 py-3 text-sm",
+                    isToday && "bg-paper-warm",
+                  )}
+                >
+                  <span className="w-10 shrink-0 font-medium text-ink-soft">{dayNames[i]}</span>
+                  <span className="min-w-0 flex-1 text-ink">
+                    {sessions[day.key]}
+                    {day.minutes ? (
+                      <span className="text-ink-muted">
+                        {" "}
+                        · {fillTemplate(t.minutes, { n: day.minutes })}
+                      </span>
+                    ) : null}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+          <div className="mt-4 rounded-2xl border border-line bg-paper-warm/50 p-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+              {t.whyWeek}
+            </p>
+            <ul className="mt-2 space-y-1.5 text-sm leading-relaxed text-ink">
+              {week.reasons.slice(0, 6).map((reason, i) => (
+                <li key={`${reason.id}-${i}`}>{reasonText(copy, reason.id, reason.values)}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ) : null}
+
+      <section className="rounded-2xl border border-line bg-card p-5 sm:p-6">
         <h3 className="font-display text-xl font-semibold text-ink">{t.wakeTitle}</h3>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">{t.wakeLead}</p>
         <div className="mt-5 space-y-5">
@@ -325,196 +515,6 @@ export function TodayDesk({
           </div>
         </div>
       </section>
-
-      <section
-        className={cn("rounded-2xl border p-5 sm:p-6", CALL_TONE[call])}
-        data-readiness-call={call}
-      >
-        <p className="text-xs font-semibold uppercase tracking-wider text-accent">
-          {t.calls[call].title}
-        </p>
-        <p className="mt-2 font-display text-xl font-semibold text-ink">{t.calls[call].action}</p>
-        <ul className="mt-4 space-y-1.5 text-sm leading-relaxed text-ink">
-          {(view?.readiness.drivers.length
-            ? view.readiness.drivers
-            : (view?.readiness.reasons.slice(0, 3) ?? [])
-          ).map((reason, i) => (
-            <li key={`${reason.id}-${i}`}>{reasonText(copy, reason.id, reason.values)}</li>
-          ))}
-        </ul>
-        {changed && view ? (
-          <div className="mt-4 rounded-xl border border-line bg-card/80 p-4" data-why-changed="1">
-            <p className="text-xs font-semibold uppercase tracking-wider text-accent">
-              {t.whyChanged}
-            </p>
-            <p className="mt-2 text-sm text-ink">
-              {sessions[view.written.key]} → {sessions[view.shown.key]}
-              {view.shown.minutes ? ` · ${fillTemplate(t.minutes, { n: view.shown.minutes })}` : ""}
-            </p>
-            <p className="mt-1 text-sm text-ink-muted">
-              {reasonText(
-                copy,
-                view.call === "rest"
-                  ? "todayRest"
-                  : view.call === "easy"
-                    ? "qualityToEasy"
-                    : "reduceMinutes",
-                {
-                  from: view.written.key,
-                  to: view.shown.key,
-                },
-              )}
-            </p>
-          </div>
-        ) : null}
-        <p className="mt-4 text-xs leading-relaxed text-ink-soft">{t.safety}</p>
-        {call !== "ready" && !overridden ? (
-          <div className="mt-4 space-y-3 border-t border-line/80 pt-4">
-            <label className="flex items-start gap-3 text-sm text-ink">
-              <input
-                id="ready-override"
-                type="checkbox"
-                checked={confirmOverride}
-                onChange={(e) => setConfirmOverride(e.target.checked)}
-                className="mt-1 h-4 w-4 accent-ridge"
-              />
-              <span>{t.overrideLabel}</span>
-            </label>
-            <button
-              id="ready-keep-written"
-              type="button"
-              disabled={!confirmOverride}
-              onClick={() => {
-                setOverridden(true);
-                setConfirmOverride(false);
-              }}
-              className="inline-flex min-h-11 items-center rounded-lg border border-line bg-card px-4 py-2 text-sm font-medium text-ink disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              {t.overrideKeep}
-            </button>
-          </div>
-        ) : null}
-      </section>
-
-      <section className="rounded-2xl border border-line bg-card p-5 sm:p-6">
-        <p className="text-xs font-semibold uppercase tracking-wider text-accent">
-          {t.sessionToday}
-        </p>
-        {shown ? (
-          <>
-            <h3 className="mt-2 font-display text-xl font-semibold text-ink">
-              {sessions[shown.key]}
-              {shown.minutes ? (
-                <span className="text-ink-muted">
-                  {" "}
-                  · {fillTemplate(t.minutes, { n: shown.minutes })}
-                </span>
-              ) : null}
-              {todayStartAt ? <span className="text-ink-muted"> · {todayStartAt}</span> : null}
-            </h3>
-            {changed && written ? (
-              <p className="mt-1 text-sm text-ink-muted">
-                {fillTemplate(t.was, { session: sessions[written.key] })}
-              </p>
-            ) : null}
-            <SessionHowTo
-              locale={locale}
-              sessionKey={shown.key}
-              minutes={shown.minutes}
-              minutesLabel={
-                shown.minutes ? fillTemplate(t.minutes, { n: shown.minutes }) : undefined
-              }
-              loadKg={shown.key === "pack" || shown.key === "me" ? packLoadKg(state) : undefined}
-            />
-            <div className="mt-5 flex flex-wrap gap-2">
-              <button
-                id="today-done"
-                type="button"
-                onClick={() => {
-                  const next = markToday(state, profile, "done", today, view);
-                  persist(next.state);
-                  setFlash(t.doneFlash);
-                }}
-                className="inline-flex min-h-11 items-center rounded-lg bg-ridge px-4 py-2 text-sm font-medium text-paper hover:bg-ridge-deep"
-              >
-                {t.markDone}
-              </button>
-              <button
-                id="today-missed"
-                type="button"
-                onClick={() => {
-                  const next = markToday(state, profile, "missed", today, view);
-                  persist(next.state);
-                  setFlash(t.missedFlash);
-                }}
-                className="inline-flex min-h-11 items-center rounded-lg border border-line bg-paper px-4 py-2 text-sm text-ink hover:bg-paper-warm"
-              >
-                {t.markMissed}
-              </button>
-              <button
-                id="today-early"
-                type="button"
-                onClick={() => {
-                  const next = markMoved(state, profile, addDaysIso(today, 1), today);
-                  persist(next.state);
-                  setFlash(t.doneFlash);
-                }}
-                className="inline-flex min-h-11 items-center rounded-lg border border-line bg-paper px-4 py-2 text-sm text-ink-muted hover:bg-paper-warm"
-              >
-                {t.didTomorrow}
-              </button>
-            </div>
-            {flash ? <p className="mt-3 text-sm text-ridge-deep">{flash}</p> : null}
-            {view?.log ? (
-              <p className="mt-3 text-xs uppercase tracking-wider text-accent">{view.log.status}</p>
-            ) : null}
-          </>
-        ) : (
-          <p className="mt-2 text-sm text-ink-muted">{t.noSession}</p>
-        )}
-      </section>
-
-      {week ? (
-        <section>
-          <h3 className="font-display text-lg font-semibold text-ink">{t.thisWeek}</h3>
-          <ul className="mt-3 divide-y divide-line overflow-hidden rounded-2xl border border-line bg-card">
-            {week.days.map((day, i) => {
-              const date = week.dates[i];
-              const isToday = date === today;
-              return (
-                <li
-                  key={`${week.calendar}-${i}`}
-                  className={cn(
-                    "flex items-start gap-3 px-4 py-3 text-sm",
-                    isToday && "bg-paper-warm",
-                  )}
-                >
-                  <span className="w-10 shrink-0 font-medium text-ink-soft">{dayNames[i]}</span>
-                  <span className="min-w-0 flex-1 text-ink">
-                    {sessions[day.key]}
-                    {day.minutes ? (
-                      <span className="text-ink-muted">
-                        {" "}
-                        · {fillTemplate(t.minutes, { n: day.minutes })}
-                      </span>
-                    ) : null}
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
-          <div className="mt-4 rounded-2xl border border-line bg-paper-warm/50 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wider text-accent">
-              {t.whyWeek}
-            </p>
-            <ul className="mt-2 space-y-1.5 text-sm leading-relaxed text-ink">
-              {week.reasons.slice(0, 6).map((reason, i) => (
-                <li key={`${reason.id}-${i}`}>{reasonText(copy, reason.id, reason.values)}</li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      ) : null}
 
       {state.adjustments && state.adjustments.length > 0 ? (
         <section>

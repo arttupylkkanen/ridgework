@@ -272,15 +272,20 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
     );
   }
 
+  // Two tabs carry the daily use; the other five are occasional, so they sit
+  // behind one control instead of competing for attention every day.
   const tabs: { id: Tab; label: string }[] = [
     { id: "today", label: copy.appPage.tabs.today },
     { id: "plan", label: copy.appPage.tabs.plan },
+  ];
+  const moreTabs: { id: Tab; label: string }[] = [
     { id: "whatIf", label: copy.appPage.tabs.whatIf },
     { id: "passport", label: copy.appPage.tabs.passport },
     { id: "prep", label: copy.appPage.tabs.prep },
     { id: "log", label: copy.appPage.tabs.log },
     { id: "profile", label: copy.appPage.tabs.profile },
   ];
+  const activeMore = moreTabs.find((item) => item.id === tab);
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
@@ -380,6 +385,28 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
                 {item.label}
               </button>
             ))}
+            <label className="contents">
+              <span className="sr-only">{copy.appPage.tabs.more}</span>
+              <select
+                value={activeMore ? activeMore.id : ""}
+                onChange={(e) => {
+                  if (e.target.value) setTab(e.target.value as Tab);
+                }}
+                className={cn(
+                  "min-h-11 rounded-lg px-4 py-2 text-sm font-medium",
+                  activeMore
+                    ? "bg-ridge text-paper"
+                    : "border border-line bg-card text-ink-muted hover:bg-paper-warm",
+                )}
+              >
+                <option value="">{copy.appPage.tabs.more}</option>
+                {moreTabs.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.label}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
           <div className="mt-8">
             {tab === "today" && profile ? (
