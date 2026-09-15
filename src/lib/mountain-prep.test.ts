@@ -51,7 +51,7 @@ describe("mountain-day prep", () => {
     assert.ok(!ws.items.some((i) => i.id === "nutrition.gutTraining"));
   });
 
-  it("adds night kit and drop-bag prompts for a 100 km ultra", () => {
+  it("adds night kit for a 100 km ultra", () => {
     const profile = emptyProfile({
       goal: "ultra100",
       peakOn: "2026-09-01",
@@ -60,7 +60,6 @@ describe("mountain-day prep", () => {
     });
     const ws = buildPrep({ profile, today: "2026-06-01" });
     assert.ok(ws.items.some((i) => i.id === "equipment.nightKit"));
-    assert.ok(ws.prompts.some((p) => p.id === "nutrition.dropBag"));
     assert.equal(typicalDayMinutes("ultra100") > typicalDayMinutes("fifty"), true);
   });
 

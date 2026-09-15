@@ -22,7 +22,6 @@ export type MountainPrepCopy = {
   wind: string;
   windOpts: { calm: string; breeze: string; strong: string };
   freezeM: string;
-  weatherNotes: string;
   items: Record<string, { label: string; why: string }>;
   prompts: Record<string, string>;
   debriefResult: string;
@@ -305,21 +304,10 @@ const enItems: MountainPrepCopy["items"] = {
 };
 
 const enPrompts: MountainPrepCopy["prompts"] = {
-  "nutrition.engineMeal": "Breakfast you will actually eat on easy days",
-  "nutrition.bottlePlan": "What is in the bottle, and where you refill",
   "nutrition.carbsPerHour": "Carb target you already held on a long (g/h, your number)",
-  "nutrition.waterPlan": "How much water between aid, and a backup if a station is dry",
-  "nutrition.dropBag": "What goes in each drop bag, in order",
-  "nutrition.summitSnack": "The thing you will eat at the col or summit",
-  "nutrition.hutOrBivy": "Hut, bivy, or mix — and the food that matches",
-  "nutrition.rotationFood": "What you will force down on a tired rotation evening",
   "logistics.startTime": "Start time leaving the car / hut / gun",
   "logistics.turnaroundTime": "Turnaround time (on the watch, not ‘we will see’)",
-  "logistics.hutNames": "Huts or bivy sites, in order",
   "altitude.sleepElevation": "Sleep elevation this block (m), if you know it",
-  "debrief.happened": "What actually happened",
-  "debrief.repeat": "Repeat next time",
-  "debrief.change": "Change next time",
 };
 
 export const mountainEn: MountainPrepCopy = {
@@ -373,7 +361,6 @@ export const mountainEn: MountainPrepCopy = {
   wind: "Wind",
   windOpts: { calm: "Calm", breeze: "Breeze", strong: "Strong" },
   freezeM: "Freeze level (m)",
-  weatherNotes: "Notes (aspect, storm timing)",
   items: enItems,
   prompts: enPrompts,
   debriefResult: "How it ended",
@@ -422,7 +409,6 @@ export const mountainFi: MountainPrepCopy = {
   wind: "Tuuli",
   windOpts: { calm: "Tyyntä", breeze: "Tuulista", strong: "Kovaa" },
   freezeM: "Nollaraja (m)",
-  weatherNotes: "Muistiinpanot (rinne, myrskyn aika)",
   debriefResult: "Miten se päättyi",
   debriefConfidence: "Miltä valmius tuntui (1–5)",
   saveDebrief: "Vie passiin",
@@ -431,21 +417,10 @@ export const mountainFi: MountainPrepCopy = {
   safety:
     "Tämä on valmistelua, ei lääketieteellistä neuvoa eikä lupaa. Jos olet kipeä, sairas tai korkealla ja oireet pahenevat, tarvitset ihmisen, et listaa.",
   prompts: {
-    "nutrition.engineMeal": "Aamiainen jonka oikeasti syöt kevyinä päivinä",
-    "nutrition.bottlePlan": "Mitä pullossa on ja missä täytät",
     "nutrition.carbsPerHour": "Hiilihydraattimäärä jonka jo pidit pitkällä (g/h, sinun lukusi)",
-    "nutrition.waterPlan": "Paljonko vettä huoltojen välillä, ja varasuunnitelma jos huolto on kuiva",
-    "nutrition.dropBag": "Mitä kuhunkin droppiin, järjestyksessä",
-    "nutrition.summitSnack": "Se minkä syöt colilla tai huipulla",
-    "nutrition.hutOrBivy": "Tupa, bivouac vai sekoitus — ja ruoka joka siihen sopii",
-    "nutrition.rotationFood": "Minkä saat alas väsyneenä rotaatioiltana",
     "logistics.startTime": "Lähtöaika autolta / tuvalta / laukauksesta",
     "logistics.turnaroundTime": "Kääntymisaika (kellossa, ei ‘katsotaan’)",
-    "logistics.hutNames": "Tuvat tai bivat, järjestyksessä",
     "altitude.sleepElevation": "Nukkumiskorkeus tässä jaksossa (m), jos tiedät",
-    "debrief.happened": "Mitä oikeasti tapahtui",
-    "debrief.repeat": "Toista ensi kerralla",
-    "debrief.change": "Muuta ensi kerralla",
   },
   items: {
     ...enItems,
@@ -625,7 +600,6 @@ export const mountainFr: MountainPrepCopy = {
   wind: "Vent",
   windOpts: { calm: "Calme", breeze: "Brise", strong: "Fort" },
   freezeM: "Isotherme 0° (m)",
-  weatherNotes: "Notes",
   debriefResult: "Comment ça s’est fini",
   debriefConfidence: "Forme ressentie (1–5)",
   saveDebrief: "Mettre dans le passeport",
@@ -672,7 +646,6 @@ export const mountainDe: MountainPrepCopy = {
   wind: "Wind",
   windOpts: { calm: "Ruhig", breeze: "Brise", strong: "Stark" },
   freezeM: "Nullgradgrenze (m)",
-  weatherNotes: "Notizen",
   debriefResult: "Wie es endete",
   debriefConfidence: "Wie bereit es sich anfühlte (1–5)",
   saveDebrief: "In den Pass legen",

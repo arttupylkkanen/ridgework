@@ -37,11 +37,10 @@ export type WeatherInput = {
   precip: Precip;
   wind: Wind;
   freezeM: number | null;
-  notes: string;
 };
 
 export function emptyWeather(): WeatherInput {
-  return { highC: null, lowC: null, precip: "none", wind: "calm", freezeM: null, notes: "" };
+  return { highC: null, lowC: null, precip: "none", wind: "calm", freezeM: null };
 }
 
 export type PrepItem = {
@@ -57,7 +56,7 @@ export type PrepPrompt = {
   id: string;
   section: PrepSectionId;
   copyKey: string;
-  kind: "text" | "number" | "time";
+  kind: "number" | "time";
 };
 
 export type PrepWorkspace = {
@@ -128,7 +127,7 @@ function item(
   };
 }
 
-function prompt(section: PrepSectionId, id: string, kind: PrepPrompt["kind"] = "text"): PrepPrompt {
+function prompt(section: PrepSectionId, id: string, kind: PrepPrompt["kind"]): PrepPrompt {
   return { id: `${section}.${id}`, section, copyKey: `${section}.${id}`, kind };
 }
 
@@ -252,28 +251,21 @@ export function buildPrep(opts: {
   if (objective === "engine") {
     items.push(item("nutrition", "engineFat"));
     items.push(item("nutrition", "enginePractised"));
-    prompts.push(prompt("nutrition", "engineMeal"));
   } else if (objective === "trail20") {
     items.push(item("nutrition", "shortRace"));
-    prompts.push(prompt("nutrition", "bottlePlan"));
   } else if (ultra) {
     items.push(item("nutrition", "gutTraining"));
     items.push(item("nutrition", "nothingNew"));
     prompts.push(prompt("nutrition", "carbsPerHour", "number"));
-    prompts.push(prompt("nutrition", "waterPlan"));
     if (objective === "ultra100") {
       items.push(item("nutrition", "nightFood"));
-      prompts.push(prompt("nutrition", "dropBag"));
     }
   } else if (objective === "alpine") {
     items.push(item("nutrition", "alpineSimple"));
-    prompts.push(prompt("nutrition", "summitSnack"));
   } else if (objective === "traverse") {
     items.push(item("nutrition", "multiDayFood"));
-    prompts.push(prompt("nutrition", "hutOrBivy"));
   } else {
     items.push(item("nutrition", "expeditionEat"));
-    prompts.push(prompt("nutrition", "rotationFood"));
   }
 
   // --- Logistics ---
@@ -299,7 +291,6 @@ export function buildPrep(opts: {
   }
   if (objective === "traverse") {
     items.push(item("logistics", "reserveDay"));
-    prompts.push(prompt("logistics", "hutNames"));
   }
   if (objective === "expedition") {
     items.push(item("logistics", "permits"));
@@ -331,9 +322,6 @@ export function buildPrep(opts: {
   items.push(item("debrief", "whatWorked"));
   items.push(item("debrief", "whatBroke"));
   if (alpine) items.push(item("debrief", "wouldTurn"));
-  prompts.push(prompt("debrief", "happened"));
-  prompts.push(prompt("debrief", "repeat"));
-  prompts.push(prompt("debrief", "change"));
 
   return {
     objective,
@@ -365,9 +353,6 @@ export function sectionProgress(workspace: PrepWorkspace, checks: Record<string,
 export type DebriefDraft = {
   result: "" | "finished" | "dnf" | "dns" | "training";
   confidence: 0 | 1 | 2 | 3 | 4 | 5;
-  happened: string;
-  repeat: string;
-  change: string;
   savedToPassport: boolean;
 };
 
@@ -380,7 +365,7 @@ export type PrepPersist = {
 };
 
 export function emptyDebrief(): DebriefDraft {
-  return { result: "", confidence: 0, happened: "", repeat: "", change: "", savedToPassport: false };
+  return { result: "", confidence: 0, savedToPassport: false };
 }
 
 export function emptyPersist(objective: ObjectiveId): PrepPersist {

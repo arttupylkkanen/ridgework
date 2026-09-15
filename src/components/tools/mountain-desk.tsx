@@ -102,7 +102,6 @@ export function MountainDesk({
 
   function saveToPassport() {
     const d = persist.debrief;
-    const lesson = [d.repeat, d.change].filter(Boolean).join(" ");
     const event = {
       id: newEventId(),
       date: workspace.peakOn || new Date().toISOString().slice(0, 10),
@@ -113,7 +112,7 @@ export function MountainDesk({
       durationMin: null,
       result: d.result || "training",
       confidence: (d.confidence || 3) as 1 | 2 | 3 | 4 | 5,
-      lesson: lesson || d.happened,
+      lesson: "",
       season: state?.season ?? 1,
     };
     const record = upsertEvent(loadPassport(), event);
@@ -220,14 +219,6 @@ export function MountainDesk({
             </select>
           </label>
         </div>
-        <label className="mt-3 block text-sm text-ink">
-          {t.weatherNotes}
-          <input
-            value={persist.weather.notes}
-            onChange={(e) => write({ ...persist, objective, weather: { ...persist.weather, notes: e.target.value } })}
-            className="mt-1 w-full rounded-lg border border-line bg-paper px-3 py-2.5 text-sm"
-          />
-        </label>
       </section>
 
       <div className="space-y-6">
@@ -292,21 +283,12 @@ export function MountainDesk({
                   {fields.map((field) => (
                     <label key={field.id} className="block text-sm text-ink">
                       {t.prompts[field.copyKey] ?? field.copyKey}
-                      {field.kind === "text" ? (
-                        <textarea
-                          rows={2}
-                          value={persist.answers[field.id] ?? ""}
-                          onChange={(e) => setAnswer(field.id, e.target.value)}
-                          className="mt-1 w-full rounded-lg border border-line bg-paper px-3 py-2.5 text-sm"
-                        />
-                      ) : (
-                        <input
-                          type={field.kind === "time" ? "time" : "number"}
-                          value={persist.answers[field.id] ?? ""}
-                          onChange={(e) => setAnswer(field.id, e.target.value)}
-                          className="mt-1 w-full max-w-xs rounded-lg border border-line bg-paper px-3 py-2.5 text-sm"
-                        />
-                      )}
+                      <input
+                        type={field.kind === "time" ? "time" : "number"}
+                        value={persist.answers[field.id] ?? ""}
+                        onChange={(e) => setAnswer(field.id, e.target.value)}
+                        className="mt-1 w-full max-w-xs rounded-lg border border-line bg-paper px-3 py-2.5 text-sm"
+                      />
                     </label>
                   ))}
                 </div>

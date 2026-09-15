@@ -183,17 +183,6 @@ export function Onboarding({
             />
           </label>
           <p className="text-sm leading-relaxed text-ridge-deep">{copy.tools.plan.longerBetter}</p>
-          <label className="block text-sm font-medium text-ink" htmlFor="onboard-event">
-            {t.eventName}
-            <input
-              id="onboard-event"
-              type="text"
-              value={draft.eventName}
-              placeholder={t.eventPlaceholder}
-              onChange={(e) => patch({ eventName: e.target.value })}
-              className="mt-2 w-full rounded-lg border border-line bg-paper px-3 py-2.5 text-sm outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ridge"
-            />
-          </label>
         </div>
       ) : null}
 
@@ -314,16 +303,23 @@ export function Onboarding({
               />
             ))}
           </div>
-          <label className="block text-sm font-medium text-ink" htmlFor="onboard-limit">
-            {t.limitations}
-            <textarea
-              id="onboard-limit"
-              value={draft.limitations}
-              onChange={(e) => patch({ limitations: e.target.value })}
-              rows={3}
-              className="mt-2 w-full rounded-lg border border-line bg-paper px-3 py-2 text-sm outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ridge"
-            />
-          </label>
+          <div>
+            <p className="text-sm font-medium text-ink">{t.limitations}</p>
+            <div className="mt-2 grid max-w-xs grid-cols-2 gap-2">
+              <ChoiceButton
+                id="onboard-limit-no"
+                selected={!draft.limitations}
+                title={t.limitationsNo}
+                onClick={() => patch({ limitations: "" })}
+              />
+              <ChoiceButton
+                id="onboard-limit-yes"
+                selected={Boolean(draft.limitations)}
+                title={t.limitationsYes}
+                onClick={() => patch({ limitations: "yes" })}
+              />
+            </div>
+          </div>
           <p className="text-xs leading-relaxed text-ink-soft">{t.limitationsHint}</p>
           <div className="rounded-2xl border border-ridge bg-paper-warm/70 p-5">
             <p className="font-display text-lg font-semibold text-ink">{t.reviewTitle}</p>

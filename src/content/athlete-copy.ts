@@ -21,9 +21,9 @@ export type AthleteCopy = {
     start: string;
     step: string;
     needDays: string;
-    eventName: string;
-    eventPlaceholder: string;
     limitations: string;
+    limitationsYes: string;
+    limitationsNo: string;
     limitationsHint: string;
     reviewTitle: string;
     reviewLead: string;
@@ -151,9 +151,9 @@ export const athleteEn: AthleteCopy = {
     start: "Write my three weeks",
     step: "Step {n} of {total}",
     needDays: "Pick at least two days you can train.",
-    eventName: "Event or outing name (optional)",
-    eventPlaceholder: "UTMB CCC, local 50k, Grand Combin…",
     limitations: "Anything that currently limits training",
+    limitationsYes: "Yes, something limits it",
+    limitationsNo: "No, nothing limits it",
     limitationsHint:
       "A niggle, a time cap, a doctor's note you already have. We treat it as a training constraint, not a diagnosis.",
     reviewTitle: "This is what we will write from",
@@ -340,9 +340,9 @@ export const athleteFi: AthleteCopy = {
     start: "Kirjoita kolme viikkoa",
     step: "Vaihe {n} / {total}",
     needDays: "Valitse vähintään kaksi treenipäivää.",
-    eventName: "Kisan tai reissun nimi (valinnainen)",
-    eventPlaceholder: "UTMB CCC, paikallinen 50 km, Grand Combin…",
-    limitations: "Mikä nyt rajoittaa treeniä",
+    limitations: "Rajoittaako jokin treeniä juuri nyt?",
+    limitationsYes: "Kyllä, jokin rajoittaa",
+    limitationsNo: "Ei, mikään ei rajoita",
     limitationsHint:
       "Kolotus, aikaraja, jo saatu ohje. Käsitellään treenirajoitteena, ei diagnoosina.",
     reviewTitle: "Tästä viikot kirjoitetaan",
@@ -530,9 +530,9 @@ export const athleteFr: AthleteCopy = {
     start: "Écrire mes trois semaines",
     step: "Étape {n} sur {total}",
     needDays: "Choisissez au moins deux jours d’entraînement.",
-    eventName: "Nom de la course ou de la sortie (optionnel)",
-    eventPlaceholder: "UTMB CCC, 50 km local, Grand Combin…",
-    limitations: "Ce qui limite l’entraînement maintenant",
+    limitations: "Quelque chose limite-t-il l’entraînement en ce moment ?",
+    limitationsYes: "Oui, quelque chose limite",
+    limitationsNo: "Non, rien ne limite",
     limitationsHint:
       "Une gêne, un plafond de temps. Traité comme une contrainte d’entraînement, pas un diagnostic.",
     reviewTitle: "C’est à partir de ça que les semaines sont écrites",
@@ -721,9 +721,9 @@ export const athleteDe: AthleteCopy = {
     start: "Meine drei Wochen schreiben",
     step: "Schritt {n} von {total}",
     needDays: "Wähle mindestens zwei Trainingstage.",
-    eventName: "Name von Rennen oder Tour (optional)",
-    eventPlaceholder: "UTMB CCC, lokaler 50k, Grand Combin…",
-    limitations: "Was das Training gerade begrenzt",
+    limitations: "Begrenzt gerade etwas dein Training?",
+    limitationsYes: "Ja, etwas begrenzt es",
+    limitationsNo: "Nein, nichts begrenzt es",
     limitationsHint: "Ein Zwicken, eine Zeitgrenze. Als Trainingsconstraint, keine Diagnose.",
     reviewTitle: "Daraus werden die Wochen geschrieben",
     reviewLead: "Zieldatum bleibt, außer du änderst es. Müde Tage trainieren weniger.",
