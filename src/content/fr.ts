@@ -93,6 +93,11 @@ export const fr: Copy = {
       "Nous traduisons la littérature en checklists et structures de semaine pour décider les yeux ouverts.",
     ],
     sourcesTitle: "Sources (vérifiées Crossref)",
+    teaserH2: "Ce que cela peut promettre, et ce que cela ne peut pas",
+    teaserLead:
+      "La plupart des jours en facile, une séance dure si vous êtes frais, un affûtage vers le jour J — cette forme vient d’une poignée d’articles d’endurance bien cités, pas d’un modèle générique à votre nom. Voici la partie que la plupart des produits d’entraînement passent sous silence.",
+    teaserCta: "Lire la méthode complète",
+    allSourcesCta: "Toutes les sources, et à quoi sert chacune",
   },
   projects: {
     kicker: "Projets exemples",
@@ -525,6 +530,17 @@ export const fr: Copy = {
     noteTitle: "Rien n’est enregistré ici",
     noteBody:
       "Cet exemple se réinitialise quand vous partez. Créez un compte pour obtenir votre propre semaine, construite pour votre sport, votre objectif et votre date de pic — 14 jours gratuits, sans carte.",
+  },
+  sourcesPage: {
+    title: "Sources — Ridgework",
+    description: "Tous les articles derrière les semaines d’entraînement, et à quoi sert vraiment chacun.",
+    back: "← Ridgework",
+    kicker: "Méthode",
+    h1: "Chaque source, et à quoi elle sert",
+    lead: "La page d’accueil cite les quatre articles qui correspondent directement à un mécanisme visible dans le produit. Voici la liste complète, y compris les lectures qui ont façonné la réflexion sans piloter une fonctionnalité précise.",
+    noteTitle: "Ce qu’une citation ici ne signifie pas",
+    noteBody:
+      "Un article de cette liste n’est pas une promesse que Ridgework reproduira son résultat pour vous. Les moyennes publiées décrivent des groupes, pas votre mardi. Là où une source a façonné une règle réelle, la section méthode nomme la règle. Le reste est de la lecture de fond, et nous préférons le dire que remplir la page de citations.",
   },
   appPage: {
     title: "Outils — Ridgework",

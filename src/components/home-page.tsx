@@ -1,9 +1,9 @@
 import type { Copy } from "@/content/types";
-import { SOURCES } from "@/content";
+import { KEY_SOURCES } from "@/content";
 import { GUIDES } from "@/content/guides";
 import type { Locale } from "@/lib/locale";
 import { HERO_PHOTO, METHOD_PHOTO, PROGRAM_MEDIA } from "@/lib/program-media";
-import { AuthLink, DeskLink, GuideLink, HomeLink } from "./app-link";
+import { AuthLink, DeskLink, GuideLink, HomeLink, SourcesLink } from "./app-link";
 import { CheckoutForm } from "./checkout-form";
 
 export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
@@ -50,6 +50,43 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
               >
                 {copy.nav.example}
               </HomeLink>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="method-summary" className="scroll-mt-20 border-b border-line">
+        <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr]">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wider text-ridge">
+                {copy.method.kicker}
+              </p>
+              <h2 className="mt-3 max-w-xl font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+                {copy.method.teaserH2}
+              </h2>
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-muted">
+                {copy.method.teaserLead}
+              </p>
+              <HomeLink
+                locale={locale}
+                hash="method"
+                className="mt-6 inline-flex min-h-11 items-center text-sm font-medium text-ridge underline-offset-2 hover:underline"
+              >
+                {copy.method.teaserCta} →
+              </HomeLink>
+            </div>
+            <div className="border-l-2 border-ridge pl-6">
+              <h3 className="font-display text-lg font-semibold text-ink">
+                {copy.method.caveatsTitle}
+              </h3>
+              <ul className="mt-4 space-y-3">
+                {copy.method.caveats.map((item) => (
+                  <li key={item} className="text-sm leading-relaxed text-ink-muted">
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
@@ -110,6 +147,40 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
         </div>
       </section>
 
+      <section id="who" className="scroll-mt-20 border-b border-line">
+        <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+            {copy.who.h2}
+          </h2>
+          <div className="mt-8 grid gap-10 sm:grid-cols-2">
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-ridge">
+                {copy.who.forTitle}
+              </h3>
+              <ul className="mt-4 space-y-3">
+                {copy.who.forItems.map((item) => (
+                  <li key={item} className="text-sm leading-relaxed text-ink-muted">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
+                {copy.who.notTitle}
+              </h3>
+              <ul className="mt-4 space-y-3">
+                {copy.who.notItems.map((item) => (
+                  <li key={item} className="text-sm leading-relaxed text-ink-muted">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="what" className="scroll-mt-20 border-b border-line">
         <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
           <h2 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
@@ -153,7 +224,8 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
               </li>
             ))}
           </ol>
-          <ol className="mt-10 divide-y divide-line border-y border-line">
+          <h3 className="mt-12 font-display text-xl font-semibold text-ink">{copy.week.h2}</h3>
+          <ol className="mt-4 divide-y divide-line border-y border-line">
             {copy.week.steps.map((step) => (
               <li key={step.day} className="grid gap-1 py-5 sm:grid-cols-[5rem_1fr] sm:gap-6">
                 <span className="text-xs font-semibold uppercase tracking-wider text-ink-soft">
@@ -226,40 +298,6 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
         </div>
       </section>
 
-      <section id="who" className="scroll-mt-20 border-b border-line">
-        <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            {copy.who.h2}
-          </h2>
-          <div className="mt-8 grid gap-10 sm:grid-cols-2">
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-ridge">
-                {copy.who.forTitle}
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {copy.who.forItems.map((item) => (
-                  <li key={item} className="text-sm leading-relaxed text-ink-muted">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
-                {copy.who.notTitle}
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {copy.who.notItems.map((item) => (
-                  <li key={item} className="text-sm leading-relaxed text-ink-muted">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section id="method" className="scroll-mt-20 border-b border-line">
         <div className="mx-auto grid max-w-5xl lg:grid-cols-2">
           <figure className="relative min-h-56 overflow-hidden sm:min-h-80 lg:min-h-full">
@@ -291,18 +329,6 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
                 </div>
               ))}
             </dl>
-            <div className="mt-10 border-t border-line pt-8">
-              <h3 className="font-display text-lg font-semibold text-ink">
-                {copy.method.caveatsTitle}
-              </h3>
-              <ul className="mt-3 space-y-2">
-                {copy.method.caveats.map((item) => (
-                  <li key={item} className="text-sm leading-relaxed text-ink-muted">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
         <div className="mx-auto max-w-5xl border-t border-line px-4 py-12 sm:px-6">
@@ -310,7 +336,7 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
             {copy.method.sourcesTitle}
           </h3>
           <ol className="mt-5 list-decimal space-y-3 pl-5 marker:text-ink-soft">
-            {SOURCES.map((src) => (
+            {KEY_SOURCES.map((src) => (
               <li key={src.title} className="text-sm leading-relaxed text-ink">
                 <span className="font-medium">{src.authors}</span>
                 <span className="text-ink-soft"> ({src.year}). </span>
@@ -327,6 +353,12 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
               </li>
             ))}
           </ol>
+          <SourcesLink
+            locale={locale}
+            className="mt-6 inline-flex min-h-11 items-center text-sm font-medium text-ridge underline-offset-2 hover:underline"
+          >
+            {copy.method.allSourcesCta} →
+          </SourcesLink>
         </div>
       </section>
 

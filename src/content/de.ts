@@ -93,6 +93,11 @@ export const de: Copy = {
       "Wir übersetzen Literatur in Checklisten und Wochenstrukturen, damit du mit offenen Augen entscheidest.",
     ],
     sourcesTitle: "Quellen (Crossref-verifiziert)",
+    teaserH2: "Was das versprechen kann und was nicht",
+    teaserLead:
+      "Die meisten Tage locker, eine harte Einheit wenn du frisch bist, ein Tapering in den Tag — diese Form kommt aus einer Handvoll gut zitierter Ausdauerarbeiten, nicht aus einer Vorlage mit deinem Namen darauf. Hier ist der Teil, den die meisten Trainingsprodukte weglassen.",
+    teaserCta: "Die ganze Methode lesen",
+    allSourcesCta: "Alle Quellen, und wofür jede verwendet wird",
   },
   projects: {
     kicker: "Beispielprojekte",
@@ -515,6 +520,17 @@ export const de: Copy = {
     noteTitle: "Hier wird nichts gespeichert",
     noteBody:
       "Dieses Beispiel setzt sich zurück, wenn du gehst. Leg ein Konto an für deine eigene Woche, gebaut aus deiner Sportart, deinem Ziel und deinem Peak-Datum — 14 Tage kostenlos, ohne Karte.",
+  },
+  sourcesPage: {
+    title: "Quellen — Ridgework",
+    description: "Alle Arbeiten hinter den Trainingswochen, und wofür jede tatsächlich verwendet wird.",
+    back: "← Ridgework",
+    kicker: "Methode",
+    h1: "Jede Quelle, und wofür sie verwendet wird",
+    lead: "Die Startseite zitiert die vier Arbeiten, die direkt einem im Produkt sichtbaren Mechanismus entsprechen. Das hier ist die vollständige Liste, samt der Lektüre, die das Denken geprägt hat, ohne eine bestimmte Funktion zu steuern.",
+    noteTitle: "Was ein Zitat hier nicht bedeutet",
+    noteBody:
+      "Eine Arbeit auf dieser Liste ist keine Behauptung, dass Ridgework ihr Ergebnis für dich reproduziert. Veröffentlichte Mittelwerte beschreiben Gruppen, nicht deinen Dienstag. Wo eine Quelle eine echte Regel geprägt hat, benennt der Methodenteil die Regel. Alles andere ist Hintergrundlektüre, und das sagen wir lieber, als die Seite mit Zitaten zu füllen.",
   },
   appPage: {
     title: "Tools — Ridgework",

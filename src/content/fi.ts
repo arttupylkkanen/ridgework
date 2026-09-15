@@ -93,6 +93,11 @@ export const fi: Copy = {
       "Käännämme kirjallisuuden listoiksi ja viikkorakenteiksi, jotta voit päättää silmät auki.",
     ],
     sourcesTitle: "Lähteet",
+    teaserH2: "Mitä tämä voi luvata ja mitä ei",
+    teaserLead:
+      "Suurin osa päivistä kevyitä, yksi kova jos olet virkeä, taper kohti päivää — se muoto tulee kourallisesta hyvin siteerattuja kestävyysjulkaisuja, ei mallipohjasta johon on liimattu nimesi. Tässä se osa jonka useimmat treenituotteet jättävät sanomatta.",
+    teaserCta: "Lue koko metodi",
+    allSourcesCta: "Kaikki lähteet ja mihin kutakin käytetään",
   },
   projects: {
     kicker: "Esimerkkiprojektit",
@@ -531,6 +536,17 @@ export const fi: Copy = {
     noteTitle: "Mitään ei tallenneta",
     noteBody:
       "Tämä esimerkki nollautuu kun poistut. Tee tili saadaksesi oman viikkosi, rakennettu omasta lajistasi, tavoitteestasi ja tavoitepäivästä — 14 päivää ilmaiseksi, ei korttia.",
+  },
+  sourcesPage: {
+    title: "Lähteet — Ridgework",
+    description: "Kaikki treeniviikkojen taustalla olevat julkaisut ja mihin kutakin oikeasti käytetään.",
+    back: "← Ridgework",
+    kicker: "Metodi",
+    h1: "Jokainen lähde ja mihin sitä käytetään",
+    lead: "Etusivulla on ne neljä julkaisua jotka vastaavat suoraan jotain tuotteessa näkyvää mekanismia. Tässä on koko lista, mukaan lukien luettu tausta joka muokkasi ajattelua mutta ei aja mitään yksittäistä ominaisuutta.",
+    noteTitle: "Mitä viittaus tässä ei tarkoita",
+    noteBody:
+      "Julkaisu tällä listalla ei ole väite siitä että Ridgework toistaa sen tuloksen sinulle. Julkaistut keskiarvot kuvaavat ryhmiä, eivät sinun tiistaitasi. Kun lähde on muokannut oikeaa sääntöä, metodiosio nimeää sen säännön. Loput on taustalukemista, ja sanomme sen mieluummin ääneen kuin täytämme sivua viittauksilla.",
   },
   appPage: {
     title: "Tämä viikko, Ridgework",

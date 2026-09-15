@@ -109,6 +109,11 @@ export type Copy = {
     caveatsTitle: string;
     caveats: string[];
     sourcesTitle: string;
+    /** Condensed method block rendered high on the homepage, above the programs. */
+    teaserH2: string;
+    teaserLead: string;
+    teaserCta: string;
+    allSourcesCta: string;
   };
   /**
    * Optional: the rolling-plan-engine explainer section. English-only for
@@ -243,6 +248,16 @@ export type Copy = {
   termsPage: { title: string; updated: string; body: string[] };
   privacyPage: { title: string; updated: string; body: string[] };
   examplePage: {
+    title: string;
+    description: string;
+    back: string;
+    kicker: string;
+    h1: string;
+    lead: string;
+    noteTitle: string;
+    noteBody: string;
+  };
+  sourcesPage: {
     title: string;
     description: string;
     back: string;

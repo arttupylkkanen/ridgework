@@ -27,7 +27,8 @@ type Props = {
     | "login"
     | "guides"
     | "passport"
-    | "example";
+    | "example"
+    | "sources";
 };
 
 function AuthSlot({ locale, copy }: { locale: Locale; copy: Copy }) {

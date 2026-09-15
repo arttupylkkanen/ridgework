@@ -93,6 +93,11 @@ export const en: Copy = {
       "We turn that literature into a week you can run.",
     ],
     sourcesTitle: "Sources (Crossref-verified)",
+    teaserH2: "What this can promise, and what it cannot",
+    teaserLead:
+      "Most days easy, one hard session if you are fresh, a taper into the day — that shape comes from a handful of well-cited endurance papers, not from a template with your name on it. Here is the part most training products leave out.",
+    teaserCta: "Read the full method",
+    allSourcesCta: "All sources, and what each one is used for",
   },
   rollingEngine: {
     kicker: "Always ahead",
@@ -562,6 +567,17 @@ export const en: Copy = {
     noteTitle: "Nothing here is saved",
     noteBody:
       "This example resets when you leave. Sign up to get your own week, built from your own sport, goal, and peak date — 14 days free, no card needed.",
+  },
+  sourcesPage: {
+    title: "Sources — Ridgework",
+    description: "Every paper behind the training weeks, and what each one is actually used for.",
+    back: "← Ridgework home",
+    kicker: "Method",
+    h1: "Every source, and what it is used for",
+    lead: "The homepage cites the four papers that map directly to something you can see in the product. This is the full list, including the reading that shaped the thinking without driving a specific feature.",
+    noteTitle: "What a citation here does not mean",
+    noteBody:
+      "A paper in this list is not a claim that Ridgework reproduces its result for you. Published averages describe groups, not your Tuesday. Where a source shaped an actual rule, the method section names the rule. Everything else is background reading, and we would rather say so than pad the page with citations.",
   },
   appPage: {
     title: "This week, Ridgework",

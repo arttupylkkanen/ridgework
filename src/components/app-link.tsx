@@ -102,6 +102,21 @@ export function HomeLink({ locale, hash, className, children, onClick }: Props &
   );
 }
 
+export function SourcesLink({ locale, className, children, onClick }: Props & { locale: Locale }) {
+  if (locale === "en") {
+    return (
+      <Link to="/sources" className={className} onClick={onClick}>
+        {children}
+      </Link>
+    );
+  }
+  return (
+    <Link to="/$locale/sources" params={{ locale }} className={className} onClick={onClick}>
+      {children}
+    </Link>
+  );
+}
+
 export function FieldLink({ locale, className, children, onClick }: Props & { locale: Locale }) {
   if (locale === "en") {
     return (

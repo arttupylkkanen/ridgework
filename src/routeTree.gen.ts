@@ -18,6 +18,7 @@ import { Route as FoundingRouteImport } from './routes/founding'
 import { Route as GuidesRouteImport } from './routes/guides'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as SourcesRouteImport } from './routes/sources'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as LocaleIndexRouteImport } from './routes/$locale/index'
 import { Route as LocaleAppRouteImport } from './routes/$locale/app'
@@ -27,6 +28,7 @@ import { Route as LocaleFoundingRouteImport } from './routes/$locale/founding'
 import { Route as LocaleGuidesRouteImport } from './routes/$locale/guides'
 import { Route as LocaleLoginRouteImport } from './routes/$locale/login'
 import { Route as LocalePrivacyRouteImport } from './routes/$locale/privacy'
+import { Route as LocaleSourcesRouteImport } from './routes/$locale/sources'
 import { Route as LocaleTermsRouteImport } from './routes/$locale/terms'
 import { Route as GuidesIndexRouteImport } from './routes/guides/index'
 import { Route as GuidesSlugRouteImport } from './routes/guides/$slug'
@@ -82,6 +84,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SourcesRoute = SourcesRouteImport.update({
+  id: '/sources',
+  path: '/sources',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -125,6 +132,11 @@ const LocaleLoginRoute = LocaleLoginRouteImport.update({
 const LocalePrivacyRoute = LocalePrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => LocaleRoute,
+} as any)
+const LocaleSourcesRoute = LocaleSourcesRouteImport.update({
+  id: '/sources',
+  path: '/sources',
   getParentRoute: () => LocaleRoute,
 } as any)
 const LocaleTermsRoute = LocaleTermsRouteImport.update({
@@ -183,6 +195,7 @@ export interface FileRoutesByFullPath {
   '/guides': typeof GuidesRouteWithChildren
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
+  '/sources': typeof SourcesRoute
   '/terms': typeof TermsRoute
   '/$locale/app': typeof LocaleAppRoute
   '/$locale/example': typeof LocaleExampleRoute
@@ -191,6 +204,7 @@ export interface FileRoutesByFullPath {
   '/$locale/guides': typeof LocaleGuidesRouteWithChildren
   '/$locale/login': typeof LocaleLoginRoute
   '/$locale/privacy': typeof LocalePrivacyRoute
+  '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
@@ -210,6 +224,7 @@ export interface FileRoutesByTo {
   '/founding': typeof FoundingRoute
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
+  '/sources': typeof SourcesRoute
   '/terms': typeof TermsRoute
   '/$locale/app': typeof LocaleAppRoute
   '/$locale/example': typeof LocaleExampleRoute
@@ -217,6 +232,7 @@ export interface FileRoutesByTo {
   '/$locale/founding': typeof LocaleFoundingRoute
   '/$locale/login': typeof LocaleLoginRoute
   '/$locale/privacy': typeof LocalePrivacyRoute
+  '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
@@ -239,6 +255,7 @@ export interface FileRoutesById {
   '/guides': typeof GuidesRouteWithChildren
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
+  '/sources': typeof SourcesRoute
   '/terms': typeof TermsRoute
   '/$locale/app': typeof LocaleAppRoute
   '/$locale/example': typeof LocaleExampleRoute
@@ -247,6 +264,7 @@ export interface FileRoutesById {
   '/$locale/guides': typeof LocaleGuidesRouteWithChildren
   '/$locale/login': typeof LocaleLoginRoute
   '/$locale/privacy': typeof LocalePrivacyRoute
+  '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
@@ -270,6 +288,7 @@ export interface FileRouteTypes {
     | '/guides'
     | '/login'
     | '/privacy'
+    | '/sources'
     | '/terms'
     | '/$locale/app'
     | '/$locale/example'
@@ -278,6 +297,7 @@ export interface FileRouteTypes {
     | '/$locale/guides'
     | '/$locale/login'
     | '/$locale/privacy'
+    | '/$locale/sources'
     | '/$locale/terms'
     | '/guides/$slug'
     | '/passport/$token'
@@ -297,6 +317,7 @@ export interface FileRouteTypes {
     | '/founding'
     | '/login'
     | '/privacy'
+    | '/sources'
     | '/terms'
     | '/$locale/app'
     | '/$locale/example'
@@ -304,6 +325,7 @@ export interface FileRouteTypes {
     | '/$locale/founding'
     | '/$locale/login'
     | '/$locale/privacy'
+    | '/$locale/sources'
     | '/$locale/terms'
     | '/guides/$slug'
     | '/passport/$token'
@@ -325,6 +347,7 @@ export interface FileRouteTypes {
     | '/guides'
     | '/login'
     | '/privacy'
+    | '/sources'
     | '/terms'
     | '/$locale/app'
     | '/$locale/example'
@@ -333,6 +356,7 @@ export interface FileRouteTypes {
     | '/$locale/guides'
     | '/$locale/login'
     | '/$locale/privacy'
+    | '/$locale/sources'
     | '/$locale/terms'
     | '/guides/$slug'
     | '/passport/$token'
@@ -355,6 +379,7 @@ export interface RootRouteChildren {
   GuidesRoute: typeof GuidesRouteWithChildren
   LoginRoute: typeof LoginRoute
   PrivacyRoute: typeof PrivacyRoute
+  SourcesRoute: typeof SourcesRoute
   TermsRoute: typeof TermsRoute
   PassportTokenRoute: typeof PassportTokenRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
@@ -426,6 +451,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sources': {
+      id: '/sources'
+      path: '/sources'
+      fullPath: '/sources'
+      preLoaderRoute: typeof SourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -487,6 +519,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/$locale/privacy'
       preLoaderRoute: typeof LocalePrivacyRouteImport
+      parentRoute: typeof LocaleRoute
+    }
+    '/$locale/sources': {
+      id: '/$locale/sources'
+      path: '/sources'
+      fullPath: '/$locale/sources'
+      preLoaderRoute: typeof LocaleSourcesRouteImport
       parentRoute: typeof LocaleRoute
     }
     '/$locale/terms': {
@@ -577,6 +616,7 @@ interface LocaleRouteChildren {
   LocaleGuidesRoute: typeof LocaleGuidesRouteWithChildren
   LocaleLoginRoute: typeof LocaleLoginRoute
   LocalePrivacyRoute: typeof LocalePrivacyRoute
+  LocaleSourcesRoute: typeof LocaleSourcesRoute
   LocaleTermsRoute: typeof LocaleTermsRoute
   LocaleIndexRoute: typeof LocaleIndexRoute
   LocalePassportTokenRoute: typeof LocalePassportTokenRoute
@@ -590,6 +630,7 @@ const LocaleRouteChildren: LocaleRouteChildren = {
   LocaleGuidesRoute: LocaleGuidesRouteWithChildren,
   LocaleLoginRoute: LocaleLoginRoute,
   LocalePrivacyRoute: LocalePrivacyRoute,
+  LocaleSourcesRoute: LocaleSourcesRoute,
   LocaleTermsRoute: LocaleTermsRoute,
   LocaleIndexRoute: LocaleIndexRoute,
   LocalePassportTokenRoute: LocalePassportTokenRoute,
@@ -621,6 +662,7 @@ const rootRouteChildren: RootRouteChildren = {
   GuidesRoute: GuidesRouteWithChildren,
   LoginRoute: LoginRoute,
   PrivacyRoute: PrivacyRoute,
+  SourcesRoute: SourcesRoute,
   TermsRoute: TermsRoute,
   PassportTokenRoute: PassportTokenRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
