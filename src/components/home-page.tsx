@@ -10,7 +10,6 @@ import { CheckoutForm } from "./checkout-form";
 import { ExampleWeekStrip } from "./example-week-strip";
 
 export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
-  const scenarioPhoto = PROGRAM_MEDIA.ultra100;
 
   return (
     <>
@@ -132,12 +131,13 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
           <div className="mt-10 grid gap-8 lg:grid-cols-2">
             <article className="overflow-hidden border border-line bg-card">
               <img
-                src={scenarioPhoto.src}
-                alt=""
-                width={scenarioPhoto.width}
-                height={scenarioPhoto.height}
-                className="aspect-[16/9] w-full object-cover"
+                src="/shots/today-session.png"
+                alt="Today's session in the Ridgework desk, with how it should feel and what to do"
+                width={1880}
+                height={1120}
+                className="w-full border-b border-line object-cover object-top"
                 decoding="async"
+                loading="lazy"
               />
               <div className="p-5 sm:p-6">
                 <p className="font-display text-xl font-semibold text-ink">{copy.scenario.setup}</p>
