@@ -14,7 +14,10 @@ type Mode = "signin" | "signup";
 export function LoginPage({ locale, copy }: { locale: Locale; copy: Copy }) {
   const searchStr = useRouterState({ select: (s) => s.location.searchStr });
   const query = new URLSearchParams(searchStr.startsWith("?") ? searchStr.slice(1) : searchStr);
-  const qa = query.get("qa") === "1";
+  // The router's default search codec re-quotes JSON-primitive-looking values
+  // (`qa=1` round-trips as the literal string `"1"`, quotes included — see
+  // `@/lib/search`), so check presence rather than an exact "1" match.
+  const qa = query.has("qa") && query.get("qa") !== "false" && query.get("qa") !== "0";
   const program = query.get("program");
   const [mode, setMode] = useState<Mode>("signin");
   const [name, setName] = useState(qa ? TEST_ACCOUNT.name : "");
@@ -60,8 +63,12 @@ export function LoginPage({ locale, copy }: { locale: Locale; copy: Copy }) {
   return (
     <SiteShell locale={locale} copy={copy} page="login">
       <section className="mx-auto max-w-md px-4 py-16 sm:px-6 sm:py-24">
-        <p className="text-sm font-medium uppercase tracking-wider text-accent">{copy.appPage.kicker}</p>
-        <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight text-ink">{a.title}</h1>
+        <p className="text-sm font-medium uppercase tracking-wider text-accent">
+          {copy.appPage.kicker}
+        </p>
+        <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight text-ink">
+          {a.title}
+        </h1>
         <p className="mt-4 text-ink-muted leading-relaxed">{a.lead}</p>
         <p className="mt-3 rounded-2xl border border-accent bg-paper-warm/70 px-4 py-3 text-sm leading-relaxed text-ink">
           {a.testNote}
@@ -73,7 +80,12 @@ export function LoginPage({ locale, copy }: { locale: Locale; copy: Copy }) {
               <button
                 key={p.providerId}
                 type="button"
-                onClick={() => void signIn(p.providerId, { callbackURL: dest, errorCallbackURL: pagePath(locale, "login") })}
+                onClick={() =>
+                  void signIn(p.providerId, {
+                    callbackURL: dest,
+                    errorCallbackURL: pagePath(locale, "login"),
+                  })
+                }
                 className="w-full rounded-lg border border-line bg-card px-4 py-3 text-sm font-medium text-ink hover:bg-paper-warm"
               >
                 {p.idp === "google" ? a.withGoogle : a.withX}
@@ -82,7 +94,9 @@ export function LoginPage({ locale, copy }: { locale: Locale; copy: Copy }) {
           </div>
         ) : null}
 
-        <p className="mt-8 text-center text-xs font-medium uppercase tracking-wider text-ink-soft">{a.or}</p>
+        <p className="mt-8 text-center text-xs font-medium uppercase tracking-wider text-ink-soft">
+          {a.or}
+        </p>
 
         <form onSubmit={(e) => void onSubmit(e)} className="mt-6 space-y-4">
           {mode === "signup" ? (

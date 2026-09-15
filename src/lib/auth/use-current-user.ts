@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { authClient, authEnabled } from "./client";
 
 /** Normalized user shape used across the app, auth on or off. */
@@ -53,12 +54,23 @@ export type CurrentUserState = {
  *
  * `authEnabled` is a module-level constant fixed at load, so the guarded hook
  * call keeps a stable hook order across every render of a given component.
+ *
+ * Better Auth's `useSession()` can resolve `isPending: false` on the client's
+ * very first paint (a cached signal from a prior visit) while the server —
+ * which never probes the session for this hook — always rendered the pending
+ * branch. Rendering that first client paint as still-pending, matching the
+ * server, avoids a hydration mismatch; the real state takes over one render
+ * later, as an ordinary client update rather than a hydration diff.
  */
 export function useCurrentUserState(): CurrentUserState {
   if (!authEnabled) return { user: DEV_USER, isPending: false };
   // eslint-disable-next-line react-hooks/rules-of-hooks -- authEnabled is constant for the app's lifetime
   const { data, isPending } = authClient.useSession();
-  const user = data?.user;
+  // eslint-disable-next-line react-hooks/rules-of-hooks -- see above
+  const [mounted, setMounted] = useState(false);
+  // eslint-disable-next-line react-hooks/rules-of-hooks -- see above
+  useEffect(() => setMounted(true), []);
+  const user = mounted ? data?.user : undefined;
   return {
     user: user
       ? {
@@ -69,7 +81,7 @@ export function useCurrentUserState(): CurrentUserState {
           isDevFallback: false,
         }
       : null,
-    isPending,
+    isPending: !mounted || isPending,
   };
 }
 
