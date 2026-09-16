@@ -44,11 +44,13 @@ const enItems: MountainPrepCopy["items"] = {
     why: "That is not a promise you will feel ready. It means the written weeks can still do their job.",
   },
   "fitness.longestGap": {
-    label: "Your longest outing band is about {longest} min. A typical day here runs closer to {typical} min.",
+    label:
+      "Your longest outing band is about {longest} min. A typical day here runs closer to {typical} min.",
     why: "Use the remaining weeks for a closer rehearsal. The peak day is a poor place to jump duration.",
   },
   "fitness.longestOk": {
-    label: "Your longest outing band ({longest} min) is in range of a typical day (~{typical} min).",
+    label:
+      "Your longest outing band ({longest} min) is in range of a typical day (~{typical} min).",
     why: "Keep one long that stays conversational. Tired still shortens it.",
   },
   "fitness.tiredWeeks": {
@@ -60,7 +62,8 @@ const enItems: MountainPrepCopy["items"] = {
     why: "New shoes, new fuel, new night running, new crampons: pick one experiment, and not on the peak day.",
   },
   "fitness.alpineSkill": {
-    label: "Aerobic weeks are not enough. Specific weeks need climbing or strength, not only hiking.",
+    label:
+      "Aerobic weeks are not enough. Specific weeks need climbing or strength, not only hiking.",
     why: "Pitches are work. A tired week still turns them down. The mountain day is not the place to learn a new system.",
   },
   "fitness.engineAerobic": {
@@ -248,7 +251,8 @@ const enItems: MountainPrepCopy["items"] = {
     why: "Phones die. The plan should not.",
   },
   "altitude.notDiagnosis": {
-    label: "Ridgework does not diagnose altitude illness. Descent and qualified care beat any checklist.",
+    label:
+      "Ridgework does not diagnose altitude illness. Descent and qualified care beat any checklist.",
     why: "A score or a ‘ready’ label would be theatre. This is a reminder of the actual work.",
   },
   "altitude.rotations": {
@@ -260,7 +264,8 @@ const enItems: MountainPrepCopy["items"] = {
     why: "Arrive, melt snow, eat, sleep. The ridge can wait one morning.",
   },
   "altitude.descend": {
-    label: "Worsening headache with effort, ataxia, or wet breathing: down, then professional care.",
+    label:
+      "Worsening headache with effort, ataxia, or wet breathing: down, then professional care.",
     why: "That is not a Ridgework call. It is the only call that matters.",
   },
   "altitude.dayHigh": {
@@ -334,16 +339,35 @@ export const mountainEn: MountainPrepCopy = {
     },
   },
   sections: {
-    fitness: { title: "Fitness, honestly", lead: "What the calendar and your longest outings actually say. Not a medical pass." },
-    equipment: { title: "Kit for this objective", lead: "Built from the objective and the gear you listed. Missing ice kit stays missing until you add it." },
-    clothing: { title: "Clothes against this forecast", lead: "Fill the numbers. The list changes. A generic ‘layers’ pile is how people overpack." },
+    fitness: {
+      title: "Fitness, honestly",
+      lead: "What the calendar and your longest outings actually say. Not a medical pass.",
+    },
+    equipment: {
+      title: "Kit for this objective",
+      lead: "Built from the objective and the gear you listed. Missing ice kit stays missing until you add it.",
+    },
+    clothing: {
+      title: "Clothes against this forecast",
+      lead: "Fill the numbers. The list changes. A generic ‘layers’ pile is how people overpack.",
+    },
     nutrition: { title: "Food and water", lead: "Practised amounts. Nothing new on the day." },
-    logistics: { title: "Getting there and off", lead: "Start, travel, family cover, a way down. The boring things that end days." },
-    altitude: { title: "If the day goes high", lead: "Descent and qualified care. Ridgework will not pretend to be a doctor." },
-    debrief: { title: "After the outing", lead: "One page for the coach, the partner, or next season. Save it into your passport if you want." },
+    logistics: {
+      title: "Getting there and off",
+      lead: "Start, travel, family cover, a way down. The boring things that end days.",
+    },
+    altitude: {
+      title: "If the day goes high",
+      lead: "Descent and qualified care. Ridgework will not pretend to be a doctor.",
+    },
+    debrief: {
+      title: "After the outing",
+      lead: "One page for the coach, the partner, or next season. Save it into your passport if you want.",
+    },
   },
   weatherTitle: "Forecast you are packing for",
-  weatherLead: "Valley numbers lie. Write what you will actually meet on the ridge or the last climb.",
+  weatherLead:
+    "Valley numbers lie. Write what you will actually meet on the ridge or the last climb.",
   precip: "Precipitation",
   precipOpts: { none: "Dry", rain: "Rain", snow: "Snow", mix: "Mix" },
   wind: "Wind",
@@ -373,23 +397,57 @@ export const mountainFi: MountainPrepCopy = {
   recWeeks: "Suositeltu täysi rakennus: {n} viikkoa",
   progress: "{done}/{total} ruksattu",
   phases: {
-    build: { title: "Vielä rakennuksessa", body: "Harjoittele kamat ja ruoka tavallisilla viikoilla. Älä säästä ensikertaa aamuun." },
-    approach: { title: "Kolme viikkoa tai vähemmän", body: "Lukitse kamat. Vahvista matkat. Kirjoitetut viikot tarkentuvat. Uudet kokeilut loppuvat." },
-    week: { title: "Kisaviikko", body: "Hiljaisempi treeni, oikea ennuste, pakatut kassit. Virkeys on pointti." },
-    day: { title: "Aamu", body: "Ennuste, lähtöaika, kääntymisaika jos kyse on vuoresta, ruoka johon luotat." },
-    after: { title: "Jälkeen", body: "Kirjoita debrief kun se on totta. Se muistiinpano on seuraavan kauden etu." },
+    build: {
+      title: "Vielä rakennuksessa",
+      body: "Harjoittele kamat ja ruoka tavallisilla viikoilla. Älä säästä ensikertaa aamuun.",
+    },
+    approach: {
+      title: "Kolme viikkoa tai vähemmän",
+      body: "Lukitse kamat. Vahvista matkat. Kirjoitetut viikot tarkentuvat. Uudet kokeilut loppuvat.",
+    },
+    week: {
+      title: "Kisaviikko",
+      body: "Hiljaisempi treeni, oikea ennuste, pakatut kassit. Virkeys on pointti.",
+    },
+    day: {
+      title: "Aamu",
+      body: "Ennuste, lähtöaika, kääntymisaika jos kyse on vuoresta, ruoka johon luotat.",
+    },
+    after: {
+      title: "Jälkeen",
+      body: "Kirjoita debrief kun se on totta. Se muistiinpano on seuraavan kauden etu.",
+    },
   },
   sections: {
-    fitness: { title: "Kunto, rehellisesti", lead: "Mitä kalenteri ja pisimmät retket oikeasti sanovat. Ei lääketieteellistä lupaa." },
-    equipment: { title: "Kamat tälle tavoitteelle", lead: "Rakennettu tavoitteesta ja listoistasi. Puuttuva jääkama pysyy puuttuvana kunnes lisäät sen." },
-    clothing: { title: "Vaatteet tätä ennustetta vasten", lead: "Täytä luvut. Lista muuttuu. Geneerinen ‘kerrokset’ on tapa pakata liikaa." },
+    fitness: {
+      title: "Kunto, rehellisesti",
+      lead: "Mitä kalenteri ja pisimmät retket oikeasti sanovat. Ei lääketieteellistä lupaa.",
+    },
+    equipment: {
+      title: "Kamat tälle tavoitteelle",
+      lead: "Rakennettu tavoitteesta ja listoistasi. Puuttuva jääkama pysyy puuttuvana kunnes lisäät sen.",
+    },
+    clothing: {
+      title: "Vaatteet tätä ennustetta vasten",
+      lead: "Täytä luvut. Lista muuttuu. Geneerinen ‘kerrokset’ on tapa pakata liikaa.",
+    },
     nutrition: { title: "Ruoka ja vesi", lead: "Harjoitellut määrät. Ei uutta päivänä." },
-    logistics: { title: "Perille ja pois", lead: "Lähtö, matkat, kotihoito, reitti alas. Tylsät asiat jotka päättävät päiviä." },
-    altitude: { title: "Jos päivä nousee korkealle", lead: "Laskeutuminen ja ammattilainen. Ridgework ei esitä lääkäriä." },
-    debrief: { title: "Retken jälkeen", lead: "Yksi sivu valmentajalle, kaverille tai seuraavalle kaudelle. Vie passiin jos haluat." },
+    logistics: {
+      title: "Perille ja pois",
+      lead: "Lähtö, matkat, kotihoito, reitti alas. Tylsät asiat jotka päättävät päiviä.",
+    },
+    altitude: {
+      title: "Jos päivä nousee korkealle",
+      lead: "Laskeutuminen ja ammattilainen. Ridgework ei esitä lääkäriä.",
+    },
+    debrief: {
+      title: "Retken jälkeen",
+      lead: "Yksi sivu valmentajalle, kaverille tai seuraavalle kaudelle. Vie passiin jos haluat.",
+    },
   },
   weatherTitle: "Ennuste jota vasten pakkaat",
-  weatherLead: "Laakson lukemat valehtelevat. Kirjoita se mitä harjanteella tai viimeisessä nousussa oikeasti on.",
+  weatherLead:
+    "Laakson lukemat valehtelevat. Kirjoita se mitä harjanteella tai viimeisessä nousussa oikeasti on.",
   precip: "Sade",
   precipOpts: { none: "Kuivaa", rain: "Vettä", snow: "Lunta", mix: "Räntää" },
   wind: "Tuuli",
@@ -423,7 +481,8 @@ export const mountainFi: MountainPrepCopy = {
       why: "Se ei ole lupaus että tunnet olosi valmiiksi. Kirjoitetut viikot ehtivät vielä tehdä työnsä.",
     },
     "fitness.longestGap": {
-      label: "Pisimmän retkesi kaista on noin {longest} min. Tyypillinen päivä tässä on lähempänä {typical} min.",
+      label:
+        "Pisimmän retkesi kaista on noin {longest} min. Tyypillinen päivä tässä on lähempänä {typical} min.",
       why: "Käytä jäljellä olevat viikot lähempään kenraaliharjoitukseen. Huippupäivä on huono paikka hypätä kestossa.",
     },
     "fitness.longestOk": {
@@ -439,7 +498,8 @@ export const mountainFi: MountainPrepCopy = {
       why: "Uudet kengät, uusi polttoaine, uusi yöjuoksu, uudet rautakengät: yksi koe, eikä huippupäivänä.",
     },
     "fitness.alpineSkill": {
-      label: "Aerobiset viikot eivät riitä. Spesifeihin tarvitaan kiipeilyä tai voimaa, ei vain vaellusta.",
+      label:
+        "Aerobiset viikot eivät riitä. Spesifeihin tarvitaan kiipeilyä tai voimaa, ei vain vaellusta.",
       why: "Reitit ovat työtä. Väsynyt viikko keventää ne silti. Vuoripäivä ei ole paikka opetella uutta systeemiä.",
     },
     "fitness.engineAerobic": {
@@ -487,7 +547,8 @@ export const mountainFi: MountainPrepCopy = {
       why: "Listasit hakun. Hihna ja kuiva harjoitus voittaa uuden työkalun harjanteella.",
     },
     "equipment.axeMissing": {
-      label: "Ei hakkua listalla. Pysy pois jatkuvilta lumirinteiltä, tai lisää hakku ja harjoittele.",
+      label:
+        "Ei hakkua listalla. Pysy pois jatkuvilta lumirinteiltä, tai lisää hakku ja harjoittele.",
       why: "Vaellussauva ei ole jarrutusväline.",
     },
     "equipment.harness": {
@@ -511,7 +572,8 @@ export const mountainFi: MountainPrepCopy = {
       why: "Geneerinen ‘kerrokset’ ilman lukuja on tapa pakata liikaa tai palella.",
     },
     "clothing.baseLayer": {
-      label: "Paita jossa voit vaeltaa tai juosta, plus yksi asia jonka lisäät ilman pitkää stoppia.",
+      label:
+        "Paita jossa voit vaeltaa tai juosta, plus yksi asia jonka lisäät ilman pitkää stoppia.",
       why: "Pohja on päivä. Varalämpö on stoppiin, huipulle tai yöhön.",
     },
     "logistics.turnaround": {
@@ -535,15 +597,18 @@ export const mountainFi: MountainPrepCopy = {
       why: "Pitkät olivat testi. Huippupäivä on toisto.",
     },
     "altitude.notDiagnosis": {
-      label: "Ridgework ei diagnosoi vuoristotautia. Alas ja ammattilainen voittaa minkä tahansa listan.",
+      label:
+        "Ridgework ei diagnosoi vuoristotautia. Alas ja ammattilainen voittaa minkä tahansa listan.",
       why: "Pisteytys olisi teatteria. Tämä on muistutus varsinaisesta työstä.",
     },
     "altitude.descend": {
-      label: "Paheneva päänsärky rasituksessa, horjunta tai märkä hengitys: alas, sitten ammattilainen.",
+      label:
+        "Paheneva päänsärky rasituksessa, horjunta tai märkä hengitys: alas, sitten ammattilainen.",
       why: "Se ei ole Ridgeworkin veto. Se on ainoa veto jolla on väliä.",
     },
     "debrief.whatBroke": {
-      label: "Nimeä yksi asia joka oikeasti hajosi: kama, polttoaine, ajoitus tai tarina jonka kerroit itsellesi.",
+      label:
+        "Nimeä yksi asia joka oikeasti hajosi: kama, polttoaine, ajoitus tai tarina jonka kerroit itsellesi.",
       why: "Epämääräinen ‘olisi pitänyt olla kovempi’ ei ole oppi.",
     },
   },
@@ -562,20 +627,50 @@ export const mountainFr: MountainPrepCopy = {
   recWeeks: "Construction complète suggérée : {n} semaines",
   progress: "{done} sur {total}",
   phases: {
-    build: { title: "Encore en construction", body: "Répétez matériel et nourriture sur des semaines ordinaires." },
-    approach: { title: "Trois semaines ou moins", body: "Geler le kit. Confirmer le trajet. Plus d’expériences nouvelles." },
+    build: {
+      title: "Encore en construction",
+      body: "Répétez matériel et nourriture sur des semaines ordinaires.",
+    },
+    approach: {
+      title: "Trois semaines ou moins",
+      body: "Geler le kit. Confirmer le trajet. Plus d’expériences nouvelles.",
+    },
     week: { title: "La semaine J", body: "Entraînement plus calme, vraie prévision, sacs faits." },
-    day: { title: "Le matin", body: "Prévision, heure de départ, horaire de demi-tour, nourriture déjà testée." },
+    day: {
+      title: "Le matin",
+      body: "Prévision, heure de départ, horaire de demi-tour, nourriture déjà testée.",
+    },
     after: { title: "Après", body: "Écrire le debrief tant que c’est vrai." },
   },
   sections: {
-    fitness: { title: "La forme, honnêtement", lead: "Ce que le calendrier et vos plus longues sorties disent. Pas un feu vert médical." },
-    equipment: { title: "Matériel pour cet objectif", lead: "Issu de l’objectif et du matériel listé." },
-    clothing: { title: "Vêtements contre cette prévision", lead: "Remplissez les chiffres. La liste change." },
-    nutrition: { title: "Nourriture et eau", lead: "Quantités déjà testées. Rien de nouveau le jour J." },
-    logistics: { title: "Y aller et en revenir", lead: "Départ, trajet, couverture familiale, une descente." },
-    altitude: { title: "Si la journée monte", lead: "Descente et soignant qualifié. Pas un médecin." },
-    debrief: { title: "Après la sortie", lead: "Une page pour le coach, le partenaire, ou la saison suivante." },
+    fitness: {
+      title: "La forme, honnêtement",
+      lead: "Ce que le calendrier et vos plus longues sorties disent. Pas un feu vert médical.",
+    },
+    equipment: {
+      title: "Matériel pour cet objectif",
+      lead: "Issu de l’objectif et du matériel listé.",
+    },
+    clothing: {
+      title: "Vêtements contre cette prévision",
+      lead: "Remplissez les chiffres. La liste change.",
+    },
+    nutrition: {
+      title: "Nourriture et eau",
+      lead: "Quantités déjà testées. Rien de nouveau le jour J.",
+    },
+    logistics: {
+      title: "Y aller et en revenir",
+      lead: "Départ, trajet, couverture familiale, une descente.",
+    },
+    altitude: {
+      title: "Si la journée monte",
+      lead: "Descente et soignant qualifié. Pas un médecin.",
+    },
+    debrief: {
+      title: "Après la sortie",
+      lead: "Une page pour le coach, le partenaire, ou la saison suivante.",
+    },
   },
   weatherTitle: "Prévision pour laquelle vous partez",
   weatherLead: "Les chiffres de vallée mentent. Écrivez ce que la crête verra.",
@@ -607,19 +702,40 @@ export const mountainDe: MountainPrepCopy = {
   progress: "{done} von {total}",
   phases: {
     build: { title: "Noch im Aufbau", body: "Material und Essen in normalen Wochen proben." },
-    approach: { title: "Drei Wochen oder weniger", body: "Kit festziehen. Anreise klären. Keine neuen Experimente." },
-    week: { title: "Die Woche selbst", body: "Ruhigeres Training, echte Vorhersage, gepackte Taschen." },
-    day: { title: "Der Morgen", body: "Vorhersage, Startzeit, Umkehrzeit, Essen das du schon kennst." },
+    approach: {
+      title: "Drei Wochen oder weniger",
+      body: "Kit festziehen. Anreise klären. Keine neuen Experimente.",
+    },
+    week: {
+      title: "Die Woche selbst",
+      body: "Ruhigeres Training, echte Vorhersage, gepackte Taschen.",
+    },
+    day: {
+      title: "Der Morgen",
+      body: "Vorhersage, Startzeit, Umkehrzeit, Essen das du schon kennst.",
+    },
     after: { title: "Danach", body: "Debrief schreiben, solange es stimmt." },
   },
   sections: {
-    fitness: { title: "Form, ehrlich", lead: "Was Kalender und längste Unternehmungen sagen. Kein medizinischer Pass." },
+    fitness: {
+      title: "Form, ehrlich",
+      lead: "Was Kalender und längste Unternehmungen sagen. Kein medizinischer Pass.",
+    },
     equipment: { title: "Material für dieses Ziel", lead: "Aus Ziel und angegebenem Material." },
-    clothing: { title: "Kleidung gegen diese Vorhersage", lead: "Zahlen eintragen. Die Liste ändert sich." },
+    clothing: {
+      title: "Kleidung gegen diese Vorhersage",
+      lead: "Zahlen eintragen. Die Liste ändert sich.",
+    },
     nutrition: { title: "Essen und Wasser", lead: "Geübte Mengen. Nichts Neues am Tag." },
     logistics: { title: "Hin und runter", lead: "Start, Anreise, Familie, ein Abstieg." },
-    altitude: { title: "Wenn der Tag hoch geht", lead: "Abstieg und qualifizierte Hilfe. Kein Arzt." },
-    debrief: { title: "Nach der Tour", lead: "Eine Seite für Trainer, Partner oder die nächste Saison." },
+    altitude: {
+      title: "Wenn der Tag hoch geht",
+      lead: "Abstieg und qualifizierte Hilfe. Kein Arzt.",
+    },
+    debrief: {
+      title: "Nach der Tour",
+      lead: "Eine Seite für Trainer, Partner oder die nächste Saison.",
+    },
   },
   weatherTitle: "Vorhersage, für die du packst",
   weatherLead: "Talzahlen lügen. Schreib, was der Grat wirklich sieht.",

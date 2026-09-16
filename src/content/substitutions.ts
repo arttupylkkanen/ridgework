@@ -90,7 +90,10 @@ export const SESSION_LADDERS: Partial<Record<SessionKey, SessionLadder>> = {
   vert: {
     purpose: "Time spent going up at a conversational effort, to build the climbing engine.",
     rungs: [
-      { do: "Uphill on trail, hiking or jogging, talking the whole way.", cost: "Nothing given up." },
+      {
+        do: "Uphill on trail, hiking or jogging, talking the whole way.",
+        cost: "Nothing given up.",
+      },
       {
         do: "Steep road or a long stairway at the same effort.",
         cost: "Keeps the effort and the gradient. Gives up uneven footing.",

@@ -1,8 +1,8 @@
-import { fieldDe } from "./field";
-import { planDe } from "./plan-tools";
-import { athleteDe } from "./athlete-copy";
-import { mountainDe } from "./mountain-prep";
-import { passportDe, whatIfDe } from "./passport";
+import { fieldDe } from "./field.ts";
+import { planDe } from "./plan-tools.ts";
+import { athleteDe } from "./athlete-copy.ts";
+import { mountainDe } from "./mountain-prep.ts";
+import { passportDe, whatIfDe } from "./passport.ts";
 import type { Copy } from "./types";
 
 export const de: Copy = {
@@ -15,6 +15,7 @@ export const de: Copy = {
   cancelAnytime: "Jederzeit kündbar",
   terms: "AGB",
   privacy: "Datenschutz",
+  legalNotice: "Impressum",
   copyright: "© 2026 Ridgework. France.",
   nav: {
     about: "Wer wir sind",
@@ -43,7 +44,8 @@ export const de: Copy = {
     kicker: "Bergtraining",
     h1: "Trainiere für den Tag, auf den es ankommt.",
     lead: "Wähle den Tag, an dem du bereit sein musst. Jede Woche wird von dort rückwärts geschrieben — und neu geschrieben, wenn das Leben dazwischenkommt.",
-    trial: "Kostenlos, solange die Registrierung des Unternehmens läuft. Keine Karte, nichts zu kündigen.",
+    trial:
+      "Kostenlos, solange die Registrierung des Unternehmens läuft. Keine Karte, nichts zu kündigen.",
   },
   about: {
     kicker: "Was das ist",
@@ -326,7 +328,8 @@ export const de: Copy = {
     weekTitle: "Und so sieht die Woche aus, die daraus entsteht",
     writtenLabel: "Geschrieben",
     shownLabel: "Nach einer Fünf-Stunden-Nacht",
-    changeNote: "Eine Einheit hat sich geändert, und der Plan sagt warum. Der Rest der Woche bleibt, das Renndatum auch.",
+    changeNote:
+      "Eine Einheit hat sich geändert, und der Plan sagt warum. Der Rest der Woche bleibt, das Renndatum auch.",
     facts: [
       { label: "Schlaf letzte Nacht", value: "5 Stunden" },
       { label: "Gestern", value: "32 km Langer" },
@@ -385,7 +388,8 @@ export const de: Copy = {
     name: "Ridgework-Abo",
     price: "€19",
     freeTag: "Kostenlos",
-    freeNow: "Kostenlos, solange die Registrierung des Unternehmens läuft. Keine Karte, nichts zu kündigen. 19 €/Monat, wenn es öffnet.",
+    freeNow:
+      "Kostenlos, solange die Registrierung des Unternehmens läuft. Keine Karte, nichts zu kündigen. 19 €/Monat, wenn es öffnet.",
     per: "/Monat",
     blurb: "14 Tage kostenlos. Dann 19 €/Monat. Jederzeit kündbar.",
     features: [
@@ -503,6 +507,40 @@ export const de: Copy = {
     title: "Founding — Ridgework",
     description: "Wöchentliches Training. 14 Tage kostenlos, dann 19 €/Monat. Jederzeit kündbar.",
   },
+  legalPage: {
+    title: "Impressum",
+    updated: "Zuletzt aktualisiert: September 2026",
+    lead: "Das französische Recht (LCEN Art. 6 III) verlangt, Herausgeber und Hoster einer Website zu nennen. Diese Seite ist diese Angabe. Nichts davon steckt hinter einem Kontaktformular.",
+    publisherTitle: "Herausgeber",
+    labels: {
+      name: "Name",
+      form: "Rechtsform",
+      address: "Sitz",
+      phone: "Telefon",
+      siren: "SIREN",
+      vat: "USt-IdNr.",
+      capital: "Stammkapital",
+      director: "Verantwortlich für den Inhalt",
+      email: "E-Mail",
+    },
+    pending: "Noch nicht veröffentlicht",
+    pendingNote:
+      "Ridgework ist noch nicht als Unternehmen eingetragen und nimmt keine Zahlungen entgegen. Die oben so gekennzeichneten Felder werden mit der Eintragung ergänzt; bis dahin wird nichts verkauft und keine Karte belastet.",
+    hostTitle: "Hosting und Infrastruktur",
+    hostLead: "Wer die Maschinen betreibt, was jeder Anbieter tut, und wo die Daten liegen.",
+    hostRole: "Rolle",
+    hostRoles: {
+      vercel: "Hoster — die Website und ihre Server-Funktionen",
+      neon: "Datenbank — Konten, Profile, Trainingspläne",
+      resend: "Transaktions-E-Mail — Bestätigungs- und Passwortlinks",
+      cloudflare: "DNS und Weiterleitung der an die Domain gesendeten Mail",
+    },
+    hostRegion: "Region",
+    hostContact: "Kontakt",
+    contactTitle: "Kontakt",
+    contactBody:
+      "Schreib an support@ridgework.org. Es antwortet ein Mensch, innerhalb von 24 bis 48 Stunden.",
+  },
   termsPage: {
     title: "Nutzungsbedingungen",
     updated: "Zuletzt aktualisiert: September 2026",
@@ -514,8 +552,20 @@ export const de: Copy = {
     title: "Datenschutzerklärung",
     updated: "Zuletzt aktualisiert: September 2026",
     body: [
-      "Stub privacy notice (EU / France / GDPR principles). Company: Ridgework, France. Contact: support@ridgework.org. Full counsel-reviewed policy before launch. We do not sell personal data for ads. Payments via Polar. Not a medical service — do not submit sensitive health diagnoses.",
-      "Rights: access, rectification, erasure, restriction, portability, objection where applicable; complaint to a French/EU authority.",
+      "Wer wir sind. Ridgework ist Verantwortlicher für die hier beschriebenen Daten. Identität, Anschrift und Hoster stehen vollständig im Impressum. Fragen und alle unten genannten Anliegen an support@ridgework.org — es antwortet ein Mensch.",
+      "Kein Tracking. Ridgework betreibt keine Analyse — weder eigene noch fremde. Kein Werbepixel, kein Fingerprinting, kein Cookie-Banner, weil es nichts einzuwilligen gibt. Das einzige Cookie hält dich angemeldet, ist unbedingt erforderlich und verschwindet beim Abmelden.",
+      "Dein Konto. Name, E-Mail-Adresse und ein Hash des Passworts. Das Passwort selbst speichern wir nie. Rechtsgrundlage: Vertragserfüllung — ohne Konto gibt es keinen Plan zu zeigen.",
+      "Wie du trainierst. Was du bei der Einrichtung angegeben hast: Sportart, Ziel, Zieltermin, Wochenstunden, längste jüngste Einheit, Erfahrung, mögliche Tage und deren Dauer, Gelände, Ausrüstung und Einschränkungen wie Schichtarbeit oder wenig Schlaf. Rechtsgrundlage: Vertragserfüllung. Daraus wird der Plan geschrieben.",
+      "Wie du dich fühlst. Der tägliche Check-in: Schlaf, Muskelkater, Müdigkeit, Stress und Motivation auf einer Skala von 1 bis 5, dazu eine Ja/Nein-Angabe, ob etwas das Training gerade einschränkt. Rechtsgrundlage: Vertragserfüllung. Das sind subjektive Trainingsangaben, keine klinischen Messwerte; wir fragen nicht nach Diagnosen, Medikamenten, Befunden oder sonstigen Patientenakten und wollen sie auch nicht. Ridgework ist kein Gesundheitsdienst und stellt keine Diagnosen.",
+      "Was du gemacht hast. Welche Einheit geplant war, ob du sie als erledigt, verpasst oder verschoben markiert hast, und die eingetragenen Minuten. Rechtsgrundlage: Vertragserfüllung — genau das lässt den Plan auf die Woche reagieren, die du wirklich hattest.",
+      "Integrationen, nur auf Wunsch. Der Kalender-Feed erzeugt eine geheime Adresse für deine Einheiten. Die Verbindung zu intervals.icu speichert den API-Schlüssel, den du einfügst. Beides ist aus, bis du es einschaltest, beides lässt sich trennen, und beim Trennen wird das Gespeicherte gelöscht. Rechtsgrundlage: Einwilligung.",
+      "Zahlungen. Heute werden keine entgegengenommen; die Kasse ist geschlossen. Wenn sie öffnet, wickelt Polar Kartenzahlungen als Merchant of Record ab. Wir halten den Status deines Abos, nie deine Kartennummer.",
+      "Wer sonst Zugriff hat. Nur die Anbieter, die den Dienst betreiben, mit Anschrift und Region im Impressum aufgeführt: Vercel (Hosting, Region Paris), Neon (Datenbank, Frankfurt), Resend (Bestätigungs- und Passwort-Mails, Irland) und Cloudflare (DNS und Mail-Routing). Jeder handelt auf unsere Weisung unter einem Auftragsverarbeitungsvertrag. Wir verkaufen keine personenbezogenen Daten und geben sie nicht für Werbung weiter.",
+      "Daten außerhalb der EU. Diese Anbieter sind US-Unternehmen. Gespeichert wird in der EU, wo der Anbieter das anbietet — Datenbank in Frankfurt, E-Mail in Irland — ein Support-Zugriff aus den USA ist jedoch möglich. Übermittlungen stützen sich auf die Standardvertragsklauseln der Kommission und, sofern der Anbieter zertifiziert ist, auf das EU–US Data Privacy Framework.",
+      "Speicherdauer. Konto und Trainingsverlauf bleiben, solange das Konto besteht. Lösche das Konto, und wir löschen sie — außer dem, was Buchhaltung oder Gesetz nach Aufnahme der Geschäftstätigkeit verlangen, und nur für diese Dauer.",
+      "Deine Rechte. Du kannst eine Kopie deiner Daten verlangen, sie berichtigen, löschen, ihre Nutzung einschränken oder ihr widersprechen, sie in einem übertragbaren Format mitnehmen und die Einwilligung für die Integrationen jederzeit widerrufen. Schreib an support@ridgework.org. Wir antworten binnen eines Monats, meist deutlich schneller.",
+      "Beschwerden. Wenn dich unsere Antwort nicht zufriedenstellt, kannst du dich an die französische Aufsichtsbehörde wenden: CNIL, 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07, oder cnil.fr. Ebenso an die Behörde deines Wohnsitzes.",
+      "Änderungen. Ändert sich diese Erklärung wesentlich, sagen wir es auf dieser Seite und, wenn die Änderung bereits gegebene Daten betrifft, per E-Mail.",
     ],
   },
   examplePage: {
@@ -531,7 +581,8 @@ export const de: Copy = {
   },
   sourcesPage: {
     title: "Quellen — Ridgework",
-    description: "Alle Arbeiten hinter den Trainingswochen, und wofür jede tatsächlich verwendet wird.",
+    description:
+      "Alle Arbeiten hinter den Trainingswochen, und wofür jede tatsächlich verwendet wird.",
     back: "← Ridgework",
     kicker: "Methode",
     h1: "Jede Quelle, und wofür sie verwendet wird",
@@ -578,7 +629,34 @@ export const de: Copy = {
     noAccount: "Noch kein Konto? Erstellen",
     error: "Anmeldung fehlgeschlagen. E-Mail und Passwort prüfen.",
     verifyTitle: "Sieh in deinem Postfach nach",
-    verifyBody: "Wir haben einen Bestätigungslink an diese Adresse geschickt. Öffne ihn, dann bist du drin — vorher ist das Konto nicht aktiv.",
+    verifyBody:
+      "Wenn diese Adresse Mail empfangen kann, ist ein Bestätigungslink unterwegs — das Konto ist erst aktiv, wenn du ihn öffnest. Nach ein paar Minuten nichts da? Sieh in den Spam und schreib dann an support@ridgework.org.",
+    forgotLink: "Passwort vergessen?",
+    forgotTitle: "Link zum Zurücksetzen schicken",
+    forgotBody:
+      "Gib die Adresse ein, mit der du dich registriert hast. Der Link gilt einmal und läuft in einer Stunde ab.",
+    forgotSend: "Link schicken",
+    resetSentTitle: "Sieh in deine Mails",
+    resetSentBody:
+      "Wenn es zu dieser Adresse ein Konto gibt, ist ein Link unterwegs. Wir sagen nicht, welches von beidem — das würde verraten, wer unsere Athleten sind.",
+    setPasswordTitle: "Neues Passwort wählen",
+    setPasswordBody: "Mindestens 8 Zeichen. Das meldet dich überall sonst ab.",
+    newPassword: "Neues Passwort",
+    setPasswordCta: "Speichern und anmelden",
+    resetDoneTitle: "Passwort geändert",
+    resetDoneBody: "Melde dich mit dem neuen an.",
+    linkExpiredTitle: "Dieser Link ist verbraucht",
+    linkExpiredBody:
+      "Ein Link zum Zurücksetzen gilt einmal und eine Stunde lang. Fordere einen neuen an.",
+    alreadyRegistered:
+      "Zu dieser Adresse gibt es schon ein Konto. Melde dich an, oder setze das Passwort zurück, wenn du es nicht mehr weißt.",
+    weakPassword: "Nimm mindestens 8 Zeichen.",
+    unverifiedTitle: "Bestätige zuerst deine Adresse",
+    unverifiedBody:
+      "Das Konto gibt es, die Adresse ist aber nicht bestätigt. Wir haben den Link erneut geschickt.",
+    resend: "Link erneut schicken",
+    resent: "Geschickt. Gib ihm eine Minute.",
+    backToSignIn: "Zurück zur Anmeldung",
     testNote: "14 Tage kostenlos. Ohne Karte. Füge jederzeit eine hinzu, um weiterzutrainieren.",
   },
   dashboard: {
@@ -596,18 +674,23 @@ export const de: Copy = {
       title: "Dein Plan, auf der Uhr und im Kalender",
       lead: "Zwei Wege hinaus. Keiner braucht jemandes Erlaubnis, und beide gehen gleichzeitig.",
       calendarTitle: "Im Kalender abonnieren",
-      calendarLead: "Ein lebendiger Feed der geschriebenen Einheiten. Einmal in Google, Apple oder Outlook hinzufügen, dann bleibt er aktuell — schreibt eine müde Woche eine Einheit um, folgt der Kalender.",
+      calendarLead:
+        "Ein lebendiger Feed der geschriebenen Einheiten. Einmal in Google, Apple oder Outlook hinzufügen, dann bleibt er aktuell — schreibt eine müde Woche eine Einheit um, folgt der Kalender.",
       calendarCta: "Kalenderlink erstellen",
-      calendarNote: "Wer den Link hat, sieht deine geplanten Einheiten — behandle ihn wie ein Passwort. Ein neuer Link macht den alten sofort ungültig.",
+      calendarNote:
+        "Wer den Link hat, sieht deine geplanten Einheiten — behandle ihn wie ein Passwort. Ein neuer Link macht den alten sofort ungültig.",
       copy: "Link kopieren",
       copied: "Kopiert.",
       rotate: "Link erneuern",
       intervalsTitle: "An intervals.icu senden",
-      intervalsLead: "intervals.icu ist kostenlos und hat eine eigene Garmin-Connect-Anbindung für geplante Einheiten. Dort einmal verbinden, von hier senden, und die Einheiten landen auf der Uhr.",
-      intervalsNote: "Dein Schlüssel bleibt auf unserem Server, damit das Senden läuft, und geht nie an den Browser zurück. Trennen löscht ihn.",
+      intervalsLead:
+        "intervals.icu ist kostenlos und hat eine eigene Garmin-Connect-Anbindung für geplante Einheiten. Dort einmal verbinden, von hier senden, und die Einheiten landen auf der Uhr.",
+      intervalsNote:
+        "Dein Schlüssel bleibt auf unserem Server, damit das Senden läuft, und geht nie an den Browser zurück. Trennen löscht ihn.",
       athleteId: "Athlete ID",
       apiKey: "API-Schlüssel",
-      apiKeyHint: "Beides steht in intervals.icu unter Settings → Developer. Die Athlete ID sieht aus wie i12345.",
+      apiKeyHint:
+        "Beides steht in intervals.icu unter Settings → Developer. Die Athlete ID sieht aus wie i12345.",
       connect: "Verbinden",
       connected: "Verbunden.",
       connectedAs: "Verbunden als",

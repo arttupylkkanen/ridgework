@@ -16,6 +16,7 @@ export type PageId =
   | "founding"
   | "terms"
   | "privacy"
+  | "mentions-legales"
   | "app"
   | "field"
   | "login"
@@ -23,6 +24,16 @@ export type PageId =
   | "example"
   | "sources"
   | "plans";
+
+/**
+ * Which page the chrome is rendering, which is not quite the same set as the
+ * paths above: a passport is reached by token, so it has no `pagePath`, but the
+ * header and footer still need to know they are on one.
+ *
+ * One type, because the header and the shell each used to keep their own hand
+ * written copy of this list — and they had already drifted apart.
+ */
+export type ShellPage = PageId | "passport";
 
 export function localePrefix(locale: Locale): string {
   return locale === "en" ? "" : `/${locale}`;

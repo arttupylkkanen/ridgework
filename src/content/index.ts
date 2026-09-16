@@ -1,9 +1,13 @@
+// Extensions on the relative imports so `node --test` can resolve this module
+// too: `--experimental-strip-types` does no extension guessing, and the alias
+// `@/` does not exist outside the bundler. Type-only imports are erased, so
+// they are left alone.
 import type { Locale } from "@/lib/locale";
 import type { Copy } from "./types";
-import { en } from "./en";
-import { fi } from "./fi";
-import { fr } from "./fr";
-import { de } from "./de";
+import { en } from "./en.ts";
+import { fi } from "./fi.ts";
+import { fr } from "./fr.ts";
+import { de } from "./de.ts";
 
 export const copies: Record<Locale, Copy> = { en, fi, fr, de };
 
@@ -15,7 +19,8 @@ export const SOURCES = [
   {
     authors: "Seiler S",
     year: "2010",
-    title: "What is Best Practice for Training Intensity and Duration Distribution in Endurance Athletes",
+    title:
+      "What is Best Practice for Training Intensity and Duration Distribution in Endurance Athletes",
     journal: "International Journal of Sports Physiology and Performance.",
     doi: "10.1123/ijspp.5.3.276",
     href: "https://doi.org/10.1123/ijspp.5.3.276",
