@@ -58,6 +58,15 @@ export type SessionLog = {
   actualKey: SessionKey;
   status: SessionStatus;
   at: string;
+  /**
+   * What the day asked for, and what it got. Both optional: every log written
+   * before durations existed has neither, and a session marked done without
+   * entering a time has only the first. `src/lib/adherence.ts` skips a log
+   * that is missing either rather than assuming the session was completed in
+   * full — an assumed duration would hide exactly the pattern it looks for.
+   */
+  plannedMinutes?: number;
+  actualMinutes?: number;
 };
 
 export type AdjustmentTrigger =

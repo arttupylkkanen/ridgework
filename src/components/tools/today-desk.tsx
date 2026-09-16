@@ -118,6 +118,7 @@ export function TodayDesk({
   const [inputs, setInputs] = useState<DailyInputs>(emptyInputs);
   const [overridden, setOverridden] = useState(false);
   const [confirmOverride, setConfirmOverride] = useState(false);
+  const [doneMinutes, setDoneMinutes] = useState("");
   const [flash, setFlash] = useState<string | null>(null);
   const [history, setHistory] = useState<StoredDaily[]>([]);
   const today = todayIso();
@@ -272,13 +273,41 @@ export function TodayDesk({
               }
               loadKg={shown.key === "pack" || shown.key === "me" ? packLoadKg(state) : undefined}
             />
+            {shown.key !== "rest" ? (
+              <div className="mt-5 max-w-xs">
+                <label htmlFor="today-actual-minutes" className="text-sm font-medium text-ink">
+                  {t.actualMinutes}
+                </label>
+                <input
+                  id="today-actual-minutes"
+                  type="number"
+                  inputMode="numeric"
+                  min={1}
+                  max={1200}
+                  value={doneMinutes}
+                  onChange={(e) => setDoneMinutes(e.target.value)}
+                  placeholder={shown.minutes ? String(shown.minutes) : undefined}
+                  className="mt-1 w-full rounded-lg border border-line bg-paper px-3 py-2 text-sm text-ink"
+                />
+                <p className="mt-1 text-xs leading-relaxed text-ink-soft">{t.actualMinutesHint}</p>
+              </div>
+            ) : null}
             <div className="mt-5 flex flex-wrap gap-2">
               <button
                 id="today-done"
                 type="button"
                 onClick={() => {
-                  const next = markToday(state, profile, "done", today, view);
+                  const entered = Number.parseInt(doneMinutes, 10);
+                  const next = markToday(
+                    state,
+                    profile,
+                    "done",
+                    today,
+                    view,
+                    Number.isFinite(entered) && entered > 0 ? entered : undefined,
+                  );
                   persist(next.state);
+                  setDoneMinutes("");
                   setFlash(t.doneFlash);
                 }}
                 className="inline-flex min-h-11 items-center rounded-lg bg-ridge px-4 py-2 text-sm font-medium text-paper hover:bg-ridge-deep"

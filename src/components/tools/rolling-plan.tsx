@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Copy } from "@/content/types";
 import type { Locale } from "@/lib/locale";
-import { cn, fillTemplate } from "@/lib/utils";
+import { cn, fillTemplate, reasonText } from "@/lib/utils";
 import { SessionHowTo } from "./session-how";
 import { PROGRAM_MEDIA } from "@/lib/program-media";
 import type { AthleteProfile } from "@/lib/athlete";
@@ -193,7 +193,9 @@ export function RollingPlan({
                 }}
                 className={cn(
                   "overflow-hidden border text-left",
-                  selected ? "border-ridge bg-paper-warm" : "border-line bg-card hover:bg-paper-warm/60",
+                  selected
+                    ? "border-ridge bg-paper-warm"
+                    : "border-line bg-card hover:bg-paper-warm/60",
                 )}
               >
                 <img
@@ -206,7 +208,9 @@ export function RollingPlan({
                 />
                 <div className="p-4">
                   <p className="font-display text-lg font-semibold text-ridge-deep">{obj.name}</p>
-                  <p className="mt-1 text-xs font-medium uppercase tracking-wider text-accent">{obj.length}</p>
+                  <p className="mt-1 text-xs font-medium uppercase tracking-wider text-accent">
+                    {obj.length}
+                  </p>
                   <p className="mt-3 text-sm leading-relaxed text-ink-muted">{obj.blurb}</p>
                 </div>
               </button>
@@ -259,7 +263,10 @@ export function RollingPlan({
       : null;
   const current =
     profile && personalized[0]
-      ? overlayToday(personalized[0], todayView && todayView.calendar === personalized[0].calendar ? todayView : null)
+      ? overlayToday(
+          personalized[0],
+          todayView && todayView.calendar === personalized[0].calendar ? todayView : null,
+        )
       : written
         ? adaptWeek(written, result, state.objective)
         : undefined;
@@ -275,14 +282,21 @@ export function RollingPlan({
       <article
         data-week={week.calendar}
         data-eased={week.eased ? "1" : "0"}
-        className={cn("rounded-2xl border p-5", featured ? "border-ridge bg-card" : "border-line bg-paper-warm/40")}
+        className={cn(
+          "rounded-2xl border p-5",
+          featured ? "border-ridge bg-card" : "border-line bg-paper-warm/40",
+        )}
       >
-        <p className="text-xs font-semibold uppercase tracking-wider text-accent">{featured ? t.current : t.ahead}</p>
+        <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+          {featured ? t.current : t.ahead}
+        </p>
         <h3 className="mt-1 font-display text-lg font-semibold text-ridge-deep">
           {fill(t.weekLabel, { n: week.calendar })}
         </h3>
         <p className="mt-1 text-sm text-ink-muted">{phaseLabel(week.phase)}</p>
-        {week.eased ? <p className="mt-2 text-xs leading-relaxed text-accent">{t.easedNote}</p> : null}
+        {week.eased ? (
+          <p className="mt-2 text-xs leading-relaxed text-accent">{t.easedNote}</p>
+        ) : null}
         <ul className="mt-4 space-y-2">
           {week.days.map((day, di) => {
             const id = `${week.calendar}-${di}`;
@@ -290,7 +304,11 @@ export function RollingPlan({
             return (
               <li
                 key={id}
-                className={cn("text-sm", changedDays.has(di) && "rounded-md bg-paper-warm px-1 font-medium text-ridge-deep")}
+                className={cn(
+                  "text-sm",
+                  changedDays.has(di) &&
+                    "rounded-md bg-paper-warm px-1 font-medium text-ridge-deep",
+                )}
               >
                 <button
                   type="button"
@@ -301,7 +319,10 @@ export function RollingPlan({
                   <span className="text-ink">
                     {t.sessions[day.key]}
                     {day.minutes ? (
-                      <span className="text-ink-soft"> · {fillTemplate(athlete.minutes, { n: day.minutes })}</span>
+                      <span className="text-ink-soft">
+                        {" "}
+                        · {fillTemplate(athlete.minutes, { n: day.minutes })}
+                      </span>
                     ) : null}
                   </span>
                 </button>
@@ -311,7 +332,9 @@ export function RollingPlan({
                       locale={locale}
                       sessionKey={day.key}
                       minutes={day.minutes}
-                      minutesLabel={day.minutes ? fillTemplate(athlete.minutes, { n: day.minutes }) : undefined}
+                      minutesLabel={
+                        day.minutes ? fillTemplate(athlete.minutes, { n: day.minutes }) : undefined
+                      }
                     />
                   </div>
                 ) : null}
@@ -382,13 +405,17 @@ export function RollingPlan({
           onChange={(e) => persist(retargetPeak(state, e.target.value))}
           className="mt-2 w-full rounded-lg border border-line bg-paper px-3 py-2.5 text-sm outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ridge"
         />
-        <span className="mt-1 block text-xs font-normal text-ink-soft">{athlete.peakLocked.replace("{peak}", state.peakOn)}</span>
+        <span className="mt-1 block text-xs font-normal text-ink-soft">
+          {athlete.peakLocked.replace("{peak}", state.peakOn)}
+        </span>
       </label>
 
       <div
         className={cn(
           "rounded-2xl border p-4",
-          bar.quality === "generous" || bar.quality === "full" ? "border-ridge bg-paper-warm/60" : "border-accent bg-paper-warm/70",
+          bar.quality === "generous" || bar.quality === "full"
+            ? "border-ridge bg-paper-warm/60"
+            : "border-accent bg-paper-warm/70",
         )}
       >
         <p className="text-xs font-semibold uppercase tracking-wider text-accent">{q.label}</p>
@@ -400,12 +427,22 @@ export function RollingPlan({
 
       <div aria-hidden={false} className="space-y-2">
         <div className="flex h-3 overflow-hidden rounded-full border border-line">
-          {bar.base > 0 ? <div className="bg-ridge" style={{ flexGrow: bar.base }} title={t.phases.base} /> : null}
+          {bar.base > 0 ? (
+            <div className="bg-ridge" style={{ flexGrow: bar.base }} title={t.phases.base} />
+          ) : null}
           {bar.specific > 0 ? (
-            <div className="bg-accent" style={{ flexGrow: bar.specific }} title={t.phases.specific} />
+            <div
+              className="bg-accent"
+              style={{ flexGrow: bar.specific }}
+              title={t.phases.specific}
+            />
           ) : null}
           {bar.taper > 0 ? (
-            <div className="bg-accent-soft" style={{ flexGrow: bar.taper }} title={t.phases.taper} />
+            <div
+              className="bg-accent-soft"
+              style={{ flexGrow: bar.taper }}
+              title={t.phases.taper}
+            />
           ) : null}
         </div>
         <div className="relative h-5 text-xs text-ink-muted">
@@ -504,7 +541,9 @@ export function RollingPlan({
                   }}
                   className={cn(
                     "flex min-h-11 items-center rounded-lg border px-3 py-3 text-left text-sm",
-                    result === id ? "border-ridge bg-paper-warm font-medium text-ink" : "border-line text-ink-muted hover:bg-paper-warm/60",
+                    result === id
+                      ? "border-ridge bg-paper-warm font-medium text-ink"
+                      : "border-line text-ink-muted hover:bg-paper-warm/60",
                   )}
                 >
                   {label}
@@ -512,8 +551,13 @@ export function RollingPlan({
               ))}
             </div>
             {changes.length > 0 ? (
-              <div className="mt-4 rounded-xl border border-accent bg-paper-warm/70 p-4" data-week-changed="1">
-                <p className="text-xs font-semibold uppercase tracking-wider text-accent">{t.changed}</p>
+              <div
+                className="mt-4 rounded-xl border border-accent bg-paper-warm/70 p-4"
+                data-week-changed="1"
+              >
+                <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+                  {t.changed}
+                </p>
                 <ul className="mt-2 space-y-1 text-sm text-ink">
                   {changes.map((c) => (
                     <li key={`${c.day}-${c.from}-${c.to}`}>
@@ -541,10 +585,12 @@ export function RollingPlan({
 
           {weekReasons && weekReasons.length > 0 ? (
             <div className="rounded-2xl border border-line bg-paper-warm/50 p-5">
-              <p className="text-xs font-semibold uppercase tracking-wider text-accent">{athlete.whyWeek}</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+                {athlete.whyWeek}
+              </p>
               <ul className="mt-3 space-y-1.5 text-sm leading-relaxed text-ink">
                 {weekReasons.slice(0, 8).map((reason, i) => (
-                  <li key={`${reason.id}-${i}`}>{fillTemplate(athlete.reasons[reason.id] ?? reason.id, reason.values)}</li>
+                  <li key={`${reason.id}-${i}`}>{reasonText(copy, reason.id, reason.values)}</li>
                 ))}
               </ul>
             </div>
@@ -565,8 +611,11 @@ export function RollingPlan({
           <h3 className="font-display text-lg font-semibold text-ink">{athlete.whyChanged}</h3>
           <ul className="mt-3 space-y-2">
             {state.adjustments.slice(0, 8).map((adj) => (
-              <li key={adj.at} className="rounded-xl border border-line bg-card px-4 py-3 text-sm text-ink">
-                {fillTemplate(athlete.reasons[adj.reason.id] ?? adj.reason.id, adj.reason.values)}
+              <li
+                key={adj.at}
+                className="rounded-xl border border-line bg-card px-4 py-3 text-sm text-ink"
+              >
+                {reasonText(copy, adj.reason.id, adj.reason.values)}
               </li>
             ))}
           </ul>
@@ -580,8 +629,13 @@ export function RollingPlan({
         ) : (
           <ul className="mt-3 space-y-2">
             {history.map((item) => (
-              <li key={`${item.calendar}-${item.at}`} className="rounded-xl border border-line bg-card px-4 py-3 text-sm">
-                <span className="font-medium text-ink">{fill(t.weekLabel, { n: item.calendar })}</span>
+              <li
+                key={`${item.calendar}-${item.at}`}
+                className="rounded-xl border border-line bg-card px-4 py-3 text-sm"
+              >
+                <span className="font-medium text-ink">
+                  {fill(t.weekLabel, { n: item.calendar })}
+                </span>
                 <span className="text-ink-muted">
                   {" · "}
                   {item.result === "good"
