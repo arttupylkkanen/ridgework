@@ -39,6 +39,23 @@ export const fi: Copy = {
     pricing: "Katso hinnat",
     openTools: "Avaa työkalut",
   },
+  pageMeta: {
+    who: {
+      title: "Kenelle Ridgework on — Ridgework",
+      description:
+        "Kenelle itseään uudelleen kirjoittava treeniviikko sopii, kenelle ei, ja mitä oikeasti saat. Vuori- ja polkutreeniä, ei kiinteää PDF:ää.",
+    },
+    after: {
+      title: "Mitä tapahtuu kirjautumisen jälkeen — Ridgework",
+      description:
+        "Ensimmäiset kaksi viikkoa päivä kerrallaan: valitse tavoitepäivä, kolme viikkoa ilmestyy kalenteriin, ja suunnitelma kirjoitetaan uusiksi sen mukaan mitä teit.",
+    },
+    method: {
+      title: "Menetelmä ja lähteet — Ridgework",
+      description:
+        "Useimmat päivät kevyitä, yksi kova jos olet virkeä, kevennys kohti päivää. Viikkorakenteen takana oleva tutkimus lähdeviitteineen ja rajoituksineen.",
+    },
+  },
   offer: {
     free: {
       cta: "Aloita ilmaiseksi",
@@ -128,10 +145,6 @@ export const fi: Copy = {
       "Tämä kirjoittaa lähtöviikon siitä mitä kerrot sille. Se ei näe sinua treenaamassa ja tietää vain ne treenit jotka kirjaat.",
     ],
     sourcesTitle: "Lähteet",
-    teaserH2: "Mitä tämä voi luvata ja mitä ei",
-    teaserLead:
-      "Suurin osa päivistä kevyitä, yksi kova jos olet virkeä, taper kohti päivää — se muoto tulee kourallisesta hyvin siteerattuja kestävyysjulkaisuja, ei mallipohjasta johon on liimattu nimesi. Tässä se osa jonka useimmat treenituotteet jättävät sanomatta.",
-    teaserCta: "Lue koko metodi",
     allSourcesCta: "Kaikki lähteet ja mihin kutakin käytetään",
   },
   projects: {

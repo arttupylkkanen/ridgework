@@ -32,6 +32,9 @@ export function translatedPages(): Translated[] {
     prefixed("/privacy"),
     prefixed("/terms"),
     prefixed("/mentions-legales"),
+    prefixed("/who"),
+    prefixed("/after"),
+    prefixed("/method"),
     ...GUIDES.map((guide) => prefixed(`/guides/${guide.slug}`)),
   ];
 }

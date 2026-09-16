@@ -39,6 +39,23 @@ export const en: Copy = {
     pricing: "See pricing",
     openTools: "Open tools",
   },
+  pageMeta: {
+    who: {
+      title: "Who Ridgework Is For — Ridgework",
+      description:
+        "Who a rewriting training week suits, who it does not, and what you actually get. Mountain and trail training, no fixed PDF.",
+    },
+    after: {
+      title: "What Happens After You Sign In — Ridgework",
+      description:
+        "Your first two weeks, day by day: pick a peak date, three weeks land on the calendar, and the plan rewrites around what you actually did.",
+    },
+    method: {
+      title: "The Method and Its Sources — Ridgework",
+      description:
+        "Most days easy, one hard session if you are fresh, a taper into the day. The research behind the week structure, with citations and the limits.",
+    },
+  },
   offer: {
     free: {
       cta: "Start free",
@@ -129,10 +146,6 @@ export const en: Copy = {
       "This writes a starting week from what you tell it. It cannot watch you train, and it only knows the sessions you log.",
     ],
     sourcesTitle: "Sources (Crossref-verified)",
-    teaserH2: "What this can promise, and what it cannot",
-    teaserLead:
-      "Most days easy, one hard session if you are fresh, a taper into the day — that shape comes from a handful of well-cited endurance papers, not from a template with your name on it. Here is the part most training products leave out.",
-    teaserCta: "Read the full method",
     allSourcesCta: "All sources, and what each one is used for",
   },
   rollingEngine: {

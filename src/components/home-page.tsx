@@ -1,15 +1,21 @@
 import type { Copy } from "@/content/types";
-import { KEY_SOURCES } from "@/content";
 import { CHECKOUT_OPEN } from "@/lib/billing";
-import { GUIDES } from "@/content/guides";
 import { planPageFor } from "@/content/plans";
 import type { Locale } from "@/lib/locale";
-import { METHOD_PHOTO, PROGRAM_MEDIA } from "@/lib/program-media";
+import { PROGRAM_MEDIA } from "@/lib/program-media";
 import { PhotoImage } from "@/components/photo-image";
 import { HeroProof } from "@/components/hero-proof";
 import { offerTerms } from "@/lib/offer";
-import { AuthLink, DeskLink, GuideLink, HomeLink, PlanLink, SourcesLink } from "./app-link";
-import { CheckoutForm } from "./checkout-form";
+import {
+  AfterLink,
+  AuthLink,
+  DeskLink,
+  GuideLink,
+  HomeLink,
+  MethodLink,
+  PlanLink,
+  WhoLink,
+} from "./app-link";
 import { ExampleWeekStrip } from "./example-week-strip";
 
 export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
@@ -49,69 +55,6 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
               >
                 {copy.nav.example}
               </HomeLink>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {copy.rollingEngine ? (
-        <section id="rolling-engine" className="scroll-mt-20 border-b border-line bg-paper-warm/40">
-          <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
-            <p className="text-sm font-semibold uppercase tracking-wider text-ridge">
-              {copy.rollingEngine.kicker}
-            </p>
-            <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-              {copy.rollingEngine.h2}
-            </h2>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted">
-              {copy.rollingEngine.lead}
-            </p>
-            <dl className="mt-10 grid gap-8 sm:grid-cols-3">
-              {copy.rollingEngine.points.map((point) => (
-                <div key={point.title}>
-                  <dt className="font-display text-lg font-semibold text-ridge-deep">
-                    {point.title}
-                  </dt>
-                  <dd className="mt-2 text-sm leading-relaxed text-ink-muted">{point.body}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </section>
-      ) : null}
-
-      <section id="method-summary" className="scroll-mt-20 border-b border-line">
-        <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr]">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-wider text-ridge">
-                {copy.method.kicker}
-              </p>
-              <h2 className="mt-3 max-w-xl font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-                {copy.method.teaserH2}
-              </h2>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-muted">
-                {copy.method.teaserLead}
-              </p>
-              <HomeLink
-                locale={locale}
-                hash="method"
-                className="mt-6 inline-flex min-h-11 items-center text-sm font-medium text-ridge underline-offset-2 hover:underline"
-              >
-                {copy.method.teaserCta} →
-              </HomeLink>
-            </div>
-            <div className="self-start border-l-2 border-ridge pl-6">
-              <h3 className="font-display text-lg font-semibold text-ink">
-                {copy.method.caveatsTitle}
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {copy.method.caveats.map((item) => (
-                  <li key={item} className="text-sm leading-relaxed text-ink-muted">
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         </div>
@@ -173,102 +116,57 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
           <div className="mt-10">
             <ExampleWeekStrip copy={copy} />
           </div>
-        </div>
-      </section>
-
-      <section id="who" className="scroll-mt-20 border-b border-line">
-        <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            {copy.who.h2}
-          </h2>
-          <div className="mt-8 grid gap-10 sm:grid-cols-2">
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-ridge">
-                {copy.who.forTitle}
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {copy.who.forItems.map((item) => (
-                  <li key={item} className="text-sm leading-relaxed text-ink-muted">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
-                {copy.who.notTitle}
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {copy.who.notItems.map((item) => (
-                  <li key={item} className="text-sm leading-relaxed text-ink-muted">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Who it is for, the first two weeks, and the research used to sit on
+              this page as three more sections. They are pages now, and this is
+              where a reader who wants them goes looking. */}
+          <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-line pt-6 text-sm font-medium text-ridge">
+            <WhoLink
+              locale={locale}
+              className="min-h-11 items-center underline-offset-2 hover:underline"
+            >
+              {copy.who.h2} →
+            </WhoLink>
+            <AfterLink
+              locale={locale}
+              className="min-h-11 items-center underline-offset-2 hover:underline"
+            >
+              {copy.firstWeek.h2} →
+            </AfterLink>
+            <MethodLink
+              locale={locale}
+              className="min-h-11 items-center underline-offset-2 hover:underline"
+            >
+              {copy.method.h2} →
+            </MethodLink>
           </div>
         </div>
       </section>
 
-      <section id="what" className="scroll-mt-20 border-b border-line">
-        <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            {copy.what.h2}
-          </h2>
-          <div className="mt-10 grid gap-8 sm:grid-cols-2">
-            {copy.what.items.map((item) => (
-              <div key={item.n}>
-                <p className="text-xs font-semibold uppercase tracking-wider text-accent">
-                  {item.n}
-                </p>
-                <h3 className="mt-2 font-display text-xl font-semibold text-ink">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-muted">{item.body}</p>
-              </div>
-            ))}
+      {copy.rollingEngine ? (
+        <section id="rolling-engine" className="scroll-mt-20 border-b border-line bg-paper-warm/40">
+          <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
+            <p className="text-sm font-semibold uppercase tracking-wider text-ridge">
+              {copy.rollingEngine.kicker}
+            </p>
+            <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+              {copy.rollingEngine.h2}
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted">
+              {copy.rollingEngine.lead}
+            </p>
+            <dl className="mt-10 grid gap-8 sm:grid-cols-3">
+              {copy.rollingEngine.points.map((point) => (
+                <div key={point.title}>
+                  <dt className="font-display text-lg font-semibold text-ridge-deep">
+                    {point.title}
+                  </dt>
+                  <dd className="mt-2 text-sm leading-relaxed text-ink-muted">{point.body}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
-        </div>
-      </section>
-
-      <section id="week" className="scroll-mt-20 border-b border-line bg-paper-warm/40">
-        <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
-          <p className="text-sm font-semibold uppercase tracking-wider text-ridge">
-            {copy.firstWeek.kicker}
-          </p>
-          <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            {copy.firstWeek.h2}
-          </h2>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted">
-            {copy.firstWeek.lead}
-          </p>
-          <ol className="mt-8 divide-y divide-line border-y border-line">
-            {copy.firstWeek.days.map((step) => (
-              <li key={step.day} className="grid gap-1 py-5 sm:grid-cols-[5.5rem_1fr] sm:gap-6">
-                <span className="text-xs font-semibold uppercase tracking-wider text-ridge">
-                  {step.day}
-                </span>
-                <div>
-                  <h3 className="font-display text-lg font-semibold text-ink">{step.title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-ink-muted">{step.body}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-          <h3 className="mt-12 font-display text-xl font-semibold text-ink">{copy.week.h2}</h3>
-          <ol className="mt-4 divide-y divide-line border-y border-line">
-            {copy.week.steps.map((step) => (
-              <li key={step.day} className="grid gap-1 py-5 sm:grid-cols-[5rem_1fr] sm:gap-6">
-                <span className="text-xs font-semibold uppercase tracking-wider text-ink-soft">
-                  {step.day}
-                </span>
-                <div>
-                  <h3 className="font-display text-lg font-semibold text-ink">{step.title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-ink-muted">{step.body}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       <section id="programs" className="scroll-mt-20 border-b border-line">
         <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
@@ -330,66 +228,6 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
               );
             })}
           </div>
-        </div>
-      </section>
-
-      <section id="method" className="scroll-mt-20 border-b border-line">
-        <div className="mx-auto grid max-w-5xl lg:grid-cols-2">
-          <figure className="relative min-h-56 overflow-hidden sm:min-h-80 lg:min-h-full">
-            <PhotoImage
-              photo={METHOD_PHOTO}
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className="h-full w-full object-cover"
-            />
-          </figure>
-          <div className="px-4 py-14 sm:px-8 sm:py-16">
-            <p className="text-sm font-semibold uppercase tracking-wider text-ridge">
-              {copy.method.kicker}
-            </p>
-            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-              {copy.method.h2}
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-ink-muted">{copy.method.lead}</p>
-            <dl className="mt-8 space-y-6">
-              {copy.method.cards.map((card) => (
-                <div key={card.title}>
-                  <dt className="font-display text-lg font-semibold text-ridge-deep">
-                    {card.title}
-                  </dt>
-                  <dd className="mt-2 text-sm leading-relaxed text-ink-muted">{card.body}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </div>
-        <div className="mx-auto max-w-5xl border-t border-line px-4 py-12 sm:px-6">
-          <h3 className="font-display text-lg font-semibold text-ink">
-            {copy.method.sourcesTitle}
-          </h3>
-          <ol className="mt-5 list-decimal space-y-3 pl-5 marker:text-ink-soft">
-            {KEY_SOURCES.map((src) => (
-              <li key={src.title} className="text-sm leading-relaxed text-ink">
-                <span className="font-medium">{src.authors}</span>
-                <span className="text-ink-soft"> ({src.year}). </span>
-                <span className="italic">{src.title}</span>
-                <span className="text-ink-muted"> {src.journal} </span>
-                <a
-                  href={src.href}
-                  className="font-medium text-ridge underline decoration-ridge/30 underline-offset-2 hover:decoration-ridge"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  {"doi" in src && src.doi ? `doi:${src.doi}` : "source"}
-                </a>
-              </li>
-            ))}
-          </ol>
-          <SourcesLink
-            locale={locale}
-            className="mt-6 inline-flex min-h-11 items-center text-sm font-medium text-ridge underline-offset-2 hover:underline"
-          >
-            {copy.method.allSourcesCta} →
-          </SourcesLink>
         </div>
       </section>
 
@@ -460,70 +298,6 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
             <h3 className="font-display text-lg font-semibold text-paper">{offer.laterTitle}</h3>
             <p className="mt-2 text-sm leading-relaxed text-paper/70">{offer.laterBody}</p>
           </div>
-        </div>
-      </section>
-
-      <section id="about" className="scroll-mt-20 border-b border-line">
-        <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
-          <p className="text-sm font-semibold uppercase tracking-wider text-ridge">
-            {copy.about.kicker}
-          </p>
-          <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            {copy.about.h2}
-          </h2>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted">
-            {copy.about.lead}
-          </p>
-          <div className="mt-10 grid gap-8 sm:grid-cols-2">
-            {copy.about.cards.map((card) => (
-              <div key={card.title}>
-                <h3 className="font-display text-lg font-semibold text-ink">{card.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-muted">{card.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="guides" className="scroll-mt-20 border-b border-line bg-paper-warm/40">
-        <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
-          <p className="text-sm font-semibold uppercase tracking-wider text-ridge">
-            {copy.guidesIndex.kicker}
-          </p>
-          <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            {copy.guidesIndex.h2}
-          </h2>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted">
-            {copy.guidesIndex.lead}
-          </p>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-            {GUIDES.map((guide) => (
-              <li key={guide.slug}>
-                <GuideLink
-                  locale={locale}
-                  slug={guide.slug}
-                  className="block cursor-pointer border border-line bg-card p-5 hover:border-ridge hover:bg-paper"
-                >
-                  <p className="text-xs font-semibold uppercase tracking-wider text-accent">
-                    {guide.kicker[locale]}
-                  </p>
-                  <p className="mt-2 font-display text-lg font-semibold text-ink">
-                    {guide.title[locale]}
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                    {guide.description[locale]}
-                  </p>
-                  <p className="mt-4 text-sm font-medium text-ridge">{copy.guidesIndex.read} →</p>
-                </GuideLink>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section id="checkout" className="scroll-mt-20 border-b border-line">
-        <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
-          <CheckoutForm locale={locale} copy={copy} />
         </div>
       </section>
 

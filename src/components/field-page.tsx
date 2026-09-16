@@ -3,12 +3,13 @@ import { Link } from "@tanstack/react-router";
 import type { Copy } from "@/content/types";
 import { SOURCES } from "@/content";
 import type { Locale } from "@/lib/locale";
-import { pagePath, homeHash } from "@/lib/locale";
+import { pagePath } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 import { PHOTOS } from "@/lib/program-media";
 import type { Photo } from "@/lib/program-media";
 import { PhotoImage } from "@/components/photo-image";
 import { offerTerms } from "@/lib/offer";
+import { AuthLink } from "@/components/app-link";
 
 const TABS = ["stories", "science", "terrain"] as const;
 type Tab = (typeof TABS)[number];
@@ -132,12 +133,12 @@ export function FieldPage({ locale, copy }: { locale: Locale; copy: Copy }) {
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-muted">
             {offerTerms(copy).line}
           </p>
-          <a
-            href={homeHash(locale, "checkout")}
-            className="mt-6 inline-flex items-center justify-center rounded-lg bg-ridge px-5 py-3 text-sm font-medium text-paper hover:bg-ridge-deep"
+          <AuthLink
+            locale={locale}
+            className="mt-6 inline-flex min-h-11 items-center justify-center rounded-lg bg-ridge px-5 py-3 text-sm font-medium text-paper hover:bg-ridge-deep"
           >
             {offerTerms(copy).cta}
-          </a>
+          </AuthLink>
         </div>
       </div>
     </article>

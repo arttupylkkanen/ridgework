@@ -39,6 +39,23 @@ export const de: Copy = {
     pricing: "Preise ansehen",
     openTools: "Tools öffnen",
   },
+  pageMeta: {
+    who: {
+      title: "Für wen Ridgework ist — Ridgework",
+      description:
+        "Für wen sich eine Trainingswoche eignet, die sich neu schreibt, für wen nicht, und was du wirklich bekommst. Trail und Berg, kein festes PDF.",
+    },
+    after: {
+      title: "Was nach der Anmeldung passiert — Ridgework",
+      description:
+        "Deine ersten zwei Wochen, Tag für Tag: Zieltag wählen, drei Wochen landen im Kalender, und der Plan schreibt sich um nach dem, was du tatsächlich getan hast.",
+    },
+    method: {
+      title: "Die Methode und ihre Quellen — Ridgework",
+      description:
+        "Die meisten Tage locker, eine harte Einheit wenn du frisch bist, ein Taper auf den Tag. Die Forschung hinter der Wochenstruktur, mit Zitaten und Grenzen.",
+    },
+  },
   offer: {
     free: {
       cta: "Kostenlos starten",
@@ -129,10 +146,6 @@ export const de: Copy = {
       "Das schreibt eine Startwoche aus dem, was du angibst. Es sieht dich nicht trainieren und kennt nur die Einheiten, die du einträgst.",
     ],
     sourcesTitle: "Quellen (Crossref-verifiziert)",
-    teaserH2: "Was das versprechen kann und was nicht",
-    teaserLead:
-      "Die meisten Tage locker, eine harte Einheit wenn du frisch bist, ein Tapering in den Tag — diese Form kommt aus einer Handvoll gut zitierter Ausdauerarbeiten, nicht aus einer Vorlage mit deinem Namen darauf. Hier ist der Teil, den die meisten Trainingsprodukte weglassen.",
-    teaserCta: "Die ganze Methode lesen",
     allSourcesCta: "Alle Quellen, und wofür jede verwendet wird",
   },
   projects: {

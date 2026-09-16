@@ -39,6 +39,23 @@ export const fr: Copy = {
     pricing: "Voir les tarifs",
     openTools: "Ouvrir les outils",
   },
+  pageMeta: {
+    who: {
+      title: "À qui s’adresse Ridgework — Ridgework",
+      description:
+        "À qui convient une semaine d’entraînement qui se réécrit, à qui elle ne convient pas, et ce que vous obtenez vraiment. Trail et montagne, pas un PDF figé.",
+    },
+    after: {
+      title: "Ce qui se passe après la connexion — Ridgework",
+      description:
+        "Vos deux premières semaines, jour par jour : choisissez une date de pic, trois semaines arrivent au calendrier, et le plan se réécrit selon ce que vous avez fait.",
+    },
+    method: {
+      title: "La méthode et ses sources — Ridgework",
+      description:
+        "La plupart des jours faciles, une séance dure si vous êtes frais, un affûtage vers le jour J. La recherche derrière la structure, citations et limites comprises.",
+    },
+  },
   offer: {
     free: {
       cta: "Commencer gratuitement",
@@ -129,10 +146,6 @@ export const fr: Copy = {
       "Cela écrit une semaine de départ à partir de ce que vous lui dites. Cela ne vous voit pas vous entraîner et ne connaît que les séances que vous notez.",
     ],
     sourcesTitle: "Sources (vérifiées Crossref)",
-    teaserH2: "Ce que cela peut promettre, et ce que cela ne peut pas",
-    teaserLead:
-      "La plupart des jours en facile, une séance dure si vous êtes frais, un affûtage vers le jour J — cette forme vient d’une poignée d’articles d’endurance bien cités, pas d’un modèle générique à votre nom. Voici la partie que la plupart des produits d’entraînement passent sous silence.",
-    teaserCta: "Lire la méthode complète",
     allSourcesCta: "Toutes les sources, et à quoi sert chacune",
   },
   projects: {

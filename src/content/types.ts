@@ -111,6 +111,12 @@ export type Copy = {
     account: string;
   };
   cta: { pricing: string; openTools: string };
+  /** Title and description for the three pages lifted off the homepage. */
+  pageMeta: {
+    who: { title: string; description: string };
+    after: { title: string; description: string };
+    method: { title: string; description: string };
+  };
   /**
    * The two shapes the offer can take. src/lib/offer.ts picks one from
    * CHECKOUT_OPEN — never read both, and never hard-code a trial length in
@@ -139,9 +145,6 @@ export type Copy = {
     caveats: string[];
     sourcesTitle: string;
     /** Condensed method block rendered high on the homepage, above the programs. */
-    teaserH2: string;
-    teaserLead: string;
-    teaserCta: string;
     allSourcesCta: string;
   };
   /**
