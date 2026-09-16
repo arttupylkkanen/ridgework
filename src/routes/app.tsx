@@ -9,7 +9,7 @@ const copy = getCopy("en");
 export const Route = createFileRoute("/app")({
   validateSearch: parseAppSearch,
   head: () => ({
-    meta: [{ title: copy.appPage.title }],
+    meta: [{ title: copy.appPage.title }, { name: "robots", content: "noindex, nofollow" }],
   }),
   component: Page,
 });

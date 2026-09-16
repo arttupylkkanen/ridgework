@@ -117,9 +117,60 @@ account linking attaches the native Google identity to the existing user.
    - `curl -sI https://ridgework.org/__grok/manifest.webmanifest` → 404
    - the share card at `https://ridgework.org/og.jpg`
    - sign up with a real address and confirm the verification mail arrives
-   - `https://ridgework.org/sitemap.xml` and `/robots.txt`
+   - `https://ridgework.org/sitemap.xml` and `/robots.txt` (see §5)
 
-## 5. What stayed behind
+## 5. Search Console
+
+`robots.txt` and `sitemap.xml` are served by this build — verified against the
+production output, not just in dev:
+
+```
+curl -s https://ridgework.org/robots.txt      # 200, text/plain
+curl -s https://ridgework.org/sitemap.xml     # 200, application/xml, 60 URLs
+```
+
+If either 404s, the deploy serving that domain is not this build. That is the
+whole explanation for them 404ing until now: they have existed in the repo
+since the SEO pass, on a branch the old pipeline never published.
+
+Do the verification **while adding the DNS records in §4** — Search Console's
+DNS method is one more TXT record at the same registrar, in the same sitting,
+and a domain property covers `www`, the apex and all four locales at once.
+
+1. search.google.com/search-console → **Add property → Domain** → `ridgework.org`.
+2. Add the TXT record it prints, then press Verify.
+3. **Sitemaps → Add a new sitemap** → `sitemap.xml` → Submit. One submission is
+   enough; Google re-reads it on its own schedule and resubmitting changes
+   nothing.
+4. **URL Inspection** on `https://ridgework.org/` → _Request indexing_. Do the
+   same for two or three plan pages you most want ranked. This is the only part
+   that is worth doing by hand; the rest arrives through the sitemap.
+5. Repeat step 1–3 at bing.com/webmasters, which can import the Search Console
+   property directly. Bing feeds DuckDuckGo and ChatGPT search.
+
+Expect nothing for a week or two. Coverage shows up in Search Console under
+**Pages** before it shows up in results.
+
+### What the sitemap claims
+
+60 URLs: the home page, guides index, sources, example, field notes and
+pricing in all four locales, every guide in all four locales, plus the English
+plans index and its seven plan pages. Every translated entry carries the full
+`hreflang` set (`en`, `fi`, `fr`, `de`, `x-default`), matching the
+`<link rel="alternate">` tags in each page's head — reciprocal both ways, which
+is what makes Google honour them rather than ignore the cluster.
+
+`/app`, `/login`, `/calendar/<token>` and `/passport/<token>` are excluded, both
+in `robots.txt` and with `noindex` on the responses themselves. The calendar and
+passport tokens are capability URLs — the token _is_ the credential — so they
+must never be indexed, and `robots.txt` alone only asks politely.
+
+`src/lib/sitemap.test.ts` asserts the URLs are unique, absolute, reciprocal, and
+that English-only pages declare no alternates. Add a page to
+`translatedPages()` without its `src/routes/$locale/` twin and you put three
+404s in the sitemap — that is the mistake the split guards against.
+
+## 6. What stayed behind
 
 `scripts/grok-pwa-*`, `server/middleware/grok-pwa.ts`, `public/__grok/` and
 `.grok/` are still in the repository — the sandbox contract forbids deleting

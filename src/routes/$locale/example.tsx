@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ExamplePage } from "@/components/example-page";
 import { SiteShell } from "@/components/site-shell";
 import { getCopy } from "@/content";
-import { canonical, siteMeta } from "@/lib/seo";
+import { pageLinks, prefixed, siteMeta } from "@/lib/seo";
 import { isPathLocale } from "@/lib/locale";
 
 export const Route = createFileRoute("/$locale/example")({
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/$locale/example")({
         path: `/${locale}/example`,
         locale,
       }),
-      links: canonical(`/${locale}/example`),
+      links: pageLinks(prefixed("/example"), locale),
     };
   },
   component: Page,

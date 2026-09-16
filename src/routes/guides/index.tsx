@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { GuidesIndex } from "@/components/guides-page";
 import { getCopy } from "@/content";
-import { canonical, siteMeta } from "@/lib/seo";
+import { pageLinks, prefixed, siteMeta } from "@/lib/seo";
 
 const copy = getCopy("en");
 
@@ -13,7 +13,7 @@ export const Route = createFileRoute("/guides/")({
       path: "/guides",
       locale: "en",
     }),
-    links: canonical("/guides"),
+    links: pageLinks(prefixed("/guides"), "en"),
   }),
   component: () => <GuidesIndex locale="en" copy={copy} />,
 });

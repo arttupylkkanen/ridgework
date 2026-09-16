@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SourcesPage } from "@/components/sources-page";
 import { SiteShell } from "@/components/site-shell";
 import { getCopy } from "@/content";
-import { canonical, siteMeta } from "@/lib/seo";
+import { pageLinks, prefixed, siteMeta } from "@/lib/seo";
 
 const copy = getCopy("en");
 
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/sources")({
       path: "/sources",
       locale: "en",
     }),
-    links: canonical("/sources"),
+    links: pageLinks(prefixed("/sources"), "en"),
   }),
   component: Page,
 });

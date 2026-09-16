@@ -20,6 +20,7 @@ export const Route = createFileRoute("/calendar/$token")({
         return new Response(body, {
           headers: {
             "content-type": "text/calendar; charset=utf-8",
+            "x-robots-tag": "noindex, nofollow",
             "cache-control": "private, max-age=900",
             "content-disposition": 'inline; filename="ridgework.ics"',
           },

@@ -3,6 +3,7 @@ import { GuideArticle } from "@/components/guides-page";
 import { getCopy } from "@/content";
 import { getGuide } from "@/content/guides";
 import { isPathLocale } from "@/lib/locale";
+import { pageLinks, prefixed, siteMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/$locale/guides/$slug")({
   loader: ({ params }) => {
@@ -15,10 +16,13 @@ export const Route = createFileRoute("/$locale/guides/$slug")({
     const guide = getGuide(params.slug);
     const copy = getCopy(locale);
     return {
-      meta: [
-        { title: `${guide?.title[locale] ?? copy.guidesIndex.h2} — Ridgework` },
-        { name: "description", content: guide?.description[locale] ?? copy.guidesIndex.lead },
-      ],
+      meta: siteMeta({
+        title: `${guide?.title[locale] ?? copy.guidesIndex.h2} — Ridgework`,
+        description: guide?.description[locale] ?? copy.guidesIndex.lead,
+        path: `/${locale}/guides/${params.slug}`,
+        locale,
+      }),
+      links: pageLinks(prefixed(`/guides/${params.slug}`), locale),
     };
   },
   component: Page,

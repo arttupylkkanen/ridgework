@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { FoundingInvite } from "@/components/founding-invite";
 import { SiteShell } from "@/components/site-shell";
 import { getCopy } from "@/content";
-import { canonical, siteMeta } from "@/lib/seo";
+import { pageLinks, prefixed, siteMeta } from "@/lib/seo";
 
 const copy = getCopy("en");
 
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/founding")({
       path: "/founding",
       locale: "en",
     }),
-    links: canonical("/founding"),
+    links: pageLinks(prefixed("/founding"), "en"),
   }),
   component: Page,
 });

@@ -10,7 +10,9 @@ export const Route = createFileRoute("/$locale/app")({
   head: ({ params }) => {
     const locale = isPathLocale(params.locale) ? params.locale : "en";
     const copy = getCopy(locale);
-    return { meta: [{ title: copy.appPage.title }] };
+    return {
+      meta: [{ title: copy.appPage.title }, { name: "robots", content: "noindex, nofollow" }],
+    };
   },
   component: Page,
 });

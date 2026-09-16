@@ -2,7 +2,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { GuideArticle } from "@/components/guides-page";
 import { getCopy } from "@/content";
 import { getGuide } from "@/content/guides";
-import { canonical, siteMeta } from "@/lib/seo";
+import { pageLinks, prefixed, siteMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/guides/$slug")({
   loader: ({ params }) => {
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/guides/$slug")({
         path: `/guides/${params.slug}`,
         locale: "en",
       }),
-      links: canonical(`/guides/${params.slug}`),
+      links: pageLinks(prefixed(`/guides/${params.slug}`), "en"),
     };
   },
   component: Page,

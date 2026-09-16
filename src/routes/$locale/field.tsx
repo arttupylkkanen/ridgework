@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { FieldPage } from "@/components/field-page";
 import { SiteShell } from "@/components/site-shell";
 import { getCopy } from "@/content";
-import { canonical, siteMeta } from "@/lib/seo";
+import { pageLinks, prefixed, siteMeta } from "@/lib/seo";
 import { isPathLocale } from "@/lib/locale";
 
 export const Route = createFileRoute("/$locale/field")({
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/$locale/field")({
         path: `/${locale}/field`,
         locale,
       }),
-      links: canonical(`/${locale}/field`),
+      links: pageLinks(prefixed("/field"), locale),
     };
   },
   component: Page,

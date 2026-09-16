@@ -6,7 +6,10 @@ const copy = getCopy("en");
 
 export const Route = createFileRoute("/passport/$token")({
   head: () => ({
-    meta: [{ title: `${copy.tools.passport.reportKicker} — Ridgework` }],
+    meta: [
+      { title: `${copy.tools.passport.reportKicker} — Ridgework` },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
   }),
   component: Page,
 });
