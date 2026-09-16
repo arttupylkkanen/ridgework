@@ -149,7 +149,7 @@ export const fr: Copy = {
           {
             label: "Recette de séance",
             value:
-              "Semaine 20 (fin du spécifique) : 3×12 min à allure marathon sur trail vallonné, 4 min facile ; gates chaleur et niggle avant le départ. Puis affûtage 10–14 jours.",
+              "Semaine 20 (fin du spécifique) : 3×12 min à allure marathon sur trail vallonné, 4 min facile. Si ça tire plus que d’habitude, la séance devient facile. Puis affûtage 10–14 jours.",
             locked: true,
           },
         ],
@@ -323,7 +323,7 @@ export const fr: Copy = {
       {
         day: "Dim",
         title: "Noter ce qui s’est passé",
-        body: "Notez la sortie longue, la chaleur, et ce qui a tiré. La semaine suivante part de là, pas du plan rêvé.",
+        body: "Notez la sortie longue et ce qui a tiré. La semaine suivante part de là, pas du plan rêvé.",
       },
     ],
   },
@@ -345,8 +345,8 @@ export const fr: Copy = {
     actions: [
       "Sauter les intervalles d’aujourd’hui",
       "45–60 min facile à la place",
-      "Déplacer la longue au lundi s’il reste chaud",
-      "Boire 500–750 ml/h sur la longue",
+      "Garder la longue facile. Ne pas ajouter de kilomètres pour rattraper",
+      "Sur la longue, boire environ 500–750 ml/h — un rythme déjà pratiqué. Pas de nouveau gel",
       "Réévaluer demain",
     ],
     note: "Pas un diagnostic. Si le genou gonfle, se bloque ou empire, voyez un médecin. Ici on ne change que la semaine d’entraînement.",

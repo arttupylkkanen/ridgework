@@ -168,7 +168,7 @@ export const en: Copy = {
           {
             label: "Key session recipe",
             value:
-              "Week 20 (end of specific): 3×12 min at marathon effort on rolling trail, 4 min easy; heat and niggle gates before start. Then 10–14 days taper.",
+              "Week 20 (end of specific): 3×12 min at marathon effort on rolling trail, 4 min easy. Niggle louder than usual? That session becomes easy. Then 10–14 days taper.",
             locked: true,
           },
         ],
@@ -339,7 +339,7 @@ export const en: Copy = {
       {
         day: "Sun",
         title: "Log what happened",
-        body: "Write down the long run, the heat, and anything that niggled. Next week is built from that, not from the week you wished you had.",
+        body: "Write down the long run and anything that niggled. Next week is built from that, not from the week you wished you had.",
       },
     ],
   },
@@ -361,8 +361,8 @@ export const en: Copy = {
     actions: [
       "Skip today’s intervals",
       "45–60 min easy instead",
-      "Move the long run to Monday if Sunday stays hot",
-      "Drink 500–750 ml/h on the long run, with salt if you usually need it",
+      "Keep the long easy. Don’t add kilometres to catch up",
+      "On the long, drink about 500–750 ml/h — a rate you already practised. Don’t invent a new gel",
       "Reassess tomorrow",
     ],
     note: "Not a diagnosis. If the knee swells, locks, or gets worse, see a doctor. This only changes the training week.",
