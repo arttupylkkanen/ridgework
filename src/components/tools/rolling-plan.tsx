@@ -109,7 +109,6 @@ export function RollingPlan({
   const [pick, setPick] = useState<ObjectiveId>("fifty");
   const [peakOn, setPeakOn] = useState(() => suggestedPeakOn("fifty"));
   const [result, setResult] = useState<CheckResult>("ok");
-  const [note, setNote] = useState("");
   const [flash, setFlash] = useState<string | null>(null);
   const [nextPeak, setNextPeak] = useState(() => suggestedPeakOn("fifty"));
   const [openDay, setOpenDay] = useState<string | null>(null);
@@ -363,7 +362,6 @@ export function RollingPlan({
           onClick={() => {
             persist(null);
             setFlash(null);
-            setNote("");
             setPeakOn(suggestedPeakOn(pick));
           }}
           className="min-h-11 rounded-lg border border-line bg-card px-4 py-2 text-sm text-ink-muted hover:bg-paper-warm"
@@ -457,7 +455,6 @@ export function RollingPlan({
             onClick={() => {
               persist(nextSeason(state, nextPeak));
               setFlash(null);
-              setNote("");
             }}
             className="inline-flex min-h-11 items-center justify-center rounded-lg bg-ridge px-5 py-3 text-sm font-medium text-paper hover:bg-ridge-deep disabled:cursor-not-allowed disabled:opacity-50"
           >
@@ -471,9 +468,8 @@ export function RollingPlan({
             className="rounded-2xl border border-line bg-card p-5 sm:p-6"
             onSubmit={(e) => {
               e.preventDefault();
-              const next = applyCheckin(state, result, note);
+              const next = applyCheckin(state, result, "");
               persist(next);
-              setNote("");
               setFlash(
                 result === "wrecked"
                   ? t.afterWrecked
@@ -527,16 +523,6 @@ export function RollingPlan({
                 </ul>
               </div>
             ) : null}
-            <label className="mt-4 block text-sm font-medium text-ink">
-              {t.note}
-              <textarea
-                id="plan-note"
-                value={note}
-                onChange={(e) => setNote(e.target.value)}
-                rows={2}
-                className="mt-2 w-full rounded-lg border border-line bg-paper px-3 py-2 text-sm outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ridge"
-              />
-            </label>
             <button
               id="plan-submit"
               type="submit"

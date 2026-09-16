@@ -233,3 +233,51 @@ describe("personalized plan engine", () => {
     assert.equal(week.dates[6], "2026-01-11");
   });
 });
+
+describe("per-day time windows", () => {
+  function windowed(minutes: (number | null)[]) {
+    return minutes.map((m) => ({ minutes: m, startAt: null })) as AthleteProfile["dayWindows"];
+  }
+
+  it("trims a session that does not fit the day's window, and says so", () => {
+    const { state, athlete } = plan({
+      weeklyHours: "h8_12",
+      longest: "m240",
+      dayWindows: windowed([45, 45, 45, 45, 45, 45, 45]),
+    });
+    const week = buildWeek(state, 1, athlete);
+    assert.ok(week);
+    assert.ok(week.days.every((d) => d.key === "rest" || (d.minutes ?? 0) <= 45));
+    assert.ok(week.reasons.some((r) => r.id === "dayWindowCap"));
+  });
+
+  it("puts the long on the day with the most time, not on Saturday by habit", () => {
+    const { state, athlete } = plan({
+      // Wednesday is the only roomy day.
+      dayWindows: windowed([40, 40, 240, 40, 40, 40, 40]),
+    });
+    const week = buildWeek(state, 1, athlete);
+    assert.ok(week);
+    assert.equal(week.days.findIndex((d) => d.key === "long"), 2);
+  });
+
+  it("leaves the week alone when no window is set", () => {
+    const withWindows = plan({ dayWindows: windowed([null, null, null, null, null, null, null]) });
+    const without = plan();
+    const a = buildWeek(withWindows.state, 1, withWindows.athlete);
+    const b = buildWeek(without.state, 1, without.athlete);
+    assert.deepEqual(
+      a?.days.map((d) => [d.key, d.minutes]),
+      b?.days.map((d) => [d.key, d.minutes]),
+    );
+  });
+
+  it("never writes a session shorter than 20 minutes", () => {
+    const { state, athlete } = plan({
+      dayWindows: windowed([5, 5, 5, 5, 5, 5, 5]),
+    });
+    const week = buildWeek(state, 1, athlete);
+    assert.ok(week);
+    assert.ok(week.days.every((d) => d.key === "rest" || (d.minutes ?? 0) >= 20));
+  });
+});

@@ -1,7 +1,7 @@
 import { genericOAuthClient } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
 import { runPreSignInSignOut, runSignOut } from "../../../scripts/sign-out-plan.mjs";
-import { GROK_PROVIDERS } from "./providers";
+import { socialProvidersFrom, type SocialProvider } from "./providers";
 
 /**
  * Better Auth client for this React SPA (browser-side).
@@ -37,8 +37,15 @@ export const authClient = createAuthClient({
  */
 export const authEnabled = import.meta.env.VITE_AUTH_ENABLED !== "false";
 
-/** The upstream providers to render sign-in buttons for. */
-export { GROK_PROVIDERS };
+/**
+ * The providers to render sign-in buttons for, resolved from
+ * `VITE_SOCIAL_PROVIDERS` — the same variable the server reads, so the browser
+ * never offers a button the server has no client for. Unset keeps the broker
+ * pair (the sandbox live preview); `"none"` leaves email/password alone.
+ */
+export const SOCIAL_PROVIDERS: readonly SocialProvider[] = socialProvidersFrom(
+  import.meta.env.VITE_SOCIAL_PROVIDERS,
+);
 
 // ── Live-preview bearer token ────────────────────────────────────────────────
 // The embedded preview iframe has partitioned cookies, so we keep the session's
@@ -73,18 +80,16 @@ function setBearerToken(token: string | null): void {
  * popup there and a normal redirect everywhere else.
  */
 function inLivePreview(): boolean {
-  return (
-    typeof window !== "undefined" &&
-    window.location.hostname.endsWith(".grok-sandbox.com")
-  );
+  return typeof window !== "undefined" && window.location.hostname.endsWith(".grok-sandbox.com");
 }
 
 /** Message the popup posts back to the opener once sign-in completes. */
 type PopupMessage = { source: "grok-auth-popup"; token: string | null; error?: string };
 
 /**
- * Start sign-in with one upstream provider (`providerId` from `GROK_PROVIDERS`),
- * federating through the Grok auth broker.
+ * Start sign-in with one provider (`providerId` from `SOCIAL_PROVIDERS`).
+ * A `native` provider goes straight to this app's own OAuth client; a
+ * `broker` one federates through the Grok auth broker.
  *
  * - **Live preview** (`*.grok-sandbox.com` iframe): opens a POPUP to
  *   `/auth/popup`, served by the template Vite plugin (see `vite.config.ts` +
@@ -102,11 +107,14 @@ export async function signIn(
 ): Promise<void> {
   const callbackURL = opts.callbackURL ?? "/";
   const errorCallbackURL = opts.errorCallbackURL ?? "/";
+  const native = SOCIAL_PROVIDERS.find((p) => p.providerId === providerId)?.kind === "native";
 
   // Open the popup SYNCHRONOUSLY on the user gesture — before any await
   // (including signOut). Awaiting first drops user-gesture privilege in some
   // browsers when the opener is a cross-origin live-preview iframe.
-  const popup = inLivePreview() ? openSignInPopup(providerId) : null;
+  // Native providers are this app's own OAuth clients, only ever used on a
+  // real domain — no preview popup dance, just a full-page redirect.
+  const popup = inLivePreview() && !native ? openSignInPopup(providerId) : null;
 
   // Clear any prior session so switching providers actually switches identity.
   // Bounded because the popup is already open — a request that never settles
@@ -120,7 +128,7 @@ export async function signIn(
     clearToken: () => setBearerToken(null),
   });
 
-  if (inLivePreview()) {
+  if (inLivePreview() && !native) {
     if (!popup) throw new Error("Pop-up blocked — allow pop-ups for sign-in");
     const token = await waitForPopupToken(popup);
     if (!token) throw new Error("Sign-in was cancelled or failed");
@@ -136,18 +144,28 @@ export async function signIn(
     if (typeof window !== "undefined") {
       const dest = new URL(callbackURL, window.location.origin);
       const here = window.location;
-      if (dest.origin !== here.origin || dest.pathname !== here.pathname || dest.search !== here.search) {
+      if (
+        dest.origin !== here.origin ||
+        dest.pathname !== here.pathname ||
+        dest.search !== here.search
+      ) {
         window.location.href = callbackURL;
       }
     }
     return;
   }
 
-  const { data, error } = await authClient.signIn.oauth2({
-    providerId,
-    callbackURL,
-    errorCallbackURL,
-  });
+  const { data, error } = native
+    ? await authClient.signIn.social({
+        provider: providerId,
+        callbackURL,
+        errorCallbackURL,
+      })
+    : await authClient.signIn.oauth2({
+        providerId,
+        callbackURL,
+        errorCallbackURL,
+      });
   if (error) throw new Error(error.message ?? "Sign-in failed");
   if (data?.url) window.location.href = data.url;
 }

@@ -1,13 +1,15 @@
 import type { Copy } from "@/content/types";
-import { SOURCES } from "@/content";
+import { KEY_SOURCES } from "@/content";
+import { CHECKOUT_OPEN } from "@/lib/billing";
 import { GUIDES } from "@/content/guides";
+import { planPageFor } from "@/content/plans";
 import type { Locale } from "@/lib/locale";
 import { HERO_PHOTO, METHOD_PHOTO, PROGRAM_MEDIA } from "@/lib/program-media";
-import { AuthLink, DeskLink, GuideLink, HomeLink } from "./app-link";
+import { AuthLink, DeskLink, GuideLink, HomeLink, PlanLink, SourcesLink } from "./app-link";
 import { CheckoutForm } from "./checkout-form";
+import { ExampleWeekStrip } from "./example-week-strip";
 
 export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
-  const scenarioPhoto = PROGRAM_MEDIA.ultra100;
 
   return (
     <>
@@ -55,6 +57,69 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
         </div>
       </section>
 
+      {copy.rollingEngine ? (
+        <section id="rolling-engine" className="scroll-mt-20 border-b border-line bg-paper-warm/40">
+          <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
+            <p className="text-sm font-semibold uppercase tracking-wider text-ridge">
+              {copy.rollingEngine.kicker}
+            </p>
+            <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+              {copy.rollingEngine.h2}
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted">
+              {copy.rollingEngine.lead}
+            </p>
+            <dl className="mt-10 grid gap-8 sm:grid-cols-3">
+              {copy.rollingEngine.points.map((point) => (
+                <div key={point.title}>
+                  <dt className="font-display text-lg font-semibold text-ridge-deep">
+                    {point.title}
+                  </dt>
+                  <dd className="mt-2 text-sm leading-relaxed text-ink-muted">{point.body}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+      ) : null}
+
+      <section id="method-summary" className="scroll-mt-20 border-b border-line">
+        <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr]">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wider text-ridge">
+                {copy.method.kicker}
+              </p>
+              <h2 className="mt-3 max-w-xl font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+                {copy.method.teaserH2}
+              </h2>
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-muted">
+                {copy.method.teaserLead}
+              </p>
+              <HomeLink
+                locale={locale}
+                hash="method"
+                className="mt-6 inline-flex min-h-11 items-center text-sm font-medium text-ridge underline-offset-2 hover:underline"
+              >
+                {copy.method.teaserCta} →
+              </HomeLink>
+            </div>
+            <div className="self-start border-l-2 border-ridge pl-6">
+              <h3 className="font-display text-lg font-semibold text-ink">
+                {copy.method.caveatsTitle}
+              </h3>
+              <ul className="mt-4 space-y-3">
+                {copy.method.caveats.map((item) => (
+                  <li key={item} className="text-sm leading-relaxed text-ink-muted">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="example" className="scroll-mt-20 border-b border-line bg-paper-warm/40">
         <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
           <p className="text-sm font-semibold uppercase tracking-wider text-ridge">
@@ -66,12 +131,13 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
           <div className="mt-10 grid gap-8 lg:grid-cols-2">
             <article className="overflow-hidden border border-line bg-card">
               <img
-                src={scenarioPhoto.src}
-                alt=""
-                width={scenarioPhoto.width}
-                height={scenarioPhoto.height}
-                className="aspect-[16/9] w-full object-cover"
+                src="/shots/today-session.png"
+                alt="Today's session in the Ridgework desk, with how it should feel and what to do"
+                width={1880}
+                height={1120}
+                className="w-full border-b border-line object-cover object-top"
                 decoding="async"
+                loading="lazy"
               />
               <div className="p-5 sm:p-6">
                 <p className="font-display text-xl font-semibold text-ink">{copy.scenario.setup}</p>
@@ -106,6 +172,43 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
                 {copy.guidesIndex.cta}
               </GuideLink>
             </article>
+          </div>
+          <div className="mt-10">
+            <ExampleWeekStrip copy={copy} />
+          </div>
+        </div>
+      </section>
+
+      <section id="who" className="scroll-mt-20 border-b border-line">
+        <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+            {copy.who.h2}
+          </h2>
+          <div className="mt-8 grid gap-10 sm:grid-cols-2">
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-ridge">
+                {copy.who.forTitle}
+              </h3>
+              <ul className="mt-4 space-y-3">
+                {copy.who.forItems.map((item) => (
+                  <li key={item} className="text-sm leading-relaxed text-ink-muted">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
+                {copy.who.notTitle}
+              </h3>
+              <ul className="mt-4 space-y-3">
+                {copy.who.notItems.map((item) => (
+                  <li key={item} className="text-sm leading-relaxed text-ink-muted">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -153,7 +256,8 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
               </li>
             ))}
           </ol>
-          <ol className="mt-10 divide-y divide-line border-y border-line">
+          <h3 className="mt-12 font-display text-xl font-semibold text-ink">{copy.week.h2}</h3>
+          <ol className="mt-4 divide-y divide-line border-y border-line">
             {copy.week.steps.map((step) => (
               <li key={step.day} className="grid gap-1 py-5 sm:grid-cols-[5rem_1fr] sm:gap-6">
                 <span className="text-xs font-semibold uppercase tracking-wider text-ink-soft">
@@ -183,13 +287,10 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {copy.programs.rows.map((row, i) => {
               const photo = PROGRAM_MEDIA[row.id];
-              return (
-                <DeskLink
-                  key={row.id}
-                  locale={locale}
-                  program={row.id}
-                  className="group cursor-pointer overflow-hidden rounded-2xl border border-line bg-card hover:border-ridge"
-                >
+              const cardClass =
+                "group cursor-pointer overflow-hidden rounded-2xl border border-line bg-card hover:border-ridge";
+              const inner = (
+                <>
                   <img
                     src={photo.src}
                     alt={row.name}
@@ -219,43 +320,21 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
                     ) : null}
                     <p className="mt-4 text-sm font-medium text-ridge">{copy.programs.cta}</p>
                   </div>
+                </>
+              );
+              // English gets the plan landing page; other locales keep going
+              // straight to the desk, since those pages are English-only.
+              const planSlug = locale === "en" ? planPageFor(row.id)?.slug : undefined;
+              return planSlug ? (
+                <PlanLink key={row.id} slug={planSlug} className={cardClass}>
+                  {inner}
+                </PlanLink>
+              ) : (
+                <DeskLink key={row.id} locale={locale} program={row.id} className={cardClass}>
+                  {inner}
                 </DeskLink>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      <section id="who" className="scroll-mt-20 border-b border-line">
-        <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            {copy.who.h2}
-          </h2>
-          <div className="mt-8 grid gap-10 sm:grid-cols-2">
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-ridge">
-                {copy.who.forTitle}
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {copy.who.forItems.map((item) => (
-                  <li key={item} className="text-sm leading-relaxed text-ink-muted">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">
-                {copy.who.notTitle}
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {copy.who.notItems.map((item) => (
-                  <li key={item} className="text-sm leading-relaxed text-ink-muted">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
       </section>
@@ -291,18 +370,6 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
                 </div>
               ))}
             </dl>
-            <div className="mt-10 border-t border-line pt-8">
-              <h3 className="font-display text-lg font-semibold text-ink">
-                {copy.method.caveatsTitle}
-              </h3>
-              <ul className="mt-3 space-y-2">
-                {copy.method.caveats.map((item) => (
-                  <li key={item} className="text-sm leading-relaxed text-ink-muted">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
         <div className="mx-auto max-w-5xl border-t border-line px-4 py-12 sm:px-6">
@@ -310,7 +377,7 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
             {copy.method.sourcesTitle}
           </h3>
           <ol className="mt-5 list-decimal space-y-3 pl-5 marker:text-ink-soft">
-            {SOURCES.map((src) => (
+            {KEY_SOURCES.map((src) => (
               <li key={src.title} className="text-sm leading-relaxed text-ink">
                 <span className="font-medium">{src.authors}</span>
                 <span className="text-ink-soft"> ({src.year}). </span>
@@ -327,34 +394,15 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
               </li>
             ))}
           </ol>
+          <SourcesLink
+            locale={locale}
+            className="mt-6 inline-flex min-h-11 items-center text-sm font-medium text-ridge underline-offset-2 hover:underline"
+          >
+            {copy.method.allSourcesCta} →
+          </SourcesLink>
         </div>
       </section>
 
-      {copy.rollingEngine ? (
-        <section id="rolling-engine" className="scroll-mt-20 border-b border-line bg-paper-warm/40">
-          <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
-            <p className="text-sm font-semibold uppercase tracking-wider text-ridge">
-              {copy.rollingEngine.kicker}
-            </p>
-            <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-              {copy.rollingEngine.h2}
-            </h2>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted">
-              {copy.rollingEngine.lead}
-            </p>
-            <dl className="mt-10 grid gap-8 sm:grid-cols-3">
-              {copy.rollingEngine.points.map((point) => (
-                <div key={point.title}>
-                  <dt className="font-display text-lg font-semibold text-ridge-deep">
-                    {point.title}
-                  </dt>
-                  <dd className="mt-2 text-sm leading-relaxed text-ink-muted">{point.body}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </section>
-      ) : null}
 
       <section id="pricing" className="scroll-mt-20 border-b border-line bg-ridge-deep text-paper">
         <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24">
@@ -379,20 +427,24 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
                 <h3 className="font-display text-2xl font-semibold sm:text-3xl">
                   {copy.pricing.name}
                 </h3>
-                <div className="mt-4 flex flex-wrap items-baseline gap-2">
-                  {copy.pricing.anchorPrice ? (
-                    <span className="font-display text-2xl font-medium text-ink-soft line-through decoration-2">
-                      {copy.pricing.anchorPrice}
-                    </span>
-                  ) : null}
-                  <span className="flex items-baseline gap-1">
-                    <span className="font-display text-5xl font-semibold tracking-tight sm:text-6xl">
-                      {copy.pricing.price}
-                    </span>
-                    <span className="text-lg text-ink-muted">{copy.pricing.per}</span>
-                  </span>
-                </div>
-                <p className="mt-4 max-w-md text-sm text-ink-muted">{copy.pricing.blurb}</p>
+                {CHECKOUT_OPEN ? (
+                  <>
+                    <div className="mt-4 flex items-baseline gap-1">
+                      <span className="font-display text-5xl font-semibold tracking-tight sm:text-6xl">
+                        {copy.pricing.price}
+                      </span>
+                      <span className="text-lg text-ink-muted">{copy.pricing.per}</span>
+                    </div>
+                    <p className="mt-4 max-w-md text-sm text-ink-muted">{copy.pricing.blurb}</p>
+                  </>
+                ) : (
+                  <>
+                    <div className="mt-4 font-display text-5xl font-semibold tracking-tight sm:text-6xl">
+                      {copy.pricing.freeTag}
+                    </div>
+                    <p className="mt-4 max-w-md text-sm text-ink-muted">{copy.pricing.freeNow}</p>
+                  </>
+                )}
               </div>
               <AuthLink
                 locale={locale}

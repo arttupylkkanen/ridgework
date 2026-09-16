@@ -21,9 +21,9 @@ export type AthleteCopy = {
     start: string;
     step: string;
     needDays: string;
-    eventName: string;
-    eventPlaceholder: string;
     limitations: string;
+    limitationsYes: string;
+    limitationsNo: string;
     limitationsHint: string;
     reviewTitle: string;
     reviewLead: string;
@@ -38,6 +38,10 @@ export type AthleteCopy = {
     constraints: Record<Constraint, string>;
     units: Record<Units, string>;
     availableTitle: string;
+    windowTitle: string;
+    windowHint: string;
+    windowMinutes: string;
+    windowTime: string;
     peakLabel: string;
   };
   today: {
@@ -53,8 +57,6 @@ export type AthleteCopy = {
     scaleLow: Record<"sleep" | "soreness" | "motivation" | "fatigue" | "stress", string>;
     scaleHigh: Record<"sleep" | "soreness" | "motivation" | "fatigue" | "stress", string>;
     optionalTitle: string;
-    rhr: string;
-    hrv: string;
     lastEffort: string;
     sessionToday: string;
     minutes: string;
@@ -64,8 +66,6 @@ export type AthleteCopy = {
     didTomorrow: string;
     travellingUntil: string;
     clearTravel: string;
-    accessTitle: string;
-    access: Record<"trail" | "mountain" | "gym" | "climbing", string>;
     whyChanged: string;
     whyWeek: string;
     peakLocked: string;
@@ -91,6 +91,7 @@ export type AthleteCopy = {
 
 const reasonsEn: Record<string, string> = {
   availableDays: "You have {n} training days. Rest sits on the others.",
+  dayWindowCap: "{n} session(s) were trimmed to fit the time you said those days have.",
   beginnerNoQuality:
     "Base weeks stay easy while you are still building the habit. Quality waits for the specific block.",
   noQualityBase: "This is still aerobic base. No quality dose this week.",
@@ -132,8 +133,6 @@ const reasonsEn: Record<string, string> = {
   stressHigh: "Stress {n}/5.",
   loadCluster: "The last three days already held {n} hard or long sessions.",
   yesterdayHard: "Yesterday was a hard or long day.",
-  rhrUp: "Resting HR {rhr} is {delta} bpm above your recent baseline ({baseline}).",
-  hrvDown: "HRV {hrv} is {pct}% below your recent baseline ({baseline}).",
   normalLoad: "Recent load is ordinary ({n} hard/long days in the last three).",
   runToHikeCycle: "You cannot run, so aerobic days are hiking or cycling.",
   illnessEase: "Easy return through week {n}. Quality waits.",
@@ -151,9 +150,9 @@ export const athleteEn: AthleteCopy = {
     start: "Write my three weeks",
     step: "Step {n} of {total}",
     needDays: "Pick at least two days you can train.",
-    eventName: "Event or outing name (optional)",
-    eventPlaceholder: "UTMB CCC, local 50k, Grand Combin…",
     limitations: "Anything that currently limits training",
+    limitationsYes: "Yes, something limits it",
+    limitationsNo: "No, nothing limits it",
     limitationsHint:
       "A niggle, a time cap, a doctor's note you already have. We treat it as a training constraint, not a diagnosis.",
     reviewTitle: "This is what we will write from",
@@ -211,6 +210,10 @@ export const athleteEn: AthleteCopy = {
     },
     units: { km: "Kilometres", miles: "Miles" },
     availableTitle: "Days you can train",
+    windowTitle: "How long do those days actually have?",
+    windowHint: "Optional. Leave a day blank and we spend the weekly budget as usual. The clock time is only there if it helps you — the plan does not need it.",
+    windowMinutes: "Minutes",
+    windowTime: "Start (optional)",
     peakLabel: "Day you want to be ready",
   },
   today: {
@@ -239,8 +242,6 @@ export const athleteEn: AthleteCopy = {
       stress: "High",
     },
     optionalTitle: "If you track them",
-    rhr: "Resting HR",
-    hrv: "HRV (ms)",
     lastEffort: "Yesterday's effort",
     sessionToday: "Today's session",
     minutes: "{n} min",
@@ -250,8 +251,6 @@ export const athleteEn: AthleteCopy = {
     didTomorrow: "I did tomorrow's session today",
     travellingUntil: "Travelling until",
     clearTravel: "Not travelling",
-    accessTitle: "Access this week",
-    access: { trail: "Trail", mountain: "Mountain", gym: "Gym", climbing: "Climbing kit" },
     whyChanged: "Why this changed",
     whyWeek: "Why this week looks like this",
     peakLocked: "Ready date {peak} — it moves only if you change it.",
@@ -283,6 +282,7 @@ export const athleteEn: AthleteCopy = {
 
 const reasonsFi: Record<string, string> = {
   availableDays: "Treenipäiviä on {n}. Muut ovat lepoa.",
+  dayWindowCap: "{n} treeni(ä) lyhennettiin mahtumaan siihen aikaan jonka noille päiville annoit.",
   beginnerNoQuality: "Pohjaviikot pysyvät kevyinä. Tehot tulevat vasta kisajaksoon.",
   noQualityBase: "Tämä on vielä peruskuntoa. Ei tehoannosta tällä viikolla.",
   gymInsteadOfClimb: "Jää- tai kalliokamoja ei ole, joten kiipeily on salivoimaa.",
@@ -321,8 +321,6 @@ const reasonsFi: Record<string, string> = {
   stressHigh: "Stressi {n}/5.",
   loadCluster: "Kolmena viime päivänä oli jo {n} kovaa tai pitkää sessiota.",
   yesterdayHard: "Eilen oli kova tai pitkä päivä.",
-  rhrUp: "Leposyke {rhr} on {delta} lyöntiä yli oman baselinen ({baseline}).",
-  hrvDown: "HRV {hrv} on {pct} % alle oman baselinen ({baseline}).",
   normalLoad: "Viime päivien kuorma on tavallinen ({n} kovaa/pitkää kolmessa päivässä).",
   runToHikeCycle: "Et voi juosta, joten aerobiset päivät ovat vaellusta tai pyörää.",
   illnessEase: "Helppo paluu viikkoon {n} asti. Tehot odottavat.",
@@ -340,9 +338,9 @@ export const athleteFi: AthleteCopy = {
     start: "Kirjoita kolme viikkoa",
     step: "Vaihe {n} / {total}",
     needDays: "Valitse vähintään kaksi treenipäivää.",
-    eventName: "Kisan tai reissun nimi (valinnainen)",
-    eventPlaceholder: "UTMB CCC, paikallinen 50 km, Grand Combin…",
-    limitations: "Mikä nyt rajoittaa treeniä",
+    limitations: "Rajoittaako jokin treeniä juuri nyt?",
+    limitationsYes: "Kyllä, jokin rajoittaa",
+    limitationsNo: "Ei, mikään ei rajoita",
     limitationsHint:
       "Kolotus, aikaraja, jo saatu ohje. Käsitellään treenirajoitteena, ei diagnoosina.",
     reviewTitle: "Tästä viikot kirjoitetaan",
@@ -400,6 +398,10 @@ export const athleteFi: AthleteCopy = {
     },
     units: { km: "Kilometrit", miles: "Mailit" },
     availableTitle: "Päivät jolloin voit treenata",
+    windowTitle: "Paljonko noilla päivillä oikeasti on aikaa?",
+    windowHint: "Valinnainen. Jätä päivä tyhjäksi niin viikkobudjetti jaetaan kuten ennenkin. Kellonaika on vain sinua varten — suunnitelma ei tarvitse sitä.",
+    windowMinutes: "Minuuttia",
+    windowTime: "Alkaa (valinnainen)",
     peakLabel: "Päivä jolloin haluat olla valmis",
   },
   today: {
@@ -428,8 +430,6 @@ export const athleteFi: AthleteCopy = {
       stress: "Korkea",
     },
     optionalTitle: "Jos seuraat",
-    rhr: "Leposyke",
-    hrv: "HRV (ms)",
     lastEffort: "Eilisen rasitus",
     sessionToday: "Tämän päivän sessio",
     minutes: "{n} min",
@@ -439,8 +439,6 @@ export const athleteFi: AthleteCopy = {
     didTomorrow: "Tein huomisen session tänään",
     travellingUntil: "Matkalla asti",
     clearTravel: "En ole matkalla",
-    accessTitle: "Pääsy tällä viikolla",
-    access: { trail: "Polku", mountain: "Vuori", gym: "Sali", climbing: "Kiipeilykamat" },
     whyChanged: "Miksi tämä muuttui",
     whyWeek: "Miksi viikko näyttää tältä",
     peakLocked: "Tavoitepäivä {peak} — siirtyy vain jos siirrät sen.",
@@ -472,6 +470,7 @@ export const athleteFi: AthleteCopy = {
 
 const reasonsFr: Record<string, string> = {
   availableDays: "Vous avez {n} jours d’entraînement. Le reste est du repos.",
+  dayWindowCap: "{n} séance(s) ont été raccourcies pour tenir dans le temps indiqué pour ces jours.",
   beginnerNoQuality: "La base reste facile. La qualité attend le bloc spécifique.",
   noQualityBase: "Encore de la base aérobie. Pas de qualité cette semaine.",
   gymInsteadOfClimb: "Pas de matériel glace/rocher : l’escalade devient de la force en salle.",
@@ -510,8 +509,6 @@ const reasonsFr: Record<string, string> = {
   stressHigh: "Stress {n}/5.",
   loadCluster: "Les trois derniers jours avaient déjà {n} séances dures ou longues.",
   yesterdayHard: "Hier était un jour dur ou long.",
-  rhrUp: "FC repos {rhr} : +{delta} bpm vs votre base récente ({baseline}).",
-  hrvDown: "HRV {hrv} : {pct} % sous votre base récente ({baseline}).",
   normalLoad: "Charge récente ordinaire ({n} dur/long sur trois jours).",
   runToHikeCycle:
     "Vous ne pouvez pas courir : les jours aérobies deviennent de la rando ou du vélo.",
@@ -530,9 +527,9 @@ export const athleteFr: AthleteCopy = {
     start: "Écrire mes trois semaines",
     step: "Étape {n} sur {total}",
     needDays: "Choisissez au moins deux jours d’entraînement.",
-    eventName: "Nom de la course ou de la sortie (optionnel)",
-    eventPlaceholder: "UTMB CCC, 50 km local, Grand Combin…",
-    limitations: "Ce qui limite l’entraînement maintenant",
+    limitations: "Quelque chose limite-t-il l’entraînement en ce moment ?",
+    limitationsYes: "Oui, quelque chose limite",
+    limitationsNo: "Non, rien ne limite",
     limitationsHint:
       "Une gêne, un plafond de temps. Traité comme une contrainte d’entraînement, pas un diagnostic.",
     reviewTitle: "C’est à partir de ça que les semaines sont écrites",
@@ -589,6 +586,10 @@ export const athleteFr: AthleteCopy = {
     },
     units: { km: "Kilomètres", miles: "Miles" },
     availableTitle: "Jours où vous pouvez vous entraîner",
+    windowTitle: "Combien de temps ces jours ont-ils vraiment ?",
+    windowHint: "Facultatif. Laissez un jour vide et le budget hebdomadaire est réparti comme avant. L’heure n’est là que si elle vous aide.",
+    windowMinutes: "Minutes",
+    windowTime: "Début (facultatif)",
     peakLabel: "Jour où vous voulez être prêt",
   },
   today: {
@@ -617,8 +618,6 @@ export const athleteFr: AthleteCopy = {
       stress: "Haut",
     },
     optionalTitle: "Si vous les suivez",
-    rhr: "FC repos",
-    hrv: "HRV (ms)",
     lastEffort: "Effort d’hier",
     sessionToday: "Séance du jour",
     minutes: "{n} min",
@@ -628,8 +627,6 @@ export const athleteFr: AthleteCopy = {
     didTomorrow: "J’ai fait la séance de demain aujourd’hui",
     travellingUntil: "En voyage jusqu’au",
     clearTravel: "Pas en voyage",
-    accessTitle: "Accès cette semaine",
-    access: { trail: "Trail", mountain: "Montagne", gym: "Salle", climbing: "Matériel d’escalade" },
     whyChanged: "Pourquoi ça a changé",
     whyWeek: "Pourquoi la semaine ressemble à ça",
     peakLocked: "Date cible {peak} — elle ne bouge que si vous la changez.",
@@ -664,6 +661,7 @@ export const athleteFr: AthleteCopy = {
 
 const reasonsDe: Record<string, string> = {
   availableDays: "Du hast {n} Trainingstage. Der Rest ist Ruhe.",
+  dayWindowCap: "{n} Einheit(en) wurden gekürzt, damit sie in die angegebene Zeit passen.",
   beginnerNoQuality: "Basiswochen bleiben locker. Qualität kommt erst im Spezifischen.",
   noQualityBase: "Noch aerobe Basis. Keine Qualität diese Woche.",
   gymInsteadOfClimb: "Kein Eis-/Felsmaterial: Klettern wird Kraft im Gym.",
@@ -702,8 +700,6 @@ const reasonsDe: Record<string, string> = {
   stressHigh: "Stress {n}/5.",
   loadCluster: "Die letzten drei Tage hatten schon {n} harte oder lange Einheiten.",
   yesterdayHard: "Gestern war hart oder lang.",
-  rhrUp: "Ruhe-HF {rhr} ist {delta} bpm über deiner Baseline ({baseline}).",
-  hrvDown: "HRV {hrv} ist {pct} % unter deiner Baseline ({baseline}).",
   normalLoad: "Letzte Last gewöhnlich ({n} hart/lang in drei Tagen).",
   runToHikeCycle: "Du kannst nicht laufen: aerobe Tage werden Wanderung oder Rad.",
   illnessEase: "Lockere Rückkehr bis Woche {n}. Qualität wartet.",
@@ -721,9 +717,9 @@ export const athleteDe: AthleteCopy = {
     start: "Meine drei Wochen schreiben",
     step: "Schritt {n} von {total}",
     needDays: "Wähle mindestens zwei Trainingstage.",
-    eventName: "Name von Rennen oder Tour (optional)",
-    eventPlaceholder: "UTMB CCC, lokaler 50k, Grand Combin…",
-    limitations: "Was das Training gerade begrenzt",
+    limitations: "Begrenzt gerade etwas dein Training?",
+    limitationsYes: "Ja, etwas begrenzt es",
+    limitationsNo: "Nein, nichts begrenzt es",
     limitationsHint: "Ein Zwicken, eine Zeitgrenze. Als Trainingsconstraint, keine Diagnose.",
     reviewTitle: "Daraus werden die Wochen geschrieben",
     reviewLead: "Zieldatum bleibt, außer du änderst es. Müde Tage trainieren weniger.",
@@ -779,6 +775,10 @@ export const athleteDe: AthleteCopy = {
     },
     units: { km: "Kilometer", miles: "Meilen" },
     availableTitle: "Tage, an denen du trainieren kannst",
+    windowTitle: "Wie viel Zeit haben diese Tage wirklich?",
+    windowHint: "Optional. Lass einen Tag leer, dann wird das Wochenbudget wie bisher verteilt. Die Uhrzeit ist nur für dich da.",
+    windowMinutes: "Minuten",
+    windowTime: "Beginn (optional)",
     peakLabel: "Tag, an dem du bereit sein willst",
   },
   today: {
@@ -807,8 +807,6 @@ export const athleteDe: AthleteCopy = {
       stress: "Hoch",
     },
     optionalTitle: "Falls du sie trackst",
-    rhr: "Ruhe-HF",
-    hrv: "HRV (ms)",
     lastEffort: "Gestrige Anstrengung",
     sessionToday: "Heutige Einheit",
     minutes: "{n} min",
@@ -818,8 +816,6 @@ export const athleteDe: AthleteCopy = {
     didTomorrow: "Ich habe die morgige Einheit heute gemacht",
     travellingUntil: "Unterwegs bis",
     clearTravel: "Nicht unterwegs",
-    accessTitle: "Zugang diese Woche",
-    access: { trail: "Trail", mountain: "Berg", gym: "Gym", climbing: "Klettermaterial" },
     whyChanged: "Warum das geändert hat",
     whyWeek: "Warum die Woche so aussieht",
     peakLocked: "Zieldatum {peak} — bewegt sich nur, wenn du es änderst.",

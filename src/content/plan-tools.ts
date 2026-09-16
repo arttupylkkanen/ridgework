@@ -35,7 +35,6 @@ export type PlanToolsCopy = {
   ok: string;
   problem: string;
   wrecked: string;
-  note: string;
   submit: string;
   afterGood: string;
   afterOk: string;
@@ -119,7 +118,6 @@ export const planEn: PlanToolsCopy = {
   ok: "Fine. Keep the load, no extra.",
   problem: "Tired. Train less this week.",
   wrecked: "Wrecked. Rest instead of quality.",
-  note: "Sleep, fatigue, niggle (optional)",
   submit: "Log week and roll forward",
   afterGood: "Next weeks are written. The plan still lands on the date you chose.",
   afterOk: "Load kept. Ready date unchanged.",
@@ -262,7 +260,6 @@ export const planFi: PlanToolsCopy = {
   ok: "Ihan ok. Pidä kuorma, ei lisää.",
   problem: "Väsynyt. Treenaa vähemmän tällä viikolla.",
   wrecked: "Hajalla. Tehot vaihtuvat lepoon.",
-  note: "Uni, väsymys, kolotus (ei pakollinen)",
   submit: "Kirjaa viikko ja rullaa eteen",
   afterGood: "Seuraavat viikot on kirjoitettu. Tavoitepäivä pysyy.",
   afterOk: "Kuorma pidetty. Tavoitepäivä ennallaan.",
@@ -408,7 +405,6 @@ export const planFr: PlanToolsCopy = {
   ok: "Correct — garder la charge, pas d’extra",
   problem: "Fatigué — s’entraîner moins cette semaine",
   wrecked: "Cassé — repos à la place de la qualité",
-  note: "Sommeil, fatigue, niggle (optionnel)",
   submit: "Noter la semaine et avancer",
   afterGood: "Les semaines suivantes sont écrites. La date de pic reste.",
   afterOk: "Charge gardée. Date de pic inchangée.",
@@ -555,7 +551,6 @@ export const planDe: PlanToolsCopy = {
   ok: "In Ordnung — Last behalten, nichts extra",
   problem: "Müde — diese Woche weniger trainieren",
   wrecked: "Kaputt — Pause statt Qualität",
-  note: "Schlaf, Müdigkeit, Niggle (optional)",
   submit: "Woche eintragen und weiterrollen",
   afterGood: "Nächste Wochen sind geschrieben. Peak-Datum bleibt.",
   afterOk: "Last behalten. Peak-Datum unverändert.",

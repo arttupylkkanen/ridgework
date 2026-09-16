@@ -2,15 +2,19 @@ import { createFileRoute } from "@tanstack/react-router";
 import { FoundingInvite } from "@/components/founding-invite";
 import { SiteShell } from "@/components/site-shell";
 import { getCopy } from "@/content";
+import { pageLinks, prefixed, siteMeta } from "@/lib/seo";
 
 const copy = getCopy("en");
 
 export const Route = createFileRoute("/founding")({
   head: () => ({
-    meta: [
-      { title: copy.foundingPage.title },
-      { name: "description", content: copy.foundingPage.description },
-    ],
+    meta: siteMeta({
+      title: copy.foundingPage.title,
+      description: copy.foundingPage.description,
+      path: "/founding",
+      locale: "en",
+    }),
+    links: pageLinks(prefixed("/founding"), "en"),
   }),
   component: Page,
 });

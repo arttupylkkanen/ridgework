@@ -81,6 +81,29 @@ describe("evaluateMembership", () => {
     assert.equal(m.canUseDesk, false);
   });
 
+  it("does not lock a no-card athlete out while the checkout is closed", () => {
+    const m = evaluateMembership({
+      email: "someone@example.com",
+      createdAt: start,
+      now: new Date("2027-01-01T00:00:00.000Z"),
+      checkoutOpen: false,
+    });
+    assert.equal(m.status, "trialing");
+    assert.equal(m.canUseDesk, true);
+    assert.equal(m.daysLeft, 0);
+  });
+
+  it("still expires a no-card trial once the checkout is open", () => {
+    const m = evaluateMembership({
+      email: "someone@example.com",
+      createdAt: start,
+      now: new Date("2027-01-01T00:00:00.000Z"),
+      checkoutOpen: true,
+    });
+    assert.equal(m.status, "needs_card");
+    assert.equal(m.canUseDesk, false);
+  });
+
   it("never paywalls the shared tester login", () => {
     const m = evaluateMembership({
       email: "tester@ridgework.org",

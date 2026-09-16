@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Signed-in surfaces: thin or empty to a crawler, and duplicated across four
+# locales. Nothing here is a search entry point.
+Disallow: /app
+Disallow: /login
+Disallow: /fi/app
+Disallow: /fi/login
+Disallow: /fr/app
+Disallow: /fr/login
+Disallow: /de/app
+Disallow: /de/login
+
+# Capability URLs. The token IS the credential, so these must never be
+# crawled, cached by a search engine, or surfaced in results. The responses
+# also carry X-Robots-Tag: noindex, since robots.txt only asks.
+Disallow: /calendar/
+Disallow: /passport/
+
+Sitemap: https://ridgework.org/sitemap.xml

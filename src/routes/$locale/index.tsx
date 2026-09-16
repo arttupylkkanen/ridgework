@@ -3,7 +3,7 @@ import { HomePage } from "@/components/home-page";
 import { SiteShell } from "@/components/site-shell";
 import { getCopy } from "@/content";
 import { isPathLocale } from "@/lib/locale";
-import { siteMeta } from "@/lib/seo";
+import { localeHome, pageLinks, siteMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/$locale/")({
   head: ({ params }) => {
@@ -16,6 +16,7 @@ export const Route = createFileRoute("/$locale/")({
         path: `/${locale}/`,
         locale,
       }),
+      links: pageLinks(localeHome, locale),
     };
   },
   component: Page,

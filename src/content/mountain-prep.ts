@@ -15,14 +15,11 @@ export type MountainPrepCopy = {
   sections: Record<PrepSectionId, { title: string; lead: string }>;
   weatherTitle: string;
   weatherLead: string;
-  highC: string;
-  lowC: string;
   precip: string;
   precipOpts: { none: string; rain: string; snow: string; mix: string };
   wind: string;
   windOpts: { calm: string; breeze: string; strong: string };
   freezeM: string;
-  weatherNotes: string;
   items: Record<string, { label: string; why: string }>;
   prompts: Record<string, string>;
   debriefResult: string;
@@ -141,14 +138,6 @@ const enItems: MountainPrepCopy["items"] = {
   "clothing.baseLayer": {
     label: "A shirt you can hike or run in, plus one thing you can add without stopping long.",
     why: "The base is the day. Spare warmth is for the stop, the summit, or the night.",
-  },
-  "clothing.warmLayer": {
-    label: "Low around {low}°C. Take an insulating layer you have worn while moving.",
-    why: "A puffy that only comes out at the col still has to fit over the pack straps.",
-  },
-  "clothing.hotDay": {
-    label: "High around {high}°C. Cap, extra water, salt you have already used.",
-    why: "Heat is slower than pride. Walk the steep bits and keep talking.",
   },
   "clothing.rainShell": {
     label: "A shell that actually blocks rain, packed where you can reach it.",
@@ -305,21 +294,10 @@ const enItems: MountainPrepCopy["items"] = {
 };
 
 const enPrompts: MountainPrepCopy["prompts"] = {
-  "nutrition.engineMeal": "Breakfast you will actually eat on easy days",
-  "nutrition.bottlePlan": "What is in the bottle, and where you refill",
   "nutrition.carbsPerHour": "Carb target you already held on a long (g/h, your number)",
-  "nutrition.waterPlan": "How much water between aid, and a backup if a station is dry",
-  "nutrition.dropBag": "What goes in each drop bag, in order",
-  "nutrition.summitSnack": "The thing you will eat at the col or summit",
-  "nutrition.hutOrBivy": "Hut, bivy, or mix — and the food that matches",
-  "nutrition.rotationFood": "What you will force down on a tired rotation evening",
   "logistics.startTime": "Start time leaving the car / hut / gun",
   "logistics.turnaroundTime": "Turnaround time (on the watch, not ‘we will see’)",
-  "logistics.hutNames": "Huts or bivy sites, in order",
   "altitude.sleepElevation": "Sleep elevation this block (m), if you know it",
-  "debrief.happened": "What actually happened",
-  "debrief.repeat": "Repeat next time",
-  "debrief.change": "Change next time",
 };
 
 export const mountainEn: MountainPrepCopy = {
@@ -366,14 +344,11 @@ export const mountainEn: MountainPrepCopy = {
   },
   weatherTitle: "Forecast you are packing for",
   weatherLead: "Valley numbers lie. Write what you will actually meet on the ridge or the last climb.",
-  highC: "High °C",
-  lowC: "Low °C",
   precip: "Precipitation",
   precipOpts: { none: "Dry", rain: "Rain", snow: "Snow", mix: "Mix" },
   wind: "Wind",
   windOpts: { calm: "Calm", breeze: "Breeze", strong: "Strong" },
   freezeM: "Freeze level (m)",
-  weatherNotes: "Notes (aspect, storm timing)",
   items: enItems,
   prompts: enPrompts,
   debriefResult: "How it ended",
@@ -415,14 +390,11 @@ export const mountainFi: MountainPrepCopy = {
   },
   weatherTitle: "Ennuste jota vasten pakkaat",
   weatherLead: "Laakson lukemat valehtelevat. Kirjoita se mitä harjanteella tai viimeisessä nousussa oikeasti on.",
-  highC: "Ylin °C",
-  lowC: "Alin °C",
   precip: "Sade",
   precipOpts: { none: "Kuivaa", rain: "Vettä", snow: "Lunta", mix: "Räntää" },
   wind: "Tuuli",
   windOpts: { calm: "Tyyntä", breeze: "Tuulista", strong: "Kovaa" },
   freezeM: "Nollaraja (m)",
-  weatherNotes: "Muistiinpanot (rinne, myrskyn aika)",
   debriefResult: "Miten se päättyi",
   debriefConfidence: "Miltä valmius tuntui (1–5)",
   saveDebrief: "Vie passiin",
@@ -431,21 +403,10 @@ export const mountainFi: MountainPrepCopy = {
   safety:
     "Tämä on valmistelua, ei lääketieteellistä neuvoa eikä lupaa. Jos olet kipeä, sairas tai korkealla ja oireet pahenevat, tarvitset ihmisen, et listaa.",
   prompts: {
-    "nutrition.engineMeal": "Aamiainen jonka oikeasti syöt kevyinä päivinä",
-    "nutrition.bottlePlan": "Mitä pullossa on ja missä täytät",
     "nutrition.carbsPerHour": "Hiilihydraattimäärä jonka jo pidit pitkällä (g/h, sinun lukusi)",
-    "nutrition.waterPlan": "Paljonko vettä huoltojen välillä, ja varasuunnitelma jos huolto on kuiva",
-    "nutrition.dropBag": "Mitä kuhunkin droppiin, järjestyksessä",
-    "nutrition.summitSnack": "Se minkä syöt colilla tai huipulla",
-    "nutrition.hutOrBivy": "Tupa, bivouac vai sekoitus — ja ruoka joka siihen sopii",
-    "nutrition.rotationFood": "Minkä saat alas väsyneenä rotaatioiltana",
     "logistics.startTime": "Lähtöaika autolta / tuvalta / laukauksesta",
     "logistics.turnaroundTime": "Kääntymisaika (kellossa, ei ‘katsotaan’)",
-    "logistics.hutNames": "Tuvat tai bivat, järjestyksessä",
     "altitude.sleepElevation": "Nukkumiskorkeus tässä jaksossa (m), jos tiedät",
-    "debrief.happened": "Mitä oikeasti tapahtui",
-    "debrief.repeat": "Toista ensi kerralla",
-    "debrief.change": "Muuta ensi kerralla",
   },
   items: {
     ...enItems,
@@ -618,14 +579,11 @@ export const mountainFr: MountainPrepCopy = {
   },
   weatherTitle: "Prévision pour laquelle vous partez",
   weatherLead: "Les chiffres de vallée mentent. Écrivez ce que la crête verra.",
-  highC: "Max °C",
-  lowC: "Min °C",
   precip: "Précipitations",
   precipOpts: { none: "Sec", rain: "Pluie", snow: "Neige", mix: "Mélange" },
   wind: "Vent",
   windOpts: { calm: "Calme", breeze: "Brise", strong: "Fort" },
   freezeM: "Isotherme 0° (m)",
-  weatherNotes: "Notes",
   debriefResult: "Comment ça s’est fini",
   debriefConfidence: "Forme ressentie (1–5)",
   saveDebrief: "Mettre dans le passeport",
@@ -665,14 +623,11 @@ export const mountainDe: MountainPrepCopy = {
   },
   weatherTitle: "Vorhersage, für die du packst",
   weatherLead: "Talzahlen lügen. Schreib, was der Grat wirklich sieht.",
-  highC: "Max °C",
-  lowC: "Min °C",
   precip: "Niederschlag",
   precipOpts: { none: "Trocken", rain: "Regen", snow: "Schnee", mix: "Mix" },
   wind: "Wind",
   windOpts: { calm: "Ruhig", breeze: "Brise", strong: "Stark" },
   freezeM: "Nullgradgrenze (m)",
-  weatherNotes: "Notizen",
   debriefResult: "Wie es endete",
   debriefConfidence: "Wie bereit es sich anfühlte (1–5)",
   saveDebrief: "In den Pass legen",

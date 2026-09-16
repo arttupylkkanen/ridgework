@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { FoundingInvite } from "@/components/founding-invite";
 import { SiteShell } from "@/components/site-shell";
 import { getCopy } from "@/content";
+import { pageLinks, prefixed, siteMeta } from "@/lib/seo";
 import { isPathLocale } from "@/lib/locale";
 
 export const Route = createFileRoute("/$locale/founding")({
@@ -9,10 +10,13 @@ export const Route = createFileRoute("/$locale/founding")({
     const locale = isPathLocale(params.locale) ? params.locale : "en";
     const copy = getCopy(locale);
     return {
-      meta: [
-        { title: copy.foundingPage.title },
-        { name: "description", content: copy.foundingPage.description },
-      ],
+      meta: siteMeta({
+        title: copy.foundingPage.title,
+        description: copy.foundingPage.description,
+        path: `/${locale}/founding`,
+        locale,
+      }),
+      links: pageLinks(prefixed("/founding"), locale),
     };
   },
   component: Page,

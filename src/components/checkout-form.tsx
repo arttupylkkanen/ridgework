@@ -4,6 +4,7 @@ import type { Copy } from "@/content/types";
 import type { Locale } from "@/lib/locale";
 import { fillTemplate } from "@/lib/utils";
 import { AuthLink, DeskLink } from "./app-link";
+import { CHECKOUT_OPEN } from "@/lib/billing";
 import { isNoCardTrial, type Membership } from "@/lib/membership";
 import { getMembership } from "@/lib/membership-server";
 import { startFoundingCheckout, cancelMembership, startBillingPortal } from "@/lib/polar-checkout";
@@ -146,6 +147,16 @@ export function PaywallPanel({
   }
 
   if (membership.status === "expired" || membership.status === "needs_card") {
+    if (!CHECKOUT_OPEN) {
+      return (
+        <div className="rounded-2xl border border-line bg-card p-6 sm:p-8">
+          <h3 className="font-display text-2xl font-semibold text-ink">
+            {copy.checkout.closedTitle}
+          </h3>
+          <p className="mt-3 leading-relaxed text-ink-muted">{copy.checkout.closedBody}</p>
+        </div>
+      );
+    }
     return (
       <CheckoutReceipt
         copy={copy}
@@ -191,7 +202,7 @@ export function PaywallPanel({
         >
           {copy.cta.openTools}
         </DeskLink>
-        {noCardTrial ? (
+        {noCardTrial && CHECKOUT_OPEN ? (
           <button
             type="button"
             onClick={() => void pay()}

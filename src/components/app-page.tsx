@@ -35,11 +35,12 @@ import { PassportDesk } from "./tools/passport-desk";
 import { MountainDesk } from "./tools/mountain-desk";
 import { isTestAccountEmail, sampleTesterProfile } from "@/lib/test-account";
 import { PaywallPanel, BillingActions } from "./checkout-form";
+import { SyncDesk } from "./tools/sync-desk";
 import { RollingPlan } from "./tools/rolling-plan";
 import { TodayDesk } from "./tools/today-desk";
 import { WhatIfDesk } from "./tools/what-if";
 
-type Tab = "today" | "plan" | "whatIf" | "passport" | "prep" | "log" | "profile";
+type Tab = "today" | "plan" | "whatIf" | "passport" | "prep" | "log" | "profile" | "sync";
 
 function programFromSearch(searchStr: string): ObjectiveId | null {
   const raw = new URLSearchParams(searchStr.startsWith("?") ? searchStr.slice(1) : searchStr).get(
@@ -212,8 +213,6 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
             motivation: latest.motivation,
             fatigue: latest.fatigue,
             stress: latest.stress,
-            rhr: latest.rhr,
-            hrv: latest.hrv,
             lastEffort: latest.lastEffort,
           },
           call: latest.call,
@@ -272,15 +271,21 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
     );
   }
 
+  // Two tabs carry the daily use; the other five are occasional, so they sit
+  // behind one control instead of competing for attention every day.
   const tabs: { id: Tab; label: string }[] = [
     { id: "today", label: copy.appPage.tabs.today },
     { id: "plan", label: copy.appPage.tabs.plan },
+  ];
+  const moreTabs: { id: Tab; label: string }[] = [
     { id: "whatIf", label: copy.appPage.tabs.whatIf },
     { id: "passport", label: copy.appPage.tabs.passport },
     { id: "prep", label: copy.appPage.tabs.prep },
     { id: "log", label: copy.appPage.tabs.log },
     { id: "profile", label: copy.appPage.tabs.profile },
+    { id: "sync", label: copy.tools.sync.tab },
   ];
+  const activeMore = moreTabs.find((item) => item.id === tab);
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
@@ -380,6 +385,28 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
                 {item.label}
               </button>
             ))}
+            <label className="contents">
+              <span className="sr-only">{copy.appPage.tabs.more}</span>
+              <select
+                value={activeMore ? activeMore.id : ""}
+                onChange={(e) => {
+                  if (e.target.value) setTab(e.target.value as Tab);
+                }}
+                className={cn(
+                  "min-h-11 rounded-lg px-4 py-2 text-sm font-medium",
+                  activeMore
+                    ? "bg-ridge text-paper"
+                    : "border border-line bg-card text-ink-muted hover:bg-paper-warm",
+                )}
+              >
+                <option value="">{copy.appPage.tabs.more}</option>
+                {moreTabs.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.label}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
           <div className="mt-8">
             {tab === "today" && profile ? (
@@ -420,6 +447,7 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
             {tab === "profile" ? (
               <Onboarding copy={copy} initial={profile} onComplete={completeProfile} />
             ) : null}
+            {tab === "sync" ? <SyncDesk copy={copy} /> : null}
           </div>
         </>
       )}

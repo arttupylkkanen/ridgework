@@ -10,6 +10,14 @@ import { isBillingExemptEmail } from "./test-account.ts";
  * and POLAR_WEBHOOK_SECRET in the host env so membership syncs via API/webhook.
  */
 
+/**
+ * Hard legal gate on taking money. Stays false until the company is registered
+ * (SIREN issued) and mentions légales + CGV are published. Everything else
+ * about billing stays wired up — this only stops a card being charged, and the
+ * no-card trial is unaffected.
+ */
+export const CHECKOUT_OPEN = false;
+
 export const BILLING_REQUIRED = true;
 export const FOUNDING_PRICE_CENTS = 900;
 export const REGULAR_PRICE_CENTS = 1900;
@@ -60,7 +68,7 @@ export function polarConfigured(): boolean {
 }
 
 export function canCharge(): boolean {
-  return BILLING_REQUIRED && polarConfigured();
+  return CHECKOUT_OPEN && BILLING_REQUIRED && polarConfigured();
 }
 
 export function billingStatusFor(email?: string | null): BillingStatus {
@@ -74,5 +82,6 @@ export function billingPublicState() {
     polarProductId: POLAR_FOUNDING_PRODUCT_ID,
     configured: polarConfigured(),
     charging: canCharge(),
+    checkoutOpen: CHECKOUT_OPEN,
   };
 }

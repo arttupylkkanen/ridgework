@@ -12,8 +12,6 @@ export type DailyInputs = {
   motivation: Scale;
   fatigue: Scale;
   stress: Scale;
-  rhr?: number;
-  hrv?: number;
   lastEffort?: Scale;
 };
 
@@ -22,8 +20,6 @@ export type LoadContext = {
   hardOrLongThisWeek: number;
   yesterdayHard: boolean;
   yesterdayKey?: SessionKey;
-  rhrBaseline?: number;
-  hrvBaseline?: number;
 };
 
 export type ReasonId =
@@ -36,8 +32,6 @@ export type ReasonId =
   | "stressHigh"
   | "loadCluster"
   | "yesterdayHard"
-  | "rhrUp"
-  | "hrvDown"
   | "normalLoad";
 
 export type Reason = { id: ReasonId; values: Record<string, string | number> };
@@ -150,20 +144,6 @@ export function assessReadiness(inputs: DailyInputs, load: LoadContext = emptyLo
     fire("reduce", { id: "yesterdayHard", values: { key: load.yesterdayKey ?? "quality" } });
   }
 
-  if (typeof inputs.rhr === "number" && typeof load.rhrBaseline === "number" && load.rhrBaseline > 0) {
-    const delta = inputs.rhr - load.rhrBaseline;
-    if (delta >= 7) fire("reduce", { id: "rhrUp", values: { rhr: inputs.rhr, baseline: load.rhrBaseline, delta } });
-  }
-
-  if (typeof inputs.hrv === "number" && typeof load.hrvBaseline === "number" && load.hrvBaseline > 0) {
-    const drop = (load.hrvBaseline - inputs.hrv) / load.hrvBaseline;
-    if (drop >= 0.2) {
-      fire("reduce", {
-        id: "hrvDown",
-        values: { hrv: inputs.hrv, baseline: load.hrvBaseline, pct: Math.round(drop * 100) },
-      });
-    }
-  }
 
   return { call, reasons, drivers: drivers.length ? drivers : reasons.slice(0, 2) };
 }
@@ -172,12 +152,6 @@ export function emptyLoad(): LoadContext {
   return { hardOrLongLast3Days: 0, hardOrLongThisWeek: 0, yesterdayHard: false };
 }
 
-export function baselineFrom(history: StoredDaily[], key: "rhr" | "hrv"): number | undefined {
-  const values = history.map((row) => row[key]).filter((n): n is number => typeof n === "number" && n > 0);
-  if (values.length < 3) return undefined;
-  const recent = values.slice(-7);
-  return Math.round(recent.reduce((a, b) => a + b, 0) / recent.length);
-}
 
 function canUseStorage() {
   return typeof window !== "undefined";

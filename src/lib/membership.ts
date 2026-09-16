@@ -34,6 +34,12 @@ export function evaluateMembership(input: {
   charging?: boolean;
   now?: Date;
   canCancel?: boolean;
+  /**
+   * False while payment is not open yet. A no-card trial must not expire into
+   * `needs_card` then — there would be no way to add a card, so the athlete
+   * would be locked out of a product we are giving away.
+   */
+  checkoutOpen?: boolean;
 }): Membership {
   const now = input.now ?? new Date();
   const end = trialEnd(input.createdAt);
@@ -89,8 +95,9 @@ export function evaluateMembership(input: {
   // date alone for the first TRIAL_DAYS. Only reachable with no billing
   // status at all (never started checkout, or abandoned it), since a real
   // Polar state (open/canceling/canceled, handled above) always wins.
-  if (now.getTime() < end.getTime()) {
-    const daysLeft = Math.ceil((end.getTime() - now.getTime()) / MS_DAY);
+  const checkoutOpen = input.checkoutOpen ?? true;
+  if (!checkoutOpen || now.getTime() < end.getTime()) {
+    const daysLeft = Math.max(0, Math.ceil((end.getTime() - now.getTime()) / MS_DAY));
     return {
       status: "trialing",
       trialEndsOn,

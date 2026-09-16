@@ -9,7 +9,12 @@ export const Route = createFileRoute("/$locale/login")({
   head: ({ params }) => {
     const locale = isPathLocale(params.locale) ? params.locale : "en";
     const copy = getCopy(locale);
-    return { meta: [{ title: `${copy.auth.title} — Ridgework` }] };
+    return {
+      meta: [
+        { title: `${copy.auth.title} — Ridgework` },
+        { name: "robots", content: "noindex, nofollow" },
+      ],
+    };
   },
   component: Page,
 });

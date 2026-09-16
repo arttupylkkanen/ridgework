@@ -18,6 +18,8 @@ import { Route as FoundingRouteImport } from './routes/founding'
 import { Route as GuidesRouteImport } from './routes/guides'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SourcesRouteImport } from './routes/sources'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as LocaleIndexRouteImport } from './routes/$locale/index'
 import { Route as LocaleAppRouteImport } from './routes/$locale/app'
@@ -27,10 +29,14 @@ import { Route as LocaleFoundingRouteImport } from './routes/$locale/founding'
 import { Route as LocaleGuidesRouteImport } from './routes/$locale/guides'
 import { Route as LocaleLoginRouteImport } from './routes/$locale/login'
 import { Route as LocalePrivacyRouteImport } from './routes/$locale/privacy'
+import { Route as LocaleSourcesRouteImport } from './routes/$locale/sources'
 import { Route as LocaleTermsRouteImport } from './routes/$locale/terms'
+import { Route as CalendarTokenRouteImport } from './routes/calendar.$token'
 import { Route as GuidesIndexRouteImport } from './routes/guides/index'
 import { Route as GuidesSlugRouteImport } from './routes/guides/$slug'
 import { Route as PassportTokenRouteImport } from './routes/passport.$token'
+import { Route as PlansIndexRouteImport } from './routes/plans/index'
+import { Route as PlansSlugRouteImport } from './routes/plans/$slug'
 import { Route as LocaleGuidesIndexRouteImport } from './routes/$locale/guides/index'
 import { Route as LocaleGuidesSlugRouteImport } from './routes/$locale/guides/$slug'
 import { Route as LocalePassportTokenRouteImport } from './routes/$locale/passport.$token'
@@ -82,6 +88,16 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SourcesRoute = SourcesRouteImport.update({
+  id: '/sources',
+  path: '/sources',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -127,10 +143,20 @@ const LocalePrivacyRoute = LocalePrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => LocaleRoute,
 } as any)
+const LocaleSourcesRoute = LocaleSourcesRouteImport.update({
+  id: '/sources',
+  path: '/sources',
+  getParentRoute: () => LocaleRoute,
+} as any)
 const LocaleTermsRoute = LocaleTermsRouteImport.update({
   id: '/terms',
   path: '/terms',
   getParentRoute: () => LocaleRoute,
+} as any)
+const CalendarTokenRoute = CalendarTokenRouteImport.update({
+  id: '/calendar/$token',
+  path: '/calendar/$token',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const GuidesIndexRoute = GuidesIndexRouteImport.update({
   id: '/',
@@ -145,6 +171,16 @@ const GuidesSlugRoute = GuidesSlugRouteImport.update({
 const PassportTokenRoute = PassportTokenRouteImport.update({
   id: '/passport/$token',
   path: '/passport/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlansIndexRoute = PlansIndexRouteImport.update({
+  id: '/plans/',
+  path: '/plans/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlansSlugRoute = PlansSlugRouteImport.update({
+  id: '/plans/$slug',
+  path: '/plans/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LocaleGuidesIndexRoute = LocaleGuidesIndexRouteImport.update({
@@ -183,6 +219,8 @@ export interface FileRoutesByFullPath {
   '/guides': typeof GuidesRouteWithChildren
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sources': typeof SourcesRoute
   '/terms': typeof TermsRoute
   '/$locale/app': typeof LocaleAppRoute
   '/$locale/example': typeof LocaleExampleRoute
@@ -191,11 +229,15 @@ export interface FileRoutesByFullPath {
   '/$locale/guides': typeof LocaleGuidesRouteWithChildren
   '/$locale/login': typeof LocaleLoginRoute
   '/$locale/privacy': typeof LocalePrivacyRoute
+  '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
+  '/calendar/$token': typeof CalendarTokenRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
+  '/plans/$slug': typeof PlansSlugRoute
   '/$locale/': typeof LocaleIndexRoute
   '/guides/': typeof GuidesIndexRoute
+  '/plans/': typeof PlansIndexRoute
   '/$locale/guides/$slug': typeof LocaleGuidesSlugRoute
   '/$locale/passport/$token': typeof LocalePassportTokenRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -210,6 +252,8 @@ export interface FileRoutesByTo {
   '/founding': typeof FoundingRoute
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sources': typeof SourcesRoute
   '/terms': typeof TermsRoute
   '/$locale/app': typeof LocaleAppRoute
   '/$locale/example': typeof LocaleExampleRoute
@@ -217,11 +261,15 @@ export interface FileRoutesByTo {
   '/$locale/founding': typeof LocaleFoundingRoute
   '/$locale/login': typeof LocaleLoginRoute
   '/$locale/privacy': typeof LocalePrivacyRoute
+  '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
+  '/calendar/$token': typeof CalendarTokenRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
+  '/plans/$slug': typeof PlansSlugRoute
   '/$locale': typeof LocaleIndexRoute
   '/guides': typeof GuidesIndexRoute
+  '/plans': typeof PlansIndexRoute
   '/$locale/guides/$slug': typeof LocaleGuidesSlugRoute
   '/$locale/passport/$token': typeof LocalePassportTokenRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -239,6 +287,8 @@ export interface FileRoutesById {
   '/guides': typeof GuidesRouteWithChildren
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sources': typeof SourcesRoute
   '/terms': typeof TermsRoute
   '/$locale/app': typeof LocaleAppRoute
   '/$locale/example': typeof LocaleExampleRoute
@@ -247,11 +297,15 @@ export interface FileRoutesById {
   '/$locale/guides': typeof LocaleGuidesRouteWithChildren
   '/$locale/login': typeof LocaleLoginRoute
   '/$locale/privacy': typeof LocalePrivacyRoute
+  '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
+  '/calendar/$token': typeof CalendarTokenRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
+  '/plans/$slug': typeof PlansSlugRoute
   '/$locale/': typeof LocaleIndexRoute
   '/guides/': typeof GuidesIndexRoute
+  '/plans/': typeof PlansIndexRoute
   '/$locale/guides/$slug': typeof LocaleGuidesSlugRoute
   '/$locale/passport/$token': typeof LocalePassportTokenRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -270,6 +324,8 @@ export interface FileRouteTypes {
     | '/guides'
     | '/login'
     | '/privacy'
+    | '/sitemap.xml'
+    | '/sources'
     | '/terms'
     | '/$locale/app'
     | '/$locale/example'
@@ -278,11 +334,15 @@ export interface FileRouteTypes {
     | '/$locale/guides'
     | '/$locale/login'
     | '/$locale/privacy'
+    | '/$locale/sources'
     | '/$locale/terms'
+    | '/calendar/$token'
     | '/guides/$slug'
     | '/passport/$token'
+    | '/plans/$slug'
     | '/$locale/'
     | '/guides/'
+    | '/plans/'
     | '/$locale/guides/$slug'
     | '/$locale/passport/$token'
     | '/api/auth/$'
@@ -297,6 +357,8 @@ export interface FileRouteTypes {
     | '/founding'
     | '/login'
     | '/privacy'
+    | '/sitemap.xml'
+    | '/sources'
     | '/terms'
     | '/$locale/app'
     | '/$locale/example'
@@ -304,11 +366,15 @@ export interface FileRouteTypes {
     | '/$locale/founding'
     | '/$locale/login'
     | '/$locale/privacy'
+    | '/$locale/sources'
     | '/$locale/terms'
+    | '/calendar/$token'
     | '/guides/$slug'
     | '/passport/$token'
+    | '/plans/$slug'
     | '/$locale'
     | '/guides'
+    | '/plans'
     | '/$locale/guides/$slug'
     | '/$locale/passport/$token'
     | '/api/auth/$'
@@ -325,6 +391,8 @@ export interface FileRouteTypes {
     | '/guides'
     | '/login'
     | '/privacy'
+    | '/sitemap.xml'
+    | '/sources'
     | '/terms'
     | '/$locale/app'
     | '/$locale/example'
@@ -333,11 +401,15 @@ export interface FileRouteTypes {
     | '/$locale/guides'
     | '/$locale/login'
     | '/$locale/privacy'
+    | '/$locale/sources'
     | '/$locale/terms'
+    | '/calendar/$token'
     | '/guides/$slug'
     | '/passport/$token'
+    | '/plans/$slug'
     | '/$locale/'
     | '/guides/'
+    | '/plans/'
     | '/$locale/guides/$slug'
     | '/$locale/passport/$token'
     | '/api/auth/$'
@@ -355,8 +427,13 @@ export interface RootRouteChildren {
   GuidesRoute: typeof GuidesRouteWithChildren
   LoginRoute: typeof LoginRoute
   PrivacyRoute: typeof PrivacyRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SourcesRoute: typeof SourcesRoute
   TermsRoute: typeof TermsRoute
+  CalendarTokenRoute: typeof CalendarTokenRoute
   PassportTokenRoute: typeof PassportTokenRoute
+  PlansSlugRoute: typeof PlansSlugRoute
+  PlansIndexRoute: typeof PlansIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   ApiPolarWebhookRoute: typeof ApiPolarWebhookRoute
 }
@@ -426,6 +503,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sources': {
+      id: '/sources'
+      path: '/sources'
+      fullPath: '/sources'
+      preLoaderRoute: typeof SourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -489,12 +580,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocalePrivacyRouteImport
       parentRoute: typeof LocaleRoute
     }
+    '/$locale/sources': {
+      id: '/$locale/sources'
+      path: '/sources'
+      fullPath: '/$locale/sources'
+      preLoaderRoute: typeof LocaleSourcesRouteImport
+      parentRoute: typeof LocaleRoute
+    }
     '/$locale/terms': {
       id: '/$locale/terms'
       path: '/terms'
       fullPath: '/$locale/terms'
       preLoaderRoute: typeof LocaleTermsRouteImport
       parentRoute: typeof LocaleRoute
+    }
+    '/calendar/$token': {
+      id: '/calendar/$token'
+      path: '/calendar/$token'
+      fullPath: '/calendar/$token'
+      preLoaderRoute: typeof CalendarTokenRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/guides/': {
       id: '/guides/'
@@ -515,6 +620,20 @@ declare module '@tanstack/react-router' {
       path: '/passport/$token'
       fullPath: '/passport/$token'
       preLoaderRoute: typeof PassportTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plans/': {
+      id: '/plans/'
+      path: '/plans'
+      fullPath: '/plans/'
+      preLoaderRoute: typeof PlansIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plans/$slug': {
+      id: '/plans/$slug'
+      path: '/plans/$slug'
+      fullPath: '/plans/$slug'
+      preLoaderRoute: typeof PlansSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$locale/guides/': {
@@ -577,6 +696,7 @@ interface LocaleRouteChildren {
   LocaleGuidesRoute: typeof LocaleGuidesRouteWithChildren
   LocaleLoginRoute: typeof LocaleLoginRoute
   LocalePrivacyRoute: typeof LocalePrivacyRoute
+  LocaleSourcesRoute: typeof LocaleSourcesRoute
   LocaleTermsRoute: typeof LocaleTermsRoute
   LocaleIndexRoute: typeof LocaleIndexRoute
   LocalePassportTokenRoute: typeof LocalePassportTokenRoute
@@ -590,6 +710,7 @@ const LocaleRouteChildren: LocaleRouteChildren = {
   LocaleGuidesRoute: LocaleGuidesRouteWithChildren,
   LocaleLoginRoute: LocaleLoginRoute,
   LocalePrivacyRoute: LocalePrivacyRoute,
+  LocaleSourcesRoute: LocaleSourcesRoute,
   LocaleTermsRoute: LocaleTermsRoute,
   LocaleIndexRoute: LocaleIndexRoute,
   LocalePassportTokenRoute: LocalePassportTokenRoute,
@@ -621,8 +742,13 @@ const rootRouteChildren: RootRouteChildren = {
   GuidesRoute: GuidesRouteWithChildren,
   LoginRoute: LoginRoute,
   PrivacyRoute: PrivacyRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SourcesRoute: SourcesRoute,
   TermsRoute: TermsRoute,
+  CalendarTokenRoute: CalendarTokenRoute,
   PassportTokenRoute: PassportTokenRoute,
+  PlansSlugRoute: PlansSlugRoute,
+  PlansIndexRoute: PlansIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   ApiPolarWebhookRoute: ApiPolarWebhookRoute,
 }

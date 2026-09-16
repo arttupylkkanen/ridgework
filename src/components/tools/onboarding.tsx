@@ -13,8 +13,11 @@ import {
   availableCount,
   emptyProfile,
   toggleList,
+  windowsOf,
   type AthleteProfile,
   type AvailableDays,
+  type DayWindow,
+  type DayWindows,
 } from "@/lib/athlete";
 import { OBJECTIVES, suggestedPeakOn, todayIso, type ObjectiveId } from "@/lib/rolling-plan";
 import { PROGRAM_MEDIA } from "@/lib/program-media";
@@ -73,6 +76,15 @@ export function Onboarding({
 
   function patch(partial: Partial<AthleteProfile>) {
     setDraft((prev) => ({ ...prev, ...partial }));
+  }
+
+  const windows = windowsOf(draft);
+
+  function patchWindow(index: number, partial: Partial<DayWindow>) {
+    const next = windowsOf(draft).map((w, i) =>
+      i === index ? { ...w, ...partial } : w,
+    ) as DayWindows;
+    patch({ dayWindows: next });
   }
 
   const canNext = useMemo(() => {
@@ -183,17 +195,6 @@ export function Onboarding({
             />
           </label>
           <p className="text-sm leading-relaxed text-ridge-deep">{copy.tools.plan.longerBetter}</p>
-          <label className="block text-sm font-medium text-ink" htmlFor="onboard-event">
-            {t.eventName}
-            <input
-              id="onboard-event"
-              type="text"
-              value={draft.eventName}
-              placeholder={t.eventPlaceholder}
-              onChange={(e) => patch({ eventName: e.target.value })}
-              className="mt-2 w-full rounded-lg border border-line bg-paper px-3 py-2.5 text-sm outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ridge"
-            />
-          </label>
         </div>
       ) : null}
 
@@ -260,6 +261,53 @@ export function Onboarding({
             ))}
           </div>
           {availableCount(draft.availableDays) < 2 ? <p className="text-sm text-warn">{t.needDays}</p> : null}
+
+          <div className="border-t border-line pt-5">
+            <p className="text-sm font-medium text-ink">{t.windowTitle}</p>
+            <p className="mt-1 max-w-xl text-xs leading-relaxed text-ink-soft">{t.windowHint}</p>
+            <div className="mt-4 space-y-2">
+              {days.map((label, i) =>
+                draft.availableDays[i] ? (
+                  <div
+                    key={label}
+                    className="grid grid-cols-[3.5rem_1fr_1fr] items-center gap-2 sm:max-w-md"
+                  >
+                    <span className="text-sm font-medium uppercase tracking-wider text-ink-soft">
+                      {label}
+                    </span>
+                    <label className="block">
+                      <span className="sr-only">{t.windowMinutes}</span>
+                      <input
+                        type="number"
+                        min={20}
+                        step={5}
+                        inputMode="numeric"
+                        placeholder={t.windowMinutes}
+                        value={windows[i]?.minutes ?? ""}
+                        onChange={(e) =>
+                          patchWindow(i, {
+                            minutes: e.target.value === "" ? null : Number(e.target.value),
+                          })
+                        }
+                        className="w-full rounded-lg border border-line bg-paper px-3 py-2 text-sm"
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="sr-only">{t.windowTime}</span>
+                      <input
+                        type="time"
+                        value={windows[i]?.startAt ?? ""}
+                        onChange={(e) =>
+                          patchWindow(i, { startAt: e.target.value || null })
+                        }
+                        className="w-full rounded-lg border border-line bg-paper px-3 py-2 text-sm"
+                      />
+                    </label>
+                  </div>
+                ) : null,
+              )}
+            </div>
+          </div>
         </div>
       ) : null}
 
@@ -314,16 +362,23 @@ export function Onboarding({
               />
             ))}
           </div>
-          <label className="block text-sm font-medium text-ink" htmlFor="onboard-limit">
-            {t.limitations}
-            <textarea
-              id="onboard-limit"
-              value={draft.limitations}
-              onChange={(e) => patch({ limitations: e.target.value })}
-              rows={3}
-              className="mt-2 w-full rounded-lg border border-line bg-paper px-3 py-2 text-sm outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ridge"
-            />
-          </label>
+          <div>
+            <p className="text-sm font-medium text-ink">{t.limitations}</p>
+            <div className="mt-2 grid max-w-xs grid-cols-2 gap-2">
+              <ChoiceButton
+                id="onboard-limit-no"
+                selected={!draft.limitations}
+                title={t.limitationsNo}
+                onClick={() => patch({ limitations: "" })}
+              />
+              <ChoiceButton
+                id="onboard-limit-yes"
+                selected={Boolean(draft.limitations)}
+                title={t.limitationsYes}
+                onClick={() => patch({ limitations: "yes" })}
+              />
+            </div>
+          </div>
           <p className="text-xs leading-relaxed text-ink-soft">{t.limitationsHint}</p>
           <div className="rounded-2xl border border-ridge bg-paper-warm/70 p-5">
             <p className="font-display text-lg font-semibold text-ink">{t.reviewTitle}</p>
@@ -339,7 +394,8 @@ export function Onboarding({
       ) : null}
 
       <div className="flex flex-wrap gap-3">
-        {onCancel ? (
+        {/* Only one "Back" at a time: leaving the wizard, or stepping within it. */}
+        {onCancel && step === 0 ? (
           <button
             type="button"
             onClick={onCancel}

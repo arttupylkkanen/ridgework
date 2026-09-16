@@ -8,7 +8,7 @@ import type { Copy } from "./types";
 export const de: Copy = {
   metaTitle: "Ridgework — Trainingsprogramme für Trail, Alpin und Höhe",
   metaDescription:
-    "Sieben Programme: aerober Motor, 20-km-Trail, 50 km, Ultra, Alpentag, mehrtägige Route, Höhenexpedition. Müde heißt weniger trainieren. 14 Tage kostenlos, dann 9 €/Monat.",
+    "Was du diese Woche läufst — 20-km-Trail, 50 oder 100 km Ultra, Alpentag. Eine müde Woche wird leichter. 14 Tage kostenlos, ohne Karte.",
   footerTag: "Bergtraining, das der Woche folgt, die du wirklich hast.",
   legalEntity: "Ridgework, Frankreich.",
   support: "support@ridgework.org",
@@ -41,9 +41,9 @@ export const de: Copy = {
   },
   hero: {
     kicker: "Bergtraining",
-    h1: "77 km in sechs Wochen. Was läufst du am Dienstag?",
-    lead: "Fünf Stunden Schlaf. Langer Lauf gestern. Knie 2/10. Hitze am Sonntag. Daraus wird die Woche: Intervalle streichen, locker laufen, den Langen verschieben. Der Renntag rückt nicht.",
-    trial: "14 Tage kostenlos. Dann 9 €/Monat. Jederzeit kündbar.",
+    h1: "Trainiere für den Tag, auf den es ankommt.",
+    lead: "Wähle den Tag, an dem du bereit sein musst. Jede Woche wird von dort rückwärts geschrieben — und neu geschrieben, wenn das Leben dazwischenkommt.",
+    trial: "Kostenlos, solange die Registrierung des Unternehmens läuft. Keine Karte, nichts zu kündigen.",
   },
   about: {
     kicker: "Was das ist",
@@ -90,9 +90,14 @@ export const de: Copy = {
     caveats: [
       "Individuelle Reaktion variiert — Alter, Historie, Gelände und Alltagsstress ändern, was „funktioniert“.",
       "Publizierte Mittelwerte sind kein medizinischer Rat und ersetzen keine Fachperson bei Gesundheitsfragen.",
-      "Wir übersetzen Literatur in Checklisten und Wochenstrukturen, damit du mit offenen Augen entscheidest.",
+      "Das schreibt eine Startwoche aus dem, was du angibst. Es sieht dich nicht trainieren und kennt nur die Einheiten, die du einträgst.",
     ],
     sourcesTitle: "Quellen (Crossref-verifiziert)",
+    teaserH2: "Was das versprechen kann und was nicht",
+    teaserLead:
+      "Die meisten Tage locker, eine harte Einheit wenn du frisch bist, ein Tapering in den Tag — diese Form kommt aus einer Handvoll gut zitierter Ausdauerarbeiten, nicht aus einer Vorlage mit deinem Namen darauf. Hier ist der Teil, den die meisten Trainingsprodukte weglassen.",
+    teaserCta: "Die ganze Methode lesen",
+    allSourcesCta: "Alle Quellen, und wofür jede verwendet wird",
   },
   projects: {
     kicker: "Beispielprojekte",
@@ -318,11 +323,14 @@ export const de: Copy = {
     kicker: "Beispiel",
     h2: "Ein echter Dienstag, kein Slogan",
     setup: "77-km-Ultra in sechs Wochen.",
+    weekTitle: "Und so sieht die Woche aus, die daraus entsteht",
+    writtenLabel: "Geschrieben",
+    shownLabel: "Nach einer Fünf-Stunden-Nacht",
+    changeNote: "Eine Einheit hat sich geändert, und der Plan sagt warum. Der Rest der Woche bleibt, das Renndatum auch.",
     facts: [
       { label: "Schlaf letzte Nacht", value: "5 Stunden" },
       { label: "Gestern", value: "32 km Langer" },
       { label: "Rechtes Knie", value: "2/10" },
-      { label: "Sonntag Wetter", value: "28°C" },
     ],
     says: "Was sich ändert",
     actions: [
@@ -370,23 +378,25 @@ export const de: Copy = {
   },
   pricing: {
     kicker: "Preise",
-    h2: "14 Tage im Kalender. Dann 9 €/Monat.",
-    lead: "Lauf zuerst eine echte Woche. Danach 9 €/Monat, wenn du bleibst. Jederzeit kündbar, auch in den 14 Tagen.",
+    h2: "14 Tage im Kalender. Dann 19 €/Monat.",
+    lead: "Lauf zuerst eine echte Woche. Danach 19 €/Monat, wenn du bleibst. Jederzeit kündbar, auch in den 14 Tagen.",
     badge: "Aktueller Preis",
     trialBadge: "14 Tage kostenlos",
     name: "Ridgework-Abo",
-    price: "€9",
+    price: "€19",
+    freeTag: "Kostenlos",
+    freeNow: "Kostenlos, solange die Registrierung des Unternehmens läuft. Keine Karte, nichts zu kündigen. 19 €/Monat, wenn es öffnet.",
     per: "/Monat",
-    blurb: "14 Tage kostenlos. Dann 9 €/Monat. Jederzeit kündbar.",
+    blurb: "14 Tage kostenlos. Dann 19 €/Monat. Jederzeit kündbar.",
     features: [
       "Sieben Programme vom aeroben Motor bis 100 km und Alpentage",
-      "9 €/Monat, solange das Abo läuft",
+      "19 €/Monat, solange das Abo läuft",
       "Jederzeit kündbar, auch in den 14 Tagen — dann keine Rechnung",
       "Trainingswochen, keine medizinischen Claims",
     ],
     laterTitle: "Nach den 14 Tagen",
     laterBody:
-      "Wenn du bleibst, belastet Polar 9 €/Monat. Kündigst du in den 14 Tagen, wirst du nicht belastet. Später gilt: Zugang bis zum Ende der bereits bezahlten Zeit. Auf dieser Seite steht kein anderer Preis.",
+      "Wenn du bleibst, belastet Polar 19 €/Monat. Kündigst du in den 14 Tagen, wirst du nicht belastet. Später gilt: Zugang bis zum Ende der bereits bezahlten Zeit. Auf dieser Seite steht kein anderer Preis.",
   },
   checkout: {
     kicker: "Start",
@@ -397,23 +407,26 @@ export const de: Copy = {
     submit: "Karte hinterlegen",
     note: "Kündige am Tisch. In den 14 Tagen belastet Polar nicht. Keine Diagnosen. Du bleibst verantwortlich für Berg- und Trainingssicherheit.",
     successTitle: "Karte hinterlegt",
-    successBody: "14 Tage 0 €. Dann 9 €/Monat, außer du kündigst vorher.",
+    successBody: "14 Tage 0 €. Dann 19 €/Monat, außer du kündigst vorher.",
     daysLeft: "Tage übrig im Test",
     payTitle: "Karte hinzufügen zum Weitermachen",
     payBody:
-      "Deine kostenlose Testphase ist vorbei. Füge eine Karte hinzu, um weiterzumachen — 9 €/Monat, außer du kündigst.",
+      "Deine kostenlose Testphase ist vorbei. Füge eine Karte hinzu, um weiterzumachen — 19 €/Monat, außer du kündigst.",
     payCta: "Mit Karte zahlen",
     trialLeft: "{n} Tage übrig im Test",
     trialNoCard:
       "Noch {n} Tage, bisher ohne Karte. Füge jederzeit eine hinzu, um weiterzutrainieren.",
     trialOn: "Karte hinterlegt. Erste Abbuchung nach 14 Tagen, außer du kündigst.",
-    subscribed: "Abo aktiv · 9 €/Monat",
+    subscribed: "Abo aktiv · 19 €/Monat",
     payFail: "Kasse hat nicht geöffnet. Mail an support@ridgework.org.",
+    closedTitle: "Kartenzahlung ist noch nicht offen",
+    closedBody:
+      "Ridgework nimmt keine Zahlung an, bis die Registrierung des Unternehmens abgeschlossen ist. Deine 14 Tage laufen weiter, und in der Zwischenzeit kann nichts belastet werden.",
     paying: "Kasse wird geöffnet…",
     dueToday: "Heute fällig",
     dueAmount: "0 €",
     terms:
-      "Polar nimmt die Karte. Heute 0 € für 14 Tage. Dann 9 €/Monat, außer du kündigst vor Ende der 14 Tage. Danach monatliche Verlängerung, bis du am Tisch kündigst. Beträge in EUR. Polar ist Merchant of Record.",
+      "Polar nimmt die Karte. Heute 0 € für 14 Tage. Dann 19 €/Monat, außer du kündigst vor Ende der 14 Tage. Danach monatliche Verlängerung, bis du am Tisch kündigst. Beträge in EUR. Polar ist Merchant of Record.",
     includesTitle: "Die 14 Tage enthalten",
     includes: [
       "Diese Woche aufgeschrieben: was du tust, wie es sich anfühlen soll, wie lange",
@@ -421,7 +434,7 @@ export const de: Copy = {
       "Gehen, joggen, wandern oder Rad — dieselben Minuten zählen",
       "In den 14 Tagen kündigen: Polar belastet nichts",
     ],
-    afterLine: "Ab Tag 14 kostet die Mitgliedschaft 9 €/Monat, bis du kündigst.",
+    afterLine: "Ab Tag 14 kostet die Mitgliedschaft 19 €/Monat, bis du kündigst.",
     chipCancel: "Jederzeit kündbar",
     chipSupport: "support@ridgework.org",
     chipMerchant: "Abrechnung über Polar",
@@ -445,7 +458,7 @@ export const de: Copy = {
       },
       {
         q: "Wie funktioniert der Preis?",
-        a: "14 Tage kostenlos. Dann 9 €/Monat, wenn du bleibst. Kündigung in den 14 Tagen: keine Rechnung.",
+        a: "14 Tage kostenlos. Dann 19 €/Monat, wenn du bleibst. Kündigung in den 14 Tagen: keine Rechnung.",
       },
       {
         q: "Jederzeit kündbar?",
@@ -453,11 +466,11 @@ export const de: Copy = {
       },
       {
         q: "Was passiert nach den 14 Tagen?",
-        a: "Ohne Karte pausiert der Tisch, bis du eine hinzufügst — es wird nichts automatisch belastet. Mit Karte läuft das Abo weiter zu 9 €/Monat, außer du kündigst.",
+        a: "Ohne Karte pausiert der Tisch, bis du eine hinzufügst — es wird nichts automatisch belastet. Mit Karte läuft das Abo weiter zu 19 €/Monat, außer du kündigst.",
       },
       {
         q: "Brauche ich eine Karte für die Testphase?",
-        a: "Nein. Starte 14 Tage kostenlos ohne Karte. Füge jederzeit eine hinzu, während oder nach der Testphase, um bei 9 €/Monat weiterzutrainieren.",
+        a: "Nein. Starte 14 Tage kostenlos ohne Karte. Füge jederzeit eine hinzu, während oder nach der Testphase, um bei 19 €/Monat weiterzutrainieren.",
       },
       {
         q: "Ist das medizinisch?",
@@ -473,7 +486,7 @@ export const de: Copy = {
       },
       { q: "Welche Sprachen?", a: "Englisch, Finnisch, Französisch, Deutsch." },
       { q: "Daten?", a: "EU/Frankreich-Erwartungen. Siehe Privacy. Kein Verkauf für Ads." },
-      { q: "Support?", a: "support@ridgework.org — Antwort in wenigen Werktagen." },
+      { q: "Support?", a: "support@ridgework.org — Antwort innerhalb von 24–48 Stunden." },
     ],
   },
   disclaimer: {
@@ -483,18 +496,18 @@ export const de: Copy = {
   foundingPage: {
     kicker: "Founding",
     h1: "Starte mit 14 Tagen kostenlos",
-    lead: "Dieselben Wochen. 14 Tage kostenlos, dann 9 €/Monat.",
-    trial: "14 Tage kostenlos. Dann 9 €/Monat. Jederzeit kündbar.",
-    note: "14 Tage ohne Karte. Füge jederzeit eine hinzu, um für 9 €/Monat weiterzutrainieren. Das ist der einzige Preis hier.",
+    lead: "Dieselben Wochen. 14 Tage kostenlos, dann 19 €/Monat.",
+    trial: "14 Tage kostenlos. Dann 19 €/Monat. Jederzeit kündbar.",
+    note: "14 Tage ohne Karte. Füge jederzeit eine hinzu, um für 19 €/Monat weiterzutrainieren. Das ist der einzige Preis hier.",
     back: "← Ridgework",
     title: "Founding — Ridgework",
-    description: "Wöchentliches Training. 14 Tage kostenlos, dann 9 €/Monat. Jederzeit kündbar.",
+    description: "Wöchentliches Training. 14 Tage kostenlos, dann 19 €/Monat. Jederzeit kündbar.",
   },
   termsPage: {
     title: "Nutzungsbedingungen",
     updated: "Zuletzt aktualisiert: September 2026",
     body: [
-      "Ridgework schreibt Trainingswochen für Trail und Berg. Keine medizinische Versorgung, keine Diagnosen. Preis: 14 Tage kostenlos, dann 9 €/Monat. Jederzeit kündbar (support@ridgework.org). Kündigung in den 14 Tagen bedeutet keine Rechnung. Du bleibst verantwortlich für Berg- und Trainingssicherheit. Zwingende Verbraucherrechte nach französischem/EU-Recht werden nicht eingeschränkt.",
+      "Ridgework schreibt Trainingswochen für Trail und Berg. Keine medizinische Versorgung, keine Diagnosen. Preis: 14 Tage kostenlos, dann 19 €/Monat. Jederzeit kündbar (support@ridgework.org). Kündigung in den 14 Tagen bedeutet keine Rechnung. Du bleibst verantwortlich für Berg- und Trainingssicherheit. Zwingende Verbraucherrechte nach französischem/EU-Recht werden nicht eingeschränkt.",
     ],
   },
   privacyPage: {
@@ -516,6 +529,17 @@ export const de: Copy = {
     noteBody:
       "Dieses Beispiel setzt sich zurück, wenn du gehst. Leg ein Konto an für deine eigene Woche, gebaut aus deiner Sportart, deinem Ziel und deinem Peak-Datum — 14 Tage kostenlos, ohne Karte.",
   },
+  sourcesPage: {
+    title: "Quellen — Ridgework",
+    description: "Alle Arbeiten hinter den Trainingswochen, und wofür jede tatsächlich verwendet wird.",
+    back: "← Ridgework",
+    kicker: "Methode",
+    h1: "Jede Quelle, und wofür sie verwendet wird",
+    lead: "Die Startseite zitiert die vier Arbeiten, die direkt einem im Produkt sichtbaren Mechanismus entsprechen. Das hier ist die vollständige Liste, samt der Lektüre, die das Denken geprägt hat, ohne eine bestimmte Funktion zu steuern.",
+    noteTitle: "Was ein Zitat hier nicht bedeutet",
+    noteBody:
+      "Eine Arbeit auf dieser Liste ist keine Behauptung, dass Ridgework ihr Ergebnis für dich reproduziert. Veröffentlichte Mittelwerte beschreiben Gruppen, nicht deinen Dienstag. Wo eine Quelle eine echte Regel geprägt hat, benennt der Methodenteil die Regel. Alles andere ist Hintergrundlektüre, und das sagen wir lieber, als die Seite mit Zitaten zu füllen.",
+  },
   appPage: {
     title: "Tools — Ridgework",
     kicker: "Tools",
@@ -523,9 +547,9 @@ export const de: Copy = {
     lead: "Wähle den Tag, an dem du peak sein willst. Der rollende Plan schreibt die Wochen in dieses Fenster. Müde: weniger trainieren. Nichts hiervon ist medizinischer Rat.",
     lockedTitle: "Konto nötig",
     lockedBody:
-      "Konto anlegen für 14 Tage kostenlos: Plan, Woche, Tagesvorbereitung und Log. Dann 9 €/Monat, wenn du bleibst.",
+      "Konto anlegen für 14 Tage kostenlos: Plan, Woche, Tagesvorbereitung und Log. Dann 19 €/Monat, wenn du bleibst.",
     trialLabel: "14-Tage-Test",
-    testBanner: "14 Tage kostenlos, ohne Karte. Dann 9 €/Monat, wenn du eine hinzufügst.",
+    testBanner: "14 Tage kostenlos, ohne Karte. Dann 19 €/Monat, wenn du eine hinzufügst.",
     signInToTrain: "Anmelden, Peak-Datum wählen. 14 Tage kostenlos, ohne Karte.",
     tabs: {
       today: "Heute",
@@ -536,6 +560,7 @@ export const de: Copy = {
       profile: "Du",
       whatIf: "Was wäre",
       passport: "Pass",
+      more: "Mehr",
     },
   },
   auth: {
@@ -552,6 +577,8 @@ export const de: Copy = {
     haveAccount: "Schon ein Konto? Anmelden",
     noAccount: "Noch kein Konto? Erstellen",
     error: "Anmeldung fehlgeschlagen. E-Mail und Passwort prüfen.",
+    verifyTitle: "Sieh in deinem Postfach nach",
+    verifyBody: "Wir haben einen Bestätigungslink an diese Adresse geschickt. Öffne ihn, dann bist du drin — vorher ist das Konto nicht aktiv.",
     testNote: "14 Tage kostenlos. Ohne Karte. Füge jederzeit eine hinzu, um weiterzutrainieren.",
   },
   dashboard: {
@@ -563,6 +590,34 @@ export const de: Copy = {
     saved: "Auf dem Konto gespeichert",
   },
   tools: {
+    sync: {
+      tab: "Sync",
+      kicker: "Raus aus dem Browser",
+      title: "Dein Plan, auf der Uhr und im Kalender",
+      lead: "Zwei Wege hinaus. Keiner braucht jemandes Erlaubnis, und beide gehen gleichzeitig.",
+      calendarTitle: "Im Kalender abonnieren",
+      calendarLead: "Ein lebendiger Feed der geschriebenen Einheiten. Einmal in Google, Apple oder Outlook hinzufügen, dann bleibt er aktuell — schreibt eine müde Woche eine Einheit um, folgt der Kalender.",
+      calendarCta: "Kalenderlink erstellen",
+      calendarNote: "Wer den Link hat, sieht deine geplanten Einheiten — behandle ihn wie ein Passwort. Ein neuer Link macht den alten sofort ungültig.",
+      copy: "Link kopieren",
+      copied: "Kopiert.",
+      rotate: "Link erneuern",
+      intervalsTitle: "An intervals.icu senden",
+      intervalsLead: "intervals.icu ist kostenlos und hat eine eigene Garmin-Connect-Anbindung für geplante Einheiten. Dort einmal verbinden, von hier senden, und die Einheiten landen auf der Uhr.",
+      intervalsNote: "Dein Schlüssel bleibt auf unserem Server, damit das Senden läuft, und geht nie an den Browser zurück. Trennen löscht ihn.",
+      athleteId: "Athlete ID",
+      apiKey: "API-Schlüssel",
+      apiKeyHint: "Beides steht in intervals.icu unter Settings → Developer. Die Athlete ID sieht aus wie i12345.",
+      connect: "Verbinden",
+      connected: "Verbunden.",
+      connectedAs: "Verbunden als",
+      disconnect: "Trennen",
+      push: "Geschriebene Wochen senden",
+      pushing: "Senden…",
+      pushed: "Einheiten gesendet.",
+      lastPushed: "Zuletzt gesendet",
+      failed: "Das hat nicht geklappt. Nochmal versuchen oder support@ridgework.org schreiben.",
+    },
     week: {
       save: "Woche speichern",
       saved: "Auf diesem Gerät gespeichert",

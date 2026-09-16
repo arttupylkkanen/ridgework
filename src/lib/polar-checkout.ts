@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { authMiddleware } from "@/lib/auth/middleware";
-import { billingPublicState } from "@/lib/billing";
+import { CHECKOUT_OPEN, billingPublicState } from "@/lib/billing";
 import { createFoundingCheckout, cancelFoundingSubscription, createBillingPortal } from "@/lib/polar";
 
 export const getBillingState = createServerFn({ method: "GET" }).handler(async () => {
@@ -10,6 +10,11 @@ export const getBillingState = createServerFn({ method: "GET" }).handler(async (
 export const startFoundingCheckout = createServerFn({ method: "POST" })
   .middleware([authMiddleware])
   .handler(async ({ context }) => {
+    // Refused server-side, not just hidden in the UI: no card can be taken
+    // before the company is registered.
+    if (!CHECKOUT_OPEN) {
+      return { mode: "polar" as const, url: null as string | null, error: "checkout_closed" };
+    }
     const { getSessionUser } = await import("@/lib/auth/verify.server");
     const user = await getSessionUser();
     try {

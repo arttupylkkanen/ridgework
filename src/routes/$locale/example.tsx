@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ExamplePage } from "@/components/example-page";
 import { SiteShell } from "@/components/site-shell";
 import { getCopy } from "@/content";
+import { pageLinks, prefixed, siteMeta } from "@/lib/seo";
 import { isPathLocale } from "@/lib/locale";
 
 export const Route = createFileRoute("/$locale/example")({
@@ -9,10 +10,13 @@ export const Route = createFileRoute("/$locale/example")({
     const locale = isPathLocale(params.locale) ? params.locale : "en";
     const copy = getCopy(locale);
     return {
-      meta: [
-        { title: copy.examplePage.title },
-        { name: "description", content: copy.examplePage.description },
-      ],
+      meta: siteMeta({
+        title: copy.examplePage.title,
+        description: copy.examplePage.description,
+        path: `/${locale}/example`,
+        locale,
+      }),
+      links: pageLinks(prefixed("/example"), locale),
     };
   },
   component: Page,

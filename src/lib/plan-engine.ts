@@ -1,5 +1,5 @@
 import type { AthleteProfile, AccessFlag, Equipment } from "./athlete.ts";
-import { longestMinutes, weeklyMinutes } from "./athlete.ts";
+import { longestMinutes, weeklyMinutes, windowsOf } from "./athlete.ts";
 import type {
   DailyInputs,
   LoadContext,
@@ -7,7 +7,7 @@ import type {
   ReadinessResult,
   StoredDaily,
 } from "./daily-readiness.ts";
-import { assessReadiness, baselineFrom, emptyLoad } from "./daily-readiness.ts";
+import { assessReadiness, emptyLoad } from "./daily-readiness.ts";
 import {
   HARD_KEYS,
   HORIZON,
@@ -185,7 +185,14 @@ function placeWork(
       !LONG_KEYS.has(d.key) && !QUALITY_KEYS.has(d.key) && d.key !== "rest" && d.key !== "engine",
   );
 
+  // The long goes on the day with the most time, not on Saturday by habit.
+  // Equal windows (including "no ceiling" on both) fall back to the weekend.
+  const windows = windowsOf(profile);
+  const roomOf = (i: number) => windows[i]?.minutes ?? Number.POSITIVE_INFINITY;
   const weekendFirst = [...slots].sort((a, b) => {
+    const ra = roomOf(a);
+    const rb = roomOf(b);
+    if (ra !== rb) return rb > ra ? 1 : -1;
     const rank = (i: number) => (i === 5 ? 0 : i === 6 ? 1 : 2 + (6 - i));
     return rank(a) - rank(b);
   });
@@ -303,7 +310,56 @@ function assignMinutes(
   });
   const easyIdx = stamped.map((d, i) => (d.minutes === undefined ? i : -1)).filter((i) => i >= 0);
   const each = easyIdx.length ? Math.max(25, Math.round(remaining / easyIdx.length)) : 0;
-  return stamped.map((day, i) => (easyIdx.includes(i) ? { ...day, minutes: each } : day));
+  const spread = stamped.map((day, i) => (easyIdx.includes(i) ? { ...day, minutes: each } : day));
+  return fitToWindows(spread, profile, reasons);
+}
+
+/**
+ * Trim each session to the time its day actually has, then hand the cut minutes
+ * to days that still have room. A session is never pushed below 20 minutes —
+ * below that it is not worth writing, and the day should have been marked
+ * unavailable instead.
+ */
+function fitToWindows(
+  days: DaySession[],
+  profile: AthleteProfile,
+  reasons: Reason[],
+): DaySession[] {
+  const windows = windowsOf(profile);
+  const roomAt = (i: number) => windows[i]?.minutes ?? null;
+  if (windows.every((w) => w.minutes === null)) return days;
+
+  let spare = 0;
+  let capped = 0;
+  const trimmed = days.map((day, i) => {
+    const room = roomAt(i);
+    if (room === null || day.key === "rest" || day.minutes === undefined) return day;
+    if (day.minutes <= room) return day;
+    spare += day.minutes - room;
+    capped += 1;
+    return { ...day, minutes: Math.max(20, room) };
+  });
+  if (capped > 0) reasons.push({ id: "dayWindowCap", values: { n: capped } });
+  if (spare <= 0) return trimmed;
+
+  const headroom = trimmed
+    .map((day, i) => {
+      const room = roomAt(i);
+      if (day.key === "rest" || day.minutes === undefined) return null;
+      const space = room === null ? Number.POSITIVE_INFINITY : room - day.minutes;
+      return space > 0 ? { i, space } : null;
+    })
+    .filter((row): row is { i: number; space: number } => row !== null);
+  if (headroom.length === 0) return trimmed;
+
+  const share = Math.floor(spare / headroom.length);
+  if (share <= 0) return trimmed;
+  const byIndex = new Map(headroom.map((row) => [row.i, row.space]));
+  return trimmed.map((day, i) => {
+    const space = byIndex.get(i);
+    if (space === undefined || day.minutes === undefined) return day;
+    return { ...day, minutes: day.minutes + Math.min(share, space) };
+  });
 }
 
 function applyMissedStack(
@@ -470,11 +526,9 @@ export function loadContextFor(
   state: RollingState,
   profile: AthleteProfile | null,
   today: string,
-  history: StoredDaily[],
+  _history: StoredDaily[],
 ): LoadContext {
   const load = emptyLoad();
-  load.rhrBaseline = baselineFrom(history, "rhr");
-  load.hrvBaseline = baselineFrom(history, "hrv");
   if (!profile) return load;
   for (let back = 1; back <= 7; back += 1) {
     const date = addDaysIso(today, -back);

@@ -109,6 +109,11 @@ export type Copy = {
     caveatsTitle: string;
     caveats: string[];
     sourcesTitle: string;
+    /** Condensed method block rendered high on the homepage, above the programs. */
+    teaserH2: string;
+    teaserLead: string;
+    teaserCta: string;
+    allSourcesCta: string;
   };
   /**
    * Optional: the rolling-plan-engine explainer section. English-only for
@@ -155,6 +160,10 @@ export type Copy = {
     kicker: string;
     h2: string;
     setup: string;
+    weekTitle: string;
+    writtenLabel: string;
+    shownLabel: string;
+    changeNote: string;
     facts: { label: string; value: string }[];
     says: string;
     actions: string[];
@@ -180,8 +189,9 @@ export type Copy = {
     badge: string;
     trialBadge: string;
     name: string;
-    /** Struck through next to `price` when set — a comparison anchor, not a second buyable tier. */
-    anchorPrice?: string;
+    /** Replace the price block while CHECKOUT_OPEN is false. */
+    freeTag: string;
+    freeNow: string;
     price: string;
     per: string;
     blurb: string;
@@ -209,6 +219,9 @@ export type Copy = {
     subscribed: string;
     payFail: string;
     paying: string;
+    /** Shown while CHECKOUT_OPEN is false — no card can be taken yet. */
+    closedTitle: string;
+    closedBody: string;
     dueToday: string;
     dueAmount: string;
     terms: string;
@@ -252,6 +265,16 @@ export type Copy = {
     noteTitle: string;
     noteBody: string;
   };
+  sourcesPage: {
+    title: string;
+    description: string;
+    back: string;
+    kicker: string;
+    h1: string;
+    lead: string;
+    noteTitle: string;
+    noteBody: string;
+  };
   appPage: {
     title: string;
     kicker: string;
@@ -271,6 +294,7 @@ export type Copy = {
       profile: string;
       whatIf: string;
       passport: string;
+      more: string;
     };
   };
   auth: {
@@ -287,6 +311,8 @@ export type Copy = {
     haveAccount: string;
     noAccount: string;
     error: string;
+    verifyTitle: string;
+    verifyBody: string;
     testNote: string;
   };
   dashboard: {
@@ -299,6 +325,35 @@ export type Copy = {
   };
   fieldPage: FieldPage;
   tools: {
+    /** Calendar subscription and intervals.icu push. */
+    sync: {
+      tab: string;
+      kicker: string;
+      title: string;
+      lead: string;
+      calendarTitle: string;
+      calendarLead: string;
+      calendarCta: string;
+      calendarNote: string;
+      copy: string;
+      copied: string;
+      rotate: string;
+      intervalsTitle: string;
+      intervalsLead: string;
+      intervalsNote: string;
+      athleteId: string;
+      apiKey: string;
+      apiKeyHint: string;
+      connect: string;
+      connected: string;
+      connectedAs: string;
+      disconnect: string;
+      push: string;
+      pushing: string;
+      pushed: string;
+      lastPushed: string;
+      failed: string;
+    };
     week: {
       save: string;
       saved: string;

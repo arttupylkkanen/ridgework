@@ -19,6 +19,7 @@ export const SOURCES = [
     journal: "International Journal of Sports Physiology and Performance.",
     doi: "10.1123/ijspp.5.3.276",
     href: "https://doi.org/10.1123/ijspp.5.3.276",
+    key: true,
   },
   {
     authors: "Seiler S, Kjerland GØ",
@@ -52,6 +53,7 @@ export const SOURCES = [
     journal: "Medicine & Science in Sports & Exercise.",
     doi: "10.1249/01.mss.0000074448.73931.11",
     href: "https://doi.org/10.1249/01.mss.0000074448.73931.11",
+    key: true,
   },
   {
     authors: "Foster C, Florhaug JA, Franklin J, et al.",
@@ -60,6 +62,7 @@ export const SOURCES = [
     journal: "Journal of Strength and Conditioning Research.",
     doi: "10.1519/1533-4287(2001)015<0109:ANATME>2.0.CO;2",
     href: "https://doi.org/10.1519/1533-4287(2001)015%3C0109:ANATME%3E2.0.CO;2",
+    key: true,
   },
   {
     authors: "Bourdon PC, Cardinale M, Murray A, et al.",
@@ -68,6 +71,7 @@ export const SOURCES = [
     journal: "International Journal of Sports Physiology and Performance.",
     doi: "10.1123/IJSPP.2017-0208",
     href: "https://doi.org/10.1123/IJSPP.2017-0208",
+    key: true,
   },
   {
     authors: "McCammon I",
@@ -77,3 +81,6 @@ export const SOURCES = [
     href: "https://arc.lib.montana.edu/snow-science/objects/issw-2004-244-251.pdf",
   },
 ] as const;
+
+/** The homepage cites only sources that map to a mechanism you can see in the product. */
+export const KEY_SOURCES = SOURCES.filter((source) => "key" in source && source.key);

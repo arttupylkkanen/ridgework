@@ -33,6 +33,52 @@ export type AccessFlag = (typeof ACCESS_FLAGS)[number];
 
 export type AvailableDays = [boolean, boolean, boolean, boolean, boolean, boolean, boolean];
 
+/**
+ * How much time a given weekday actually has, and when.
+ *
+ * `minutes: null` means "no ceiling I care about" — the engine then spends the
+ * weekly budget as it always did. `startAt: null` means the clock time does not
+ * matter, which is the common case and must stay optional.
+ */
+export type DayWindow = { minutes: number | null; startAt: string | null };
+export type DayWindows = [
+  DayWindow,
+  DayWindow,
+  DayWindow,
+  DayWindow,
+  DayWindow,
+  DayWindow,
+  DayWindow,
+];
+
+export function emptyWindow(): DayWindow {
+  return { minutes: null, startAt: null };
+}
+
+export function emptyWindows(): DayWindows {
+  return [
+    emptyWindow(),
+    emptyWindow(),
+    emptyWindow(),
+    emptyWindow(),
+    emptyWindow(),
+    emptyWindow(),
+    emptyWindow(),
+  ];
+}
+
+/** Profiles stored before day windows existed simply have none. */
+export function windowsOf(profile: {
+  dayWindows?: DayWindows | null;
+}): DayWindows {
+  const raw = profile.dayWindows;
+  if (!Array.isArray(raw) || raw.length !== 7) return emptyWindows();
+  return raw.map((w) => ({
+    minutes: typeof w?.minutes === "number" && w.minutes > 0 ? Math.round(w.minutes) : null,
+    startAt: typeof w?.startAt === "string" && w.startAt ? w.startAt : null,
+  })) as DayWindows;
+}
+
 export type AthleteProfile = {
   sport: Sport;
   discipline: Discipline;
@@ -43,6 +89,8 @@ export type AthleteProfile = {
   longest: LongestBand;
   experience: Experience;
   availableDays: AvailableDays;
+  /** Optional: added after launch, so stored profiles may not carry it. */
+  dayWindows?: DayWindows;
   terrain: Terrain;
   equipment: Equipment[];
   constraints: Constraint[];
@@ -101,6 +149,7 @@ export function emptyProfile(partial: Partial<AthleteProfile> = {}): AthleteProf
     longest: "m90",
     experience: "intermediate",
     availableDays: [...ALL_AVAILABLE],
+    dayWindows: emptyWindows(),
     terrain: "rolling",
     equipment: ["trailShoes"],
     constraints: [],

@@ -1,15 +1,28 @@
 {
   "name": "Ridgework",
   "short_name": "Ridgework",
-  "start_url": "/",
+  "description": "Weekly training for trail, ultra and alpine days, rewritten around the week you actually get.",
+  "start_url": "/app",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#f6f3ec",
+  "background_color": "#fefbf4",
   "theme_color": "#2f8a4e",
   "icons": [
     {
-      "src": "/brand/logo-a.png",
-      "sizes": "180x180",
+      "src": "/brand/icon-192.png",
+      "sizes": "192x192",
       "type": "image/png"
+    },
+    {
+      "src": "/brand/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/brand/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }

@@ -7,8 +7,6 @@ import viteReact from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { nitro } from "nitro/vite";
 // @ts-expect-error JS plugin alongside the TS vite config
-import { grokPwaPlugin } from "./scripts/grok-pwa-plugin.mjs";
-// @ts-expect-error JS plugin alongside the TS vite config
 import { appEnvPlugin } from "./scripts/app-env-plugin.mjs";
 import { isMigrationFile } from "./scripts/migration-plan.mjs";
 
@@ -163,18 +161,22 @@ export default defineConfig(({ command, isPreview }) => ({
     authPopupPlugin(),
     // Dev-only /__app-env, read by scripts/check-auth-invariant.mjs.
     appEnvPlugin(),
-    // PWA head + ?install=1 tutorial page; runs before Start/Nitro.
-    grokPwaPlugin(),
+    // No platform head injector. Ridgework deploys to its own Vercel project,
+    // so the app owns every tag in `<head>`: PWA manifest and icons come from
+    // `public/manifest.webmanifest` + `src/routes/__root.tsx`, and OG/Twitter
+    // tags from `src/lib/seo.ts`. `scripts/grok-pwa-*` and `server/` stay on
+    // disk (the sandbox contract forbids deleting them) but nothing calls them.
     tailwindcss(),
     tanstackStart(),
     ...(command === "build" || isPreview
       ? [
           nitro({
             preset: "vercel",
-            // Auto-registers server/middleware/* (the PWA install page +
-            // manifest + head-tag middleware). Nitro v3 defaults serverDir to
-            // false, so removing this silently unwires /?install=1 on deploys.
-            serverDir: "./server",
+            // No `serverDir`. Nitro v3 defaults it to false, so
+            // `server/middleware/grok-pwa.ts` is never scanned and the deployed
+            // app injects no platform chrome — no extensions.js, no
+            // /__grok/manifest.webmanifest, no grok-project-id. The `?install=1`
+            // tutorial goes with it; it was Grok's, not Ridgework's.
           }),
         ]
       : []),

@@ -8,7 +8,7 @@ import type { Copy } from "./types";
 export const fr: Copy = {
   metaTitle: "Ridgework — Programmes d’entraînement trail, alpin et altitude",
   metaDescription:
-    "Sept programmes : moteur aérobie, trail 20 km, 50 km, ultra, journée alpine, itinéraire de plusieurs jours, expédition. Fatigué : moins de travail. 14 jours gratuits, puis 9 €/mois.",
+    "Que courir cette semaine pour un trail 20 km, un ultra 50 ou 100 km, ou une journée alpine. Une semaine fatiguée s’allège. 14 jours gratuits, sans carte.",
   footerTag: "Un entraînement de montagne qui suit la semaine que vous avez vraiment.",
   legalEntity: "Ridgework, France.",
   support: "support@ridgework.org",
@@ -41,9 +41,9 @@ export const fr: Copy = {
   },
   hero: {
     kicker: "Entraînement en montagne",
-    h1: "77 km dans six semaines. Qu’est-ce que vous courez mardi ?",
-    lead: "Cinq heures de sommeil. Longue hier. Genou à 2/10. Chaleur dimanche. La semaine devient : pas d’intervalles, facile à la place, longue déplacée. Le jour de course ne bouge pas.",
-    trial: "14 jours gratuits. Puis 9 €/mois. Résiliez à tout moment.",
+    h1: "Entraînez-vous pour le jour qui compte.",
+    lead: "Choisissez le jour où vous devez être prêt. Chaque semaine est écrite à rebours depuis cette date — et réécrite quand la vie s’en mêle.",
+    trial: "Gratuit tant que l’immatriculation de la société n’est pas terminée. Sans carte, rien à résilier.",
   },
   about: {
     kicker: "Ce que c’est",
@@ -90,9 +90,14 @@ export const fr: Copy = {
     caveats: [
       "La réponse individuelle varie — âge, historique, terrain et stress de vie changent ce qui “marche”.",
       "Les moyennes publiées ne sont pas un avis médical et ne remplacent pas un clinicien pour les questions de santé.",
-      "Nous traduisons la littérature en checklists et structures de semaine pour décider les yeux ouverts.",
+      "Cela écrit une semaine de départ à partir de ce que vous lui dites. Cela ne vous voit pas vous entraîner et ne connaît que les séances que vous notez.",
     ],
     sourcesTitle: "Sources (vérifiées Crossref)",
+    teaserH2: "Ce que cela peut promettre, et ce que cela ne peut pas",
+    teaserLead:
+      "La plupart des jours en facile, une séance dure si vous êtes frais, un affûtage vers le jour J — cette forme vient d’une poignée d’articles d’endurance bien cités, pas d’un modèle générique à votre nom. Voici la partie que la plupart des produits d’entraînement passent sous silence.",
+    teaserCta: "Lire la méthode complète",
+    allSourcesCta: "Toutes les sources, et à quoi sert chacune",
   },
   projects: {
     kicker: "Projets exemples",
@@ -324,11 +329,14 @@ export const fr: Copy = {
     kicker: "Exemple",
     h2: "Un vrai mardi, pas un slogan",
     setup: "Ultra de 77 km dans six semaines.",
+    weekTitle: "Et voici la semaine qu’il écrit",
+    writtenLabel: "Écrit",
+    shownLabel: "Après une nuit de cinq heures",
+    changeNote: "Une séance a changé, et le plan dit pourquoi. Le reste de la semaine est intact et la date de course n’a pas bougé.",
     facts: [
       { label: "Sommeil cette nuit", value: "5 heures" },
       { label: "Hier", value: "32 km longue" },
       { label: "Genou droit", value: "2/10" },
-      { label: "Météo dimanche", value: "28°C" },
     ],
     says: "Ce qui change",
     actions: [
@@ -376,23 +384,25 @@ export const fr: Copy = {
   },
   pricing: {
     kicker: "Tarifs",
-    h2: "14 jours sur le calendrier. Puis 9 €/mois.",
-    lead: "Courez d’abord une vraie semaine. Ensuite 9 €/mois si vous restez. Résiliez à tout moment, y compris pendant les 14 jours.",
+    h2: "14 jours sur le calendrier. Puis 19 €/mois.",
+    lead: "Courez d’abord une vraie semaine. Ensuite 19 €/mois si vous restez. Résiliez à tout moment, y compris pendant les 14 jours.",
     badge: "Prix actuel",
     trialBadge: "14 jours gratuits",
     name: "Abonnement Ridgework",
-    price: "€9",
+    price: "€19",
+    freeTag: "Gratuit",
+    freeNow: "Gratuit tant que l’immatriculation de la société n’est pas terminée. Sans carte, rien à résilier. 19 €/mois à l’ouverture.",
     per: "/mois",
-    blurb: "14 jours gratuits. Puis 9 €/mois. Résiliez à tout moment.",
+    blurb: "14 jours gratuits. Puis 19 €/mois. Résiliez à tout moment.",
     features: [
       "Sept programmes, du moteur aérobie au 100 km et aux journées alpines",
-      "9 €/mois tant que l’abonnement continue",
+      "19 €/mois tant que l’abonnement continue",
       "Résiliation à tout moment, y compris pendant les 14 jours — alors rien n’est facturé",
       "Des semaines d’entraînement, pas de claims médicaux",
     ],
     laterTitle: "Après les 14 jours",
     laterBody:
-      "Si vous restez, Polar facture 9 €/mois. Si vous résiliez pendant les 14 jours, vous n’êtes pas facturé. Plus tard, l’accès dure jusqu’à la fin de la période déjà payée. Aucun autre tarif n’est affiché sur ce site.",
+      "Si vous restez, Polar facture 19 €/mois. Si vous résiliez pendant les 14 jours, vous n’êtes pas facturé. Plus tard, l’accès dure jusqu’à la fin de la période déjà payée. Aucun autre tarif n’est affiché sur ce site.",
   },
   checkout: {
     kicker: "Essai",
@@ -403,23 +413,26 @@ export const fr: Copy = {
     submit: "Ajouter une carte",
     note: "Résiliez dans le bureau. Pendant les 14 jours, Polar ne facture pas. Pas de diagnostics. Vous restez responsable de la sécurité en montagne et à l’entraînement.",
     successTitle: "Carte enregistrée",
-    successBody: "14 jours à 0 €. Puis 9 €/mois sauf résiliation avant.",
+    successBody: "14 jours à 0 €. Puis 19 €/mois sauf résiliation avant.",
     daysLeft: "jours restants d’essai",
     payTitle: "Ajoutez une carte pour continuer",
     payBody:
-      "Votre essai gratuit est terminé. Ajoutez une carte pour continuer — 9 €/mois sauf résiliation.",
+      "Votre essai gratuit est terminé. Ajoutez une carte pour continuer — 19 €/mois sauf résiliation.",
     payCta: "Payer par carte",
     trialLeft: "{n} jours restants d’essai",
     trialNoCard:
       "Plus que {n} jours, sans carte pour l’instant. Ajoutez-en une quand vous voulez pour continuer.",
     trialOn: "Carte enregistrée. Premier prélèvement après 14 jours sauf résiliation.",
-    subscribed: "Abonné · 9 €/mois",
+    subscribed: "Abonné · 19 €/mois",
     payFail: "Le paiement ne s’est pas ouvert. Écrivez à support@ridgework.org.",
+    closedTitle: "Les paiements par carte ne sont pas encore ouverts",
+    closedBody:
+      "Ridgework ne prend aucun paiement tant que l’immatriculation de la société n’est pas terminée. Vos 14 jours continuent, et rien ne peut être débité entre-temps.",
     paying: "Ouverture du paiement…",
     dueToday: "À régler aujourd’hui",
     dueAmount: "0 €",
     terms:
-      "Polar enregistre la carte. 0 € aujourd’hui pour 14 jours. Puis 9 €/mois sauf résiliation avant la fin des 14 jours. Ensuite, renouvellement chaque mois jusqu’à résiliation dans le bureau. Montants en EUR. Polar est le marchand de record.",
+      "Polar enregistre la carte. 0 € aujourd’hui pour 14 jours. Puis 19 €/mois sauf résiliation avant la fin des 14 jours. Ensuite, renouvellement chaque mois jusqu’à résiliation dans le bureau. Montants en EUR. Polar est le marchand de record.",
     includesTitle: "Les 14 jours comprennent",
     includes: [
       "Les séances de la semaine, écrites : quoi faire, ce que ça doit donner, combien de temps",
@@ -427,7 +440,7 @@ export const fr: Copy = {
       "Marche, footing, rando ou vélo — les mêmes minutes comptent",
       "Résiliez dans les 14 jours : Polar ne facture rien",
     ],
-    afterLine: "Après le 14e jour, l’abonnement est à 9 €/mois jusqu’à résiliation.",
+    afterLine: "Après le 14e jour, l’abonnement est à 19 €/mois jusqu’à résiliation.",
     chipCancel: "Résiliation à tout moment",
     chipSupport: "support@ridgework.org",
     chipMerchant: "Facturé par Polar",
@@ -451,7 +464,7 @@ export const fr: Copy = {
       },
       {
         q: "Comment marche le prix ?",
-        a: "14 jours gratuits. Puis 9 €/mois si vous restez. Résiliez pendant les 14 jours : rien n’est facturé.",
+        a: "14 jours gratuits. Puis 19 €/mois si vous restez. Résiliez pendant les 14 jours : rien n’est facturé.",
       },
       {
         q: "Puis-je résilier à tout moment ?",
@@ -459,11 +472,11 @@ export const fr: Copy = {
       },
       {
         q: "Après les 14 jours ?",
-        a: "Si vous n’avez pas ajouté de carte, le bureau se met en pause jusqu’à ce que vous en ajoutiez une — rien n’est facturé automatiquement. Si vous en avez ajouté une, l’abonnement continue à 9 €/mois sauf résiliation.",
+        a: "Si vous n’avez pas ajouté de carte, le bureau se met en pause jusqu’à ce que vous en ajoutiez une — rien n’est facturé automatiquement. Si vous en avez ajouté une, l’abonnement continue à 19 €/mois sauf résiliation.",
       },
       {
         q: "Faut-il une carte pour l’essai ?",
-        a: "Non. Commencez gratuitement pendant 14 jours sans carte. Ajoutez-en une quand vous voulez, pendant ou après l’essai, pour continuer à 9 €/mois.",
+        a: "Non. Commencez gratuitement pendant 14 jours sans carte. Ajoutez-en une quand vous voulez, pendant ou après l’essai, pour continuer à 19 €/mois.",
       },
       {
         q: "Est-ce un avis médical ?",
@@ -482,7 +495,7 @@ export const fr: Copy = {
         q: "Données personnelles ?",
         a: "Attentes UE/France. Voir Confidentialité. Pas de vente pour la pub.",
       },
-      { q: "Support ?", a: "support@ridgework.org — réponse sous quelques jours ouvrés." },
+      { q: "Support ?", a: "support@ridgework.org — réponse sous 24–48 heures." },
     ],
   },
   disclaimer: {
@@ -492,19 +505,19 @@ export const fr: Copy = {
   foundingPage: {
     kicker: "Founding",
     h1: "Commencez 14 jours gratuits",
-    lead: "Les mêmes semaines. 14 jours gratuits, puis 9 €/mois.",
-    trial: "14 jours gratuits. Puis 9 €/mois. Résiliez à tout moment.",
-    note: "Sans carte pendant 14 jours. Ajoutez-en une quand vous voulez pour continuer à 9 €/mois. C’est le seul tarif affiché ici.",
+    lead: "Les mêmes semaines. 14 jours gratuits, puis 19 €/mois.",
+    trial: "14 jours gratuits. Puis 19 €/mois. Résiliez à tout moment.",
+    note: "Sans carte pendant 14 jours. Ajoutez-en une quand vous voulez pour continuer à 19 €/mois. C’est le seul tarif affiché ici.",
     back: "← Ridgework",
     title: "Founding — Ridgework",
     description:
-      "Entraînement hebdomadaire. 14 jours gratuits, puis 9 €/mois. Résiliez à tout moment.",
+      "Entraînement hebdomadaire. 14 jours gratuits, puis 19 €/mois. Résiliez à tout moment.",
   },
   termsPage: {
     title: "Conditions d’utilisation",
     updated: "Dernière mise à jour : septembre 2026",
     body: [
-      "Ridgework fournit des plans d’entraînement hebdomadaires — pas de soins médicaux, pas de diagnostics. Prix : 14 jours gratuits, puis 9 €/mois. Résiliez à tout moment (support@ridgework.org). Pendant les 14 jours, la résiliation signifie aucune facture. Vous restez responsable de la sécurité en montagne et à l’entraînement. Les droits impératifs des consommateurs français/UE ne sont pas limités.",
+      "Ridgework fournit des plans d’entraînement hebdomadaires — pas de soins médicaux, pas de diagnostics. Prix : 14 jours gratuits, puis 19 €/mois. Résiliez à tout moment (support@ridgework.org). Pendant les 14 jours, la résiliation signifie aucune facture. Vous restez responsable de la sécurité en montagne et à l’entraînement. Les droits impératifs des consommateurs français/UE ne sont pas limités.",
     ],
   },
   privacyPage: {
@@ -526,6 +539,17 @@ export const fr: Copy = {
     noteBody:
       "Cet exemple se réinitialise quand vous partez. Créez un compte pour obtenir votre propre semaine, construite pour votre sport, votre objectif et votre date de pic — 14 jours gratuits, sans carte.",
   },
+  sourcesPage: {
+    title: "Sources — Ridgework",
+    description: "Tous les articles derrière les semaines d’entraînement, et à quoi sert vraiment chacun.",
+    back: "← Ridgework",
+    kicker: "Méthode",
+    h1: "Chaque source, et à quoi elle sert",
+    lead: "La page d’accueil cite les quatre articles qui correspondent directement à un mécanisme visible dans le produit. Voici la liste complète, y compris les lectures qui ont façonné la réflexion sans piloter une fonctionnalité précise.",
+    noteTitle: "Ce qu’une citation ici ne signifie pas",
+    noteBody:
+      "Un article de cette liste n’est pas une promesse que Ridgework reproduira son résultat pour vous. Les moyennes publiées décrivent des groupes, pas votre mardi. Là où une source a façonné une règle réelle, la section méthode nomme la règle. Le reste est de la lecture de fond, et nous préférons le dire que remplir la page de citations.",
+  },
   appPage: {
     title: "Outils — Ridgework",
     kicker: "Outils",
@@ -533,9 +557,9 @@ export const fr: Copy = {
     lead: "Choisissez le jour où vous voulez être au pic. Le programme glissant écrit les semaines dans cette fenêtre. Fatigué : moins de travail. Rien ici n’est un avis médical.",
     lockedTitle: "Compte requis",
     lockedBody:
-      "Créez un compte pour les 14 jours gratuits : programme, semaine, préparation du jour et journal. Puis 9 €/mois si vous restez.",
+      "Créez un compte pour les 14 jours gratuits : programme, semaine, préparation du jour et journal. Puis 19 €/mois si vous restez.",
     trialLabel: "Essai 14 jours",
-    testBanner: "14 jours gratuits, sans carte. Puis 9 €/mois si vous en ajoutez une.",
+    testBanner: "14 jours gratuits, sans carte. Puis 19 €/mois si vous en ajoutez une.",
     signInToTrain: "Connectez-vous, choisissez une date de pic. 14 jours gratuits, sans carte.",
     tabs: {
       today: "Aujourd’hui",
@@ -546,6 +570,7 @@ export const fr: Copy = {
       profile: "Vous",
       whatIf: "Et si",
       passport: "Passeport",
+      more: "Plus",
     },
   },
   auth: {
@@ -562,6 +587,8 @@ export const fr: Copy = {
     haveAccount: "Déjà un compte ? Connexion",
     noAccount: "Pas encore de compte ? Créez-en un",
     error: "Connexion impossible. Vérifiez e-mail et mot de passe.",
+    verifyTitle: "Vérifiez votre e-mail",
+    verifyBody: "Nous avons envoyé un lien de confirmation à cette adresse. Ouvrez-le pour entrer — le compte n’est pas actif avant.",
     testNote: "14 jours gratuits. Sans carte. Ajoutez-en une quand vous voulez pour continuer.",
   },
   dashboard: {
@@ -573,6 +600,34 @@ export const fr: Copy = {
     saved: "Enregistré sur votre compte",
   },
   tools: {
+    sync: {
+      tab: "Sync",
+      kicker: "Sortir du navigateur",
+      title: "Votre plan, sur la montre et dans l’agenda",
+      lead: "Deux chemins. Aucun ne demande la permission de qui que ce soit, et les deux peuvent servir.",
+      calendarTitle: "S’abonner dans l’agenda",
+      calendarLead: "Un flux vivant des séances écrites. Ajoutez-le une fois dans Google, Apple ou Outlook et il se tient à jour — si une semaine fatiguée réécrit une séance, l’agenda suit.",
+      calendarCta: "Créer mon lien d’agenda",
+      calendarNote: "Quiconque a ce lien peut lire vos séances : traitez-le comme un mot de passe. Le renouveler coupe l’ancien immédiatement.",
+      copy: "Copier le lien",
+      copied: "Copié.",
+      rotate: "Renouveler le lien",
+      intervalsTitle: "Envoyer vers intervals.icu",
+      intervalsLead: "intervals.icu est gratuit et dispose de sa propre intégration Garmin Connect pour les séances planifiées. Reliez-les une fois là-bas, envoyez d’ici, et les séances arrivent sur la montre.",
+      intervalsNote: "Votre clé reste sur notre serveur pour permettre l’envoi et n’est jamais renvoyée au navigateur. La déconnexion la supprime.",
+      athleteId: "Athlete ID",
+      apiKey: "Clé API",
+      apiKeyHint: "Les deux sont dans intervals.icu, Settings → Developer. L’athlete ID ressemble à i12345.",
+      connect: "Connecter",
+      connected: "Connecté.",
+      connectedAs: "Connecté en tant que",
+      disconnect: "Déconnecter",
+      push: "Envoyer les semaines écrites",
+      pushing: "Envoi…",
+      pushed: "Séances envoyées.",
+      lastPushed: "Dernier envoi",
+      failed: "Cela n’a pas fonctionné. Réessayez ou écrivez à support@ridgework.org.",
+    },
     week: {
       save: "Enregistrer la semaine",
       saved: "Enregistré sur cet appareil",

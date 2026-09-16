@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Copy } from "@/content/types";
-import type { AccessFlag, AthleteProfile } from "@/lib/athlete";
-import { ACCESS_FLAGS } from "@/lib/athlete";
+import type { AthleteProfile } from "@/lib/athlete";
+import { windowsOf } from "@/lib/athlete";
 import {
   SCALE,
   emptyInputs,
@@ -137,8 +137,6 @@ export function TodayDesk({
         motivation: existing.motivation,
         fatigue: existing.fatigue,
         stress: existing.stress,
-        rhr: existing.rhr,
-        hrv: existing.hrv,
         lastEffort: existing.lastEffort,
       });
       setOverridden(existing.overridden);
@@ -190,8 +188,6 @@ export function TodayDesk({
           motivation: inputs.motivation,
           fatigue: inputs.fatigue,
           stress: inputs.stress,
-          rhr: inputs.rhr,
-          hrv: inputs.hrv,
           lastEffort: inputs.lastEffort,
         },
         call: view.call,
@@ -215,6 +211,8 @@ export function TodayDesk({
   const call = view?.call ?? "ready";
   const shown = view?.shown;
   const written = view?.written;
+  // The athlete's own start time for this weekday, if they gave one.
+  const todayStartAt = windowsOf(profile)[view ? view.dayIndex : 0]?.startAt ?? null;
   const changed = Boolean(view && written && shown && written.key !== shown.key);
 
   return (
@@ -245,83 +243,81 @@ export function TodayDesk({
       </div>
 
       <section className="rounded-2xl border border-line bg-card p-5 sm:p-6">
-        <h3 className="font-display text-xl font-semibold text-ink">{t.wakeTitle}</h3>
-        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">{t.wakeLead}</p>
-        <div className="mt-5 space-y-5">
-          {(["sleep", "soreness", "motivation", "fatigue", "stress"] as const).map((key) => (
-            <ScaleRow
-              key={key}
-              id={`ready-${key}`}
-              label={t[key]}
-              low={t.scaleLow[key]}
-              high={t.scaleHigh[key]}
-              value={inputs[key]}
-              onChange={(n) => {
-                setOverridden(false);
-                setConfirmOverride(false);
-                setInputs((prev) => ({ ...prev, [key]: n }));
-              }}
-            />
-          ))}
-        </div>
-        <div className="mt-6 grid gap-3 sm:grid-cols-3">
-          <label className="text-sm font-medium text-ink">
-            {t.rhr}
-            <input
-              id="ready-rhr"
-              type="number"
-              min={30}
-              max={120}
-              value={inputs.rhr ?? ""}
-              onChange={(e) =>
-                setInputs((prev) => ({
-                  ...prev,
-                  rhr: e.target.value ? Number(e.target.value) : undefined,
-                }))
+        <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+          {t.sessionToday}
+        </p>
+        {shown ? (
+          <>
+            <h3 className="mt-2 font-display text-xl font-semibold text-ink">
+              {sessions[shown.key]}
+              {shown.minutes ? (
+                <span className="text-ink-muted">
+                  {" "}
+                  · {fillTemplate(t.minutes, { n: shown.minutes })}
+                </span>
+              ) : null}
+              {todayStartAt ? <span className="text-ink-muted"> · {todayStartAt}</span> : null}
+            </h3>
+            {changed && written ? (
+              <p className="mt-1 text-sm text-ink-muted">
+                {fillTemplate(t.was, { session: sessions[written.key] })}
+              </p>
+            ) : null}
+            <SessionHowTo
+              locale={locale}
+              sessionKey={shown.key}
+              minutes={shown.minutes}
+              minutesLabel={
+                shown.minutes ? fillTemplate(t.minutes, { n: shown.minutes }) : undefined
               }
-              className="mt-2 w-full rounded-lg border border-line bg-paper px-3 py-2.5 text-sm"
+              loadKg={shown.key === "pack" || shown.key === "me" ? packLoadKg(state) : undefined}
             />
-          </label>
-          <label className="text-sm font-medium text-ink">
-            {t.hrv}
-            <input
-              id="ready-hrv"
-              type="number"
-              min={10}
-              max={250}
-              value={inputs.hrv ?? ""}
-              onChange={(e) =>
-                setInputs((prev) => ({
-                  ...prev,
-                  hrv: e.target.value ? Number(e.target.value) : undefined,
-                }))
-              }
-              className="mt-2 w-full rounded-lg border border-line bg-paper px-3 py-2.5 text-sm"
-            />
-          </label>
-          <div>
-            <p className="text-sm font-medium text-ink">{t.lastEffort}</p>
-            <div className="mt-2 grid grid-cols-5 gap-1.5">
-              {SCALE.map((n) => (
-                <button
-                  key={n}
-                  id={`ready-effort-${n}`}
-                  type="button"
-                  aria-pressed={inputs.lastEffort === n}
-                  onClick={() => setInputs((prev) => ({ ...prev, lastEffort: n }))}
-                  className={cn(
-                    "min-h-11 rounded-lg border text-sm",
-                    inputs.lastEffort === n
-                      ? "border-ridge bg-paper-warm font-medium text-ink"
-                      : "border-line bg-paper text-ink-muted",
-                  )}
-                >
-                  {n}
-                </button>
-              ))}
+            <div className="mt-5 flex flex-wrap gap-2">
+              <button
+                id="today-done"
+                type="button"
+                onClick={() => {
+                  const next = markToday(state, profile, "done", today, view);
+                  persist(next.state);
+                  setFlash(t.doneFlash);
+                }}
+                className="inline-flex min-h-11 items-center rounded-lg bg-ridge px-4 py-2 text-sm font-medium text-paper hover:bg-ridge-deep"
+              >
+                {t.markDone}
+              </button>
+              <button
+                id="today-missed"
+                type="button"
+                onClick={() => {
+                  const next = markToday(state, profile, "missed", today, view);
+                  persist(next.state);
+                  setFlash(t.missedFlash);
+                }}
+                className="inline-flex min-h-11 items-center rounded-lg border border-line bg-paper px-4 py-2 text-sm text-ink hover:bg-paper-warm"
+              >
+                {t.markMissed}
+              </button>
+              <button
+                id="today-early"
+                type="button"
+                onClick={() => {
+                  const next = markMoved(state, profile, addDaysIso(today, 1), today);
+                  persist(next.state);
+                  setFlash(t.doneFlash);
+                }}
+                className="inline-flex min-h-11 items-center rounded-lg border border-line bg-paper px-4 py-2 text-sm text-ink-muted hover:bg-paper-warm"
+              >
+                {t.didTomorrow}
+              </button>
             </div>
-          </div>
-        </div>
+            {flash ? <p className="mt-3 text-sm text-ridge-deep">{flash}</p> : null}
+            {view?.log ? (
+              <p className="mt-3 text-xs uppercase tracking-wider text-accent">{view.log.status}</p>
+            ) : null}
+          </>
+        ) : (
+          <p className="mt-2 text-sm text-ink-muted">{t.noSession}</p>
+        )}
       </section>
 
       <section
@@ -394,83 +390,6 @@ export function TodayDesk({
         ) : null}
       </section>
 
-      <section className="rounded-2xl border border-line bg-card p-5 sm:p-6">
-        <p className="text-xs font-semibold uppercase tracking-wider text-accent">
-          {t.sessionToday}
-        </p>
-        {shown ? (
-          <>
-            <h3 className="mt-2 font-display text-xl font-semibold text-ink">
-              {sessions[shown.key]}
-              {shown.minutes ? (
-                <span className="text-ink-muted">
-                  {" "}
-                  · {fillTemplate(t.minutes, { n: shown.minutes })}
-                </span>
-              ) : null}
-            </h3>
-            {changed && written ? (
-              <p className="mt-1 text-sm text-ink-muted">
-                {fillTemplate(t.was, { session: sessions[written.key] })}
-              </p>
-            ) : null}
-            <SessionHowTo
-              locale={locale}
-              sessionKey={shown.key}
-              minutes={shown.minutes}
-              minutesLabel={
-                shown.minutes ? fillTemplate(t.minutes, { n: shown.minutes }) : undefined
-              }
-              loadKg={shown.key === "pack" || shown.key === "me" ? packLoadKg(state) : undefined}
-            />
-            <div className="mt-5 flex flex-wrap gap-2">
-              <button
-                id="today-done"
-                type="button"
-                onClick={() => {
-                  const next = markToday(state, profile, "done", today, view);
-                  persist(next.state);
-                  setFlash(t.doneFlash);
-                }}
-                className="inline-flex min-h-11 items-center rounded-lg bg-ridge px-4 py-2 text-sm font-medium text-paper hover:bg-ridge-deep"
-              >
-                {t.markDone}
-              </button>
-              <button
-                id="today-missed"
-                type="button"
-                onClick={() => {
-                  const next = markToday(state, profile, "missed", today, view);
-                  persist(next.state);
-                  setFlash(t.missedFlash);
-                }}
-                className="inline-flex min-h-11 items-center rounded-lg border border-line bg-paper px-4 py-2 text-sm text-ink hover:bg-paper-warm"
-              >
-                {t.markMissed}
-              </button>
-              <button
-                id="today-early"
-                type="button"
-                onClick={() => {
-                  const next = markMoved(state, profile, addDaysIso(today, 1), today);
-                  persist(next.state);
-                  setFlash(t.doneFlash);
-                }}
-                className="inline-flex min-h-11 items-center rounded-lg border border-line bg-paper px-4 py-2 text-sm text-ink-muted hover:bg-paper-warm"
-              >
-                {t.didTomorrow}
-              </button>
-            </div>
-            {flash ? <p className="mt-3 text-sm text-ridge-deep">{flash}</p> : null}
-            {view?.log ? (
-              <p className="mt-3 text-xs uppercase tracking-wider text-accent">{view.log.status}</p>
-            ) : null}
-          </>
-        ) : (
-          <p className="mt-2 text-sm text-ink-muted">{t.noSession}</p>
-        )}
-      </section>
-
       {week ? (
         <section>
           <h3 className="font-display text-lg font-semibold text-ink">{t.thisWeek}</h3>
@@ -513,6 +432,52 @@ export function TodayDesk({
         </section>
       ) : null}
 
+      <section className="rounded-2xl border border-line bg-card p-5 sm:p-6">
+        <h3 className="font-display text-xl font-semibold text-ink">{t.wakeTitle}</h3>
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">{t.wakeLead}</p>
+        <div className="mt-5 space-y-5">
+          {(["sleep", "soreness", "motivation", "fatigue", "stress"] as const).map((key) => (
+            <ScaleRow
+              key={key}
+              id={`ready-${key}`}
+              label={t[key]}
+              low={t.scaleLow[key]}
+              high={t.scaleHigh[key]}
+              value={inputs[key]}
+              onChange={(n) => {
+                setOverridden(false);
+                setConfirmOverride(false);
+                setInputs((prev) => ({ ...prev, [key]: n }));
+              }}
+            />
+          ))}
+        </div>
+        <div className="mt-6 grid gap-3 sm:grid-cols-3">
+          <div>
+            <p className="text-sm font-medium text-ink">{t.lastEffort}</p>
+            <div className="mt-2 grid grid-cols-5 gap-1.5">
+              {SCALE.map((n) => (
+                <button
+                  key={n}
+                  id={`ready-effort-${n}`}
+                  type="button"
+                  aria-pressed={inputs.lastEffort === n}
+                  onClick={() => setInputs((prev) => ({ ...prev, lastEffort: n }))}
+                  className={cn(
+                    "min-h-11 rounded-lg border text-sm",
+                    inputs.lastEffort === n
+                      ? "border-ridge bg-paper-warm font-medium text-ink"
+                      : "border-line bg-paper text-ink-muted",
+                  )}
+                >
+                  {n}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {state.adjustments && state.adjustments.length > 0 ? (
         <section>
           <h3 className="font-display text-lg font-semibold text-ink">{t.whyChanged}</h3>
@@ -550,36 +515,6 @@ export function TodayDesk({
             </button>
           ) : null}
         </label>
-        <div className="rounded-2xl border border-line bg-card p-4">
-          <p className="text-sm font-medium text-ink">{t.accessTitle}</p>
-          <div className="mt-3 grid grid-cols-2 gap-2">
-            {ACCESS_FLAGS.map((flag) => {
-              const blocked = (state.blockedAccess ?? []).includes(flag);
-              return (
-                <button
-                  key={flag}
-                  id={`access-${flag}`}
-                  type="button"
-                  aria-pressed={!blocked}
-                  onClick={() => {
-                    const current = new Set(state.blockedAccess ?? []);
-                    if (blocked) current.delete(flag);
-                    else current.add(flag);
-                    persist({ ...state, blockedAccess: [...current] as AccessFlag[] });
-                  }}
-                  className={cn(
-                    "min-h-11 rounded-lg border px-3 text-sm",
-                    blocked
-                      ? "border-line bg-paper text-ink-muted"
-                      : "border-ridge bg-paper-warm text-ink",
-                  )}
-                >
-                  {t.access[flag]}
-                </button>
-              );
-            })}
-          </div>
-        </div>
       </section>
 
       {ahead.length > 1 ? (

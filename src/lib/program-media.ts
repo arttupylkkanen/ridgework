@@ -8,7 +8,7 @@ export const PROGRAM_MEDIA: Record<ObjectiveId, Photo> = {
   fifty: { src: "/field/sierre-zinal.jpg", width: 1728, height: 1152 },
   ultra100: { src: "/field/ultra-ridge.jpg", width: 1792, height: 1008 },
   alpine: { src: "/field/alpine-glacier.jpg", width: 1792, height: 1008 },
-  traverse: { src: "/field/traverse.jpg", width: 1792, height: 1008 },
+  traverse: { src: "/field/traverse.jpg", width: 1600, height: 900 },
   expedition: { src: "/field/expedition.jpg", width: 1792, height: 1008 },
 };
 
