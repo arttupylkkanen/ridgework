@@ -23,18 +23,31 @@
  * Re-running is safe: an existing account is left alone and only re-verified.
  * It never rewrites the password of an account that already exists; to change
  * that, use the reset-password flow so Better Auth does its own hashing.
+ *
+ * TEST_ACCOUNT_PASSWORD is required and has no default. The password this
+ * account used to ship with was a literal in src/lib/test-account.ts, which is
+ * public — see the note there.
  */
 import { Pool } from "pg";
 import { TEST_ACCOUNT } from "../src/lib/test-account.ts";
 
 const SITE = (process.env.SITE_URL ?? "https://ridgework.org").replace(/\/+$/, "");
 const EMAIL = process.env.TEST_ACCOUNT_EMAIL?.trim() || TEST_ACCOUNT.email;
-const PASSWORD = process.env.TEST_ACCOUNT_PASSWORD?.trim() || TEST_ACCOUNT.password;
+const PASSWORD = process.env.TEST_ACCOUNT_PASSWORD?.trim();
 const NAME = TEST_ACCOUNT.name;
 
 function die(message) {
   console.error(`[seed-tester] ${message}`);
   process.exit(1);
+}
+
+// No fallback to a literal in the repo. This repository is public, so any
+// default here would be a published password for a working production account.
+if (!PASSWORD) {
+  die(
+    "TEST_ACCOUNT_PASSWORD is not set. It is deliberately absent from the " +
+      "repository — export it from wherever you keep the bot's credentials.",
+  );
 }
 
 async function post(path, body) {
