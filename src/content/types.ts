@@ -313,6 +313,27 @@ export type Copy = {
     error: string;
     verifyTitle: string;
     verifyBody: string;
+    forgotLink: string;
+    forgotTitle: string;
+    forgotBody: string;
+    forgotSend: string;
+    resetSentTitle: string;
+    resetSentBody: string;
+    setPasswordTitle: string;
+    setPasswordBody: string;
+    newPassword: string;
+    setPasswordCta: string;
+    resetDoneTitle: string;
+    resetDoneBody: string;
+    linkExpiredTitle: string;
+    linkExpiredBody: string;
+    alreadyRegistered: string;
+    weakPassword: string;
+    unverifiedTitle: string;
+    unverifiedBody: string;
+    resend: string;
+    resent: string;
+    backToSignIn: string;
     testNote: string;
   };
   dashboard: {

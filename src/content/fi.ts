@@ -43,7 +43,8 @@ export const fi: Copy = {
     kicker: "Vuoritreeni",
     h1: "Treenaa sitä päivää varten jolla on väliä.",
     lead: "Valitse päivä jolloin sinun pitää olla valmis. Jokainen viikko kirjoitetaan siitä taaksepäin — ja kirjoitetaan uusiksi kun elämä tulee väliin.",
-    trial: "Ilmainen niin kauan kuin yhtiön rekisteröinti on kesken. Ei korttia, ei mitään peruttavaa.",
+    trial:
+      "Ilmainen niin kauan kuin yhtiön rekisteröinti on kesken. Ei korttia, ei mitään peruttavaa.",
   },
   about: {
     kicker: "Mitä tämä on",
@@ -328,7 +329,8 @@ export const fi: Copy = {
     weekTitle: "Ja tässä viikko jonka se kirjoittaa",
     writtenLabel: "Kirjoitettu",
     shownLabel: "Viiden tunnin yön jälkeen",
-    changeNote: "Yksi treeni muuttui, ja suunnitelma kertoo miksi. Muu viikko on koskematon eikä kisapäivä siirtynyt.",
+    changeNote:
+      "Yksi treeni muuttui, ja suunnitelma kertoo miksi. Muu viikko on koskematon eikä kisapäivä siirtynyt.",
     facts: [
       { label: "Uni viime yönä", value: "5 tuntia" },
       { label: "Eilen", value: "32 km pitkä juoksu" },
@@ -387,7 +389,8 @@ export const fi: Copy = {
     name: "Ridgework-jäsenyys",
     price: "€19",
     freeTag: "Ilmainen",
-    freeNow: "Ilmainen niin kauan kuin yhtiön rekisteröinti on kesken. Ei korttia, ei mitään peruttavaa. 19 €/kk kun kassa aukeaa.",
+    freeNow:
+      "Ilmainen niin kauan kuin yhtiön rekisteröinti on kesken. Ei korttia, ei mitään peruttavaa. 19 €/kk kun kassa aukeaa.",
     per: "/kk",
     blurb:
       "14 päivää ilmaiseksi, ei korttia. 19 €/kk jos lisäät sen myöhemmin. Peru milloin tahansa.",
@@ -413,7 +416,8 @@ export const fi: Copy = {
     successBody: "14 päivää 0 €. Sitten 19 €/kk ellet peru ensin.",
     daysLeft: "päivää jäljellä kokeilussa",
     payTitle: "Lisää kortti jatkaaksesi",
-    payBody: "Ilmainen kokeilusi on päättynyt. Lisää kortti jatkaaksesi — 19 €/kk ellet peru ensin.",
+    payBody:
+      "Ilmainen kokeilusi on päättynyt. Lisää kortti jatkaaksesi — 19 €/kk ellet peru ensin.",
     payCta: "Maksa kortilla",
     trialLeft: "{n} päivää jäljellä kokeilussa",
     trialNoCard: "{n} päivää jäljellä, ei korttia vielä. Lisää se milloin tahansa jatkaaksesi.",
@@ -547,7 +551,8 @@ export const fi: Copy = {
   },
   sourcesPage: {
     title: "Lähteet — Ridgework",
-    description: "Kaikki treeniviikkojen taustalla olevat julkaisut ja mihin kutakin oikeasti käytetään.",
+    description:
+      "Kaikki treeniviikkojen taustalla olevat julkaisut ja mihin kutakin oikeasti käytetään.",
     back: "← Ridgework",
     kicker: "Metodi",
     h1: "Jokainen lähde ja mihin sitä käytetään",
@@ -593,7 +598,32 @@ export const fi: Copy = {
     noAccount: "Ei tiliä vielä? Luo tili",
     error: "Kirjautuminen ei onnistunut. Tarkista sähköposti ja salasana.",
     verifyTitle: "Tarkista sähköpostisi",
-    verifyBody: "Lähetimme vahvistuslinkin siihen osoitteeseen. Avaa se niin pääset sisään — tili ei ole käytössä ennen sitä.",
+    verifyBody:
+      "Jos osoite pystyy vastaanottamaan postia, vahvistuslinkki on matkalla — tili ei ole käytössä ennen kuin avaat sen. Ei mitään muutamassa minuutissa? Katso roskaposti ja kirjoita sitten support@ridgework.org.",
+    forgotLink: "Unohtuiko salasana?",
+    forgotTitle: "Lähetä palautuslinkki",
+    forgotBody: "Kirjoita osoite jolla rekisteröidyit. Linkki toimii kerran ja vanhenee tunnissa.",
+    forgotSend: "Lähetä linkki",
+    resetSentTitle: "Tarkista sähköpostisi",
+    resetSentBody:
+      "Jos osoitteella on tili, palautuslinkki on matkalla. Emme kerro kumpi — se paljastaisi kysyjälle ketkä ovat asiakkaitamme.",
+    setPasswordTitle: "Valitse uusi salasana",
+    setPasswordBody: "Vähintään 8 merkkiä. Tämä kirjaa sinut ulos muualta.",
+    newPassword: "Uusi salasana",
+    setPasswordCta: "Tallenna ja kirjaudu",
+    resetDoneTitle: "Salasana vaihdettu",
+    resetDoneBody: "Kirjaudu sisään uudella.",
+    linkExpiredTitle: "Linkki on käytetty",
+    linkExpiredBody: "Palautuslinkki toimii kerran ja on voimassa tunnin. Pyydä uusi.",
+    alreadyRegistered:
+      "Osoitteella on jo tili. Kirjaudu sisään, tai palauta salasana jos et muista sitä.",
+    weakPassword: "Käytä vähintään 8 merkkiä.",
+    unverifiedTitle: "Vahvista osoitteesi ensin",
+    unverifiedBody:
+      "Tili on olemassa mutta osoitetta ei ole vahvistettu. Lähetimme linkin uudestaan.",
+    resend: "Lähetä linkki uudestaan",
+    resent: "Lähetetty. Anna sille hetki.",
+    backToSignIn: "Takaisin kirjautumiseen",
     testNote: "14 päivää ilmaiseksi. Ei korttia. Lisää se milloin tahansa jatkaaksesi.",
   },
   dashboard: {
@@ -611,18 +641,23 @@ export const fi: Copy = {
       title: "Suunnitelmasi kelloon ja kalenteriin",
       lead: "Kaksi reittiä ulos. Kumpikaan ei vaadi keneltäkään lupaa, ja voit käyttää molempia.",
       calendarTitle: "Tilaa kalenteriisi",
-      calendarLead: "Elävä syöte kirjoitetuista treeneistä. Lisää kerran Google-, Apple- tai Outlook-kalenteriin ja se pysyy ajan tasalla — kun väsynyt viikko kirjoittaa treenin uusiksi, kalenteri seuraa.",
+      calendarLead:
+        "Elävä syöte kirjoitetuista treeneistä. Lisää kerran Google-, Apple- tai Outlook-kalenteriin ja se pysyy ajan tasalla — kun väsynyt viikko kirjoittaa treenin uusiksi, kalenteri seuraa.",
       calendarCta: "Luo kalenterilinkki",
-      calendarNote: "Kuka tahansa linkin haltija näkee suunnitellut treenisi, joten käsittele sitä kuin salasanaa. Vaihto katkaisee vanhan linkin heti; lisää uusi kalenteriin.",
+      calendarNote:
+        "Kuka tahansa linkin haltija näkee suunnitellut treenisi, joten käsittele sitä kuin salasanaa. Vaihto katkaisee vanhan linkin heti; lisää uusi kalenteriin.",
       copy: "Kopioi linkki",
       copied: "Kopioitu.",
       rotate: "Vaihda linkki",
       intervalsTitle: "Työnnä intervals.icu:hun",
-      intervalsLead: "intervals.icu on ilmainen ja siinä on oma Garmin Connect -integraatio suunnitelluille treeneille. Kytke se siellä kerran, työnnä täältä, ja treenit päätyvät kelloon.",
-      intervalsNote: "Avaimesi jää palvelimellemme jotta työntö toimii, eikä sitä koskaan lähetetä takaisin selaimeen. Katkaisu poistaa sen. Tili on sinun — me vain välitämme siihen.",
+      intervalsLead:
+        "intervals.icu on ilmainen ja siinä on oma Garmin Connect -integraatio suunnitelluille treeneille. Kytke se siellä kerran, työnnä täältä, ja treenit päätyvät kelloon.",
+      intervalsNote:
+        "Avaimesi jää palvelimellemme jotta työntö toimii, eikä sitä koskaan lähetetä takaisin selaimeen. Katkaisu poistaa sen. Tili on sinun — me vain välitämme siihen.",
       athleteId: "Athlete ID",
       apiKey: "API-avain",
-      apiKeyHint: "Molemmat löytyvät intervals.icu:sta kohdasta Settings → Developer. Athlete ID näyttää tältä: i12345.",
+      apiKeyHint:
+        "Molemmat löytyvät intervals.icu:sta kohdasta Settings → Developer. Athlete ID näyttää tältä: i12345.",
       connect: "Kytke",
       connected: "Kytketty.",
       connectedAs: "Kytketty tunnuksella",

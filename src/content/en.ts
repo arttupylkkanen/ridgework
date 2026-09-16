@@ -349,7 +349,8 @@ export const en: Copy = {
     weekTitle: "And here is the week it writes",
     writtenLabel: "Written",
     shownLabel: "After a five-hour night",
-    changeNote: "One session changed, and the plan says why. The rest of the week is untouched and the race date did not move.",
+    changeNote:
+      "One session changed, and the plan says why. The rest of the week is untouched and the race date did not move.",
     facts: [
       { label: "Sleep last night", value: "5 hours" },
       { label: "Yesterday", value: "32 km long run" },
@@ -408,7 +409,8 @@ export const en: Copy = {
     name: "Ridgework membership",
     price: "€19",
     freeTag: "Free",
-    freeNow: "Free while we finish registering the company. No card, nothing to cancel. €19/month when it opens.",
+    freeNow:
+      "Free while we finish registering the company. No card, nothing to cancel. €19/month when it opens.",
     per: "/month",
     blurb: "14 days free, no card. €19/month if you add one after. Cancel anytime.",
     features: [
@@ -623,7 +625,32 @@ export const en: Copy = {
     noAccount: "No account yet? Create one",
     error: "Could not sign in. Check email and password.",
     verifyTitle: "Check your email",
-    verifyBody: "We sent a confirmation link to that address. Open it and you are in — the account is not active until you do.",
+    verifyBody:
+      "If that address can receive mail, a confirmation link is on its way — the account is not active until you open it. Nothing after a few minutes? Check spam, then write support@ridgework.org.",
+    forgotLink: "Forgot your password?",
+    forgotTitle: "Send me a reset link",
+    forgotBody: "Type the address you signed up with. The link works once and expires in an hour.",
+    forgotSend: "Send the link",
+    resetSentTitle: "Check your email",
+    resetSentBody:
+      "If that address has an account, a reset link is on its way. We do not say either way — that would tell anyone who asks who our athletes are.",
+    setPasswordTitle: "Choose a new password",
+    setPasswordBody: "At least 8 characters. This signs you out everywhere else.",
+    newPassword: "New password",
+    setPasswordCta: "Save it and sign in",
+    resetDoneTitle: "Password changed",
+    resetDoneBody: "Sign in with the new one.",
+    linkExpiredTitle: "That link is spent",
+    linkExpiredBody: "Reset links work once and last an hour. Ask for a fresh one.",
+    alreadyRegistered:
+      "That address already has an account. Sign in instead, or reset the password if you cannot remember it.",
+    weakPassword: "Use at least 8 characters.",
+    unverifiedTitle: "Confirm your address first",
+    unverifiedBody:
+      "The account exists but the address has not been confirmed. We sent the link again.",
+    resend: "Send the link again",
+    resent: "Sent. Give it a minute.",
+    backToSignIn: "Back to sign in",
     testNote: "14 days free. No card needed. Add one anytime to keep training after.",
   },
   dashboard: {
@@ -641,18 +668,23 @@ export const en: Copy = {
       title: "Your plan, on your watch and in your calendar",
       lead: "Two routes out of here. Neither needs anyone's permission, and you can use both.",
       calendarTitle: "Subscribe in your calendar",
-      calendarLead: "A live feed of the written sessions. Add it once in Google Calendar, Apple Calendar or Outlook and it keeps itself current — when a tired week rewrites a session, the calendar follows.",
+      calendarLead:
+        "A live feed of the written sessions. Add it once in Google Calendar, Apple Calendar or Outlook and it keeps itself current — when a tired week rewrites a session, the calendar follows.",
       calendarCta: "Create my calendar link",
-      calendarNote: "Anyone with this link can read your planned sessions, so treat it like a password. Rotating it breaks the old link immediately; re-add the new one in your calendar app.",
+      calendarNote:
+        "Anyone with this link can read your planned sessions, so treat it like a password. Rotating it breaks the old link immediately; re-add the new one in your calendar app.",
       copy: "Copy link",
       copied: "Copied.",
       rotate: "Rotate link",
       intervalsTitle: "Push to intervals.icu",
-      intervalsLead: "intervals.icu is free and has its own Garmin Connect integration for planned workouts. Connect it there once, push from here, and the sessions land on the watch.",
-      intervalsNote: "Your key stays on our server so the push can run, and is never sent back to the browser. Disconnecting deletes it. This is the athlete's own account — we are only relaying into it.",
+      intervalsLead:
+        "intervals.icu is free and has its own Garmin Connect integration for planned workouts. Connect it there once, push from here, and the sessions land on the watch.",
+      intervalsNote:
+        "Your key stays on our server so the push can run, and is never sent back to the browser. Disconnecting deletes it. This is the athlete's own account — we are only relaying into it.",
       athleteId: "Athlete ID",
       apiKey: "API key",
-      apiKeyHint: "Both are in intervals.icu under Settings → Developer. The athlete ID looks like i12345.",
+      apiKeyHint:
+        "Both are in intervals.icu under Settings → Developer. The athlete ID looks like i12345.",
       connect: "Connect",
       connected: "Connected.",
       connectedAs: "Connected as",

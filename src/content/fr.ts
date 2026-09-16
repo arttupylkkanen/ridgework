@@ -43,7 +43,8 @@ export const fr: Copy = {
     kicker: "Entraînement en montagne",
     h1: "Entraînez-vous pour le jour qui compte.",
     lead: "Choisissez le jour où vous devez être prêt. Chaque semaine est écrite à rebours depuis cette date — et réécrite quand la vie s’en mêle.",
-    trial: "Gratuit tant que l’immatriculation de la société n’est pas terminée. Sans carte, rien à résilier.",
+    trial:
+      "Gratuit tant que l’immatriculation de la société n’est pas terminée. Sans carte, rien à résilier.",
   },
   about: {
     kicker: "Ce que c’est",
@@ -332,7 +333,8 @@ export const fr: Copy = {
     weekTitle: "Et voici la semaine qu’il écrit",
     writtenLabel: "Écrit",
     shownLabel: "Après une nuit de cinq heures",
-    changeNote: "Une séance a changé, et le plan dit pourquoi. Le reste de la semaine est intact et la date de course n’a pas bougé.",
+    changeNote:
+      "Une séance a changé, et le plan dit pourquoi. Le reste de la semaine est intact et la date de course n’a pas bougé.",
     facts: [
       { label: "Sommeil cette nuit", value: "5 heures" },
       { label: "Hier", value: "32 km longue" },
@@ -391,7 +393,8 @@ export const fr: Copy = {
     name: "Abonnement Ridgework",
     price: "€19",
     freeTag: "Gratuit",
-    freeNow: "Gratuit tant que l’immatriculation de la société n’est pas terminée. Sans carte, rien à résilier. 19 €/mois à l’ouverture.",
+    freeNow:
+      "Gratuit tant que l’immatriculation de la société n’est pas terminée. Sans carte, rien à résilier. 19 €/mois à l’ouverture.",
     per: "/mois",
     blurb: "14 jours gratuits. Puis 19 €/mois. Résiliez à tout moment.",
     features: [
@@ -541,7 +544,8 @@ export const fr: Copy = {
   },
   sourcesPage: {
     title: "Sources — Ridgework",
-    description: "Tous les articles derrière les semaines d’entraînement, et à quoi sert vraiment chacun.",
+    description:
+      "Tous les articles derrière les semaines d’entraînement, et à quoi sert vraiment chacun.",
     back: "← Ridgework",
     kicker: "Méthode",
     h1: "Chaque source, et à quoi elle sert",
@@ -588,7 +592,34 @@ export const fr: Copy = {
     noAccount: "Pas encore de compte ? Créez-en un",
     error: "Connexion impossible. Vérifiez e-mail et mot de passe.",
     verifyTitle: "Vérifiez votre e-mail",
-    verifyBody: "Nous avons envoyé un lien de confirmation à cette adresse. Ouvrez-le pour entrer — le compte n’est pas actif avant.",
+    verifyBody:
+      "Si cette adresse peut recevoir du courrier, un lien de confirmation est en route — le compte n’est pas actif tant que vous ne l’ouvrez pas. Rien après quelques minutes ? Regardez les spams, puis écrivez à support@ridgework.org.",
+    forgotLink: "Mot de passe oublié ?",
+    forgotTitle: "Envoyer un lien de réinitialisation",
+    forgotBody:
+      "Saisis l’adresse utilisée à l’inscription. Le lien sert une fois et expire en une heure.",
+    forgotSend: "Envoyer le lien",
+    resetSentTitle: "Regarde tes mails",
+    resetSentBody:
+      "Si cette adresse a un compte, un lien est en route. Nous ne disons pas lequel — cela révélerait qui sont nos athlètes.",
+    setPasswordTitle: "Choisis un nouveau mot de passe",
+    setPasswordBody: "Au moins 8 caractères. Cela te déconnecte partout ailleurs.",
+    newPassword: "Nouveau mot de passe",
+    setPasswordCta: "Enregistrer et se connecter",
+    resetDoneTitle: "Mot de passe changé",
+    resetDoneBody: "Connecte-toi avec le nouveau.",
+    linkExpiredTitle: "Ce lien est épuisé",
+    linkExpiredBody:
+      "Un lien de réinitialisation sert une fois et dure une heure. Demandes-en un autre.",
+    alreadyRegistered:
+      "Cette adresse a déjà un compte. Connecte-toi, ou réinitialise le mot de passe si tu ne t’en souviens plus.",
+    weakPassword: "Utilise au moins 8 caractères.",
+    unverifiedTitle: "Confirme d’abord ton adresse",
+    unverifiedBody:
+      "Le compte existe mais l’adresse n’est pas confirmée. Nous avons renvoyé le lien.",
+    resend: "Renvoyer le lien",
+    resent: "Envoyé. Laisse-lui une minute.",
+    backToSignIn: "Retour à la connexion",
     testNote: "14 jours gratuits. Sans carte. Ajoutez-en une quand vous voulez pour continuer.",
   },
   dashboard: {
@@ -606,18 +637,23 @@ export const fr: Copy = {
       title: "Votre plan, sur la montre et dans l’agenda",
       lead: "Deux chemins. Aucun ne demande la permission de qui que ce soit, et les deux peuvent servir.",
       calendarTitle: "S’abonner dans l’agenda",
-      calendarLead: "Un flux vivant des séances écrites. Ajoutez-le une fois dans Google, Apple ou Outlook et il se tient à jour — si une semaine fatiguée réécrit une séance, l’agenda suit.",
+      calendarLead:
+        "Un flux vivant des séances écrites. Ajoutez-le une fois dans Google, Apple ou Outlook et il se tient à jour — si une semaine fatiguée réécrit une séance, l’agenda suit.",
       calendarCta: "Créer mon lien d’agenda",
-      calendarNote: "Quiconque a ce lien peut lire vos séances : traitez-le comme un mot de passe. Le renouveler coupe l’ancien immédiatement.",
+      calendarNote:
+        "Quiconque a ce lien peut lire vos séances : traitez-le comme un mot de passe. Le renouveler coupe l’ancien immédiatement.",
       copy: "Copier le lien",
       copied: "Copié.",
       rotate: "Renouveler le lien",
       intervalsTitle: "Envoyer vers intervals.icu",
-      intervalsLead: "intervals.icu est gratuit et dispose de sa propre intégration Garmin Connect pour les séances planifiées. Reliez-les une fois là-bas, envoyez d’ici, et les séances arrivent sur la montre.",
-      intervalsNote: "Votre clé reste sur notre serveur pour permettre l’envoi et n’est jamais renvoyée au navigateur. La déconnexion la supprime.",
+      intervalsLead:
+        "intervals.icu est gratuit et dispose de sa propre intégration Garmin Connect pour les séances planifiées. Reliez-les une fois là-bas, envoyez d’ici, et les séances arrivent sur la montre.",
+      intervalsNote:
+        "Votre clé reste sur notre serveur pour permettre l’envoi et n’est jamais renvoyée au navigateur. La déconnexion la supprime.",
       athleteId: "Athlete ID",
       apiKey: "Clé API",
-      apiKeyHint: "Les deux sont dans intervals.icu, Settings → Developer. L’athlete ID ressemble à i12345.",
+      apiKeyHint:
+        "Les deux sont dans intervals.icu, Settings → Developer. L’athlete ID ressemble à i12345.",
       connect: "Connecter",
       connected: "Connecté.",
       connectedAs: "Connecté en tant que",
