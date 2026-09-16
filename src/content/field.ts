@@ -189,10 +189,10 @@ export const fieldEn: FieldPage = {
       },
       {
         id: terrainIds.expedition,
-        title: "High camp under cloud",
-        place: "Altitude objective — tents small on purpose",
+        title: "High-altitude expedition under cloud",
+        place: "Altitude objective",
         caption:
-          "The 40-week plan is hiking and pack, then sleep. Extra altitude in the last fortnight is not fitness. The camp is small because the work was the months before.",
+          "The 40-week plan is hiking, easy volume and pack, then sleep. Extra altitude in the last fortnight is not fitness. The mountain camps are logistics.",
       },
     ],
   },
@@ -374,10 +374,10 @@ export const fieldFi: FieldPage = {
       },
       {
         id: terrainIds.expedition,
-        title: "Korkea leiri pilven alla",
-        place: "Korkeustavoite — teltat pieninä tarkoituksella",
+        title: "Retkikunta pilven alla",
+        place: "Korkeustavoite",
         caption:
-          "40 viikon suunnitelma on vaellus ja rinkka, sitten uni. Lisäkorkeus kahdessa viimeisessä viikossa ei ole kuntoa. Leiri on pieni koska työ oli kuukausia ennen.",
+          "40 viikon suunnitelma on vaellus, kevyt volyymi ja rinkka, sitten uni. Lisäkorkeus kahdessa viimeisessä viikossa ei ole kuntoa. Leirit vuorella ovat logistiikkaa.",
       },
     ],
   },
@@ -561,10 +561,10 @@ export const fieldFr: FieldPage = {
       },
       {
         id: terrainIds.expedition,
-        title: "Camp d’altitude sous nuage",
-        place: "Objectif altitude — tentes petites exprès",
+        title: "Expédition sous nuage",
+        place: "Objectif altitude",
         caption:
-          "Le plan de 40 semaines est rando et sac, puis sommeil. L’altitude extra dans les deux dernières semaines n’est pas de la forme. Le camp est petit parce que le travail était les mois d’avant.",
+          "Le plan de 40 semaines est rando, volume facile et sac, puis sommeil. L’altitude extra dans les deux dernières semaines n’est pas de la forme. Les camps sur la montagne sont de la logistique.",
       },
     ],
   },
@@ -747,10 +747,10 @@ export const fieldDe: FieldPage = {
       },
       {
         id: terrainIds.expedition,
-        title: "Höhenlager unter Wolken",
-        place: "Höhenziel — Zelte absichtlich klein",
+        title: "Höhenexpedition unter Wolken",
+        place: "Höhenziel",
         caption:
-          "Der 40-Wochen-Plan ist Wandern und Pack, dann Schlaf. Extra Höhe in den letzten zwei Wochen ist keine Fitness. Das Lager ist klein, weil die Arbeit die Monate davor war.",
+          "Der 40-Wochen-Plan ist Wandern, lockeres Volumen und Pack, dann Schlaf. Extra Höhe in den letzten zwei Wochen ist keine Fitness. Lager am Berg sind Logistik.",
       },
     ],
   },

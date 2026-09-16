@@ -58,7 +58,7 @@ export const sessionHowEn: Record<SessionKey, SessionHow> = {
   },
   long: {
     feel: "Still conversational. Tired in the last third is normal. Gasping is not. Eat and drink as you already practised.",
-    do: "This is time on feet. Start walking or very easy jogging. Take a walk break before talking breaks, not after. Carry water if it is over about 75 min. Do not test new shoes or new food today.",
+    do: "This is time on feet. Start walking or very easy jogging. Take a walk break before talking breaks, not after. Carry water if it is over about 75 min. Do not test new shoes or new food today. Poles are optional — they do not change the minutes. On steep climbs they share the work with the arms (Giovanelli, Pellegrini et al., Eur J Appl Physiol 2023: lower-limb ground force down, oxygen cost unchanged). After a long trail day they still cut foot force on the next uphill walk (Giovanelli 2025). Downhills: poles can take some eccentric load off the quads (Howatson, Hough et al., 2011, trekking poles and muscle damage). Same talk test either way.",
     swap: "Hike the same minutes. Easy bike about 1.2× the minutes (90 min run ≈ 110 min easy bike). Mix walk and jog. Gentle trail hills are fine if you can still talk on them.",
     watch:
       "Zone 1–2 the whole time. If the long is 120 min and you have never gone over 40, do 60–75 min this time and walk the rest. Next long can grow.",
@@ -157,7 +157,7 @@ export const sessionHowFi: Record<SessionKey, SessionHow> = {
   },
   long: {
     feel: "Yhä puhevauhtia. Viimeisessä kolmanneksessa väsymys on normaalia. Haukkova hengitys ei. Syö ja juo niin kuin olet jo harjoitellut.",
-    do: "Aika jaloilla. Aloita kävellen tai hyvin hitaasti hölkäten. Kävelytauko ennen kuin puhe katkeaa, ei jälkeen. Vettä mukaan jos yli noin 75 min. Älä kokeile uusia kenkiä tai uutta ruokaa.",
+    do: "Aika jaloilla. Aloita kävellen tai hyvin hitaasti hölkäten. Kävelytauko ennen kuin puhe katkeaa, ei jälkeen. Vettä mukaan jos yli noin 75 min. Älä kokeile uusia kenkiä tai uutta ruokaa. Sauvat ovat valinnaiset — ne eivät muuta minuutteja. Jyrkässä nousussa ne jakavat työtä käsille (Giovanelli ym., Eur J Appl Physiol 2023: alaraajan iskuvoima laskee, hapenkulutus ei nouse). Pitkän polkupäivän jälkeen nousukävelyssä jalkaterän voima on yhä pienempi sauvoilla (Giovanelli 2025). Alamäessä sauvat voivat ottaa osan eksentrisestä kuormasta pois etureisiltä (Howatson ym. 2011). Sama puhetesti sauvoilla tai ilman.",
     swap: "Vaella samat minuutit. Helppo pyörä noin 1,2× minuutit (90 min juoksu ≈ 110 min pyörää). Kävely+hölkkä. Loiva polku on parempi kuin rata, jos mäessäkin pystyy puhumaan.",
     watch:
       "Koko ajan vyöhyke 1–2. Jos pitkä on 120 min etkä ole mennyt yli 40:n, tee 60–75 min ja kävele loput. Seuraava pitkä saa kasvaa.",
@@ -257,7 +257,7 @@ export const sessionHowFr: Record<SessionKey, SessionHow> = {
   },
   long: {
     feel: "Encore conversationnel. Fatigué au dernier tiers : normal. Haleter : non.",
-    do: "Temps sur les pieds. Marche ou footing très facile. Pause marche avant que la phrase casse. Eau si > ~75 min. Pas de nouvelles chaussures ni de nouvel aliment.",
+    do: "Temps sur les pieds. Marche ou footing très facile. Pause marche avant que la phrase casse. Eau si > ~75 min. Pas de nouvelles chaussures ni de nouvel aliment. Les bâtons sont facultatifs — ils ne changent pas les minutes. En montée raide ils partagent le travail avec les bras (Giovanelli et al., Eur J Appl Physiol 2023). Après une longue journée trail, la force au pied reste plus basse avec bâtons (Giovanelli 2025). En descente ils peuvent retirer une part de charge excentrique aux quadriceps (Howatson et al., 2011). Même test de parole avec ou sans.",
     swap: "Rando les mêmes minutes. Vélo facile ≈ 1,2× (90 min course ≈ 110 min vélo).",
     watch:
       "Zone 1–2 tout du long. Si 120 min et jamais plus de 40 : 60–75 min cette fois, le reste à pied.",
@@ -352,7 +352,7 @@ export const sessionHowDe: Record<SessionKey, SessionHow> = {
   },
   long: {
     feel: "Noch gesprächig. Müde im letzten Drittel: normal. Keuchen: nicht.",
-    do: "Zeit auf den Füßen. Gehen oder sehr lockeres Joggen. Gehpause, bevor der Satz bricht. Wasser ab ~75 Min. Keine neuen Schuhe, kein neues Essen.",
+    do: "Zeit auf den Füßen. Gehen oder sehr lockeres Joggen. Gehpause, bevor der Satz bricht. Wasser ab ~75 Min. Keine neuen Schuhe, kein neues Essen. Stöcke sind optional — sie ändern die Minuten nicht. Steil bergauf teilen sie die Arbeit mit den Armen (Giovanelli et al., Eur J Appl Physiol 2023). Nach einem langen Trailtag bleibt die Fußkraft mit Stöcken niedriger (Giovanelli 2025). Bergab können sie exzentrische Last von den Quadrizeps nehmen (Howatson et al., 2011). Gleicher Sprechtest mit oder ohne.",
     swap: "Wandern gleiche Minuten. Lockeres Rad ≈ 1,2× (90 Min Lauf ≈ 110 Min Rad).",
     watch: "Zone 1–2 die ganze Zeit. 120 Min und nie über 40: diesmal 60–75 Min, Rest gehen.",
   },

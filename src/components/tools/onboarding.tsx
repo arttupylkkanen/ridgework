@@ -330,7 +330,7 @@ export function Onboarding({
             ))}
           </div>
           <div className="grid gap-2 sm:grid-cols-2">
-            {EQUIPMENT.map((id) => (
+            {EQUIPMENT.filter((id) => id !== "poles").map((id) => (
               <ChoiceButton
                 key={id}
                 id={`onboard-eq-${id}`}

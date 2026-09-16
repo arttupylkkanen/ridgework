@@ -296,7 +296,7 @@ export const fi: Copy = {
     forTitle: "Rakennettu",
     forItems: [
       "Kestävyysurheilijoille, jotka suunnittelevat viikkoja elämän ja maaston ympärille",
-      "Niille jotka treenaavat kohti aerobista moottoria, 20 km polkua, 50 tai 100 km ultraa, alppipäivää, ketjutettua reittiä tai korkeaa leiriä",
+      "Niille jotka treenaavat kohti aerobista moottoria, 20 km polkua, 50 tai 100 km ultraa, alppipäivää, ketjutettua reittiä tai korkealla tehtävää retkikuntaa",
       "Kaikille, jotka haluavat rauhalliset työkalut, ei motivaatio-spamia",
     ],
     notTitle: "Ei",
@@ -352,7 +352,7 @@ export const fi: Copy = {
       {
         day: "Su",
         title: "Kirjaa mitä tapahtui",
-        body: "Kirjaa pitkä lenkki, helle ja jos jokin kolotti. Seuraava viikko rakennetaan siitä, ei viikosta jota toivoit.",
+        body: "Kirjaa pitkä lenkki ja jos jokin kolotti. Seuraava viikko rakennetaan siitä, ei viikosta jota toivoit.",
       },
     ],
   },
@@ -374,8 +374,8 @@ export const fi: Copy = {
     actions: [
       "Jätä tämän päivän vedot",
       "45–60 min helppoa tilalle",
-      "Siirrä pitkä maanantaille jos sunnuntai pysyy kuumana",
-      "Juo pitkällä 500–750 ml/h, suolaa jos yleensä tarvitset",
+      "Pidä pitkä helppona. Älä lisää kilometrejä kuroaksesi",
+      "Pitkällä juo noin 500–750 ml/h — määrä jonka olet jo harjoitellut. Älä kokeile uutta geeliä",
       "Katso huomenna uudestaan",
     ],
     note: "Ei diagnoosi. Jos polvi turpoaa, lukittuu tai pahenee, mene lääkäriin. Tässä muutetaan vain treeniviikkoa.",

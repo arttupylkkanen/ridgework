@@ -180,7 +180,7 @@ export const de: Copy = {
           {
             label: "Session-Rezept",
             value:
-              "Woche 20 (Ende spezifisch): 3×12 min im Marathon-Effort auf rollendem Trail, 4 min locker; Hitze- und Niggle-Gates vor dem Start. Dann 10–14 Tage Taper.",
+              "Woche 20 (Ende spezifisch): 3×12 min im Marathon-Effort auf rollendem Trail, 4 min locker. Ziept es lauter als sonst, wird die Einheit locker. Dann 10–14 Tage Taper.",
             locked: true,
           },
         ],
@@ -295,7 +295,7 @@ export const de: Copy = {
     forTitle: "Gebaut für",
     forItems: [
       "Ausdauerathletinnen und -athleten, die Wochen um Leben und Gelände planen",
-      "Alle, die auf 20-km-Trail, 50- oder 100-km-Ultra, Alpentag, verbundene Route oder Höhenlager trainieren",
+      "Alle, die auf 20-km-Trail, 50- oder 100-km-Ultra, Alpentag, verbundene Route oder Höhenexpedition trainieren",
       "Alle, die ruhige Tools Motivation-Spam vorziehen",
     ],
     notTitle: "Nicht für",
@@ -351,7 +351,7 @@ export const de: Copy = {
       {
         day: "So",
         title: "Loggen was passiert ist",
-        body: "Langer Lauf, Hitze, Ziepen aufschreiben. Die nächste Woche startet dort, nicht beim Wunschplan.",
+        body: "Langer Lauf und Ziepen aufschreiben. Die nächste Woche startet dort, nicht beim Wunschplan.",
       },
     ],
   },
@@ -373,8 +373,8 @@ export const de: Copy = {
     actions: [
       "Intervalle heute streichen",
       "Stattdessen 45–60 Min locker",
-      "Langen auf Montag, wenn Sonntag heiß bleibt",
-      "500–750 ml/h auf dem Langen trinken",
+      "Den Langen locker halten. Keine Extra-Kilometer zum Aufholen",
+      "Auf dem Langen etwa 500–750 ml/h trinken — wie schon geübt. Kein neues Gel",
       "Morgen neu bewerten",
     ],
     note: "Keine Diagnose. Wenn das Knie anschwillt, blockiert oder schlimmer wird, zum Arzt. Hier ändert sich nur die Trainingswoche.",
