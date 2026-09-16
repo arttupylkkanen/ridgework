@@ -17,6 +17,7 @@ import { Route as FieldRouteImport } from './routes/field'
 import { Route as FoundingRouteImport } from './routes/founding'
 import { Route as GuidesRouteImport } from './routes/guides'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as OwnerRouteImport } from './routes/owner'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SourcesRouteImport } from './routes/sources'
@@ -81,6 +82,11 @@ const GuidesRoute = GuidesRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OwnerRoute = OwnerRouteImport.update({
+  id: '/owner',
+  path: '/owner',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -218,6 +224,7 @@ export interface FileRoutesByFullPath {
   '/founding': typeof FoundingRoute
   '/guides': typeof GuidesRouteWithChildren
   '/login': typeof LoginRoute
+  '/owner': typeof OwnerRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sources': typeof SourcesRoute
@@ -251,6 +258,7 @@ export interface FileRoutesByTo {
   '/field': typeof FieldRoute
   '/founding': typeof FoundingRoute
   '/login': typeof LoginRoute
+  '/owner': typeof OwnerRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sources': typeof SourcesRoute
@@ -286,6 +294,7 @@ export interface FileRoutesById {
   '/founding': typeof FoundingRoute
   '/guides': typeof GuidesRouteWithChildren
   '/login': typeof LoginRoute
+  '/owner': typeof OwnerRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sources': typeof SourcesRoute
@@ -323,6 +332,7 @@ export interface FileRouteTypes {
     | '/founding'
     | '/guides'
     | '/login'
+    | '/owner'
     | '/privacy'
     | '/sitemap.xml'
     | '/sources'
@@ -356,6 +366,7 @@ export interface FileRouteTypes {
     | '/field'
     | '/founding'
     | '/login'
+    | '/owner'
     | '/privacy'
     | '/sitemap.xml'
     | '/sources'
@@ -390,6 +401,7 @@ export interface FileRouteTypes {
     | '/founding'
     | '/guides'
     | '/login'
+    | '/owner'
     | '/privacy'
     | '/sitemap.xml'
     | '/sources'
@@ -426,6 +438,7 @@ export interface RootRouteChildren {
   FoundingRoute: typeof FoundingRoute
   GuidesRoute: typeof GuidesRouteWithChildren
   LoginRoute: typeof LoginRoute
+  OwnerRoute: typeof OwnerRoute
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SourcesRoute: typeof SourcesRoute
@@ -494,6 +507,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/owner': {
+      id: '/owner'
+      path: '/owner'
+      fullPath: '/owner'
+      preLoaderRoute: typeof OwnerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -741,6 +761,7 @@ const rootRouteChildren: RootRouteChildren = {
   FoundingRoute: FoundingRoute,
   GuidesRoute: GuidesRouteWithChildren,
   LoginRoute: LoginRoute,
+  OwnerRoute: OwnerRoute,
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SourcesRoute: SourcesRoute,

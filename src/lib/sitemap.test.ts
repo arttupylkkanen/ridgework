@@ -54,6 +54,13 @@ test("English-only pages declare no alternates", () => {
   }
 });
 
+test("the owner page is never offered to a crawler", () => {
+  assert.equal(
+    locs.some((loc) => loc.includes("/owner")),
+    false,
+  );
+});
+
 test("the plan and guide pages are all listed", () => {
   assert.ok(locs.includes(`${SITE}/plans/50k-ultra-training-plan`));
   assert.ok(locs.includes(`${SITE}/fi/guides/100km-ultra-training-plan`));

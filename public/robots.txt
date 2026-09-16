@@ -12,6 +12,10 @@ Disallow: /fr/login
 Disallow: /de/app
 Disallow: /de/login
 
+# The founder's own funnel page. Aggregate counts over other people's rows,
+# behind a single-address gate; it also carries noindex on the response.
+Disallow: /owner
+
 # Capability URLs. The token IS the credential, so these must never be
 # crawled, cached by a search engine, or surfaced in results. The responses
 # also carry X-Robots-Tag: noindex, since robots.txt only asks.
