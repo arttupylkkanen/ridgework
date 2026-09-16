@@ -1,25 +1,17 @@
 import { useEffect } from "react";
 import type { Copy } from "@/content/types";
-import type { Locale } from "@/lib/locale";
+import type { Locale, ShellPage } from "@/lib/locale";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 
 type Props = {
   locale: Locale;
   copy: Copy;
-  page:
-    | "home"
-    | "founding"
-    | "terms"
-    | "privacy"
-    | "app"
-    | "field"
-    | "login"
-    | "guides"
-    | "passport"
-    | "example"
-    | "sources"
-    | "plans";
+  /**
+   * Was a hand-written copy of `PageId`, which meant adding a page updated one
+   * list and silently missed the other. It is the same list; say so.
+   */
+  page: ShellPage;
   children: React.ReactNode;
 };
 

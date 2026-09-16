@@ -20,8 +20,7 @@ export const fieldEn: FieldPage = {
   kicker: "Field notes",
   h1: "Limits are real. The method is how you meet them with eyes open.",
   lead: "Ridgework spends capacity on the day that matters. Easy volume is most of the week because that is what the endurance papers keep finding. If a session is wrecked or something hurts, the next days are rewritten from that log.",
-  compositeNote:
-    "Composite field notes from coaching patterns.",
+  compositeNote: "Composite field notes from coaching patterns.",
   back: "← Ridgework home",
   storyNote: "Note",
   storySource: "Sources",
@@ -42,7 +41,8 @@ export const fieldEn: FieldPage = {
         "In week 5 the sleep collapsed — parenting, not injury. The midweek check is the whole method in miniature. Session RPE and a one-line readiness note said the quality session would have been junk intensity dressed as work. We turned it easy. The long run stayed. The 50 km still happened.",
         "Finish was ordinary. Fueling held. No collapse, no story for a feed. The limit M. pushed was completing a long day inside a life that is not a training camp. That is what “toward your own limits, inside realism” looks like on a school-term calendar.",
       ],
-      lesson: "Backing off a quality session is not leaving capacity on the table. It is how the easy volume that actually accumulates is allowed to remain easy.",
+      lesson:
+        "Backing off a quality session is not leaving capacity on the table. It is how the easy volume that actually accumulates is allowed to remain easy.",
       science:
         "Seiler & Kjerland 2006; Seiler 2010; Esteve-Lanao, Foster, Seiler & Lucia 2007 — more time in the easy zone tracked with better running performance than piling work into the middle.",
     },
@@ -72,7 +72,8 @@ export const fieldEn: FieldPage = {
         "Day three they still had legs. Not because the method is magic. Because day two was not allowed to spend the reserve that day three needed. The linked objective — three days, one pack, weather and kit already written — is a harder limit than any single summit photo.",
         "This is the Ridgework claim, stated without theatre: you get closer to your own ceiling when the easy work stays easy, the hard work is actually hard, and the mountain day is allowed to become a different day when the card says so.",
       ],
-      lesson: "A traverse is a sequence of decisions. The log after day one is part of the plan for day two — not a diary for later.",
+      lesson:
+        "A traverse is a sequence of decisions. The log after day one is part of the plan for day two — not a diary for later.",
       science:
         "Mujika & Padilla 2003 on taper. Foster et al. 2001 — session RPE as a simple internal-load mark you can actually write down at a hut table.",
     },
@@ -204,8 +205,7 @@ export const fieldFi: FieldPage = {
   kicker: "Kenttämuistiinpanot",
   h1: "Rajat ovat tosia. Metodi on tapa kohdata ne silmät auki.",
   lead: "Ridgework käyttää kapasiteetin päivään joka merkitsee. Helppo volyymi on suurin osa viikosta, koska kestävyyspaperit löytävät sen muodon uudestaan. Jos sessio oli rikki tai johonkin sattuu, seuraavat päivät kirjoitetaan siitä lokista.",
-  compositeNote:
-    "Koosteita valmennuksen kaavoista, kirjoitettu viikkoina.",
+  compositeNote: "Koosteita valmennuksen kaavoista, kirjoitettu viikkoina.",
   back: "← Ridgework-etusivu",
   storyNote: "Huomio",
   storySource: "Lähteet",
@@ -390,8 +390,7 @@ export const fieldFr: FieldPage = {
   kicker: "Carnets de terrain",
   h1: "Les limites sont réelles. La méthode, c’est les rencontrer les yeux ouverts.",
   lead: "Ridgework dépense la capacité le jour qui compte. Le volume facile est le gros de la semaine parce que c’est ce que les papiers d’endurance retrouvent. Si une séance est cassée ou si ça fait mal, les jours suivants sont réécrits à partir de ce journal.",
-  compositeNote:
-    "Carnets composites tirés de schémas d’accompagnement.",
+  compositeNote: "Carnets composites tirés de schémas d’accompagnement.",
   back: "← Accueil Ridgework",
   storyNote: "Note",
   storySource: "Sources",
@@ -403,7 +402,8 @@ export const fieldFr: FieldPage = {
   stories: [
     {
       kicker: "Premier 50 km",
-      title: "La limite était d’arriver entier, pas de courir plus vite que la semaine ne le permettait",
+      title:
+        "La limite était d’arriver entier, pas de courir plus vite que la semaine ne le permettait",
       place: "Sentier préalpin, fin septembre",
       pull: "La semaine 5 n’était pas une séance héroïque. C’était un mardi facile, parce que le sommeil avait déjà dépensé la qualité.",
       body: [
@@ -428,7 +428,8 @@ export const fieldFr: FieldPage = {
         "Ils ont passé la séance en facile. La longue a raccourci. Les jambes ont servi. Le week-end a eu lieu parce que mardi n’avait pas dépensé la réserve.",
         "Pousser une limite dans le réel, ce n’est pas toujours plus de travail. Parfois c’est dépenser la capacité de la semaine le jour qui compte, et s’entraîner moins quand on est fatigué.",
       ],
-      lesson: "Alléger une semaine fatiguée, c’est la méthode. La sortie est le pic, pas un mardi héroïque.",
+      lesson:
+        "Alléger une semaine fatiguée, c’est la méthode. La sortie est le pic, pas un mardi héroïque.",
       science:
         "McCammon 2004 sur les pièges heuristiques. Bourdon et al. 2017 — la charge et la readiness sont des entrées de planification, pas des permis une fois sur la pente.",
     },
@@ -576,8 +577,7 @@ export const fieldDe: FieldPage = {
   kicker: "Feldnotizen",
   h1: "Grenzen sind real. Die Methode ist, ihnen mit offenen Augen zu begegnen.",
   lead: "Ridgework gibt die Kapazität an dem Tag aus, der zählt. Leichtes Volumen ist der Großteil der Woche, weil die Ausdauerpapers diese Form immer wieder finden. War eine Einheit kaputt oder tut etwas weh, werden die nächsten Tage aus diesem Log neu geschrieben.",
-  compositeNote:
-    "Zusammengesetzte Feldnotizen aus Coaching-Mustern.",
+  compositeNote: "Zusammengesetzte Feldnotizen aus Coaching-Mustern.",
   back: "← Ridgework-Start",
   storyNote: "Hinweis",
   storySource: "Quellen",
@@ -614,7 +614,8 @@ export const fieldDe: FieldPage = {
         "Sie machten die Einheit locker. Der Lange wurde kürzer. Die Beine wurden benutzt. Das Wochenende fand statt, weil Dienstag die Reserve nicht ausgegeben hatte.",
         "Eine Grenze im Realen zu schieben heißt nicht immer mehr Arbeit. Manchmal heißt es, die Kapazität der Woche am Tag auszugeben, der zählt — und weniger zu trainieren, wenn du müde bist.",
       ],
-      lesson: "Eine müde Woche zu entlasten ist die Methode. Die Tour ist der Peak, kein Helden-Dienstag.",
+      lesson:
+        "Eine müde Woche zu entlasten ist die Methode. Die Tour ist der Peak, kein Helden-Dienstag.",
       science:
         "McCammon 2004 zu Heuristik-Fallen. Bourdon et al. 2017 — Last und Readiness sind Planungseingaben, keine Genehmigungen, wenn man schon am Hang steht.",
     },

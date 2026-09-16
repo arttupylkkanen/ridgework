@@ -33,6 +33,12 @@ export function SiteFooter({ locale, copy }: { locale: Locale; copy: Copy }) {
             <Link to={pagePath(locale, "privacy")} className="text-ink-muted hover:text-ink">
               {copy.privacy}
             </Link>
+            <Link
+              to={pagePath(locale, "mentions-legales")}
+              className="text-ink-muted hover:text-ink"
+            >
+              {copy.legalNotice}
+            </Link>
             <p className="text-ink-soft">{copy.cancelAnytime}</p>
           </div>
         </div>

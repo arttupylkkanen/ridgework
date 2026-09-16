@@ -1,8 +1,8 @@
-import { fieldEn } from "./field";
-import { planEn } from "./plan-tools";
-import { athleteEn } from "./athlete-copy";
-import { mountainEn } from "./mountain-prep";
-import { passportEn, whatIfEn } from "./passport";
+import { fieldEn } from "./field.ts";
+import { planEn } from "./plan-tools.ts";
+import { athleteEn } from "./athlete-copy.ts";
+import { mountainEn } from "./mountain-prep.ts";
+import { passportEn, whatIfEn } from "./passport.ts";
 import type { Copy } from "./types";
 
 export const en: Copy = {
@@ -15,6 +15,7 @@ export const en: Copy = {
   cancelAnytime: "Cancel anytime",
   terms: "Terms",
   privacy: "Privacy",
+  legalNotice: "Legal notice",
   copyright: "© 2026 Ridgework. France.",
   nav: {
     about: "Who we are",
@@ -540,6 +541,39 @@ export const en: Copy = {
     title: "Founding invite, Ridgework",
     description: "Weekly training. 14 days free, then €19/month. Cancel anytime.",
   },
+  legalPage: {
+    title: "Legal notice",
+    updated: "Last updated: September 2026",
+    lead: "French law (LCEN art. 6 III) requires a site to name its publisher and its host. This page is that disclosure. Nothing here is hidden behind a contact form.",
+    publisherTitle: "Publisher",
+    labels: {
+      name: "Name",
+      form: "Legal form",
+      address: "Registered address",
+      phone: "Telephone",
+      siren: "SIREN",
+      vat: "VAT number",
+      capital: "Share capital",
+      director: "Director of publication",
+      email: "Email",
+    },
+    pending: "Not yet published",
+    pendingNote:
+      "Ridgework is not yet registered as a company and takes no payments. The fields above marked as not yet published will be filled when registration completes; until then nothing is sold and no card is ever charged.",
+    hostTitle: "Hosting and infrastructure",
+    hostLead: "Who actually runs the machines, what each one does, and where the data sits.",
+    hostRole: "Role",
+    hostRoles: {
+      vercel: "Host — the site and its server functions",
+      neon: "Database — accounts, profiles, training plans",
+      resend: "Transactional email — confirmation and password links",
+      cloudflare: "DNS, and routing of mail sent to the domain",
+    },
+    hostRegion: "Region",
+    hostContact: "Contact",
+    contactTitle: "Contact",
+    contactBody: "Write to support@ridgework.org. A person answers, within 24 to 48 hours.",
+  },
   termsPage: {
     title: "Terms of Service",
     updated: "Last updated: September 2026",
@@ -557,13 +591,20 @@ export const en: Copy = {
     title: "Privacy Policy",
     updated: "Last updated: September 2026",
     body: [
-      "This is a stub privacy notice for Ridgework, a product company based in France, operating under EU expectations (including GDPR principles). It will be replaced with counsel-reviewed text before launch.",
-      "Who we are. Controller: Ridgework, France. Contact: support@ridgework.org.",
-      "What we collect. Account and billing data needed to provide the service (email, subscription status via Polar). Usage data limited to operating and improving the product. We do not sell personal data for advertising.",
-      "Legal bases. Contract performance (providing the subscription), legitimate interests (security, product improvement), and legal obligations where applicable.",
-      "Retention & rights. We retain data only as long as needed for the service and legal requirements. You may request access, rectification, erasure, restriction, portability, or object where applicable. You may lodge a complaint with a French / EU supervisory authority.",
-      "Payments. Card payments are processed by Polar (merchant of record). We do not store full card numbers on our servers.",
-      "Not medical data. Ridgework is not a medical service and is not intended to process health diagnoses. Do not submit sensitive medical information you are not comfortable sharing for account/support purposes.",
+      "Who we are. Ridgework is the controller of the personal data described here. Our identity, address and host are published in full on the Legal notice page. Questions, or any request below, go to support@ridgework.org and are answered by a person.",
+      "No tracking. Ridgework runs no analytics — not our own, not a third party's. There is no advertising pixel, no fingerprinting and no cookie banner, because there is nothing to consent to. The only cookie we set is the one that keeps you signed in, which is strictly necessary and disappears when you sign out.",
+      "Your account. Your name, email address and a hash of your password. We never store the password itself. Legal basis: performance of the contract — without an account there is no plan to show you.",
+      "How you train. What you told us during setup: sport, objective, peak date, weekly hours, longest recent outing, experience, which days you can train and for how long, terrain, equipment and any constraints such as shift work or short sleep. Legal basis: performance of the contract. This is the input the plan is written from; without it there is no product.",
+      "How you feel. The daily check-in: sleep, soreness, fatigue, stress and motivation on a 1–5 scale, plus a yes/no flag for anything currently limiting training. Legal basis: performance of the contract. These are subjective training inputs, not clinical measurements, and we do not ask for and do not want diagnoses, medication, test results or any other medical record. Ridgework is not a medical service and makes no diagnosis.",
+      "What you did. Which session was planned, whether you marked it done, missed or moved, and the minutes you entered. Legal basis: performance of the contract — it is what lets the plan respond to the week you actually had rather than the one that was written.",
+      "Integrations, only if you ask. A calendar feed creates a secret address for your sessions. Connecting intervals.icu stores the API key you paste, so we can push sessions to it. Both are off until you turn them on, both can be disconnected, and disconnecting deletes what was stored. Legal basis: consent.",
+      "Payments. None are taken today; the checkout is closed. When it opens, card payments will be handled by Polar as merchant of record. We will hold your subscription status, never your card number.",
+      "Who else sees it. Only the providers that run the service, listed with their addresses and regions on the Legal notice page: Vercel (hosting, Paris region), Neon (database, Frankfurt), Resend (confirmation and password emails, Ireland) and Cloudflare (DNS and mail routing). Each acts on our instructions under a data processing agreement. We do not sell personal data, and we do not share it for advertising.",
+      "Data outside the EU. Those providers are US companies. Your data is stored in the EU where the provider offers it — the database is in Frankfurt and email in Ireland — but support access from the United States is possible. Transfers rely on the European Commission's standard contractual clauses and, where the provider is certified, the EU–US Data Privacy Framework.",
+      "How long we keep it. Your account and training history stay while the account exists. Delete the account and we delete them, except anything we must keep for accounting or legal reasons once we begin trading, which we keep for the period the law requires and for nothing else.",
+      "Your rights. You may ask for a copy of your data, correct it, delete it, restrict or object to how we use it, take it elsewhere in a portable form, and withdraw consent for the integrations at any time. Write to support@ridgework.org. We answer within a month, usually far sooner.",
+      "Complaints. If our answer does not satisfy you, you can complain to the French supervisory authority: CNIL, 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07, or cnil.fr. You may also complain to the authority where you live.",
+      "Changes. If this notice changes materially we will say so on this page and, where the change affects how we use data you have already given us, by email.",
     ],
   },
   examplePage: {

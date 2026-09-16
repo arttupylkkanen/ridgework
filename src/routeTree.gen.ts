@@ -17,6 +17,7 @@ import { Route as FieldRouteImport } from './routes/field'
 import { Route as FoundingRouteImport } from './routes/founding'
 import { Route as GuidesRouteImport } from './routes/guides'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as OwnerRouteImport } from './routes/owner'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -29,6 +30,7 @@ import { Route as LocaleFieldRouteImport } from './routes/$locale/field'
 import { Route as LocaleFoundingRouteImport } from './routes/$locale/founding'
 import { Route as LocaleGuidesRouteImport } from './routes/$locale/guides'
 import { Route as LocaleLoginRouteImport } from './routes/$locale/login'
+import { Route as LocaleMentionsLegalesRouteImport } from './routes/$locale/mentions-legales'
 import { Route as LocalePrivacyRouteImport } from './routes/$locale/privacy'
 import { Route as LocaleSourcesRouteImport } from './routes/$locale/sources'
 import { Route as LocaleTermsRouteImport } from './routes/$locale/terms'
@@ -82,6 +84,11 @@ const GuidesRoute = GuidesRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
+  id: '/mentions-legales',
+  path: '/mentions-legales',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OwnerRoute = OwnerRouteImport.update({
@@ -142,6 +149,11 @@ const LocaleGuidesRoute = LocaleGuidesRouteImport.update({
 const LocaleLoginRoute = LocaleLoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => LocaleRoute,
+} as any)
+const LocaleMentionsLegalesRoute = LocaleMentionsLegalesRouteImport.update({
+  id: '/mentions-legales',
+  path: '/mentions-legales',
   getParentRoute: () => LocaleRoute,
 } as any)
 const LocalePrivacyRoute = LocalePrivacyRouteImport.update({
@@ -224,6 +236,7 @@ export interface FileRoutesByFullPath {
   '/founding': typeof FoundingRoute
   '/guides': typeof GuidesRouteWithChildren
   '/login': typeof LoginRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
   '/owner': typeof OwnerRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -235,6 +248,7 @@ export interface FileRoutesByFullPath {
   '/$locale/founding': typeof LocaleFoundingRoute
   '/$locale/guides': typeof LocaleGuidesRouteWithChildren
   '/$locale/login': typeof LocaleLoginRoute
+  '/$locale/mentions-legales': typeof LocaleMentionsLegalesRoute
   '/$locale/privacy': typeof LocalePrivacyRoute
   '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
@@ -258,6 +272,7 @@ export interface FileRoutesByTo {
   '/field': typeof FieldRoute
   '/founding': typeof FoundingRoute
   '/login': typeof LoginRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
   '/owner': typeof OwnerRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -268,6 +283,7 @@ export interface FileRoutesByTo {
   '/$locale/field': typeof LocaleFieldRoute
   '/$locale/founding': typeof LocaleFoundingRoute
   '/$locale/login': typeof LocaleLoginRoute
+  '/$locale/mentions-legales': typeof LocaleMentionsLegalesRoute
   '/$locale/privacy': typeof LocalePrivacyRoute
   '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
@@ -294,6 +310,7 @@ export interface FileRoutesById {
   '/founding': typeof FoundingRoute
   '/guides': typeof GuidesRouteWithChildren
   '/login': typeof LoginRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
   '/owner': typeof OwnerRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -305,6 +322,7 @@ export interface FileRoutesById {
   '/$locale/founding': typeof LocaleFoundingRoute
   '/$locale/guides': typeof LocaleGuidesRouteWithChildren
   '/$locale/login': typeof LocaleLoginRoute
+  '/$locale/mentions-legales': typeof LocaleMentionsLegalesRoute
   '/$locale/privacy': typeof LocalePrivacyRoute
   '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
@@ -332,6 +350,7 @@ export interface FileRouteTypes {
     | '/founding'
     | '/guides'
     | '/login'
+    | '/mentions-legales'
     | '/owner'
     | '/privacy'
     | '/sitemap.xml'
@@ -343,6 +362,7 @@ export interface FileRouteTypes {
     | '/$locale/founding'
     | '/$locale/guides'
     | '/$locale/login'
+    | '/$locale/mentions-legales'
     | '/$locale/privacy'
     | '/$locale/sources'
     | '/$locale/terms'
@@ -366,6 +386,7 @@ export interface FileRouteTypes {
     | '/field'
     | '/founding'
     | '/login'
+    | '/mentions-legales'
     | '/owner'
     | '/privacy'
     | '/sitemap.xml'
@@ -376,6 +397,7 @@ export interface FileRouteTypes {
     | '/$locale/field'
     | '/$locale/founding'
     | '/$locale/login'
+    | '/$locale/mentions-legales'
     | '/$locale/privacy'
     | '/$locale/sources'
     | '/$locale/terms'
@@ -401,6 +423,7 @@ export interface FileRouteTypes {
     | '/founding'
     | '/guides'
     | '/login'
+    | '/mentions-legales'
     | '/owner'
     | '/privacy'
     | '/sitemap.xml'
@@ -412,6 +435,7 @@ export interface FileRouteTypes {
     | '/$locale/founding'
     | '/$locale/guides'
     | '/$locale/login'
+    | '/$locale/mentions-legales'
     | '/$locale/privacy'
     | '/$locale/sources'
     | '/$locale/terms'
@@ -438,6 +462,7 @@ export interface RootRouteChildren {
   FoundingRoute: typeof FoundingRoute
   GuidesRoute: typeof GuidesRouteWithChildren
   LoginRoute: typeof LoginRoute
+  MentionsLegalesRoute: typeof MentionsLegalesRoute
   OwnerRoute: typeof OwnerRoute
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -507,6 +532,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentions-legales': {
+      id: '/mentions-legales'
+      path: '/mentions-legales'
+      fullPath: '/mentions-legales'
+      preLoaderRoute: typeof MentionsLegalesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/owner': {
@@ -591,6 +623,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/$locale/login'
       preLoaderRoute: typeof LocaleLoginRouteImport
+      parentRoute: typeof LocaleRoute
+    }
+    '/$locale/mentions-legales': {
+      id: '/$locale/mentions-legales'
+      path: '/mentions-legales'
+      fullPath: '/$locale/mentions-legales'
+      preLoaderRoute: typeof LocaleMentionsLegalesRouteImport
       parentRoute: typeof LocaleRoute
     }
     '/$locale/privacy': {
@@ -715,6 +754,7 @@ interface LocaleRouteChildren {
   LocaleFoundingRoute: typeof LocaleFoundingRoute
   LocaleGuidesRoute: typeof LocaleGuidesRouteWithChildren
   LocaleLoginRoute: typeof LocaleLoginRoute
+  LocaleMentionsLegalesRoute: typeof LocaleMentionsLegalesRoute
   LocalePrivacyRoute: typeof LocalePrivacyRoute
   LocaleSourcesRoute: typeof LocaleSourcesRoute
   LocaleTermsRoute: typeof LocaleTermsRoute
@@ -729,6 +769,7 @@ const LocaleRouteChildren: LocaleRouteChildren = {
   LocaleFoundingRoute: LocaleFoundingRoute,
   LocaleGuidesRoute: LocaleGuidesRouteWithChildren,
   LocaleLoginRoute: LocaleLoginRoute,
+  LocaleMentionsLegalesRoute: LocaleMentionsLegalesRoute,
   LocalePrivacyRoute: LocalePrivacyRoute,
   LocaleSourcesRoute: LocaleSourcesRoute,
   LocaleTermsRoute: LocaleTermsRoute,
@@ -761,6 +802,7 @@ const rootRouteChildren: RootRouteChildren = {
   FoundingRoute: FoundingRoute,
   GuidesRoute: GuidesRouteWithChildren,
   LoginRoute: LoginRoute,
+  MentionsLegalesRoute: MentionsLegalesRoute,
   OwnerRoute: OwnerRoute,
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

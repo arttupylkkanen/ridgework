@@ -1,8 +1,8 @@
-import { fieldFi } from "./field";
-import { planFi } from "./plan-tools";
-import { athleteFi } from "./athlete-copy";
-import { mountainFi } from "./mountain-prep";
-import { passportFi, whatIfFi } from "./passport";
+import { fieldFi } from "./field.ts";
+import { planFi } from "./plan-tools.ts";
+import { athleteFi } from "./athlete-copy.ts";
+import { mountainFi } from "./mountain-prep.ts";
+import { passportFi, whatIfFi } from "./passport.ts";
 import type { Copy } from "./types";
 
 export const fi: Copy = {
@@ -15,6 +15,7 @@ export const fi: Copy = {
   cancelAnytime: "Peru milloin tahansa",
   terms: "Ehdot",
   privacy: "Tietosuoja",
+  legalNotice: "Oikeudelliset tiedot",
   copyright: "© 2026 Ridgework. France.",
   nav: {
     about: "Keitä olemme",
@@ -521,6 +522,39 @@ export const fi: Copy = {
     title: "Perustajahinta, Ridgework",
     description: "Viikkotreeni. 14 päivää ilmaiseksi, sitten 19 €/kk. Peru milloin tahansa.",
   },
+  legalPage: {
+    title: "Oikeudelliset tiedot",
+    updated: "Päivitetty: syyskuu 2026",
+    lead: "Ranskan laki (LCEN art. 6 III) vaatii sivustoa nimeämään julkaisijansa ja ylläpitäjänsä. Tämä sivu on se tieto. Mitään ei ole piilotettu yhteydenottolomakkeen taakse.",
+    publisherTitle: "Julkaisija",
+    labels: {
+      name: "Nimi",
+      form: "Yhtiömuoto",
+      address: "Rekisteröity osoite",
+      phone: "Puhelin",
+      siren: "SIREN",
+      vat: "ALV-numero",
+      capital: "Osakepääoma",
+      director: "Julkaisusta vastaava",
+      email: "Sähköposti",
+    },
+    pending: "Ei vielä julkaistu",
+    pendingNote:
+      "Ridgework ei ole vielä rekisteröity yhtiö eikä ota vastaan maksuja. Yllä merkityt kentät täytetään rekisteröinnin valmistuttua; siihen asti mitään ei myydä eikä korttia veloiteta koskaan.",
+    hostTitle: "Ylläpito ja infrastruktuuri",
+    hostLead: "Kuka koneita oikeasti ajaa, mitä kukin tekee ja missä data sijaitsee.",
+    hostRole: "Tehtävä",
+    hostRoles: {
+      vercel: "Ylläpitäjä — sivusto ja sen palvelinfunktiot",
+      neon: "Tietokanta — tilit, profiilit, treenisuunnitelmat",
+      resend: "Tapahtumaposti — vahvistus- ja salasanalinkit",
+      cloudflare: "DNS ja domainille tulevan postin reititys",
+    },
+    hostRegion: "Alue",
+    hostContact: "Yhteystieto",
+    contactTitle: "Yhteystiedot",
+    contactBody: "Kirjoita support@ridgework.org. Vastaajana on ihminen, 24–48 tunnissa.",
+  },
   termsPage: {
     title: "Käyttöehdot",
     updated: "Päivitetty: syyskuu 2026",
@@ -532,10 +566,20 @@ export const fi: Copy = {
     title: "Tietosuojaseloste",
     updated: "Päivitetty: syyskuu 2026",
     body: [
-      "Ridgework, Ranska. Yhteys: support@ridgework.org.",
-      "Keräämme tilin ja maksun tiedot palvelun pyörittämiseen. Emme myy tietoja mainoksiin. Korttimaksut hoitaa Polar, kun yritystunnus on valmis.",
-      "Oikeudet: pääsy, oikaisu, poisto, rajoitus, siirto, vastustaminen. Valitus Ranskan tai EU:n valvontaviranomaiselle.",
-      "Älä lähetä terveystietoja joita et halua tukeen. Ridgework ei ole terveyspalvelu.",
+      "Keitä olemme. Ridgework on tässä kuvatun henkilötiedon rekisterinpitäjä. Nimemme, osoitteemme ja ylläpitäjämme on julkaistu kokonaisuudessaan Oikeudelliset tiedot -sivulla. Kysymykset ja kaikki alla mainitut pyynnöt osoitteeseen support@ridgework.org — vastaajana on ihminen.",
+      "Ei seurantaa. Ridgework ei käytä analytiikkaa — ei omaa eikä kolmannen osapuolen. Ei mainospikseliä, ei sormenjälkitunnistusta, ei evästebanneria, koska ei ole mitään mihin suostua. Ainoa asettamamme eväste pitää sinut kirjautuneena, se on välttämätön ja katoaa kun kirjaudut ulos.",
+      "Tilisi. Nimi, sähköpostiosoite ja salasanan tiiviste. Salasanaa itseään emme koskaan tallenna. Peruste: sopimuksen täyttäminen — ilman tiliä ei ole suunnitelmaa näytettäväksi.",
+      "Miten harjoittelet. Se mitä kerroit alkukyselyssä: laji, tavoite, huippupäivä, viikkotunnit, pisin viimeaikainen suoritus, kokemus, mitkä päivät ja kuinka kauan voit harjoitella, maasto, varusteet ja rajoitteet kuten vuorotyö tai lyhyet yöunet. Peruste: sopimuksen täyttäminen. Tästä suunnitelma kirjoitetaan; ilman sitä ei ole tuotetta.",
+      "Miltä tuntuu. Päivittäinen kirjaus: uni, lihasarkuus, väsymys, stressi ja motivaatio asteikolla 1–5, sekä kyllä/ei-tieto siitä rajoittaako jokin harjoittelua juuri nyt. Peruste: sopimuksen täyttäminen. Nämä ovat subjektiivisia harjoitustietoja, eivät kliinisiä mittauksia, emmekä kysy emmekä halua diagnooseja, lääkityksiä, tutkimustuloksia tai muita potilastietoja. Ridgework ei ole terveydenhuollon palvelu eikä tee diagnooseja.",
+      "Mitä teit. Mikä harjoitus oli suunniteltu, merkitsitkö sen tehdyksi, väliin jääneeksi vai siirretyksi, ja kirjaamasi minuutit. Peruste: sopimuksen täyttäminen — juuri tämä antaa suunnitelman mukautua siihen viikkoon joka sinulla oikeasti oli.",
+      "Integraatiot, vain pyynnöstä. Kalenterisyöte luo harjoituksillesi salaisen osoitteen. intervals.icu:n kytkeminen tallentaa liittämäsi API-avaimen, jotta voimme työntää harjoitukset sinne. Molemmat ovat pois päältä kunnes kytket ne, molemmat voi katkaista, ja katkaisu poistaa tallennetun. Peruste: suostumus.",
+      "Maksut. Niitä ei oteta vastaan tällä hetkellä; kassa on kiinni. Kun se avataan, korttimaksut hoitaa Polar merchant of record -roolissa. Meillä on tilauksesi tila, ei koskaan korttinumeroasi.",
+      "Kuka muu näkee. Vain palvelun ajavat toimittajat, listattuna osoitteineen ja alueineen Oikeudelliset tiedot -sivulla: Vercel (ylläpito, Pariisin alue), Neon (tietokanta, Frankfurt), Resend (vahvistus- ja salasanaviestit, Irlanti) ja Cloudflare (DNS ja postin reititys). Kukin toimii ohjeidemme mukaan käsittelysopimuksen alla. Emme myy henkilötietoja emmekä jaa niitä mainontaan.",
+      "Tieto EU:n ulkopuolella. Nuo toimittajat ovat yhdysvaltalaisia yhtiöitä. Tieto säilytetään EU:ssa siellä missä toimittaja sen tarjoaa — tietokanta on Frankfurtissa ja sähköposti Irlannissa — mutta tukipääsy Yhdysvalloista on mahdollista. Siirrot nojaavat komission vakiosopimuslausekkeisiin ja, toimittajan ollessa sertifioitu, EU–US Data Privacy Frameworkiin.",
+      "Kuinka kauan. Tili ja harjoitushistoria säilyvät niin kauan kuin tili on olemassa. Poista tili, niin poistamme ne — pois lukien se mitä kirjanpito tai laki vaatii säilyttämään sitten kun toiminta alkaa, ja senkin vain lain vaatiman ajan.",
+      "Oikeutesi. Voit pyytää kopion tiedoistasi, oikaista niitä, poistaa ne, rajoittaa tai vastustaa käyttöä, siirtää ne koneluettavassa muodossa, ja peruuttaa integraatioiden suostumuksen milloin tahansa. Kirjoita support@ridgework.org. Vastaamme kuukauden kuluessa, yleensä huomattavasti nopeammin.",
+      "Valitukset. Jos vastauksemme ei tyydytä, voit tehdä valituksen Ranskan valvontaviranomaiselle: CNIL, 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07, tai cnil.fr. Voit valittaa myös oman asuinmaasi viranomaiselle.",
+      "Muutokset. Jos tämä seloste muuttuu olennaisesti, kerromme siitä tällä sivulla ja, kun muutos koskee jo antamiesi tietojen käyttöä, sähköpostitse.",
     ],
   },
   examplePage: {

@@ -29,6 +29,9 @@ export function translatedPages(): Translated[] {
     prefixed("/example"),
     prefixed("/field"),
     prefixed("/founding"),
+    prefixed("/privacy"),
+    prefixed("/terms"),
+    prefixed("/mentions-legales"),
     ...GUIDES.map((guide) => prefixed(`/guides/${guide.slug}`)),
   ];
 }

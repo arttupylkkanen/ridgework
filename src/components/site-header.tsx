@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import { UserButton } from "@/lib/auth/gates";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
 import type { Copy } from "@/content/types";
-import { LOCALES, type Locale, type PageId, homeHash, pagePath } from "@/lib/locale";
+import { LOCALES, type Locale, type PageId, type ShellPage, homeHash, pagePath } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 import { AuthLink, DeskLink, FieldLink, GuideLink } from "./app-link";
 
@@ -17,19 +17,7 @@ const MOBILE_SECTION_KEYS = ["example", "programs", "pricing", "faq"] as const;
 type Props = {
   locale: Locale;
   copy: Copy;
-  page:
-    | "home"
-    | "founding"
-    | "terms"
-    | "privacy"
-    | "app"
-    | "field"
-    | "login"
-    | "guides"
-    | "passport"
-    | "example"
-    | "sources"
-    | "plans";
+  page: ShellPage;
 };
 
 /**

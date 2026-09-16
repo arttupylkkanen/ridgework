@@ -78,8 +78,10 @@ export const PLAN_PAGES: PlanPage[] = [
     ],
     phaseNotes: {
       base: "Aerobic base: easy volume, a growing long run, and the habit of finishing sessions able to talk. No quality work is forced on a beginner here.",
-      specific: "Race-specific: one quality dose a week, long runs on terrain that resembles the course, and practice with the food and pack you intend to actually use.",
-      taper: "Volume comes down, a little intensity stays in short doses, and the last two weeks are about sleep, kit and not inventing anything new.",
+      specific:
+        "Race-specific: one quality dose a week, long runs on terrain that resembles the course, and practice with the food and pack you intend to actually use.",
+      taper:
+        "Volume comes down, a little intensity stays in short doses, and the last two weeks are about sleep, kit and not inventing anything new.",
     },
     forWhom: [
       "Runners stepping up from a marathon or a 20–30 km trail race",
@@ -90,7 +92,11 @@ export const PLAN_PAGES: PlanPage[] = [
       "Anyone looking for a fixed twelve-week PDF to print and follow regardless of how the body responds",
       "Runners who want a guaranteed finish time — this writes training, it does not predict results",
     ],
-    kit: ["Trail shoes already broken in on a long run", "A pack or vest you have carried loaded", "Poles if your course has real climbing"],
+    kit: [
+      "Trail shoes already broken in on a long run",
+      "A pack or vest you have carried loaded",
+      "Poles if your course has real climbing",
+    ],
     faq: [
       {
         q: "How long does it take to train for a 50K?",
@@ -127,8 +133,10 @@ export const PLAN_PAGES: PlanPage[] = [
     ],
     phaseNotes: {
       base: "Fourteen weeks of easy volume and a long run that grows slowly. The goal is durability, not sharpness.",
-      specific: "Eighteen weeks: back-to-back long weekends, night sessions, and full dress rehearsals with race kit and race food.",
-      taper: "Four weeks down. Volume drops hard, short intensity stays, and the last week is sleep, packing and drop-bag logistics.",
+      specific:
+        "Eighteen weeks: back-to-back long weekends, night sessions, and full dress rehearsals with race kit and race food.",
+      taper:
+        "Four weeks down. Volume drops hard, short intensity stays, and the last week is sleep, packing and drop-bag logistics.",
     },
     forWhom: [
       "Runners who have finished a 50 km and want the next distance",
@@ -139,7 +147,12 @@ export const PLAN_PAGES: PlanPage[] = [
       "First-time ultra runners — start at 50 km and come back",
       "Anyone who cannot protect at least one long weekend session most weeks",
     ],
-    kit: ["A vest you have run long in, loaded", "Headlamp plus spare cells, tested in the dark", "Poles for sustained climbing", "A dry layer you can put on with cold hands"],
+    kit: [
+      "A vest you have run long in, loaded",
+      "Headlamp plus spare cells, tested in the dark",
+      "Poles for sustained climbing",
+      "A dry layer you can put on with cold hands",
+    ],
     faq: [
       {
         q: "How long should I train for a 100K?",
@@ -188,7 +201,10 @@ export const PLAN_PAGES: PlanPage[] = [
       "Complete beginners who have not been running at all — build easy weeks first with the aerobic base plan",
       "Anyone chasing 50 km or longer, where the long run needs far more room",
     ],
-    kit: ["Trail shoes with grip that matches your ground", "A handheld or small vest if the course is dry"],
+    kit: [
+      "Trail shoes with grip that matches your ground",
+      "A handheld or small vest if the course is dry",
+    ],
     faq: [
       {
         q: "How long does it take to train for a 20K trail race?",
@@ -225,7 +241,8 @@ export const PLAN_PAGES: PlanPage[] = [
     ],
     phaseNotes: {
       base: "Twelve weeks of easy running and one long, all at talking pace. Fat becomes the default fuel for ordinary sessions.",
-      specific: "Three weeks that add a hike or longer aerobic day — still conversational, just more of it.",
+      specific:
+        "Three weeks that add a hike or longer aerobic day — still conversational, just more of it.",
       taper: "One quiet week to consolidate before you point the engine at something.",
     },
     forWhom: [
@@ -237,7 +254,10 @@ export const PLAN_PAGES: PlanPage[] = [
       "Anyone with a race in under twelve weeks — use the plan for that distance instead",
       "Runners looking for speed work; this block deliberately has none",
     ],
-    kit: ["Shoes you can spend hours in", "Optionally a heart-rate monitor, though the talk test is enough"],
+    kit: [
+      "Shoes you can spend hours in",
+      "Optionally a heart-rate monitor, though the talk test is enough",
+    ],
     faq: [
       {
         q: "What is aerobic base training?",
@@ -275,8 +295,10 @@ export const PLAN_PAGES: PlanPage[] = [
     ],
     phaseNotes: {
       base: "Six weeks: aerobic approaches, a climbing session, and strength moved early so the pattern is established before the hard weeks.",
-      specific: "Three weeks of climbing, muscular endurance, and mountain days with a progressively loaded pack.",
-      taper: "One week. Lock the kit, confirm the forecast and the turnaround time, and stop experimenting.",
+      specific:
+        "Three weeks of climbing, muscular endurance, and mountain days with a progressively loaded pack.",
+      taper:
+        "One week. Lock the kit, confirm the forecast and the turnaround time, and stop experimenting.",
     },
     forWhom: [
       "Climbers with a specific alpine objective and a weather window in mind",
@@ -287,7 +309,12 @@ export const PLAN_PAGES: PlanPage[] = [
       "Anyone looking for climbing instruction — this trains you for the day, it does not teach you to climb or to place gear",
       "People wanting a medical altitude clearance; that is a qualified human's job, not a checklist's",
     ],
-    kit: ["Boots that take your crampons, already walked in", "Crampons and an axe you have practised with", "Harness and the rack the actual route needs", "Pack loaded as you will carry it"],
+    kit: [
+      "Boots that take your crampons, already walked in",
+      "Crampons and an axe you have practised with",
+      "Harness and the rack the actual route needs",
+      "Pack loaded as you will carry it",
+    ],
     faq: [
       {
         q: "How do you train for alpine climbing?",
@@ -324,7 +351,8 @@ export const PLAN_PAGES: PlanPage[] = [
     ],
     phaseNotes: {
       base: "Twenty weeks: hiking volume, aerobic easy days, a climbing session and early strength.",
-      specific: "Ten weeks of climbing days linked to loaded hikes — the back-to-back pattern the route will demand.",
+      specific:
+        "Ten weeks of climbing days linked to loaded hikes — the back-to-back pattern the route will demand.",
       taper: "Two weeks. Kit locked, logistics confirmed, legs allowed to come back.",
     },
     forWhom: [
@@ -336,7 +364,12 @@ export const PLAN_PAGES: PlanPage[] = [
       "Anyone without prior single-day alpine experience",
       "People who cannot protect back-to-back weekend days in the specific block",
     ],
-    kit: ["Pack loaded as you will carry it, including water", "Crampons, axe and the rack the line needs", "Sleep system if you are bivying", "Map or GPS with a battery plan"],
+    kit: [
+      "Pack loaded as you will carry it, including water",
+      "Crampons, axe and the rack the line needs",
+      "Sleep system if you are bivying",
+      "Map or GPS with a battery plan",
+    ],
     faq: [
       {
         q: "How do you train for a multi-day mountain route?",
@@ -373,8 +406,10 @@ export const PLAN_PAGES: PlanPage[] = [
     ],
     phaseNotes: {
       base: "Twenty-two weeks of hiking, easy volume and early strength. Patience is the training.",
-      specific: "Fourteen weeks adding muscular endurance and progressively loaded pack carries on hiking days.",
-      taper: "Four weeks. Sleep, food, permits and packing — not extra altitude and not extra load.",
+      specific:
+        "Fourteen weeks adding muscular endurance and progressively loaded pack carries on hiking days.",
+      taper:
+        "Four weeks. Sleep, food, permits and packing — not extra altitude and not extra load.",
     },
     forWhom: [
       "Climbers with a high-altitude objective and a departure date",
@@ -385,7 +420,12 @@ export const PLAN_PAGES: PlanPage[] = [
       "Anyone looking for an acclimatisation protocol or medical guidance — that needs a qualified human",
       "People without prior multi-day mountain experience",
     ],
-    kit: ["Boots and crampons matched and walked in", "Pack loaded to expedition weight", "Sleep system and stove you have already used", "Permits and contacts on paper as well as a phone"],
+    kit: [
+      "Boots and crampons matched and walked in",
+      "Pack loaded to expedition weight",
+      "Sleep system and stove you have already used",
+      "Permits and contacts on paper as well as a phone",
+    ],
     faq: [
       {
         q: "How long should I train for a high-altitude expedition?",

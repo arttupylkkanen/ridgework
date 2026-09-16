@@ -74,6 +74,7 @@ export type Copy = {
   cancelAnytime: string;
   terms: string;
   privacy: string;
+  legalNotice: string;
   copyright: string;
   nav: {
     about: string;
@@ -254,6 +255,34 @@ export type Copy = {
     description: string;
   };
   termsPage: { title: string; updated: string; body: string[] };
+  /** Mentions légales — the publisher and host disclosure French law requires. */
+  legalPage: {
+    title: string;
+    updated: string;
+    lead: string;
+    publisherTitle: string;
+    labels: {
+      name: string;
+      form: string;
+      address: string;
+      phone: string;
+      siren: string;
+      vat: string;
+      capital: string;
+      director: string;
+      email: string;
+    };
+    pending: string;
+    pendingNote: string;
+    hostTitle: string;
+    hostLead: string;
+    hostRole: string;
+    hostRoles: Record<"vercel" | "neon" | "resend" | "cloudflare", string>;
+    hostRegion: string;
+    hostContact: string;
+    contactTitle: string;
+    contactBody: string;
+  };
   privacyPage: { title: string; updated: string; body: string[] };
   examplePage: {
     title: string;
