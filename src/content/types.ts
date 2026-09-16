@@ -65,6 +65,22 @@ export type FieldPage = {
   };
 };
 
+export type OfferTerms = {
+  /** Primary button label, everywhere one appears. */
+  cta: string;
+  /** Headline and standfirst of the pricing section. */
+  title: string;
+  lead: string;
+  /** Short chip on the pricing card. */
+  badge: string;
+  /** One sentence under the hero and above the sign-up form. */
+  line: string;
+  /** Four bullets on the pricing card. */
+  features: string[];
+  laterTitle: string;
+  laterBody: string;
+};
+
 export type Copy = {
   metaTitle: string;
   metaDescription: string;
@@ -93,9 +109,47 @@ export type Copy = {
     menu: string;
     login: string;
     account: string;
+    signOut: string;
+    signingOut: string;
   };
-  cta: { start: string; pricing: string; openTools: string };
-  hero: { kicker: string; h1: string; lead: string; trial: string };
+  cta: { pricing: string; openTools: string };
+  /** The pick-a-date, three-week planner on /example. */
+  examplePlanner: {
+    h2: string;
+    lead: string;
+    goalLabel: string;
+    goals: { fifty: string; trail20: string };
+    dateLabel: string;
+    /** {n} weeks available, {want} weeks the objective wants. */
+    windowOk: string;
+    windowShort: string;
+    tooSoon: string;
+    /** {n} is the week number. */
+    weekN: string;
+    /** {phase} repeats until {next} starts in week {n}. */
+    repeats: string;
+    phases: { base: string; specific: string; taper: string; done: string };
+    note: string;
+  };
+  /** Title and description for the three pages lifted off the homepage. */
+  pageMeta: {
+    who: { title: string; description: string };
+    after: { title: string; description: string };
+    method: { title: string; description: string };
+  };
+  /**
+   * The two shapes the offer can take. src/lib/offer.ts picks one from
+   * CHECKOUT_OPEN — never read both, and never hard-code a trial length in
+   * copy outside this block.
+   */
+  offer: { free: OfferTerms; trial: OfferTerms };
+  hero: {
+    kicker: string;
+    h1: string;
+    lead: string;
+    proofLabel: string;
+    proofHeld: string;
+  };
   about: {
     kicker: string;
     h2: string;
@@ -111,9 +165,6 @@ export type Copy = {
     caveats: string[];
     sourcesTitle: string;
     /** Condensed method block rendered high on the homepage, above the programs. */
-    teaserH2: string;
-    teaserLead: string;
-    teaserCta: string;
     allSourcesCta: string;
   };
   /**
@@ -183,22 +234,13 @@ export type Copy = {
     cta: string;
     read: string;
   };
+  /** Everything price-dependent lives on `offer`; these are the fixed labels. */
   pricing: {
     kicker: string;
-    h2: string;
-    lead: string;
-    badge: string;
-    trialBadge: string;
     name: string;
-    /** Replace the price block while CHECKOUT_OPEN is false. */
     freeTag: string;
-    freeNow: string;
     price: string;
     per: string;
-    blurb: string;
-    features: string[];
-    laterTitle: string;
-    laterBody: string;
   };
   checkout: {
     kicker: string;

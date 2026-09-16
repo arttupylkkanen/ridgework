@@ -8,7 +8,7 @@ import type { Copy } from "./types";
 export const de: Copy = {
   metaTitle: "Ridgework — Trainingsprogramme für Trail, Alpin und Höhe",
   metaDescription:
-    "Was du diese Woche läufst — 20-km-Trail, 50 oder 100 km Ultra, Alpentag. Eine müde Woche wird leichter. 14 Tage kostenlos, ohne Karte.",
+    "Was du diese Woche läufst — 20-km-Trail, 50 oder 100 km Ultra, Alpentag. Eine müde Woche wird leichter. Ohne Karte zum Start.",
   footerTag: "Bergtraining, das der Woche folgt, die du wirklich hast.",
   legalEntity: "Ridgework, Frankreich.",
   support: "support@ridgework.org",
@@ -34,18 +34,87 @@ export const de: Copy = {
     menu: "Menü",
     login: "Anmelden",
     account: "Konto",
+    signOut: "Abmelden",
+    signingOut: "Abmelden…",
   },
   cta: {
-    start: "14 Tage kostenlos starten",
     pricing: "Preise ansehen",
     openTools: "Tools öffnen",
+  },
+  examplePlanner: {
+    h2: "Wähle den Tag, an dem du bereit sein musst",
+    lead: "Geschrieben für einen ersten 50er oder einen ersten 20-km-Trail bei drei bis fünf Stunden pro Woche — gut ankommen, keine Zeit jagen. Ändere das Datum, und die drei Wochen unten werden von derselben Engine neu geschrieben, die auch der Schreibtisch nutzt.",
+    goalLabel: "Ziel",
+    goals: { fifty: "Erste 50 km", trail20: "Erster 20-km-Trail" },
+    dateLabel: "Bereit am",
+    windowOk: "{n} Wochen ab heute. Das ist der volle Aufbau.",
+    windowShort:
+      "{n} Wochen ab heute. Der volle Aufbau will {want}, also wird zuerst die Basis gekürzt und der spezifische Block samt Taper behalten. Du bekommst trotzdem eine geschriebene Woche.",
+    tooSoon: "Wähle ein späteres Datum — davor gibt es keine Woche zu schreiben.",
+    weekN: "Woche {n}",
+    repeats:
+      "Diese drei sind gleich geschrieben. {phase} wiederholt sich, bis es einen Grund zur Änderung gibt — der {next}-Block beginnt in Woche {n}, und eine kaputte Einheit oder eine ausgefallene Woche schreibt sie schon vorher um.",
+    phases: { base: "Basis", specific: "Spezifisch", taper: "Taper", done: "Fertig" },
+    note: "Drei Wochen stehen jeweils geschrieben. Trag die Woche ein, und die nächste erscheint. Hier wird nichts gespeichert, und es gibt kein Konto, bis du eines anlegst.",
+  },
+  pageMeta: {
+    who: {
+      title: "Für wen Ridgework ist — Ridgework",
+      description:
+        "Für wen sich eine Trainingswoche eignet, die sich neu schreibt, für wen nicht, und was du wirklich bekommst. Trail und Berg, kein festes PDF.",
+    },
+    after: {
+      title: "Was nach der Anmeldung passiert — Ridgework",
+      description:
+        "Deine ersten zwei Wochen, Tag für Tag: Zieltag wählen, drei Wochen landen im Kalender, und der Plan schreibt sich um nach dem, was du tatsächlich getan hast.",
+    },
+    method: {
+      title: "Die Methode und ihre Quellen — Ridgework",
+      description:
+        "Die meisten Tage locker, eine harte Einheit wenn du frisch bist, ein Taper auf den Tag. Die Forschung hinter der Wochenstruktur, mit Zitaten und Grenzen.",
+    },
+  },
+  offer: {
+    free: {
+      cta: "Kostenlos starten",
+      title: "Derzeit kostenlos.",
+      lead: "Ridgework ist kostenlos, solange die Registrierung des Unternehmens läuft — wir dürfen noch kein Geld annehmen und tun auch nicht so. Wenn es öffnet, kostet die Mitgliedschaft 19 €/Monat.",
+      badge: "Kostenlos, ohne Karte",
+      line: "Kostenlos, solange die Registrierung des Unternehmens läuft. Keine Karte, nichts zu kündigen.",
+      features: [
+        "Sieben Programme, von der aeroben Basis bis 100 km und Alpintagen",
+        "Nirgendwo wird eine Karte verlangt — Zahlungen sind noch nicht offen",
+        "Wochen, die neu geschrieben werden, wenn du schlecht schläfst, etwas ausfällt oder du reist",
+        "Trainingswochen, keine medizinischen Aussagen",
+      ],
+      laterTitle: "Wenn Zahlungen öffnen",
+      laterBody:
+        "Die Mitgliedschaft wird 19 €/Monat kosten, und du wirst gefragt, bevor irgendetwas abgebucht wird. Bis dahin kann dir nichts abgebucht werden: Es ist keine Karte hinterlegt, weil die Seite gar keine annehmen kann.",
+    },
+    trial: {
+      cta: "14 Tage kostenlos starten",
+      title: "14 Tage im Kalender. Dann 19 €/Monat.",
+      lead: "Lauf zuerst eine echte Woche. Danach 19 €/Monat, wenn du bleibst. Jederzeit kündbar, auch in den 14 Tagen.",
+      badge: "14 Tage kostenlos",
+      line: "14 Tage kostenlos, ohne Karte. Danach 19 €/Monat, wenn du eine hinterlegst. Jederzeit kündbar.",
+      features: [
+        "Sieben Programme, von der aeroben Basis bis 100 km und Alpintagen",
+        "14 Tage ohne Karte — jederzeit eine hinterlegen und für 19 €/Monat weitertrainieren",
+        "Kündige innerhalb der 14 Tage und Polar bucht nichts ab",
+        "Trainingswochen, keine medizinischen Aussagen",
+      ],
+      laterTitle: "Nach den 14 Tagen",
+      laterBody:
+        "Hinterlege jederzeit eine Karte, um für 19 €/Monat weiterzutrainieren. Es wird nie automatisch abgebucht — ohne Karte pausiert der Schreibtisch einfach. Ein anderer Preis steht nirgends auf dieser Seite.",
+    },
   },
   hero: {
     kicker: "Bergtraining",
     h1: "Trainiere für den Tag, auf den es ankommt.",
     lead: "Wähle den Tag, an dem du bereit sein musst. Jede Woche wird von dort rückwärts geschrieben — und neu geschrieben, wenn das Leben dazwischenkommt.",
-    trial:
-      "Kostenlos, solange die Registrierung des Unternehmens läuft. Keine Karte, nichts zu kündigen.",
+    proofLabel: "Was eine Fünf-Stunden-Nacht bewirkt",
+    proofHeld:
+      "Eine Einheit hat sich geändert. Der Rest der Woche und der Tag, auf den du hinarbeitest, blieben unverändert.",
   },
   about: {
     kicker: "Was das ist",
@@ -95,10 +164,6 @@ export const de: Copy = {
       "Das schreibt eine Startwoche aus dem, was du angibst. Es sieht dich nicht trainieren und kennt nur die Einheiten, die du einträgst.",
     ],
     sourcesTitle: "Quellen (Crossref-verifiziert)",
-    teaserH2: "Was das versprechen kann und was nicht",
-    teaserLead:
-      "Die meisten Tage locker, eine harte Einheit wenn du frisch bist, ein Tapering in den Tag — diese Form kommt aus einer Handvoll gut zitierter Ausdauerarbeiten, nicht aus einer Vorlage mit deinem Namen darauf. Hier ist der Teil, den die meisten Trainingsprodukte weglassen.",
-    teaserCta: "Die ganze Methode lesen",
     allSourcesCta: "Alle Quellen, und wofür jede verwendet wird",
   },
   projects: {
@@ -346,7 +411,7 @@ export const de: Copy = {
     note: "Keine Diagnose. Wenn das Knie anschwillt, blockiert oder schlimmer wird, zum Arzt. Hier ändert sich nur die Trainingswoche.",
   },
   firstWeek: {
-    kicker: "Deine ersten 14 Tage",
+    kicker: "Deine ersten zwei Wochen",
     h2: "Was nach dem Login passiert",
     lead: "Du wählst ein Peak-Datum. Drei Wochen stehen im Kalender. War eine Einheit kaputt oder tut etwas weh, werden die nächsten Tage neu geschrieben. Der Termin bleibt, wo du ihn hingesetzt hast.",
     days: [
@@ -381,26 +446,10 @@ export const de: Copy = {
   },
   pricing: {
     kicker: "Preise",
-    h2: "14 Tage im Kalender. Dann 19 €/Monat.",
-    lead: "Lauf zuerst eine echte Woche. Danach 19 €/Monat, wenn du bleibst. Jederzeit kündbar, auch in den 14 Tagen.",
-    badge: "Aktueller Preis",
-    trialBadge: "14 Tage kostenlos",
     name: "Ridgework-Abo",
     price: "€19",
     freeTag: "Kostenlos",
-    freeNow:
-      "Kostenlos, solange die Registrierung des Unternehmens läuft. Keine Karte, nichts zu kündigen. 19 €/Monat, wenn es öffnet.",
     per: "/Monat",
-    blurb: "14 Tage kostenlos. Dann 19 €/Monat. Jederzeit kündbar.",
-    features: [
-      "Sieben Programme vom aeroben Motor bis 100 km und Alpentage",
-      "19 €/Monat, solange das Abo läuft",
-      "Jederzeit kündbar, auch in den 14 Tagen — dann keine Rechnung",
-      "Trainingswochen, keine medizinischen Claims",
-    ],
-    laterTitle: "Nach den 14 Tagen",
-    laterBody:
-      "Wenn du bleibst, belastet Polar 19 €/Monat. Kündigst du in den 14 Tagen, wirst du nicht belastet. Später gilt: Zugang bis zum Ende der bereits bezahlten Zeit. Auf dieser Seite steht kein anderer Preis.",
   },
   checkout: {
     kicker: "Start",
@@ -425,7 +474,7 @@ export const de: Copy = {
     payFail: "Kasse hat nicht geöffnet. Mail an support@ridgework.org.",
     closedTitle: "Kartenzahlung ist noch nicht offen",
     closedBody:
-      "Ridgework nimmt keine Zahlung an, bis die Registrierung des Unternehmens abgeschlossen ist. Deine 14 Tage laufen weiter, und in der Zwischenzeit kann nichts belastet werden.",
+      "Ridgework nimmt keine Zahlung an, bis die Registrierung des Unternehmens abgeschlossen ist. In der Zwischenzeit kann nichts belastet werden — es ist keine Karte hinterlegt.",
     paying: "Kasse wird geöffnet…",
     dueToday: "Heute fällig",
     dueAmount: "0 €",
@@ -462,19 +511,19 @@ export const de: Copy = {
       },
       {
         q: "Wie funktioniert der Preis?",
-        a: "14 Tage kostenlos. Dann 19 €/Monat, wenn du bleibst. Kündigung in den 14 Tagen: keine Rechnung.",
+        a: "Derzeit nichts. Wir dürfen keine Zahlung annehmen, solange die Registrierung in Frankreich läuft — der Schreibtisch ist einfach kostenlos und es ist keine Karte hinterlegt. Die Mitgliedschaft wird 19 €/Monat kosten, sobald es öffnet, und du erfährst es vorher.",
       },
       {
         q: "Jederzeit kündbar?",
-        a: "Ja. Am Tisch gibt es Kündigen. In den 14 Tagen belastet Polar nicht. Nach einem bezahlten Monat bleibt der Zugang bis Monatsende. Daneben: Karte und Rechnungen.",
+        a: "Ja. Am Tisch gibt es Kündigen, sobald du eine Karte hinterlegt hast. Ohne Karte wird nie etwas abgebucht — hör einfach auf. Nach einem bezahlten Monat bleibt der Zugang bis Monatsende.",
       },
       {
-        q: "Was passiert nach den 14 Tagen?",
+        q: "Kann mir unbemerkt etwas abgebucht werden?",
         a: "Ohne Karte pausiert der Tisch, bis du eine hinzufügst — es wird nichts automatisch belastet. Mit Karte läuft das Abo weiter zu 19 €/Monat, außer du kündigst.",
       },
       {
         q: "Brauche ich eine Karte für die Testphase?",
-        a: "Nein. Starte 14 Tage kostenlos ohne Karte. Füge jederzeit eine hinzu, während oder nach der Testphase, um bei 19 €/Monat weiterzutrainieren.",
+        a: "Nein. Es wird nirgends auf der Seite eine Karte verlangt. Wenn Zahlungen öffnen, kostet die Mitgliedschaft 19 €/Monat und du wirst vorher gefragt.",
       },
       {
         q: "Ist das medizinisch?",
@@ -577,7 +626,7 @@ export const de: Copy = {
     lead: "Bewege die Regler unten so, wie du dich an manchen Morgen wirklich fühlst. Sieh, wie sich die heutige Einheit und die Begründung mitändern — derselbe Tisch, den ein angemeldeter Athlet sieht, auf einem Beispiel-50-km-Ultraplan.",
     noteTitle: "Hier wird nichts gespeichert",
     noteBody:
-      "Dieses Beispiel setzt sich zurück, wenn du gehst. Leg ein Konto an für deine eigene Woche, gebaut aus deiner Sportart, deinem Ziel und deinem Peak-Datum — 14 Tage kostenlos, ohne Karte.",
+      "Dieses Beispiel setzt sich zurück, wenn du gehst. Leg ein Konto an für deine eigene Woche, gebaut aus deiner Sportart, deinem Ziel und deinem Peak-Datum . Ohne Karte.",
   },
   sourcesPage: {
     title: "Quellen — Ridgework",

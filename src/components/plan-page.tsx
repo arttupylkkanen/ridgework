@@ -2,8 +2,10 @@ import type { Copy } from "@/content/types";
 import { PLAN_UI, type PlanPage as PlanPageContent } from "@/content/plans";
 import type { Locale } from "@/lib/locale";
 import { PROGRAM_MEDIA } from "@/lib/program-media";
+import { PhotoImage } from "@/components/photo-image";
 import { recommendedWeeks, specFor, templateDays } from "@/lib/rolling-plan";
 import { AuthLink, ExampleLink, HomeLink } from "./app-link";
+import { offerTerms } from "@/lib/offer";
 
 /** FAQPage structured data — the FAQ here is the long-tail search surface. */
 function faqJsonLd(plan: PlanPageContent) {
@@ -61,34 +63,36 @@ export function PlanPage({
 
   const phases = [
     { id: "base" as const, weeks: spec.base, note: plan.phaseNotes.base, label: p.phaseBase },
-    { id: "specific" as const, weeks: spec.specific, note: plan.phaseNotes.specific, label: p.phaseSpecific },
+    {
+      id: "specific" as const,
+      weeks: spec.specific,
+      note: plan.phaseNotes.specific,
+      label: p.phaseSpecific,
+    },
     { id: "taper" as const, weeks: spec.taper, note: plan.phaseNotes.taper, label: p.phaseTaper },
   ];
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: faqJsonLd(plan) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqJsonLd(plan) }} />
 
       <HomeLink locale={locale} className="text-sm text-ink-muted hover:text-ink">
         {p.back}
       </HomeLink>
 
-      <p className="mt-6 text-sm font-semibold uppercase tracking-wider text-ridge">{plan.kicker}</p>
+      <p className="mt-6 text-sm font-semibold uppercase tracking-wider text-ridge">
+        {plan.kicker}
+      </p>
       <h1 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
         {plan.h1}
       </h1>
       <p className="mt-4 text-lg leading-relaxed text-ink-muted">{plan.lead}</p>
 
-      <img
-        src={photo.src}
-        alt=""
-        width={photo.width}
-        height={photo.height}
+      <PhotoImage
+        photo={photo}
+        sizes="(min-width: 768px) 48rem, 100vw"
         className="mt-8 aspect-[16/9] w-full object-cover"
-        decoding="async"
+        priority
       />
 
       <dl className="mt-8 grid grid-cols-2 gap-px border border-line bg-line sm:grid-cols-4">
@@ -104,6 +108,28 @@ export function PlanPage({
           </div>
         ))}
       </dl>
+
+      <section className="mt-12">
+        <h2 className="font-display text-2xl font-semibold tracking-tight text-ink">
+          {p.weekTitle}
+        </h2>
+        <p className="mt-2 text-sm leading-relaxed text-ink-muted">{p.weekLead}</p>
+        <div className="mt-6 grid gap-8 sm:grid-cols-2">
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-ridge">
+              {p.phaseBase}
+            </h3>
+            <WeekTable copy={copy} objective={plan.objective} phase="base" />
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-ridge">
+              {p.phaseSpecific}
+            </h3>
+            <WeekTable copy={copy} objective={plan.objective} phase="specific" />
+          </div>
+        </div>
+        <p className="mt-4 text-xs leading-relaxed text-ink-soft">{p.weekNote}</p>
+      </section>
 
       <div className="mt-10 space-y-5">
         {plan.body.map((para) => (
@@ -130,31 +156,11 @@ export function PlanPage({
         </div>
       </section>
 
-      <section className="mt-12">
-        <h2 className="font-display text-2xl font-semibold tracking-tight text-ink">
-          {p.weekTitle}
-        </h2>
-        <p className="mt-2 text-sm leading-relaxed text-ink-muted">{p.weekLead}</p>
-        <div className="mt-6 grid gap-8 sm:grid-cols-2">
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-ridge">
-              {p.phaseBase}
-            </h3>
-            <WeekTable copy={copy} objective={plan.objective} phase="base" />
-          </div>
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-ridge">
-              {p.phaseSpecific}
-            </h3>
-            <WeekTable copy={copy} objective={plan.objective} phase="specific" />
-          </div>
-        </div>
-        <p className="mt-4 text-xs leading-relaxed text-ink-soft">{p.weekNote}</p>
-      </section>
-
       <section className="mt-12 grid gap-8 sm:grid-cols-2">
         <div>
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-ridge">{p.forTitle}</h2>
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-ridge">
+            {p.forTitle}
+          </h2>
           <ul className="mt-4 space-y-3">
             {plan.forWhom.map((item) => (
               <li key={item} className="text-sm leading-relaxed text-ink-muted">
@@ -178,7 +184,9 @@ export function PlanPage({
       </section>
 
       <section className="mt-12">
-        <h2 className="font-display text-2xl font-semibold tracking-tight text-ink">{p.kitTitle}</h2>
+        <h2 className="font-display text-2xl font-semibold tracking-tight text-ink">
+          {p.kitTitle}
+        </h2>
         <ul className="mt-4 space-y-2">
           {plan.kit.map((item) => (
             <li key={item} className="text-sm leading-relaxed text-ink-muted">
@@ -189,7 +197,9 @@ export function PlanPage({
       </section>
 
       <section className="mt-12">
-        <h2 className="font-display text-2xl font-semibold tracking-tight text-ink">{p.faqTitle}</h2>
+        <h2 className="font-display text-2xl font-semibold tracking-tight text-ink">
+          {p.faqTitle}
+        </h2>
         <div className="mt-6 divide-y divide-line border-y border-line">
           {plan.faq.map((row) => (
             <div key={row.q} className="py-5">
@@ -209,7 +219,7 @@ export function PlanPage({
             program={plan.objective}
             className="inline-flex min-h-11 items-center justify-center rounded-lg bg-ridge px-6 py-3.5 text-base font-medium text-paper hover:bg-ridge-deep"
           >
-            {copy.cta.start}
+            {offerTerms(copy).cta}
           </AuthLink>
           <ExampleLink
             locale={locale}

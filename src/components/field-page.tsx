@@ -3,26 +3,31 @@ import { Link } from "@tanstack/react-router";
 import type { Copy } from "@/content/types";
 import { SOURCES } from "@/content";
 import type { Locale } from "@/lib/locale";
-import { pagePath, homeHash } from "@/lib/locale";
+import { pagePath } from "@/lib/locale";
 import { cn } from "@/lib/utils";
+import { PHOTOS } from "@/lib/program-media";
+import type { Photo } from "@/lib/program-media";
+import { PhotoImage } from "@/components/photo-image";
+import { offerTerms } from "@/lib/offer";
+import { AuthLink } from "@/components/app-link";
 
 const TABS = ["stories", "science", "terrain"] as const;
 type Tab = (typeof TABS)[number];
 
-const TERRAIN_SRC: Record<string, { src: string; width: number; height: number }> = {
-  chamonix: { src: "/field/chamonix-trail.jpg", width: 1792, height: 1008 },
-  bonhomme: { src: "/field/col-bonhomme.jpg", width: 1728, height: 1152 },
-  ferret: { src: "/field/col-ferret.jpg", width: 1728, height: 1152 },
-  sierre: { src: "/field/sierre-zinal.jpg", width: 1728, height: 1152 },
-  haute: { src: "/field/haute-route.jpg", width: 1728, height: 1152 },
-  dolomites: { src: "/field/dolomites.jpg", width: 1728, height: 1152 },
-  tds: { src: "/field/courmayeur-tds.jpg", width: 1728, height: 1152 },
-  trail: { src: "/field/trail-20.jpg", width: 1792, height: 1008 },
-  ultra: { src: "/field/ultra-ridge.jpg", width: 1792, height: 1008 },
-  expedition: { src: "/field/expedition.jpg", width: 1792, height: 1008 },
+const TERRAIN_SRC: Record<string, Photo> = {
+  chamonix: PHOTOS.chamonixTrail,
+  bonhomme: PHOTOS.colBonhomme,
+  ferret: PHOTOS.colFerret,
+  sierre: PHOTOS.sierreZinal,
+  haute: PHOTOS.hauteRoute,
+  dolomites: PHOTOS.dolomites,
+  tds: PHOTOS.courmayeurTds,
+  trail: PHOTOS.trail20,
+  ultra: PHOTOS.ultraRidge,
+  expedition: PHOTOS.expedition,
 };
 
-const STORY_PHOTOS = ["/field/sierre-zinal.jpg", "/field/col-bonhomme.jpg", "/field/haute-route.jpg"] as const;
+const STORY_PHOTOS: Photo[] = [PHOTOS.sierreZinal, PHOTOS.colBonhomme, PHOTOS.hauteRoute];
 
 function isTab(value: string): value is Tab {
   return (TABS as readonly string[]).includes(value);
@@ -61,13 +66,12 @@ export function FieldPage({ locale, copy }: { locale: Locale; copy: Copy }) {
     <article>
       <header className="border-b border-line">
         <div className="mx-auto max-w-5xl px-4 pt-12 sm:px-6 sm:pt-16">
-          <Link
-            to={pagePath(locale, "home")}
-            className="text-sm text-ink-muted hover:text-ink"
-          >
+          <Link to={pagePath(locale, "home")} className="text-sm text-ink-muted hover:text-ink">
             {field.back}
           </Link>
-          <p className="mt-6 text-sm font-semibold uppercase tracking-wider text-ridge">{field.kicker}</p>
+          <p className="mt-6 text-sm font-semibold uppercase tracking-wider text-ridge">
+            {field.kicker}
+          </p>
           <h1 className="mt-3 max-w-3xl font-display text-4xl font-semibold leading-[1.15] tracking-tight text-ink sm:text-5xl">
             {field.h1}
           </h1>
@@ -78,23 +82,27 @@ export function FieldPage({ locale, copy }: { locale: Locale; copy: Copy }) {
         </div>
         {hero ? (
           <figure className="mx-auto mt-10 max-w-5xl px-4 sm:px-6">
-            <img
-              src={heroImg.src}
+            <PhotoImage
+              photo={heroImg}
               alt={hero.title}
-              width={heroImg.width}
-              height={heroImg.height}
+              sizes="(min-width: 1024px) 64rem, 100vw"
               className="w-full rounded-2xl border border-line object-cover"
-              decoding="async"
+              priority
             />
             <figcaption className="mt-3 max-w-3xl pb-10 text-sm leading-relaxed text-ink-soft">
-              <span className="font-medium text-ink">{hero.title}.</span> {hero.place}. {hero.caption}
+              <span className="font-medium text-ink">{hero.title}.</span> {hero.place}.{" "}
+              {hero.caption}
             </figcaption>
           </figure>
         ) : null}
       </header>
 
       <div className="sticky top-16 z-30 border-b border-line bg-paper/95 backdrop-blur-md">
-        <div className="mx-auto flex max-w-5xl flex-wrap gap-2 px-4 py-3 sm:px-6" role="tablist" aria-label={field.kicker}>
+        <div
+          className="mx-auto flex max-w-5xl flex-wrap gap-2 px-4 py-3 sm:px-6"
+          role="tablist"
+          aria-label={field.kicker}
+        >
           {tabs.map((item) => (
             <button
               key={item.id}
@@ -122,13 +130,15 @@ export function FieldPage({ locale, copy }: { locale: Locale; copy: Copy }) {
 
         <div className="mt-16 rounded-2xl border border-line bg-paper-warm/60 px-6 py-8 sm:px-8">
           <p className="font-display text-xl font-semibold text-ink">{copy.checkout.h2}</p>
-          <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-muted">{copy.hero.trial}</p>
-          <a
-            href={homeHash(locale, "checkout")}
-            className="mt-6 inline-flex items-center justify-center rounded-lg bg-ridge px-5 py-3 text-sm font-medium text-paper hover:bg-ridge-deep"
+          <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-muted">
+            {offerTerms(copy).line}
+          </p>
+          <AuthLink
+            locale={locale}
+            className="mt-6 inline-flex min-h-11 items-center justify-center rounded-lg bg-ridge px-5 py-3 text-sm font-medium text-paper hover:bg-ridge-deep"
           >
-            {copy.cta.start}
-          </a>
+            {offerTerms(copy).cta}
+          </AuthLink>
         </div>
       </div>
     </article>
@@ -140,20 +150,18 @@ function StoriesPane({ field }: { field: Copy["fieldPage"] }) {
     <div className="space-y-16">
       {field.stories.map((story, index) => (
         <article key={story.title} className="border-b border-line pb-16 last:border-b-0 last:pb-0">
-          <p className="text-sm font-semibold uppercase tracking-wider text-accent">{story.kicker}</p>
+          <p className="text-sm font-semibold uppercase tracking-wider text-accent">
+            {story.kicker}
+          </p>
           <p className="mt-2 text-sm text-ink-soft">{story.place}</p>
           <h2 className="mt-3 max-w-3xl font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
             {story.title}
           </h2>
           {STORY_PHOTOS[index] ? (
-            <img
-              src={STORY_PHOTOS[index]}
-              alt=""
-              width={1728}
-              height={1152}
+            <PhotoImage
+              photo={STORY_PHOTOS[index]}
+              sizes="(min-width: 1024px) 64rem, 100vw"
               className="mt-6 aspect-[16/9] w-full object-cover"
-              decoding="async"
-              loading="lazy"
             />
           ) : null}
           <blockquote className="mt-6 max-w-2xl border-l-2 border-accent pl-5 font-display text-xl leading-snug text-ridge-deep">
@@ -168,11 +176,15 @@ function StoriesPane({ field }: { field: Copy["fieldPage"] }) {
           </div>
           <div className="mt-8 grid max-w-3xl gap-4 sm:grid-cols-2">
             <div className="rounded-2xl border border-line bg-card p-5">
-              <p className="text-xs font-semibold uppercase tracking-wider text-ridge">{field.storyNote}</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-ridge">
+                {field.storyNote}
+              </p>
               <p className="mt-2 text-sm leading-relaxed text-ink">{story.lesson}</p>
             </div>
             <div className="rounded-2xl border border-line bg-paper-warm/50 p-5">
-              <p className="text-xs font-semibold uppercase tracking-wider text-accent">{field.storySource}</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+                {field.storySource}
+              </p>
               <p className="mt-2 text-sm leading-relaxed text-ink-muted">{story.science}</p>
             </div>
           </div>
@@ -187,7 +199,9 @@ function SciencePane({ field }: { field: Copy["fieldPage"] }) {
   return (
     <div>
       <p className="text-sm font-semibold uppercase tracking-wider text-ridge">{sci.kicker}</p>
-      <h2 className="mt-3 max-w-3xl font-display text-3xl font-semibold tracking-tight text-ink">{sci.h2}</h2>
+      <h2 className="mt-3 max-w-3xl font-display text-3xl font-semibold tracking-tight text-ink">
+        {sci.h2}
+      </h2>
       <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted">{sci.lead}</p>
       <div className="mt-10 rounded-2xl border border-line bg-ridge-deep px-6 py-8 text-paper sm:px-8">
         <h3 className="font-display text-xl font-semibold">{sci.limitTitle}</h3>
@@ -241,7 +255,9 @@ function TerrainPane({ field }: { field: Copy["fieldPage"] }) {
   return (
     <div>
       <p className="text-sm font-semibold uppercase tracking-wider text-ridge">{terrain.kicker}</p>
-      <h2 className="mt-3 max-w-3xl font-display text-3xl font-semibold tracking-tight text-ink">{terrain.h2}</h2>
+      <h2 className="mt-3 max-w-3xl font-display text-3xl font-semibold tracking-tight text-ink">
+        {terrain.h2}
+      </h2>
       <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted">{terrain.lead}</p>
       <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink-soft">{terrain.photoNote}</p>
       <div className="mt-12 grid gap-10 md:grid-cols-2">
@@ -250,13 +266,11 @@ function TerrainPane({ field }: { field: Copy["fieldPage"] }) {
           if (!img) return null;
           return (
             <figure key={item.id} className="flex flex-col">
-              <img
-                src={img.src}
+              <PhotoImage
+                photo={img}
                 alt={item.title}
-                width={img.width}
-                height={img.height}
+                sizes="(min-width: 768px) 50vw, 100vw"
                 className="w-full rounded-2xl border border-line object-cover"
-                decoding="async"
               />
               <figcaption className="mt-4">
                 <h3 className="font-display text-lg font-semibold text-ridge-deep">{item.title}</h3>

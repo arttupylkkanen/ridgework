@@ -1,12 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
-import { UserButton } from "@/lib/auth/gates";
+import { SignOutButton, UserButton } from "@/lib/auth/gates";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
 import type { Copy } from "@/content/types";
-import { LOCALES, type Locale, type PageId, type ShellPage, homeHash, pagePath } from "@/lib/locale";
+import {
+  LOCALES,
+  type Locale,
+  type PageId,
+  type ShellPage,
+  homeHash,
+  pagePath,
+} from "@/lib/locale";
 import { cn } from "@/lib/utils";
 import { AuthLink, DeskLink, FieldLink, GuideLink } from "./app-link";
+import { offerTerms } from "@/lib/offer";
 
 const LANG_LABEL: Record<Locale, string> = { en: "EN", fi: "FI", fr: "FR", de: "DE" };
 
@@ -39,7 +47,7 @@ function AuthSlot({ locale, copy }: { locale: Locale; copy: Copy }) {
   if (user) {
     return (
       <div className="hidden items-center gap-2 sm:flex">
-        <UserButton />
+        <UserButton signOutLabel={copy.nav.signOut} signingOutLabel={copy.nav.signingOut} />
       </div>
     );
   }
@@ -82,7 +90,7 @@ export function SiteHeader({ locale, copy, page }: Props) {
 
   const toolsHref = pagePath(locale, "app");
   const primaryHref = user ? toolsHref : pagePath(locale, "login");
-  const primaryLabel = user ? copy.cta.openTools : copy.cta.start;
+  const primaryLabel = user ? copy.cta.openTools : offerTerms(copy).cta;
 
   return (
     <header className="sticky top-0 z-40 border-b border-line/80 bg-paper/90 backdrop-blur-md">
@@ -227,6 +235,14 @@ export function SiteHeader({ locale, copy, page }: Props) {
                 {copy.nav.login}
               </AuthLink>
             )}
+            {user ? (
+              <SignOutButton
+                label={copy.nav.signOut}
+                pendingLabel={copy.nav.signingOut}
+                className="rounded-lg px-3 py-3 text-left text-ink hover:bg-paper-warm disabled:cursor-wait disabled:opacity-60"
+                onSignOut={() => setOpen(false)}
+              />
+            ) : null}
             {user ? (
               <DeskLink
                 locale={locale}

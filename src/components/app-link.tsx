@@ -37,7 +37,12 @@ export function GuideLink({
     );
   }
   return (
-    <Link to="/$locale/guides/$slug" params={{ locale, slug }} className={className} onClick={onClick}>
+    <Link
+      to="/$locale/guides/$slug"
+      params={{ locale, slug }}
+      className={className}
+      onClick={onClick}
+    >
       {children}
     </Link>
   );
@@ -59,7 +64,13 @@ export function DeskLink({
     );
   }
   return (
-    <Link to="/$locale/app" params={{ locale }} search={search} className={className} onClick={onClick}>
+    <Link
+      to="/$locale/app"
+      params={{ locale }}
+      search={search}
+      className={className}
+      onClick={onClick}
+    >
       {children}
     </Link>
   );
@@ -81,13 +92,25 @@ export function AuthLink({
     );
   }
   return (
-    <Link to="/$locale/login" params={{ locale }} search={search} className={className} onClick={onClick}>
+    <Link
+      to="/$locale/login"
+      params={{ locale }}
+      search={search}
+      className={className}
+      onClick={onClick}
+    >
       {children}
     </Link>
   );
 }
 
-export function HomeLink({ locale, hash, className, children, onClick }: Props & { locale: Locale; hash?: string }) {
+export function HomeLink({
+  locale,
+  hash,
+  className,
+  children,
+  onClick,
+}: Props & { locale: Locale; hash?: string }) {
   if (locale === "en") {
     return (
       <Link to="/" hash={hash} className={className} onClick={onClick}>
@@ -118,12 +141,7 @@ export function ExampleLink({ locale, className, children, onClick }: Props & { 
 }
 
 /** Plan landing pages are English-only for now — no locale variant. */
-export function PlanLink({
-  slug,
-  className,
-  children,
-  onClick,
-}: Props & { slug?: string }) {
+export function PlanLink({ slug, className, children, onClick }: Props & { slug?: string }) {
   if (!slug) {
     return (
       <Link to="/plans" className={className} onClick={onClick}>
@@ -163,6 +181,51 @@ export function FieldLink({ locale, className, children, onClick }: Props & { lo
   }
   return (
     <Link to="/$locale/field" params={{ locale }} className={className} onClick={onClick}>
+      {children}
+    </Link>
+  );
+}
+
+export function WhoLink({ locale, className, children, onClick }: Props & { locale: Locale }) {
+  if (locale === "en") {
+    return (
+      <Link to="/who" className={className} onClick={onClick}>
+        {children}
+      </Link>
+    );
+  }
+  return (
+    <Link to="/$locale/who" params={{ locale }} className={className} onClick={onClick}>
+      {children}
+    </Link>
+  );
+}
+
+export function AfterLink({ locale, className, children, onClick }: Props & { locale: Locale }) {
+  if (locale === "en") {
+    return (
+      <Link to="/after" className={className} onClick={onClick}>
+        {children}
+      </Link>
+    );
+  }
+  return (
+    <Link to="/$locale/after" params={{ locale }} className={className} onClick={onClick}>
+      {children}
+    </Link>
+  );
+}
+
+export function MethodLink({ locale, className, children, onClick }: Props & { locale: Locale }) {
+  if (locale === "en") {
+    return (
+      <Link to="/method" className={className} onClick={onClick}>
+        {children}
+      </Link>
+    );
+  }
+  return (
+    <Link to="/$locale/method" params={{ locale }} className={className} onClick={onClick}>
       {children}
     </Link>
   );

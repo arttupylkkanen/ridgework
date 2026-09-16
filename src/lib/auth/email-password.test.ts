@@ -43,3 +43,56 @@ describe("email verification gating", () => {
     assert.equal(await required(), true);
   });
 });
+
+describe("the QA login is born verified", () => {
+  afterEach(restore);
+
+  /** The hook Better Auth runs before it writes a new user row. */
+  async function createBefore() {
+    process.env.RESEND_API_KEY = "re_test";
+    process.env.EMAIL_FROM = "Ridgework <support@ridgework.org>";
+    const mod = await import("./email-password.ts");
+    const opts = mod.emailPasswordOptions() as {
+      databaseHooks: {
+        user: { create: { before: (u: { email: string }) => Promise<{ data: unknown }> } };
+      };
+    };
+    return opts.databaseHooks.user.create.before;
+  }
+
+  it("marks the QA address verified so a bot can sign in unattended", async () => {
+    const before = await createBefore();
+    const { data } = await before({ email: "tester@ridgework.org" });
+    assert.equal((data as { emailVerified?: boolean }).emailVerified, true);
+  });
+
+  it("matches the QA address whatever case it arrives in", async () => {
+    const before = await createBefore();
+    const { data } = await before({ email: "  Tester@Ridgework.ORG " });
+    assert.equal((data as { emailVerified?: boolean }).emailVerified, true);
+  });
+
+  it("leaves every other address alone", async () => {
+    const before = await createBefore();
+    for (const email of [
+      "someone@example.com",
+      "arttu.pylkkanen@gmail.com",
+      "tester@example.com",
+    ]) {
+      const { data } = await before({ email });
+      assert.equal(
+        (data as { emailVerified?: boolean }).emailVerified,
+        undefined,
+        `${email} must still have to verify`,
+      );
+    }
+  });
+
+  it("keeps the rest of the row untouched", async () => {
+    const before = await createBefore();
+    const { data } = await before({ email: "someone@example.com", name: "Someone" } as {
+      email: string;
+    });
+    assert.equal((data as { name?: string }).name, "Someone");
+  });
+});

@@ -23,7 +23,10 @@ export type PageId =
   | "guides"
   | "example"
   | "sources"
-  | "plans";
+  | "plans"
+  | "who"
+  | "after"
+  | "method";
 
 /**
  * Which page the chrome is rendering, which is not quite the same set as the
