@@ -61,6 +61,8 @@ export type AthleteCopy = {
     sessionToday: string;
     minutes: string;
     was: string;
+    actualMinutes: string;
+    actualMinutesHint: string;
     markDone: string;
     markMissed: string;
     didTomorrow: string;
@@ -110,6 +112,14 @@ const reasonsEn: Record<string, string> = {
   longFromBand: "The long is {n} min because that matches your current longest outing.",
   volumeSplit: "Easy days share the rest of a {n} min week.",
   missedNoStack: "A hard session was missed. Nothing is stacked on top. No makeup quality.",
+  adherenceDeadDay:
+    "{day} has not happened for three weeks running, so the hard session moved off it. Easy work stays — an easy day missed costs the season very little.",
+  windowCostRecovered:
+    "Trimmed {lost} min to fit the time you have. {recovered} of it comes back on {day}, so the week is {net} min down, not {lost}.",
+  windowCostLost:
+    "Trimmed {lost} min to fit the time you have, and there was no other day with room. The week is {lost} min down.",
+  weekUnderTarget:
+    "This week lands {share}% under the {target} min this phase is built on — {short} min short. One week here is fine. Three in a row is a different plan.",
   travelSwap:
     "Travel until {until}. Mountain and climbing days become easy work from wherever you are.",
   engineConversational: "Aerobic engine: every run stays conversational.",
@@ -211,7 +221,8 @@ export const athleteEn: AthleteCopy = {
     units: { km: "Kilometres", miles: "Miles" },
     availableTitle: "Days you can train",
     windowTitle: "How long do those days actually have?",
-    windowHint: "Optional. Leave a day blank and we spend the weekly budget as usual. The clock time is only there if it helps you — the plan does not need it.",
+    windowHint:
+      "Optional. Leave a day blank and we spend the weekly budget as usual. The clock time is only there if it helps you — the plan does not need it.",
     windowMinutes: "Minutes",
     windowTime: "Start (optional)",
     peakLabel: "Day you want to be ready",
@@ -246,6 +257,9 @@ export const athleteEn: AthleteCopy = {
     sessionToday: "Today's session",
     minutes: "{n} min",
     was: "was {session}",
+    actualMinutes: "Minutes actually done",
+    actualMinutesHint:
+      "Optional, and left blank on purpose if you are not sure. We only read a number you entered — a guess would hide the thing this is for.",
     markDone: "Done",
     markMissed: "Missed",
     didTomorrow: "I did tomorrow's session today",
@@ -299,6 +313,14 @@ const reasonsFi: Record<string, string> = {
   longFromBand: "Pitkä on {n} min, koska se vastaa nykyistä pisintä vetoa.",
   volumeSplit: "Kevyet päivät jakavat {n} minuutin viikon.",
   missedNoStack: "Kova sessio jäi väliin. Päälle ei pinota. Ei korvaavaa tehoa.",
+  adherenceDeadDay:
+    "{day} ei ole toteutunut kolmeen viikkoon, joten kova sessio siirtyi pois siitä. Kevyt työ jää — väliin jäänyt kevyt päivä maksaa kaudelle hyvin vähän.",
+  windowCostRecovered:
+    "Leikattiin {lost} min käytettävissä olevaan aikaan. Siitä {recovered} min palaa {day}, joten viikko on {net} min miinuksella, ei {lost}.",
+  windowCostLost:
+    "Leikattiin {lost} min käytettävissä olevaan aikaan, eikä muilla päivillä ollut tilaa. Viikko on {lost} min miinuksella.",
+  weekUnderTarget:
+    "Viikko jää {share}% alle sen {target} minuutin, jolle tämä jakso rakentuu — {short} min vajaa. Yksi tällainen viikko ei haittaa. Kolme peräkkäin on eri suunnitelma.",
   travelSwap: "Matka {until} asti. Vuori- ja kiipeilypäivät ovat kevyttä sieltä missä olet.",
   engineConversational: "Aerobinen moottori: jokainen veto pysyy puhevauhdissa.",
   altitudeAcclimatization:
@@ -399,7 +421,8 @@ export const athleteFi: AthleteCopy = {
     units: { km: "Kilometrit", miles: "Mailit" },
     availableTitle: "Päivät jolloin voit treenata",
     windowTitle: "Paljonko noilla päivillä oikeasti on aikaa?",
-    windowHint: "Valinnainen. Jätä päivä tyhjäksi niin viikkobudjetti jaetaan kuten ennenkin. Kellonaika on vain sinua varten — suunnitelma ei tarvitse sitä.",
+    windowHint:
+      "Valinnainen. Jätä päivä tyhjäksi niin viikkobudjetti jaetaan kuten ennenkin. Kellonaika on vain sinua varten — suunnitelma ei tarvitse sitä.",
     windowMinutes: "Minuuttia",
     windowTime: "Alkaa (valinnainen)",
     peakLabel: "Päivä jolloin haluat olla valmis",
@@ -434,6 +457,9 @@ export const athleteFi: AthleteCopy = {
     sessionToday: "Tämän päivän sessio",
     minutes: "{n} min",
     was: "oli {session}",
+    actualMinutes: "Toteutuneet minuutit",
+    actualMinutesHint:
+      "Vapaaehtoinen, ja saa jäädä tyhjäksi jos et ole varma. Luemme vain itse kirjoitetun luvun — arvaus piilottaisi juuri sen mitä tällä haetaan.",
     markDone: "Tehty",
     markMissed: "Väliin",
     didTomorrow: "Tein huomisen session tänään",
@@ -470,7 +496,8 @@ export const athleteFi: AthleteCopy = {
 
 const reasonsFr: Record<string, string> = {
   availableDays: "Vous avez {n} jours d’entraînement. Le reste est du repos.",
-  dayWindowCap: "{n} séance(s) ont été raccourcies pour tenir dans le temps indiqué pour ces jours.",
+  dayWindowCap:
+    "{n} séance(s) ont été raccourcies pour tenir dans le temps indiqué pour ces jours.",
   beginnerNoQuality: "La base reste facile. La qualité attend le bloc spécifique.",
   noQualityBase: "Encore de la base aérobie. Pas de qualité cette semaine.",
   gymInsteadOfClimb: "Pas de matériel glace/rocher : l’escalade devient de la force en salle.",
@@ -487,6 +514,14 @@ const reasonsFr: Record<string, string> = {
   longFromBand: "La longue fait {n} min, alignée sur votre sortie actuelle la plus longue.",
   volumeSplit: "Les jours faciles se partagent une semaine de {n} min.",
   missedNoStack: "Une séance dure a été manquée. Rien n’est empilé. Pas de rattrapage.",
+  adherenceDeadDay:
+    "{day} n’a pas eu lieu trois semaines de suite : la séance dure en est retirée. Le travail facile reste — un jour facile manqué coûte très peu à la saison.",
+  windowCostRecovered:
+    "Réduit de {lost} min pour tenir dans le temps disponible. {recovered} min reviennent {day} : la semaine perd {net} min, pas {lost}.",
+  windowCostLost:
+    "Réduit de {lost} min pour tenir dans le temps disponible, et aucun autre jour n’avait de place. La semaine perd {lost} min.",
+  weekUnderTarget:
+    "La semaine finit {share}% sous les {target} min sur lesquelles cette phase est construite — {short} min de moins. Une semaine ainsi, ce n’est rien. Trois de suite, c’est un autre plan.",
   travelSwap: "Voyage jusqu’au {until}. Montagne et escalade deviennent du facile sur place.",
   engineConversational: "Moteur aérobie : chaque sortie reste conversationnelle.",
   altitudeAcclimatization:
@@ -587,7 +622,8 @@ export const athleteFr: AthleteCopy = {
     units: { km: "Kilomètres", miles: "Miles" },
     availableTitle: "Jours où vous pouvez vous entraîner",
     windowTitle: "Combien de temps ces jours ont-ils vraiment ?",
-    windowHint: "Facultatif. Laissez un jour vide et le budget hebdomadaire est réparti comme avant. L’heure n’est là que si elle vous aide.",
+    windowHint:
+      "Facultatif. Laissez un jour vide et le budget hebdomadaire est réparti comme avant. L’heure n’est là que si elle vous aide.",
     windowMinutes: "Minutes",
     windowTime: "Début (facultatif)",
     peakLabel: "Jour où vous voulez être prêt",
@@ -622,6 +658,9 @@ export const athleteFr: AthleteCopy = {
     sessionToday: "Séance du jour",
     minutes: "{n} min",
     was: "était {session}",
+    actualMinutes: "Minutes réellement faites",
+    actualMinutesHint:
+      "Facultatif, et à laisser vide si tu n’es pas sûr. Nous ne lisons qu’un chiffre que tu as saisi — une estimation masquerait précisément ce que cela cherche.",
     markDone: "Fait",
     markMissed: "Manqué",
     didTomorrow: "J’ai fait la séance de demain aujourd’hui",
@@ -678,6 +717,14 @@ const reasonsDe: Record<string, string> = {
   longFromBand: "Der Lange ist {n} min, passend zu deiner aktuellen längsten Einheit.",
   volumeSplit: "Lockere Tage teilen eine {n}-Minuten-Woche.",
   missedNoStack: "Harte Einheit verpasst. Nichts wird gestapelt. Kein Nachhol-Qualität.",
+  adherenceDeadDay:
+    "{day} hat drei Wochen in Folge nicht stattgefunden, deshalb ist die harte Einheit dort weg. Lockeres bleibt — ein verpasster lockerer Tag kostet die Saison sehr wenig.",
+  windowCostRecovered:
+    "Um {lost} Min gekürzt, damit es in deine Zeit passt. {recovered} Min kommen am {day} zurück, die Woche liegt also {net} Min zurück, nicht {lost}.",
+  windowCostLost:
+    "Um {lost} Min gekürzt, damit es in deine Zeit passt, und kein anderer Tag hatte Platz. Die Woche liegt {lost} Min zurück.",
+  weekUnderTarget:
+    "Diese Woche landet {share}% unter den {target} Min, auf denen diese Phase aufbaut — {short} Min zu wenig. Eine solche Woche ist in Ordnung. Drei hintereinander sind ein anderer Plan.",
   travelSwap: "Reise bis {until}. Berg und Klettern werden locker vor Ort.",
   engineConversational: "Aerobic Engine: jeder Lauf bleibt gesprächig.",
   altitudeAcclimatization:
@@ -776,7 +823,8 @@ export const athleteDe: AthleteCopy = {
     units: { km: "Kilometer", miles: "Meilen" },
     availableTitle: "Tage, an denen du trainieren kannst",
     windowTitle: "Wie viel Zeit haben diese Tage wirklich?",
-    windowHint: "Optional. Lass einen Tag leer, dann wird das Wochenbudget wie bisher verteilt. Die Uhrzeit ist nur für dich da.",
+    windowHint:
+      "Optional. Lass einen Tag leer, dann wird das Wochenbudget wie bisher verteilt. Die Uhrzeit ist nur für dich da.",
     windowMinutes: "Minuten",
     windowTime: "Beginn (optional)",
     peakLabel: "Tag, an dem du bereit sein willst",
@@ -811,6 +859,9 @@ export const athleteDe: AthleteCopy = {
     sessionToday: "Heutige Einheit",
     minutes: "{n} min",
     was: "war {session}",
+    actualMinutes: "Tatsächliche Minuten",
+    actualMinutesHint:
+      "Optional, und absichtlich leer, wenn du unsicher bist. Wir lesen nur eine Zahl, die du eingegeben hast — eine Schätzung würde genau das verdecken, worum es hier geht.",
     markDone: "Erledigt",
     markMissed: "Verpasst",
     didTomorrow: "Ich habe die morgige Einheit heute gemacht",

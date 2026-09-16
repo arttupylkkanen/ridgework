@@ -1,3 +1,5 @@
+import { findings, hardestDayToKeep } from "./adherence.ts";
+import { trimCost, weekShortfall } from "./session-cost.ts";
 import type { AthleteProfile, AccessFlag, Equipment } from "./athlete.ts";
 import { longestMinutes, weeklyMinutes, windowsOf } from "./athlete.ts";
 import type {
@@ -166,6 +168,13 @@ function placeWork(
   profile: AthleteProfile,
   phase: PlannedWeek["phase"],
   reasons: Reason[],
+  /**
+   * A weekday history says does not happen (see `src/lib/adherence.ts`).
+   * Load-bearing work is kept off it; easy work may still land there, because
+   * an easy day missed costs the season very little and pretending the day
+   * does not exist at all would shrink the week on the strength of a habit.
+   */
+  avoidDay: number | null = null,
 ): DaySession[] {
   const slots = availableSlots(profile);
   const out: DaySession[] = Array.from({ length: 7 }, () => restDay());
@@ -185,11 +194,20 @@ function placeWork(
       !LONG_KEYS.has(d.key) && !QUALITY_KEYS.has(d.key) && d.key !== "rest" && d.key !== "engine",
   );
 
+  // Placing the long and the quality avoids the dead weekday, but only while
+  // two real options remain: a week with one usable day has nowhere better to
+  // go, and honouring the hint there would empty it.
+  const withoutDead = avoidDay === null ? slots : slots.filter((i) => i !== avoidDay);
+  const workSlots = withoutDead.length >= 2 ? withoutDead : slots;
+  if (avoidDay !== null && workSlots !== slots) {
+    reasons.push({ id: "adherenceDeadDay", values: { day: avoidDay } });
+  }
+
   // The long goes on the day with the most time, not on Saturday by habit.
   // Equal windows (including "no ceiling" on both) fall back to the weekend.
   const windows = windowsOf(profile);
   const roomOf = (i: number) => windows[i]?.minutes ?? Number.POSITIVE_INFINITY;
-  const weekendFirst = [...slots].sort((a, b) => {
+  const weekendFirst = [...workSlots].sort((a, b) => {
     const ra = roomOf(a);
     const rb = roomOf(b);
     if (ra !== rb) return rb > ra ? 1 : -1;
@@ -218,14 +236,14 @@ function placeWork(
 
   let qualitySlot: number | undefined;
   if (allowQuality && seedQuality) {
-    qualitySlot = slots.find((i) => i !== longSlot && Math.abs(i - longSlot) >= 2);
-    if (qualitySlot === undefined) qualitySlot = slots.find((i) => i !== longSlot);
+    qualitySlot = workSlots.find((i) => i !== longSlot && Math.abs(i - longSlot) >= 2);
+    if (qualitySlot === undefined) qualitySlot = workSlots.find((i) => i !== longSlot);
     if (
       profile.constraints.includes("shiftWork") &&
       qualitySlot !== undefined &&
       qualitySlot <= 1
     ) {
-      const later = slots.find((i) => i !== longSlot && i >= 2 && Math.abs(i - longSlot) >= 2);
+      const later = workSlots.find((i) => i !== longSlot && i >= 2 && Math.abs(i - longSlot) >= 2);
       if (later !== undefined) qualitySlot = later;
       reasons.push({ id: "shiftNoEarlyQuality", values: {} });
     }
@@ -340,7 +358,10 @@ function fitToWindows(
     return { ...day, minutes: Math.max(20, room) };
   });
   if (capped > 0) reasons.push({ id: "dayWindowCap", values: { n: capped } });
-  if (spare <= 0) return trimmed;
+  if (spare <= 0) {
+    if (capped > 0) reportTrim(days, trimmed, reasons);
+    return trimmed;
+  }
 
   const headroom = trimmed
     .map((day, i) => {
@@ -353,13 +374,40 @@ function fitToWindows(
   if (headroom.length === 0) return trimmed;
 
   const share = Math.floor(spare / headroom.length);
-  if (share <= 0) return trimmed;
+  if (share <= 0) {
+    reportTrim(days, trimmed, reasons);
+    return trimmed;
+  }
   const byIndex = new Map(headroom.map((row) => [row.i, row.space]));
-  return trimmed.map((day, i) => {
+  const spread = trimmed.map((day, i) => {
     const space = byIndex.get(i);
     if (space === undefined || day.minutes === undefined) return day;
     return { ...day, minutes: day.minutes + Math.min(share, space) };
   });
+  reportTrim(days, spread, reasons);
+  return spread;
+}
+
+/**
+ * Turn the difference between the week as written and the week that fits into
+ * a reason the athlete can act on: what went, and where it came back.
+ */
+function reportTrim(before: DaySession[], after: DaySession[], reasons: Reason[]): void {
+  const cost = trimCost(before, after);
+  if (cost.lost <= 0) return;
+  reasons.push(
+    cost.recovered > 0 && cost.recoveredOn !== null
+      ? {
+          id: "windowCostRecovered",
+          values: {
+            lost: cost.lost,
+            recovered: cost.recovered,
+            day: cost.recoveredOn,
+            net: cost.net,
+          },
+        }
+      : { id: "windowCostLost", values: { lost: cost.lost } },
+  );
 }
 
 function applyMissedStack(
@@ -427,7 +475,8 @@ export function buildWeek(
   if (phase === "done") return null;
   const reasons: Reason[] = [];
   const seed = templateDays(phase, state.objective, false);
-  let days = placeWork(seed, profile, phase, reasons);
+  const history = findings(state.logs, calendar);
+  let days = placeWork(seed, profile, phase, reasons, hardestDayToKeep(history));
   days = days.map((day) => swapAccess(day, profile, state, reasons));
   days = assignMinutes(days, profile, phase, reasons);
   const dates = days.map((_, i) => sessionDate(state, calendar, i));
@@ -443,6 +492,15 @@ export function buildWeek(
     reasons.push({ id: "altitudeAcclimatization", values: {} });
   }
   const flagged = applyStateFlags({ calendar, phase, eased: false, days, reasons }, state);
+  // One fact about the finished week, after every edit has landed: the pile of
+  // individual reasons above says what changed, this says whether it mattered.
+  const shortfall = weekShortfall(flagged.days, weeklyMinutes(profile.weeklyHours));
+  if (shortfall) {
+    reasons.push({
+      id: "weekUnderTarget",
+      values: { share: shortfall.share, short: shortfall.short, target: shortfall.target },
+    });
+  }
   reasons.push({ id: "peakUnchanged", values: { peak: state.peakOn } });
   return {
     calendar,
@@ -598,12 +656,20 @@ export function markToday(
   status: SessionLog["status"],
   today = todayIso(),
   view?: TodayView | null,
+  /**
+   * Minutes the athlete actually spent, when they entered them. Left undefined
+   * the log still records what happened — it just cannot contribute to the
+   * "done, but short" finding, which needs a real number to mean anything.
+   */
+  actualMinutes?: number,
 ): { state: RollingState; adjustment?: Adjustment } {
   const ptr = pointerForDate(state, today);
   if (!ptr) return { state };
   const week = buildWeek(state, ptr.calendar, profile);
   const written = week?.days[ptr.dayIndex] ?? restDay();
   const shown = view?.shown ?? written;
+  const entered =
+    typeof actualMinutes === "number" && actualMinutes > 0 ? actualMinutes : undefined;
   const log: SessionLog = {
     date: today,
     weekCalendar: ptr.calendar,
@@ -612,6 +678,11 @@ export function markToday(
     actualKey: status === "missed" ? "rest" : shown.key,
     status,
     at: new Date().toISOString(),
+    // What the day asked for is the session as shown, not as originally
+    // written: the athlete was told to do the eased version, so that is the
+    // number their time should be measured against.
+    ...(shown.minutes !== undefined ? { plannedMinutes: shown.minutes } : {}),
+    ...(status === "done" && entered !== undefined ? { actualMinutes: entered } : {}),
   };
   let next = {
     ...state,

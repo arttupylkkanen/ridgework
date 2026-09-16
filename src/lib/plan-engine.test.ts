@@ -281,3 +281,67 @@ describe("per-day time windows", () => {
     assert.ok(week.days.every((d) => d.key === "rest" || (d.minutes ?? 0) >= 20));
   });
 });
+
+describe("weeks that history has already answered", () => {
+  const HARD = new Set(["long", "quality", "sharpness", "climb", "strength", "pack", "mountain", "me"]);
+
+  function missedEvery(state: RollingState, dayIndex: number, weeks: number[]): RollingState {
+    return {
+      ...state,
+      logs: weeks.map((weekCalendar) => ({
+        date: addDaysIso(state.startedOn, weekCalendar * 7 + dayIndex),
+        weekCalendar,
+        dayIndex,
+        plannedKey: "quality" as const,
+        actualKey: "rest" as const,
+        status: "missed" as const,
+        at: "2026-01-01T00:00:00.000Z",
+      })),
+    };
+  }
+
+  it("keeps load-bearing work off a weekday that never happens", () => {
+    const { state, athlete } = plan();
+    const dead = 3; // Thursday
+    const week = buildWeek(missedEvery(state, dead, [1, 2, 3]), 5, athlete);
+    assert.ok(week);
+    assert.equal(HARD.has(week.days[dead]!.key), false);
+    assert.ok(week.reasons.some((r) => r.id === "adherenceDeadDay" && r.values.day === dead));
+  });
+
+  it("still uses the day for easy work rather than writing it off", () => {
+    const { state, athlete } = plan();
+    const dead = 3;
+    const week = buildWeek(missedEvery(state, dead, [1, 2, 3]), 5, athlete);
+    assert.ok(week);
+    // The athlete said the day is available; only the hard work moves.
+    assert.notEqual(week.days[dead]!.key, "rest");
+  });
+
+  it("a week with no history is byte-identical to before the feature", () => {
+    const { state, athlete } = plan();
+    const withHistory = buildWeek({ ...state, logs: [] }, 3, athlete);
+    const without = buildWeek(state, 3, athlete);
+    assert.deepEqual(withHistory, without);
+    assert.ok(!without?.reasons.some((r) => r.id === "adherenceDeadDay"));
+  });
+
+  it("two missed Thursdays are a busy fortnight, not a pattern", () => {
+    const { state, athlete } = plan();
+    const dead = 3;
+    const week = buildWeek(missedEvery(state, dead, [1, 2]), 5, athlete);
+    const untouched = buildWeek(state, 5, athlete);
+    assert.deepEqual(week, untouched);
+  });
+
+  it("does not empty a week that has only two usable days", () => {
+    const { state, athlete } = plan({
+      availableDays: [false, false, false, true, false, true, false],
+    });
+    const dead = 3;
+    const week = buildWeek(missedEvery(state, dead, [1, 2, 3]), 5, athlete);
+    const untouched = buildWeek(state, 5, athlete);
+    // Honouring the hint here would leave one day to carry the whole week.
+    assert.deepEqual(week, untouched);
+  });
+});
