@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { useRouterState } from "@tanstack/react-router";
-import { GROK_PROVIDERS, authClient, authEnabled, signIn } from "@/lib/auth/client";
+import { SOCIAL_PROVIDERS, authClient, authEnabled, signIn } from "@/lib/auth/client";
 import type { Copy } from "@/content/types";
 import type { Locale } from "@/lib/locale";
 import { appProgramPath, pagePath } from "@/lib/locale";
@@ -85,7 +85,7 @@ export function LoginPage({ locale, copy }: { locale: Locale; copy: Copy }) {
 
         {authEnabled ? (
           <div className="mt-8 space-y-3">
-            {GROK_PROVIDERS.map((p) => (
+            {SOCIAL_PROVIDERS.map((p) => (
               <button
                 key={p.providerId}
                 type="button"

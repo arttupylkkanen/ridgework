@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { FieldPage } from "@/components/field-page";
 import { SiteShell } from "@/components/site-shell";
 import { getCopy } from "@/content";
+import { canonical, siteMeta } from "@/lib/seo";
 import { isPathLocale } from "@/lib/locale";
 
 export const Route = createFileRoute("/$locale/field")({
@@ -9,10 +10,13 @@ export const Route = createFileRoute("/$locale/field")({
     const locale = isPathLocale(params.locale) ? params.locale : "en";
     const copy = getCopy(locale);
     return {
-      meta: [
-        { title: copy.fieldPage.title },
-        { name: "description", content: copy.fieldPage.description },
-      ],
+      meta: siteMeta({
+        title: copy.fieldPage.title,
+        description: copy.fieldPage.description,
+        path: `/${locale}/field`,
+        locale,
+      }),
+      links: canonical(`/${locale}/field`),
     };
   },
   component: Page,

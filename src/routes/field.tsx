@@ -2,15 +2,19 @@ import { createFileRoute } from "@tanstack/react-router";
 import { FieldPage } from "@/components/field-page";
 import { SiteShell } from "@/components/site-shell";
 import { getCopy } from "@/content";
+import { canonical, siteMeta } from "@/lib/seo";
 
 const copy = getCopy("en");
 
 export const Route = createFileRoute("/field")({
   head: () => ({
-    meta: [
-      { title: copy.fieldPage.title },
-      { name: "description", content: copy.fieldPage.description },
-    ],
+    meta: siteMeta({
+      title: copy.fieldPage.title,
+      description: copy.fieldPage.description,
+      path: "/field",
+      locale: "en",
+    }),
+    links: canonical("/field"),
   }),
   component: Page,
 });

@@ -2,6 +2,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { GuideArticle } from "@/components/guides-page";
 import { getCopy } from "@/content";
 import { getGuide } from "@/content/guides";
+import { canonical, siteMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/guides/$slug")({
   loader: ({ params }) => {
@@ -13,10 +14,13 @@ export const Route = createFileRoute("/guides/$slug")({
     const guide = getGuide(params.slug);
     const copy = getCopy("en");
     return {
-      meta: [
-        { title: `${guide?.title.en ?? copy.guidesIndex.h2} — Ridgework` },
-        { name: "description", content: guide?.description.en ?? copy.guidesIndex.lead },
-      ],
+      meta: siteMeta({
+        title: `${guide?.title.en ?? copy.guidesIndex.h2} — Ridgework`,
+        description: guide?.description.en ?? copy.guidesIndex.lead,
+        path: `/guides/${params.slug}`,
+        locale: "en",
+      }),
+      links: canonical(`/guides/${params.slug}`),
     };
   },
   component: Page,

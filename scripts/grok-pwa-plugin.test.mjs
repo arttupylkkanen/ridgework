@@ -500,13 +500,17 @@ test("renders the manifest with the per-app name", () => {
   assert.equal(manifest.icons[0].src, "/__grok/icon-180.png");
 });
 
-// Tripwires: the deployed-app path only works if Nitro scans server/ — an
-// accidental edit that drops serverDir or the middleware file would otherwise
-// fail silently (published apps would just render the app for ?install=1).
-test("vite config keeps the nitro serverDir wiring", () => {
+// Inverted tripwire. Ridgework deploys to its own Vercel project, so the
+// platform head injector must stay unwired: no `grokPwaPlugin()` and no
+// `serverDir`, which is what stops Nitro scanning server/middleware and
+// stamping extensions.js, /__grok/* and grok-project-id onto ridgework.org.
+// The modules below are still exercised by the rest of this file and still
+// live on disk — the app just never calls them. Re-adding either line is the
+// regression this guards.
+test("vite config does not wire the platform head injector", () => {
   const viteConfig = readFileSync(join(TEMPLATE_ROOT, "vite.config.ts"), "utf8");
-  assert.match(viteConfig, /serverDir:\s*"\.\/server"/);
-  assert.match(viteConfig, /grokPwaPlugin\(\)/);
+  assert.doesNotMatch(viteConfig, /serverDir:\s*"\.\/server"/);
+  assert.doesNotMatch(viteConfig, /grokPwaPlugin\(\)/);
 });
 
 test("nitro middleware and its bundled assets exist", () => {

@@ -1,27 +1,34 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
+import { getCopy } from "@/content";
+import { siteMeta } from "@/lib/seo";
 import appCss from "../styles.css?url";
 
-const APP_NAME = "Ridgework";
+const defaultCopy = getCopy("en");
 
 export const Route = createRootRoute({
   head: () => ({
+    // Root defaults for every page. A route that calls `siteMeta` itself
+    // overrides these by name/property; routes that only set a title and
+    // description (the guides) inherit the share card from here. Nothing
+    // injects tags at the edge any more, so whatever is missing here is
+    // missing from the served HTML.
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: APP_NAME },
       { name: "theme-color", content: "#2f8a4e" },
-      {
-        name: "description",
-        content:
-          "Weekly training for trail and ultra: 20 km, 50 km, 100 km, alpine days. 14 days at €0 with a card, then €5/month.",
-      },
+      ...siteMeta({
+        title: defaultCopy.metaTitle,
+        description: defaultCopy.metaDescription,
+        path: "/",
+        locale: "en",
+      }),
     ],
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
-      { rel: "icon", type: "image/png", href: "/brand/logo-a.png" },
-      { rel: "apple-touch-icon", href: "/brand/logo-a.png" },
+      { rel: "icon", type: "image/png", sizes: "192x192", href: "/brand/icon-192.png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/brand/icon-180.png" },
       { rel: "stylesheet", href: appCss },
       { rel: "manifest", href: "/manifest.webmanifest" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -38,7 +45,7 @@ export const Route = createRootRoute({
         <HeadContent />
       </head>
       <body>
-        <PreviewHostBridge />
+        {import.meta.env.DEV ? <PreviewHostBridge /> : null}
         <AuthProvider>
           <Outlet />
         </AuthProvider>

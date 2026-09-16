@@ -38,7 +38,11 @@ import { Pool } from "pg";
 import { ensureDbReady, getPglite } from "../db";
 import { emailPasswordOptions } from "./email-password";
 import { GATE_PROVIDER_ID, gateIdentitySessions } from "./gate-session.server";
-import { GROK_PROVIDERS } from "./providers";
+import {
+  brokerProviders,
+  nativeSocialOptions,
+  trustedSocialProviderIds,
+} from "./social";
 import { pgliteDialect } from "./pglite-dialect";
 import {
   GROK_ISSUER_DEFAULT,
@@ -158,9 +162,10 @@ export const SESSION_TOKEN_COOKIE = "__Host-grok-auth.session_token";
 
 // Built separately so the `betterAuth({...})` call stays easy to edit without
 // breaking brackets (models often trip on the conditional plugin spread).
-const grokOAuthPlugin = authConfigured
+const brokerFederated = brokerProviders();
+const grokOAuthPlugin = authConfigured && brokerFederated.length > 0
   ? genericOAuth({
-      config: GROK_PROVIDERS.map(({ providerId, idp }) => ({
+      config: brokerFederated.map(({ providerId, idp }) => ({
         providerId,
         clientId: grokClientId as string,
         clientSecret: grokClientSecret as string,
@@ -187,6 +192,10 @@ export const auth = betterAuth({
   secret: env("BETTER_AUTH_SECRET") ?? previewAuthSecret(),
   database,
 
+  // This app's own Google/GitHub OAuth clients, when their credentials are
+  // set. Empty (a no-op spread) unless `VITE_SOCIAL_PROVIDERS` selects them.
+  ...nativeSocialOptions(),
+
   // CSRF / origin check for credentialed auth POSTs (email sign-up/sign-in, …).
   // See `trustedOrigins` construction above — must cover live preview hosts AND
   // local loopback variants, or clients get "Invalid origin".
@@ -203,7 +212,8 @@ export const auth = betterAuth({
     accountLinking: {
       enabled: true,
       trustedProviders: [
-        ...GROK_PROVIDERS.map((p) => p.providerId),
+        ...brokerFederated.map((p) => p.providerId),
+        ...trustedSocialProviderIds(),
         GATE_PROVIDER_ID,
       ],
       // X's synthetic email is never "verified", so don't gate linking on the
@@ -264,6 +274,6 @@ export function readSessionToken(): string | null {
   return getCookie(SESSION_TOKEN_COOKIE) ?? null;
 }
 
-// Re-exported for convenience; the array lives in the dependency-free
-// `providers.ts` so the client can import it too.
-export { GROK_PROVIDERS } from "./providers";
+// Re-exported for convenience; the arrays live in the dependency-free
+// `providers.ts` so the client can import them too.
+export { BROKER_PROVIDERS, NATIVE_PROVIDERS } from "./providers";
