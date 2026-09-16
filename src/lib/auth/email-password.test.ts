@@ -33,13 +33,13 @@ describe("email verification gating", () => {
     assert.equal(await required(), false);
 
     delete process.env.RESEND_API_KEY;
-    process.env.EMAIL_FROM = "Ridgework <hello@ridgework.org>";
+    process.env.EMAIL_FROM = "Ridgework <support@ridgework.org>";
     assert.equal(await required(), false);
   });
 
   it("requires verification once a mailer can actually deliver", async () => {
     process.env.RESEND_API_KEY = "re_test";
-    process.env.EMAIL_FROM = "Ridgework <hello@ridgework.org>";
+    process.env.EMAIL_FROM = "Ridgework <support@ridgework.org>";
     assert.equal(await required(), true);
   });
 });
