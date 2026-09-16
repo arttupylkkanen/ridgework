@@ -260,7 +260,7 @@ const enItems: MountainPrepCopy["items"] = {
     why: "A rushed summit from a low sleep is a classic way to get sent down.",
   },
   "altitude.sleepHigh": {
-    label: "Do not plan a first night at a new high camp after a huge carry.",
+    label: "Do not plan a first night at a new altitude after a huge carry.",
     why: "Arrive, melt snow, eat, sleep. The ridge can wait one morning.",
   },
   "altitude.descend": {

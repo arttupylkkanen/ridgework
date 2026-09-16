@@ -397,7 +397,7 @@ export const PLAN_PAGES: PlanPage[] = [
       "A 40-week expedition training plan: hiking volume, pack carries, muscular endurance, and a final block that is sleep and logistics rather than more load.",
     kicker: "High-altitude expedition",
     h1: "High-altitude expedition training plan",
-    lead: "Forty weeks for a high camp. Hiking and easy volume, progressive pack carries, muscular endurance — and a final block that is deliberately about sleep, food and packing rather than one more hard carry.",
+    lead: "Forty weeks for a high-altitude expedition. Hiking and easy volume, progressive pack carries, muscular endurance — and a final block that is sleep, food and packing rather than one more hard carry.",
     body: [
       "Expedition training is a long game played mostly at low intensity. The work that matters is the ability to carry a load, day after day, at an effort that leaves something in reserve, while eating enough when altitude has quietly removed your appetite.",
       "Twenty-two weeks of base come first: hiking, easy aerobic volume, and strength established early. The specific block adds muscular endurance and loaded carries on hiking days, building the tolerance that rotation days will demand.",

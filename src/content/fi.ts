@@ -263,7 +263,7 @@ export const fi: Copy = {
     forTitle: "Rakennettu",
     forItems: [
       "Kestävyysurheilijoille, jotka suunnittelevat viikkoja elämän ja maaston ympärille",
-      "Niille jotka treenaavat kohti aerobista moottoria, 20 km polkua, 50 tai 100 km ultraa, alppipäivää, ketjutettua reittiä tai korkeaa leiriä",
+      "Niille jotka treenaavat kohti aerobista moottoria, 20 km polkua, 50 tai 100 km ultraa, alppipäivää, ketjutettua reittiä tai korkealla tehtävää retkikuntaa",
       "Kaikille, jotka haluavat rauhalliset työkalut, ei motivaatio-spamia",
     ],
     notTitle: "Ei",

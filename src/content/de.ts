@@ -261,7 +261,7 @@ export const de: Copy = {
     forTitle: "Gebaut für",
     forItems: [
       "Ausdauerathletinnen und -athleten, die Wochen um Leben und Gelände planen",
-      "Alle, die auf 20-km-Trail, 50- oder 100-km-Ultra, Alpentag, verbundene Route oder Höhenlager trainieren",
+      "Alle, die auf 20-km-Trail, 50- oder 100-km-Ultra, Alpentag, verbundene Route oder Höhenexpedition trainieren",
       "Alle, die ruhige Tools Motivation-Spam vorziehen",
     ],
     notTitle: "Nicht für",

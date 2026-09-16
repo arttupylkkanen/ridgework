@@ -283,7 +283,7 @@ export const en: Copy = {
     forTitle: "Built for",
     forItems: [
       "Endurance athletes planning training weeks around real life and terrain",
-      "People training toward an aerobic engine, a 20 km trail, a 50 or 100 km ultra, an alpine day, a linked route, or a high camp",
+      "People training toward an aerobic engine, a 20 km trail, a 50 or 100 km ultra, an alpine day, a linked route, or a high-altitude expedition",
       "Anyone who prefers calm tools over motivational spam",
     ],
     notTitle: "Not for",

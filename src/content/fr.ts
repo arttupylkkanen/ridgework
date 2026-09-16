@@ -267,7 +267,7 @@ export const fr: Copy = {
     forTitle: "Conçu pour",
     forItems: [
       "Athlètes d’endurance qui planifient la semaine autour de la vraie vie et du terrain",
-      "Ceux qui s’entraînent vers un trail 20 km, un ultra 50 ou 100 km, une journée alpine, un itinéraire lié ou un camp d’altitude",
+      "Ceux qui s’entraînent vers un trail 20 km, un ultra 50 ou 100 km, une journée alpine, un itinéraire lié ou une expédition en altitude",
       "Ceux qui préfèrent des outils calmes au spam motivationnel",
     ],
     notTitle: "Pas pour",
