@@ -6,6 +6,7 @@
  * that frozen file keeps a single line about this feature.
  */
 import { mailerConfigured, sendEmail } from "../email/send.server.ts";
+import { isTestAccountEmail } from "../test-account.ts";
 
 export const emailAndPasswordEnabled = true;
 
@@ -90,10 +91,37 @@ async function deliverReset(input: { user: { email: string; name?: string | null
   );
 }
 
+/**
+ * The shared QA login is born verified.
+ *
+ * Verification exists to prove that whoever typed an address controls the
+ * mailbox. For tester@ridgework.org that is already settled — it is our own
+ * address on our own domain — and the thing that has to sign in with it is a
+ * bot, which cannot open a link in an inbox. Without this the account works
+ * only while the mailer is unconfigured, and gets locked out by
+ * EMAIL_NOT_VERIFIED the day RESEND_API_KEY and EMAIL_FROM start working.
+ *
+ * `requireEmailVerification` is one global boolean in Better Auth, so this is
+ * the seam that can exempt a single account. It fires on creation only, and
+ * once the row exists nobody else can take that address: sign-up answers
+ * USER_ALREADY_EXISTS.
+ */
+const verifyTestAccountOnCreate = {
+  user: {
+    create: {
+      before: async (user: { email: string }) =>
+        isTestAccountEmail(user.email)
+          ? { data: { ...user, emailVerified: true } }
+          : { data: user },
+    },
+  },
+};
+
 /** Spread into the Better Auth config in `server.ts`. */
 export function emailPasswordOptions() {
   if (!emailAndPasswordEnabled) return {};
   return {
+    databaseHooks: verifyTestAccountOnCreate,
     emailAndPassword: {
       enabled: true,
       requireEmailVerification: emailVerificationRequired(),
