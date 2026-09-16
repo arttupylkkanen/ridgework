@@ -65,6 +65,22 @@ export type FieldPage = {
   };
 };
 
+export type OfferTerms = {
+  /** Primary button label, everywhere one appears. */
+  cta: string;
+  /** Headline and standfirst of the pricing section. */
+  title: string;
+  lead: string;
+  /** Short chip on the pricing card. */
+  badge: string;
+  /** One sentence under the hero and above the sign-up form. */
+  line: string;
+  /** Four bullets on the pricing card. */
+  features: string[];
+  laterTitle: string;
+  laterBody: string;
+};
+
 export type Copy = {
   metaTitle: string;
   metaDescription: string;
@@ -94,8 +110,20 @@ export type Copy = {
     login: string;
     account: string;
   };
-  cta: { start: string; pricing: string; openTools: string };
-  hero: { kicker: string; h1: string; lead: string; trial: string };
+  cta: { pricing: string; openTools: string };
+  /**
+   * The two shapes the offer can take. src/lib/offer.ts picks one from
+   * CHECKOUT_OPEN — never read both, and never hard-code a trial length in
+   * copy outside this block.
+   */
+  offer: { free: OfferTerms; trial: OfferTerms };
+  hero: {
+    kicker: string;
+    h1: string;
+    lead: string;
+    proofLabel: string;
+    proofHeld: string;
+  };
   about: {
     kicker: string;
     h2: string;
@@ -183,22 +211,13 @@ export type Copy = {
     cta: string;
     read: string;
   };
+  /** Everything price-dependent lives on `offer`; these are the fixed labels. */
   pricing: {
     kicker: string;
-    h2: string;
-    lead: string;
-    badge: string;
-    trialBadge: string;
     name: string;
-    /** Replace the price block while CHECKOUT_OPEN is false. */
     freeTag: string;
-    freeNow: string;
     price: string;
     per: string;
-    blurb: string;
-    features: string[];
-    laterTitle: string;
-    laterBody: string;
   };
   checkout: {
     kicker: string;

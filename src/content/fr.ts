@@ -8,7 +8,7 @@ import type { Copy } from "./types";
 export const fr: Copy = {
   metaTitle: "Ridgework — Programmes d’entraînement trail, alpin et altitude",
   metaDescription:
-    "Que courir cette semaine pour un trail 20 km, un ultra 50 ou 100 km, ou une journée alpine. Une semaine fatiguée s’allège. 14 jours gratuits, sans carte.",
+    "Que courir cette semaine pour un trail 20 km, un ultra 50 ou 100 km, ou une journée alpine. Une semaine fatiguée s’allège. Sans carte pour commencer.",
   footerTag: "Un entraînement de montagne qui suit la semaine que vous avez vraiment.",
   legalEntity: "Ridgework, France.",
   support: "support@ridgework.org",
@@ -36,16 +36,50 @@ export const fr: Copy = {
     account: "Compte",
   },
   cta: {
-    start: "Commencer 14 jours gratuits",
     pricing: "Voir les tarifs",
     openTools: "Ouvrir les outils",
+  },
+  offer: {
+    free: {
+      cta: "Commencer gratuitement",
+      title: "Gratuit pour le moment.",
+      lead: "Ridgework est gratuit tant que l’immatriculation de la société est en cours — nous n’avons pas le droit d’encaisser, et nous ne prétendons pas le contraire. À l’ouverture, l’abonnement sera de 19 €/mois.",
+      badge: "Gratuit, sans carte",
+      line: "Gratuit tant que l’immatriculation de la société n’est pas terminée. Sans carte, rien à résilier.",
+      features: [
+        "Sept programmes, du foncier aérobie aux 100 km et aux journées alpines",
+        "Aucune carte demandée nulle part — les paiements ne sont pas encore ouverts",
+        "Des semaines réécrites quand vous dormez mal, sautez une séance ou voyagez",
+        "Des semaines d’entraînement, pas des allégations médicales",
+      ],
+      laterTitle: "À l’ouverture des paiements",
+      laterBody:
+        "L’abonnement sera de 19 €/mois, et votre accord sera demandé avant tout prélèvement. D’ici là rien ne peut vous être prélevé : aucune carte n’est enregistrée, le site ne pouvant pas en accepter.",
+    },
+    trial: {
+      cta: "Commencer 14 jours gratuits",
+      title: "14 jours sur le calendrier. Puis 19 €/mois.",
+      lead: "Courez d’abord une vraie semaine. Ensuite 19 €/mois si vous restez. Résiliez à tout moment, y compris pendant les 14 jours.",
+      badge: "14 jours gratuits",
+      line: "14 jours gratuits, sans carte. Puis 19 €/mois si vous en ajoutez une. Résiliez à tout moment.",
+      features: [
+        "Sept programmes, du foncier aérobie aux 100 km et aux journées alpines",
+        "Sans carte pendant 14 jours — ajoutez-en une quand vous voulez pour continuer à 19 €/mois",
+        "Résiliez pendant les 14 jours et Polar ne prélève rien",
+        "Des semaines d’entraînement, pas des allégations médicales",
+      ],
+      laterTitle: "Après les 14 jours",
+      laterBody:
+        "Ajoutez une carte quand vous voulez pour continuer à 19 €/mois. Rien n’est jamais prélevé automatiquement — sans carte, le bureau se met simplement en pause. Aucun autre tarif n’est indiqué sur ce site.",
+    },
   },
   hero: {
     kicker: "Entraînement en montagne",
     h1: "Entraînez-vous pour le jour qui compte.",
     lead: "Choisissez le jour où vous devez être prêt. Chaque semaine est écrite à rebours depuis cette date — et réécrite quand la vie s’en mêle.",
-    trial:
-      "Gratuit tant que l’immatriculation de la société n’est pas terminée. Sans carte, rien à résilier.",
+    proofLabel: "Ce que fait une nuit de cinq heures",
+    proofHeld:
+      "Une séance a changé. Le reste de la semaine, et le jour que vous visez, n’ont pas bougé.",
   },
   about: {
     kicker: "Ce que c’est",
@@ -352,7 +386,7 @@ export const fr: Copy = {
     note: "Pas un diagnostic. Si le genou gonfle, se bloque ou empire, voyez un médecin. Ici on ne change que la semaine d’entraînement.",
   },
   firstWeek: {
-    kicker: "Vos 14 premiers jours",
+    kicker: "Vos deux premières semaines",
     h2: "Ce qui se passe après la connexion",
     lead: "Vous choisissez une date de pic. Trois semaines arrivent au calendrier. Si une séance est cassée ou si ça fait mal, les jours suivants sont réécrits. La sortie reste où vous l’avez mise.",
     days: [
@@ -387,26 +421,10 @@ export const fr: Copy = {
   },
   pricing: {
     kicker: "Tarifs",
-    h2: "14 jours sur le calendrier. Puis 19 €/mois.",
-    lead: "Courez d’abord une vraie semaine. Ensuite 19 €/mois si vous restez. Résiliez à tout moment, y compris pendant les 14 jours.",
-    badge: "Prix actuel",
-    trialBadge: "14 jours gratuits",
     name: "Abonnement Ridgework",
     price: "€19",
     freeTag: "Gratuit",
-    freeNow:
-      "Gratuit tant que l’immatriculation de la société n’est pas terminée. Sans carte, rien à résilier. 19 €/mois à l’ouverture.",
     per: "/mois",
-    blurb: "14 jours gratuits. Puis 19 €/mois. Résiliez à tout moment.",
-    features: [
-      "Sept programmes, du moteur aérobie au 100 km et aux journées alpines",
-      "19 €/mois tant que l’abonnement continue",
-      "Résiliation à tout moment, y compris pendant les 14 jours — alors rien n’est facturé",
-      "Des semaines d’entraînement, pas de claims médicaux",
-    ],
-    laterTitle: "Après les 14 jours",
-    laterBody:
-      "Si vous restez, Polar facture 19 €/mois. Si vous résiliez pendant les 14 jours, vous n’êtes pas facturé. Plus tard, l’accès dure jusqu’à la fin de la période déjà payée. Aucun autre tarif n’est affiché sur ce site.",
   },
   checkout: {
     kicker: "Essai",
@@ -431,7 +449,7 @@ export const fr: Copy = {
     payFail: "Le paiement ne s’est pas ouvert. Écrivez à support@ridgework.org.",
     closedTitle: "Les paiements par carte ne sont pas encore ouverts",
     closedBody:
-      "Ridgework ne prend aucun paiement tant que l’immatriculation de la société n’est pas terminée. Vos 14 jours continuent, et rien ne peut être débité entre-temps.",
+      "Ridgework ne prend aucun paiement tant que l’immatriculation de la société n’est pas terminée. Rien ne peut être débité entre-temps — aucune carte n’est enregistrée.",
     paying: "Ouverture du paiement…",
     dueToday: "À régler aujourd’hui",
     dueAmount: "0 €",
@@ -468,19 +486,19 @@ export const fr: Copy = {
       },
       {
         q: "Comment marche le prix ?",
-        a: "14 jours gratuits. Puis 19 €/mois si vous restez. Résiliez pendant les 14 jours : rien n’est facturé.",
+        a: "Rien pour l’instant. Nous ne pouvons pas encaisser tant que l’immatriculation en France n’est pas terminée : le bureau est simplement gratuit et aucune carte n’est enregistrée. L’abonnement sera de 19 €/mois à l’ouverture, et vous le saurez avant.",
       },
       {
         q: "Puis-je résilier à tout moment ?",
-        a: "Oui. Un bouton Résilier est dans le bureau. Pendant les 14 jours Polar ne facture pas. Après un mois payé, l’accès dure jusqu’à la fin de ce mois. Carte et factures est à côté.",
+        a: "Oui. Un bouton Résilier est dans le bureau une fois une carte ajoutée. Sans carte, rien n’est jamais facturé — arrêtez simplement. Après un mois payé, l’accès dure jusqu’à la fin de ce mois.",
       },
       {
-        q: "Après les 14 jours ?",
+        q: "Puis-je être débité sans m’en apercevoir ?",
         a: "Si vous n’avez pas ajouté de carte, le bureau se met en pause jusqu’à ce que vous en ajoutiez une — rien n’est facturé automatiquement. Si vous en avez ajouté une, l’abonnement continue à 19 €/mois sauf résiliation.",
       },
       {
         q: "Faut-il une carte pour l’essai ?",
-        a: "Non. Commencez gratuitement pendant 14 jours sans carte. Ajoutez-en une quand vous voulez, pendant ou après l’essai, pour continuer à 19 €/mois.",
+        a: "Non. Aucune carte n’est demandée nulle part sur le site. À l’ouverture des paiements, l’abonnement sera de 19 €/mois et votre accord sera demandé d’abord.",
       },
       {
         q: "Est-ce un avis médical ?",
@@ -508,9 +526,9 @@ export const fr: Copy = {
   },
   foundingPage: {
     kicker: "Founding",
-    h1: "Commencez 14 jours gratuits",
-    lead: "Les mêmes semaines. 14 jours gratuits, puis 19 €/mois.",
-    trial: "14 jours gratuits. Puis 19 €/mois. Résiliez à tout moment.",
+    h1: "Commencez par la première semaine",
+    lead: "Les mêmes semaines. Sans carte.",
+    trial: "Sans carte. L’abonnement sera de 19 €/mois à l’ouverture des paiements.",
     note: "Sans carte pendant 14 jours. Ajoutez-en une quand vous voulez pour continuer à 19 €/mois. C’est le seul tarif affiché ici.",
     back: "← Ridgework",
     title: "Founding — Ridgework",

@@ -56,7 +56,7 @@ export const PLAN_UI = {
   faqTitle: "Questions",
   ctaTitle: "Start this plan",
   ctaBody:
-    "14 days free, no card needed. You set the date, answer a short setup, and three weeks land on the calendar straight away.",
+    "No card needed. You set the date, answer a short setup, and three weeks land on the calendar straight away.",
   ctaExample: "See a live example first",
 } as const;
 
@@ -66,7 +66,7 @@ export const PLAN_PAGES: PlanPage[] = [
     objective: "fifty",
     metaTitle: "50K Ultra Training Plan — Ridgework",
     metaDescription:
-      "A 24-week 50 km ultra training plan that rewrites itself around missed sessions, bad sleep and travel. You pick the race date. 14 days free, no card.",
+      "A 24-week 50 km ultra training plan that rewrites itself around missed sessions, bad sleep and travel. You pick the race date. No card needed.",
     kicker: "50 km ultra",
     h1: "50K ultra training plan",
     lead: "Twenty-four weeks from where you are now to a 50 km trail ultra you finish well, not just finish. You set the race date; the weeks are written backwards from it and rewritten forward as life happens.",
@@ -121,7 +121,7 @@ export const PLAN_PAGES: PlanPage[] = [
     objective: "ultra100",
     metaTitle: "100K Ultra Training Plan (80–120 km) — Ridgework",
     metaDescription:
-      "A 36-week 100 km ultra training plan with back-to-back long runs, night running and a four-week taper. Adapts to missed sessions. 14 days free, no card.",
+      "A 36-week 100 km ultra training plan with back-to-back long runs, night running and a four-week taper. Adapts to missed sessions. No card needed.",
     kicker: "80–120 km ultra",
     h1: "100K ultra training plan",
     lead: "Thirty-six weeks for a 100 km trail ultra. Months of easy time on feet, late back-to-back long runs, and a four-week taper — written around the date you gave, and rewritten every time a week does not go to plan.",
@@ -177,7 +177,7 @@ export const PLAN_PAGES: PlanPage[] = [
     objective: "trail20",
     metaTitle: "20K Trail Running Training Plan — Ridgework",
     metaDescription:
-      "A 10-week 20 km trail race training plan: easy volume, one quality session a week, a long run toward 110 minutes, and a 7-day taper. 14 days free.",
+      "A 10-week 20 km trail race training plan: easy volume, one quality session a week, a long run toward 110 minutes, and a 7-day taper. No card needed.",
     kicker: "20 km trail",
     h1: "20K trail race training plan",
     lead: "Ten weeks is enough for most people to arrive at a 20 km trail race in shape. Easy volume, one quality dose a week, a long run that grows toward two hours, and a week of easing off before the day.",
@@ -229,7 +229,7 @@ export const PLAN_PAGES: PlanPage[] = [
     objective: "engine",
     metaTitle: "Aerobic Base Training Plan (Low Heart Rate) — Ridgework",
     metaDescription:
-      "A 16-week aerobic base plan: easy volume at conversational pace, no race required. Build the engine before the next objective. 14 days free, no card.",
+      "A 16-week aerobic base plan: easy volume at conversational pace, no race required. Build the engine before the next objective. No card needed.",
     kicker: "Aerobic engine",
     h1: "Aerobic base training plan",
     lead: "Sixteen weeks of easy volume at a pace you can talk through. No race on the calendar required. This is the block that makes every later objective possible, and the one most people skip.",
@@ -282,7 +282,7 @@ export const PLAN_PAGES: PlanPage[] = [
     objective: "alpine",
     metaTitle: "Alpine Climbing Training Plan — Ridgework",
     metaDescription:
-      "A 10-week alpine day training plan: aerobic approaches, climbing sessions, mountain strength and muscular endurance, then the summit day. 14 days free.",
+      "A 10-week alpine day training plan: aerobic approaches, climbing sessions, mountain strength and muscular endurance, then the summit day. No card needed.",
     kicker: "Alpine day",
     h1: "Alpine climbing training plan",
     lead: "Ten weeks to a single big mountain day. Aerobic approaches, real climbing sessions, mountain-specific strength and muscular endurance — then a taper into your weather window.",
@@ -339,7 +339,7 @@ export const PLAN_PAGES: PlanPage[] = [
     objective: "traverse",
     metaTitle: "Multi-Day Alpine Traverse Training Plan — Ridgework",
     metaDescription:
-      "A 32-week training plan for a multi-day alpine route: hiking base, climbing, loaded back-to-back days, and peaking on day one. 14 days free, no card.",
+      "A 32-week training plan for a multi-day alpine route: hiking base, climbing, loaded back-to-back days, and peaking on day one. No card needed.",
     kicker: "Multi-day route",
     h1: "Multi-day alpine traverse training plan",
     lead: "Thirty-two weeks for a linked alpine route. Hiking base, then climbing plus loaded back-to-back days — built so you peak on day one and still have something left on day three.",

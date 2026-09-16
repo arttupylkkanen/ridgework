@@ -4,6 +4,7 @@ import type { Locale } from "@/lib/locale";
 import { cn, fillTemplate, reasonText } from "@/lib/utils";
 import { SessionHowTo } from "./session-how";
 import { PROGRAM_MEDIA } from "@/lib/program-media";
+import { PhotoImage } from "@/components/photo-image";
 import type { AthleteProfile } from "@/lib/athlete";
 import { overlayToday, realizeToday, visiblePersonalizedWeeks } from "@/lib/plan-engine";
 import { recentDaily } from "@/lib/daily-readiness";
@@ -198,13 +199,10 @@ export function RollingPlan({
                     : "border-line bg-card hover:bg-paper-warm/60",
                 )}
               >
-                <img
-                  src={photo.src}
-                  alt=""
-                  width={photo.width}
-                  height={photo.height}
+                <PhotoImage
+                  photo={photo}
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   className="aspect-[16/9] w-full object-cover"
-                  decoding="async"
                 />
                 <div className="p-4">
                   <p className="font-display text-lg font-semibold text-ridge-deep">{obj.name}</p>

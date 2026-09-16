@@ -21,6 +21,7 @@ import {
 } from "@/lib/athlete";
 import { OBJECTIVES, suggestedPeakOn, todayIso, type ObjectiveId } from "@/lib/rolling-plan";
 import { PROGRAM_MEDIA } from "@/lib/program-media";
+import { PhotoImage } from "@/components/photo-image";
 import { cn, fillTemplate } from "@/lib/utils";
 
 const STEPS = 7;
@@ -169,7 +170,11 @@ export function Onboarding({
                   selected ? "border-ridge bg-paper-warm" : "border-line bg-card hover:bg-paper-warm/60",
                 )}
               >
-                <img src={photo.src} alt="" width={photo.width} height={photo.height} className="aspect-[16/9] w-full object-cover" />
+                <PhotoImage
+                  photo={photo}
+                  sizes="(min-width: 640px) 50vw, 100vw"
+                  className="aspect-[16/9] w-full object-cover"
+                />
                 <div className="p-4">
                   <p className="font-display text-lg font-semibold text-ridge-deep">{obj.name}</p>
                   <p className="mt-1 text-xs font-medium uppercase tracking-wider text-accent">{obj.length}</p>

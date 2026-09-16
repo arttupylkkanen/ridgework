@@ -8,7 +8,7 @@ import type { Copy } from "./types";
 export const en: Copy = {
   metaTitle: "Ultra and trail training plans — Ridgework",
   metaDescription:
-    "What to run this week for a 20 km trail, 50 km or 100 km ultra, or an alpine day. You pick the peak date. 14 days free, no card needed.",
+    "What to run this week for a 20 km trail, 50 km or 100 km ultra, or an alpine day. You pick the peak date. No card needed to start.",
   footerTag: "Mountain training that follows the week you actually have.",
   legalEntity: "Ridgework, France.",
   support: "support@ridgework.org",
@@ -36,15 +36,50 @@ export const en: Copy = {
     account: "Account",
   },
   cta: {
-    start: "Start 14 days free",
     pricing: "See pricing",
     openTools: "Open tools",
+  },
+  offer: {
+    free: {
+      cta: "Start free",
+      title: "Free right now.",
+      lead: "Ridgework is free while the company registration is being completed — we are not allowed to take payment yet, so we are not pretending otherwise. When it opens, membership is €19/month.",
+      badge: "Free, no card",
+      line: "Free while we finish registering the company. No card, nothing to cancel.",
+      features: [
+        "Seven programs from aerobic engine to 100 km and alpine days",
+        "No card anywhere on the site — payments are not open yet",
+        "Weeks that get rewritten when you sleep badly, miss one, or travel",
+        "Training weeks, not medical claims",
+      ],
+      laterTitle: "When payments open",
+      laterBody:
+        "Membership will be €19/month, and you will be asked before anything is charged. Nothing can be taken from you in the meantime: there is no card on file because the site cannot accept one yet.",
+    },
+    trial: {
+      cta: "Start 14 days free",
+      title: "14 days on the calendar. Then €19/month.",
+      lead: "Run a real week first. Then €19/month if you stay. Cancel anytime, including during the 14 days.",
+      badge: "14 days free",
+      line: "14 days free, no card. €19/month if you add one after. Cancel anytime.",
+      features: [
+        "Seven programs from aerobic engine to 100 km and alpine days",
+        "No card for 14 days — add one anytime to keep training at €19/month",
+        "Cancel during the 14 days and Polar does not charge",
+        "Training weeks, not medical claims",
+      ],
+      laterTitle: "After the 14 days",
+      laterBody:
+        "Add a card anytime to keep training at €19/month. Nothing is ever charged automatically — without a card, the desk simply pauses until you add one. No other price is listed on this site.",
+    },
   },
   hero: {
     kicker: "Mountain training",
     h1: "Train for the day that matters.",
     lead: "Pick the day you need to be ready. Every week is written backwards from it — and rewritten when life gets in the way.",
-    trial: "Free while we finish registering the company. No card, nothing to cancel.",
+    proofLabel: "What a five-hour night does",
+    proofHeld:
+      "One session changed. The rest of the week, and the day you are aiming at, stayed where they were.",
   },
   about: {
     kicker: "What this is",
@@ -368,7 +403,7 @@ export const en: Copy = {
     note: "Not a diagnosis. If the knee swells, locks, or gets worse, see a doctor. This only changes the training week.",
   },
   firstWeek: {
-    kicker: "Your first 14 days",
+    kicker: "Your first two weeks",
     h2: "What happens after you sign in",
     lead: "You pick a peak date. Three weeks land on the calendar. If a session is wrecked or something hurts, the next days are rewritten. The outing stays where you put it.",
     days: [
@@ -403,26 +438,10 @@ export const en: Copy = {
   },
   pricing: {
     kicker: "Pricing",
-    h2: "Free right now.",
-    lead: "Ridgework is free while the company registration is being completed — we are not allowed to take payment yet, so we are not pretending otherwise. When it opens, membership is €19/month.",
-    badge: "Free while registration completes",
-    trialBadge: "14 days free",
     name: "Ridgework membership",
     price: "€19",
     freeTag: "Free",
-    freeNow:
-      "Free while we finish registering the company. No card, nothing to cancel. €19/month when it opens.",
     per: "/month",
-    blurb: "14 days free, no card. €19/month if you add one after. Cancel anytime.",
-    features: [
-      "Seven programs from aerobic engine to 100 km and alpine days",
-      "No card for 14 days — add one anytime to keep training at €19/month",
-      "Cancel during the 14 days and Polar does not charge",
-      "Training weeks, not medical claims",
-    ],
-    laterTitle: "After the 14 days",
-    laterBody:
-      "Add a card anytime to keep training at €19/month. Nothing is ever charged automatically — without a card, the desk simply pauses until you add one. No other price is listed on this site.",
   },
   checkout: {
     kicker: "Start",
@@ -446,7 +465,7 @@ export const en: Copy = {
     payFail: "Checkout did not open. Try again, or write support@ridgework.org with what you saw.",
     closedTitle: "Card payments are not open yet",
     closedBody:
-      "Ridgework is not taking payment until the company registration is finished. Your 14 days are unaffected, and nothing can be charged in the meantime — no card is stored anywhere.",
+      "Ridgework is not taking payment until the company registration is finished. Nothing can be charged in the meantime — no card is stored anywhere.",
     paying: "Opening checkout…",
     dueToday: "Total due today",
     dueAmount: "€0",
@@ -490,12 +509,12 @@ export const en: Copy = {
         a: "Yes. There is a Cancel button in the desk once you have added a card. Without a card, nothing is ever charged — just stop, or let the trial end. After a paid month, access lasts through that month.",
       },
       {
-        q: "What happens after the 14 days?",
-        a: "If you have not added a card, the desk pauses until you add one — nothing is charged automatically. If you did add a card, it continues at €19/month unless you cancel first.",
+        q: "Will I be charged without noticing?",
+        a: "No. Nothing is ever charged automatically. Without a card on file the desk simply pauses until you add one, and no card can be stored at all while payments are closed.",
       },
       {
-        q: "Do I need a card for the trial?",
-        a: "No. Start free for 14 days without one. Add a card anytime, during or after the trial, to keep training at €19/month.",
+        q: "Do I need a card to start?",
+        a: "No. You are not asked for one anywhere on the site. When payments open, membership will be €19/month and you will be asked first.",
       },
       {
         q: "Is this medical advice?",
@@ -533,13 +552,13 @@ export const en: Copy = {
   },
   foundingPage: {
     kicker: "Founding",
-    h1: "Start with 14 days free",
-    lead: "Same weeks. 14 days free, no card needed.",
-    trial: "14 days free. No card needed. Add one anytime to keep training after.",
-    note: "No card needed for 14 days. Add one anytime after to keep training at €19/month. That is the only price listed here.",
+    h1: "Start with the first week",
+    lead: "Same weeks. No card needed.",
+    trial: "No card needed. Membership will be €19/month when payments open.",
+    note: "No card is asked for anywhere. €19/month when payments open — that is the only price listed here.",
     back: "← Ridgework home",
     title: "Founding invite, Ridgework",
-    description: "Weekly training. 14 days free, then €19/month. Cancel anytime.",
+    description: "Weekly training. No card needed to start. €19/month when payments open.",
   },
   legalPage: {
     title: "Legal notice",

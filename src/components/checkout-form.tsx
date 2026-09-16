@@ -8,6 +8,7 @@ import { CHECKOUT_OPEN } from "@/lib/billing";
 import { isNoCardTrial, type Membership } from "@/lib/membership";
 import { getMembership } from "@/lib/membership-server";
 import { startFoundingCheckout, cancelMembership, startBillingPortal } from "@/lib/polar-checkout";
+import { offerTerms } from "@/lib/offer";
 
 function CheckIcon() {
   return (
@@ -38,7 +39,7 @@ function CheckoutReceipt({
             {copy.checkout.dueAmount}
           </p>
         </div>
-        <p className="mt-1 text-sm text-ink-muted">{copy.pricing.trialBadge}</p>
+        <p className="mt-1 text-sm text-ink-muted">{offerTerms(copy).badge}</p>
         <div className="mt-6">{action}</div>
         {error ? <p className="mt-3 text-sm text-accent">{error}</p> : null}
         <p className="mt-5 text-sm leading-relaxed text-ink-muted">{copy.checkout.terms}</p>
@@ -103,7 +104,7 @@ export function CheckoutForm({ locale, copy }: { locale: Locale; copy: Copy }) {
             locale={locale}
             className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-ink px-6 py-3.5 text-base font-medium text-paper hover:bg-ridge-deep"
           >
-            {copy.cta.start}
+            {offerTerms(copy).cta}
           </AuthLink>
         }
       />
@@ -183,7 +184,7 @@ export function PaywallPanel({
         {copy.checkout.kicker}
       </p>
       <h3 className="mt-2 font-display text-2xl font-semibold text-ink">
-        {noCardTrial ? copy.pricing.trialBadge : copy.checkout.successTitle}
+        {noCardTrial ? offerTerms(copy).badge : copy.checkout.successTitle}
       </h3>
       <p className="mt-3 text-ink-muted leading-relaxed">
         {membership.status === "active"

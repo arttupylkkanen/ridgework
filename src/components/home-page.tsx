@@ -4,28 +4,25 @@ import { CHECKOUT_OPEN } from "@/lib/billing";
 import { GUIDES } from "@/content/guides";
 import { planPageFor } from "@/content/plans";
 import type { Locale } from "@/lib/locale";
-import { HERO_PHOTO, METHOD_PHOTO, PROGRAM_MEDIA } from "@/lib/program-media";
+import { METHOD_PHOTO, PROGRAM_MEDIA } from "@/lib/program-media";
+import { PhotoImage } from "@/components/photo-image";
+import { HeroProof } from "@/components/hero-proof";
+import { offerTerms } from "@/lib/offer";
 import { AuthLink, DeskLink, GuideLink, HomeLink, PlanLink, SourcesLink } from "./app-link";
 import { CheckoutForm } from "./checkout-form";
 import { ExampleWeekStrip } from "./example-week-strip";
 
 export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
+  const offer = offerTerms(copy);
 
   return (
     <>
       <section className="border-b border-line">
         <div className="mx-auto grid max-w-5xl lg:grid-cols-2">
-          <figure className="relative min-h-56 overflow-hidden sm:min-h-80 lg:min-h-[28rem]">
-            <img
-              src={HERO_PHOTO.src}
-              alt=""
-              className="h-full w-full object-cover"
-              width={HERO_PHOTO.width}
-              height={HERO_PHOTO.height}
-              decoding="async"
-            />
-          </figure>
-          <div className="flex flex-col justify-center px-4 py-10 sm:px-8 sm:py-16">
+          <div className="order-2 border-t border-line lg:order-1 lg:min-h-[28rem] lg:border-r lg:border-t-0">
+            <HeroProof copy={copy} />
+          </div>
+          <div className="order-1 flex flex-col justify-center px-4 py-10 sm:px-8 sm:py-16 lg:order-2">
             <p className="text-sm font-medium uppercase tracking-[0.12em] text-accent">
               {copy.hero.kicker}
             </p>
@@ -36,14 +33,14 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
               {copy.hero.lead}
             </p>
             <p className="mt-5 max-w-md border-l-2 border-ridge pl-4 text-sm text-ink-muted">
-              {copy.hero.trial}
+              {offer.line}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <AuthLink
                 locale={locale}
                 className="inline-flex min-h-11 items-center justify-center rounded-lg bg-ridge px-6 py-3.5 text-base font-medium text-paper hover:bg-ridge-deep"
               >
-                {copy.cta.start}
+                {offer.cta}
               </AuthLink>
               <HomeLink
                 locale={locale}
@@ -285,20 +282,17 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
             {copy.programs.lead}
           </p>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            {copy.programs.rows.map((row, i) => {
+            {copy.programs.rows.map((row) => {
               const photo = PROGRAM_MEDIA[row.id];
               const cardClass =
                 "group cursor-pointer overflow-hidden rounded-2xl border border-line bg-card hover:border-ridge";
               const inner = (
                 <>
-                  <img
-                    src={photo.src}
+                  <PhotoImage
+                    photo={photo}
                     alt={row.name}
-                    width={photo.width}
-                    height={photo.height}
+                    sizes="(min-width: 640px) 50vw, 100vw"
                     className="aspect-[16/9] w-full object-cover"
-                    decoding="async"
-                    loading={i === 0 ? "eager" : "lazy"}
                   />
                   <div className="p-5">
                     <div className="flex flex-wrap items-start justify-between gap-2">
@@ -342,14 +336,10 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
       <section id="method" className="scroll-mt-20 border-b border-line">
         <div className="mx-auto grid max-w-5xl lg:grid-cols-2">
           <figure className="relative min-h-56 overflow-hidden sm:min-h-80 lg:min-h-full">
-            <img
-              src={METHOD_PHOTO.src}
-              alt=""
+            <PhotoImage
+              photo={METHOD_PHOTO}
+              sizes="(min-width: 1024px) 50vw, 100vw"
               className="h-full w-full object-cover"
-              width={METHOD_PHOTO.width}
-              height={METHOD_PHOTO.height}
-              decoding="async"
-              loading="lazy"
             />
           </figure>
           <div className="px-4 py-14 sm:px-8 sm:py-16">
@@ -403,23 +393,19 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
         </div>
       </section>
 
-
       <section id="pricing" className="scroll-mt-20 border-b border-line bg-ridge-deep text-paper">
         <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24">
           <p className="text-sm font-medium uppercase tracking-[0.12em] text-accent-soft">
             {copy.pricing.kicker}
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight sm:text-5xl">
-            {copy.pricing.h2}
+            {offer.title}
           </h2>
-          <p className="mt-4 max-w-2xl text-lg text-paper/75">{copy.pricing.lead}</p>
+          <p className="mt-4 max-w-2xl text-lg text-paper/75">{offer.lead}</p>
           <div className="mt-10 border border-paper/15 bg-paper p-6 text-ink sm:p-10">
             <div className="flex flex-wrap items-center gap-3">
               <span className="border border-ridge/20 bg-ridge/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-ridge">
-                {copy.pricing.badge}
-              </span>
-              <span className="bg-paper-warm px-3 py-1 text-xs font-medium text-ink-muted">
-                {copy.pricing.trialBadge}
+                {offer.badge}
               </span>
             </div>
             <div className="mt-6 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
@@ -435,14 +421,14 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
                       </span>
                       <span className="text-lg text-ink-muted">{copy.pricing.per}</span>
                     </div>
-                    <p className="mt-4 max-w-md text-sm text-ink-muted">{copy.pricing.blurb}</p>
+                    <p className="mt-4 max-w-md text-sm text-ink-muted">{offer.line}</p>
                   </>
                 ) : (
                   <>
                     <div className="mt-4 font-display text-5xl font-semibold tracking-tight sm:text-6xl">
                       {copy.pricing.freeTag}
                     </div>
-                    <p className="mt-4 max-w-md text-sm text-ink-muted">{copy.pricing.freeNow}</p>
+                    <p className="mt-4 max-w-md text-sm text-ink-muted">{offer.line}</p>
                   </>
                 )}
               </div>
@@ -450,7 +436,7 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
                 locale={locale}
                 className="inline-flex min-h-11 w-full shrink-0 items-center justify-center rounded-lg bg-ridge px-6 py-3.5 text-base font-medium text-paper hover:bg-ridge-deep sm:w-auto"
               >
-                {copy.cta.start}
+                {offer.cta}
               </AuthLink>
             </div>
             <ul className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -463,7 +449,7 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
               ))}
             </ul>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-              {copy.pricing.features.map((f) => (
+              {offer.features.map((f) => (
                 <li key={f} className="text-sm text-ink-muted">
                   {f}
                 </li>
@@ -471,10 +457,8 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
             </ul>
           </div>
           <div className="mt-8 border border-paper/10 px-6 py-5">
-            <h3 className="font-display text-lg font-semibold text-paper">
-              {copy.pricing.laterTitle}
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-paper/70">{copy.pricing.laterBody}</p>
+            <h3 className="font-display text-lg font-semibold text-paper">{offer.laterTitle}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-paper/70">{offer.laterBody}</p>
           </div>
         </div>
       </section>

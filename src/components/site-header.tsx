@@ -7,6 +7,7 @@ import type { Copy } from "@/content/types";
 import { LOCALES, type Locale, type PageId, type ShellPage, homeHash, pagePath } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 import { AuthLink, DeskLink, FieldLink, GuideLink } from "./app-link";
+import { offerTerms } from "@/lib/offer";
 
 const LANG_LABEL: Record<Locale, string> = { en: "EN", fi: "FI", fr: "FR", de: "DE" };
 
@@ -82,7 +83,7 @@ export function SiteHeader({ locale, copy, page }: Props) {
 
   const toolsHref = pagePath(locale, "app");
   const primaryHref = user ? toolsHref : pagePath(locale, "login");
-  const primaryLabel = user ? copy.cta.openTools : copy.cta.start;
+  const primaryLabel = user ? copy.cta.openTools : offerTerms(copy).cta;
 
   return (
     <header className="sticky top-0 z-40 border-b border-line/80 bg-paper/90 backdrop-blur-md">

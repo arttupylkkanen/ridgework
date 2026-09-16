@@ -2,6 +2,7 @@ import type { Copy } from "@/content/types";
 import { PLAN_PAGES, PLAN_UI } from "@/content/plans";
 import type { Locale } from "@/lib/locale";
 import { PROGRAM_MEDIA } from "@/lib/program-media";
+import { PhotoImage } from "@/components/photo-image";
 import { recommendedWeeks } from "@/lib/rolling-plan";
 import { HomeLink, PlanLink } from "./app-link";
 
@@ -28,14 +29,11 @@ export function PlansIndexPage({ locale, copy }: { locale: Locale; copy: Copy })
               slug={plan.slug}
               className="group block overflow-hidden rounded-2xl border border-line bg-card hover:border-ridge"
             >
-              <img
-                src={photo.src}
-                alt=""
-                width={photo.width}
-                height={photo.height}
+              <PhotoImage
+                photo={photo}
+                sizes="(min-width: 640px) 50vw, 100vw"
                 className="aspect-[16/9] w-full object-cover"
-                decoding="async"
-                loading={i === 0 ? "eager" : "lazy"}
+                priority={i === 0}
               />
               <div className="p-5">
                 <div className="flex flex-wrap items-start justify-between gap-2">
