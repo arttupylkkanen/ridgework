@@ -6,7 +6,7 @@
  *
  * Needs two env vars on the host:
  *   RESEND_API_KEY   — from the Resend dashboard
- *   EMAIL_FROM       — e.g. "Ridgework <hello@ridgework.org>", on a domain
+ *   EMAIL_FROM       — e.g. "Ridgework <support@ridgework.org>", on a domain
  *                      verified in Resend (SPF + DKIM), or delivery will fail.
  */
 
