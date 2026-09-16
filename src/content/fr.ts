@@ -39,6 +39,22 @@ export const fr: Copy = {
     pricing: "Voir les tarifs",
     openTools: "Ouvrir les outils",
   },
+  examplePlanner: {
+    h2: "Choisissez le jour où vous devez être prêt",
+    lead: "Écrit pour un premier 50 km ou un premier trail de 20 km sur trois à cinq heures par semaine — finir bien, pas un chrono. Changez la date et les trois semaines ci-dessous sont réécrites par le moteur qui fait tourner le bureau.",
+    goalLabel: "Objectif",
+    goals: { fifty: "Premier 50 km", trail20: "Premier trail 20 km" },
+    dateLabel: "Prêt le",
+    windowOk: "{n} semaines à partir d’aujourd’hui. C’est la préparation complète.",
+    windowShort:
+      "{n} semaines à partir d’aujourd’hui. La préparation complète en veut {want} : le foncier est réduit en premier, le bloc spécifique et l’affûtage sont gardés. Vous avez quand même une semaine écrite.",
+    tooSoon: "Choisissez une date plus lointaine — il n’y a aucune semaine à écrire avant.",
+    weekN: "Semaine {n}",
+    repeats:
+      "Ces trois-là sont écrites à l’identique. {phase} se répète jusqu’à ce qu’il y ait une raison d’en changer — le bloc {next} commence en semaine {n}, et une séance cassée ou une semaine sautée les réécrit avant cela.",
+    phases: { base: "Foncier", specific: "Spécifique", taper: "Affûtage", done: "Terminé" },
+    note: "Trois semaines restent écrites à la fois. Enregistrez la semaine et la suivante apparaît. Rien n’est sauvegardé ici, et aucun compte n’existe tant que vous n’en créez pas un.",
+  },
   pageMeta: {
     who: {
       title: "À qui s’adresse Ridgework — Ridgework",
@@ -617,7 +633,7 @@ export const fr: Copy = {
     lead: "Déplacez les curseurs ci-dessous comme vous vous sentez vraiment certains matins. Regardez la séance du jour et les explications changer avec eux — c’est le même bureau qu’un athlète connecté, sur un plan exemple de 50 km ultra.",
     noteTitle: "Rien n’est enregistré ici",
     noteBody:
-      "Cet exemple se réinitialise quand vous partez. Créez un compte pour obtenir votre propre semaine, construite pour votre sport, votre objectif et votre date de pic — 14 jours gratuits, sans carte.",
+      "Cet exemple se réinitialise quand vous partez. Créez un compte pour obtenir votre propre semaine, construite pour votre sport, votre objectif et votre date de pic . Sans carte.",
   },
   sourcesPage: {
     title: "Sources — Ridgework",

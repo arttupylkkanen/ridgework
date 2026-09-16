@@ -39,6 +39,22 @@ export const fi: Copy = {
     pricing: "Katso hinnat",
     openTools: "Avaa työkalut",
   },
+  examplePlanner: {
+    h2: "Valitse päivä jolloin sinun pitää olla valmis",
+    lead: "Kirjoitettu ensimmäiseen 50 kilometriin tai ensimmäiseen 20 km polkujuoksuun 3–5 tunnilla viikossa — maaliin hyvin, ei aikaa vastaan. Vaihda päivä, niin alla olevat kolme viikkoa kirjoitetaan uusiksi samalla moottorilla jota työpöytä ajaa.",
+    goalLabel: "Tavoite",
+    goals: { fifty: "Ensimmäinen 50 km", trail20: "Ensimmäinen 20 km polku" },
+    dateLabel: "Valmiina",
+    windowOk: "{n} viikkoa tästä päivästä. Se on täysi rakennus.",
+    windowShort:
+      "{n} viikkoa tästä päivästä. Täysi rakennus haluaisi {want}, joten peruskuntoa leikataan ensin ja lajiosa sekä kevennys säilytetään. Saat silti kirjoitetun viikon.",
+    tooSoon: "Valitse päivä kauempaa — sitä ennen ei ole viikkoa kirjoitettavaksi.",
+    weekN: "Viikko {n}",
+    repeats:
+      "Nämä kolme on kirjoitettu samoiksi. {phase} toistuu kunnes on syy muuttaa sitä — {next}-jakso alkaa viikolla {n}, ja romahtanut treeni tai väliin jäänyt viikko kirjoittaa ne uusiksi jo ennen sitä.",
+    phases: { base: "Perus", specific: "Laji", taper: "Kevennys", done: "Valmis" },
+    note: "Kolme viikkoa on kerrallaan kirjoitettuna. Kirjaa viikko, niin seuraava ilmestyy. Mitään tästä ei tallenneta, eikä tiliä ole ennen kuin teet sellaisen.",
+  },
   pageMeta: {
     who: {
       title: "Kenelle Ridgework on — Ridgework",

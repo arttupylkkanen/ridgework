@@ -111,6 +111,24 @@ export type Copy = {
     account: string;
   };
   cta: { pricing: string; openTools: string };
+  /** The pick-a-date, three-week planner on /example. */
+  examplePlanner: {
+    h2: string;
+    lead: string;
+    goalLabel: string;
+    goals: { fifty: string; trail20: string };
+    dateLabel: string;
+    /** {n} weeks available, {want} weeks the objective wants. */
+    windowOk: string;
+    windowShort: string;
+    tooSoon: string;
+    /** {n} is the week number. */
+    weekN: string;
+    /** {phase} repeats until {next} starts in week {n}. */
+    repeats: string;
+    phases: { base: string; specific: string; taper: string; done: string };
+    note: string;
+  };
   /** Title and description for the three pages lifted off the homepage. */
   pageMeta: {
     who: { title: string; description: string };

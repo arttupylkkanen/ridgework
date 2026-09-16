@@ -39,6 +39,22 @@ export const en: Copy = {
     pricing: "See pricing",
     openTools: "Open tools",
   },
+  examplePlanner: {
+    h2: "Pick the day you need to be ready",
+    lead: "Written for a first 50 km or first 20 km trail race on three to five hours a week — finish well, not a time. Change the date and the three weeks below are rewritten by the same engine the desk runs.",
+    goalLabel: "Objective",
+    goals: { fifty: "First 50 km", trail20: "First 20 km trail" },
+    dateLabel: "Ready on",
+    windowOk: "{n} weeks from today. That is the full build.",
+    windowShort:
+      "{n} weeks from today. The full build wants {want}, so base is cut first and the specific block and taper are kept. You still get a written week.",
+    tooSoon: "Pick a date further out — there is no week to write before it.",
+    weekN: "Week {n}",
+    repeats:
+      "These three are written the same. {phase} repeats until there is a reason to change it — the {next} block starts in week {n}, and a wrecked session or a missed week rewrites them before that.",
+    phases: { base: "Base", specific: "Specific", taper: "Taper", done: "Done" },
+    note: "Three weeks stay written at a time. Log the week and the next one appears. Nothing here is saved, and no account exists until you make one.",
+  },
   pageMeta: {
     who: {
       title: "Who Ridgework Is For — Ridgework",
@@ -645,10 +661,10 @@ export const en: Copy = {
     back: "← Ridgework home",
     kicker: "Live example",
     h1: "This is a real day, not a screenshot",
-    lead: "Drag the sliders below the way you actually feel some mornings. Watch today's session and the reasoning change with them — this is the same desk a signed-in athlete sees, running on a sample 50 km ultra plan.",
+    lead: "Pick the day you need to be ready and read the three weeks it writes. Then drag the sliders the way you actually feel some mornings, and watch today's session change while the ready date stays where you put it.",
     noteTitle: "Nothing here is saved",
     noteBody:
-      "This example resets when you leave. Sign up to get your own week, built from your own sport, goal, and peak date — 14 days free, no card needed.",
+      "This example resets when you leave. Sign up to get your own week, built from your own sport, goal, and peak date. No card needed.",
   },
   sourcesPage: {
     title: "Sources — Ridgework",

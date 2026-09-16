@@ -39,6 +39,22 @@ export const de: Copy = {
     pricing: "Preise ansehen",
     openTools: "Tools öffnen",
   },
+  examplePlanner: {
+    h2: "Wähle den Tag, an dem du bereit sein musst",
+    lead: "Geschrieben für einen ersten 50er oder einen ersten 20-km-Trail bei drei bis fünf Stunden pro Woche — gut ankommen, keine Zeit jagen. Ändere das Datum, und die drei Wochen unten werden von derselben Engine neu geschrieben, die auch der Schreibtisch nutzt.",
+    goalLabel: "Ziel",
+    goals: { fifty: "Erste 50 km", trail20: "Erster 20-km-Trail" },
+    dateLabel: "Bereit am",
+    windowOk: "{n} Wochen ab heute. Das ist der volle Aufbau.",
+    windowShort:
+      "{n} Wochen ab heute. Der volle Aufbau will {want}, also wird zuerst die Basis gekürzt und der spezifische Block samt Taper behalten. Du bekommst trotzdem eine geschriebene Woche.",
+    tooSoon: "Wähle ein späteres Datum — davor gibt es keine Woche zu schreiben.",
+    weekN: "Woche {n}",
+    repeats:
+      "Diese drei sind gleich geschrieben. {phase} wiederholt sich, bis es einen Grund zur Änderung gibt — der {next}-Block beginnt in Woche {n}, und eine kaputte Einheit oder eine ausgefallene Woche schreibt sie schon vorher um.",
+    phases: { base: "Basis", specific: "Spezifisch", taper: "Taper", done: "Fertig" },
+    note: "Drei Wochen stehen jeweils geschrieben. Trag die Woche ein, und die nächste erscheint. Hier wird nichts gespeichert, und es gibt kein Konto, bis du eines anlegst.",
+  },
   pageMeta: {
     who: {
       title: "Für wen Ridgework ist — Ridgework",
@@ -608,7 +624,7 @@ export const de: Copy = {
     lead: "Bewege die Regler unten so, wie du dich an manchen Morgen wirklich fühlst. Sieh, wie sich die heutige Einheit und die Begründung mitändern — derselbe Tisch, den ein angemeldeter Athlet sieht, auf einem Beispiel-50-km-Ultraplan.",
     noteTitle: "Hier wird nichts gespeichert",
     noteBody:
-      "Dieses Beispiel setzt sich zurück, wenn du gehst. Leg ein Konto an für deine eigene Woche, gebaut aus deiner Sportart, deinem Ziel und deinem Peak-Datum — 14 Tage kostenlos, ohne Karte.",
+      "Dieses Beispiel setzt sich zurück, wenn du gehst. Leg ein Konto an für deine eigene Woche, gebaut aus deiner Sportart, deinem Ziel und deinem Peak-Datum . Ohne Karte.",
   },
   sourcesPage: {
     title: "Quellen — Ridgework",
