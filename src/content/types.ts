@@ -109,6 +109,8 @@ export type Copy = {
     menu: string;
     login: string;
     account: string;
+    signOut: string;
+    signingOut: string;
   };
   cta: { pricing: string; openTools: string };
   /** The pick-a-date, three-week planner on /example. */

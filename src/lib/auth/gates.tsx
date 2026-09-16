@@ -49,13 +49,7 @@ export function RedirectToSignIn({ to = SIGN_IN_PATH }: { to?: string }) {
   return <Navigate to={to} />;
 }
 
-export function SignInGate({
-  children,
-  fallback,
-}: {
-  children: ReactNode;
-  fallback?: ReactNode;
-}) {
+export function SignInGate({ children, fallback }: { children: ReactNode; fallback?: ReactNode }) {
   const { user, isPending } = useCurrentUserState();
   const state = resolveSignInGateState({ isPending, hasUser: user !== null });
   if (state === "pending") return null;
@@ -81,14 +75,28 @@ export function SignInButtons() {
 }
 
 /**
- * Minimal signed-in identity chip + sign-out. Restyle freely (see the
- * `design-ui` skill). Sign-out is only shown when auth is enabled (the
- * disabled-auth dev user has nothing to sign out of) and the session is not
- * gate-materialized — behind the gate the next request signs the viewer
- * straight back in, so a sign-out control there is a broken loop.
+ * The sign-out control itself, so the header chip and the mobile menu cannot
+ * drift apart — for a while the chip was the only one, and it is hidden below
+ * 640px, which left a signed-in phone with no way out at all.
+ *
+ * Renders nothing when auth is disabled (the dev user has nothing to sign out
+ * of) or when the session is gate-materialized: behind the gate the next
+ * request signs the viewer straight back in, so the control is a broken loop.
+ *
+ * Labels are passed in because this file has no access to `Copy`, and the site
+ * is in four languages.
  */
-export function UserButton() {
-  const user = useCurrentUser();
+export function SignOutButton({
+  label,
+  pendingLabel,
+  className,
+  onSignOut,
+}: {
+  label: string;
+  pendingLabel: string;
+  className?: string;
+  onSignOut?: () => void;
+}) {
   // Sign-out can take a moment (and can fail when deployed), so the control
   // shows it is working and cannot be fired twice.
   const [signingOut, setSigningOut] = useState(false);
@@ -97,36 +105,53 @@ export function UserButton() {
     hasGateSessionMarker,
     noGateSessionOnServer,
   );
+  if (!authEnabled || gateSession) return null;
+  return (
+    <button
+      type="button"
+      disabled={signingOut}
+      onClick={() => {
+        setSigningOut(true);
+        onSignOut?.();
+        // Success navigates away; on failure re-enable so it can be retried.
+        void signOut().catch(() => setSigningOut(false));
+      }}
+      className={className}
+    >
+      {signingOut ? pendingLabel : label}
+    </button>
+  );
+}
+
+/**
+ * Minimal signed-in identity chip + sign-out. Restyle freely (see the
+ * `design-ui` skill).
+ */
+export function UserButton({
+  signOutLabel = "Sign out",
+  signingOutLabel = "Signing out…",
+}: {
+  signOutLabel?: string;
+  signingOutLabel?: string;
+} = {}) {
+  const user = useCurrentUser();
   if (!user) return null;
   const label = user.displayName ?? user.primaryEmail ?? "Account";
   return (
     <div className="flex items-center gap-2">
       {user.profileImageUrl ? (
-        <img
-          src={user.profileImageUrl}
-          alt=""
-          className="h-8 w-8 rounded-full object-cover"
-        />
+        <img src={user.profileImageUrl} alt="" className="h-8 w-8 rounded-full object-cover" />
       ) : (
         <span className="grid h-8 w-8 place-items-center rounded-full bg-black/10 text-sm font-medium dark:bg-white/20">
           {label.charAt(0).toUpperCase()}
         </span>
       )}
       <span className="text-sm font-medium">{label}</span>
-      {authEnabled && !gateSession && (
-        <button
-          type="button"
-          disabled={signingOut}
-          onClick={() => {
-            setSigningOut(true);
-            // Success navigates away; on failure re-enable so it can be retried.
-            void signOut().catch(() => setSigningOut(false));
-          }}
-          className="cursor-pointer text-sm underline-offset-4 opacity-70 hover:underline disabled:cursor-wait disabled:no-underline"
-        >
-          {signingOut ? "Signing out…" : "Sign out"}
-        </button>
-      )}
+      <SignOutButton
+        label={signOutLabel}
+        pendingLabel={signingOutLabel}
+        className="cursor-pointer text-sm underline-offset-4 opacity-70 hover:underline disabled:cursor-wait disabled:no-underline"
+      />
     </div>
   );
 }

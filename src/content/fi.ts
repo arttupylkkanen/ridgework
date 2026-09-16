@@ -34,6 +34,8 @@ export const fi: Copy = {
     menu: "Valikko",
     login: "Kirjaudu",
     account: "Tili",
+    signOut: "Kirjaudu ulos",
+    signingOut: "Kirjaudutaan ulos…",
   },
   cta: {
     pricing: "Katso hinnat",

@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
-import { UserButton } from "@/lib/auth/gates";
+import { SignOutButton, UserButton } from "@/lib/auth/gates";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
 import type { Copy } from "@/content/types";
-import { LOCALES, type Locale, type PageId, type ShellPage, homeHash, pagePath } from "@/lib/locale";
+import {
+  LOCALES,
+  type Locale,
+  type PageId,
+  type ShellPage,
+  homeHash,
+  pagePath,
+} from "@/lib/locale";
 import { cn } from "@/lib/utils";
 import { AuthLink, DeskLink, FieldLink, GuideLink } from "./app-link";
 import { offerTerms } from "@/lib/offer";
@@ -40,7 +47,7 @@ function AuthSlot({ locale, copy }: { locale: Locale; copy: Copy }) {
   if (user) {
     return (
       <div className="hidden items-center gap-2 sm:flex">
-        <UserButton />
+        <UserButton signOutLabel={copy.nav.signOut} signingOutLabel={copy.nav.signingOut} />
       </div>
     );
   }
@@ -228,6 +235,14 @@ export function SiteHeader({ locale, copy, page }: Props) {
                 {copy.nav.login}
               </AuthLink>
             )}
+            {user ? (
+              <SignOutButton
+                label={copy.nav.signOut}
+                pendingLabel={copy.nav.signingOut}
+                className="rounded-lg px-3 py-3 text-left text-ink hover:bg-paper-warm disabled:cursor-wait disabled:opacity-60"
+                onSignOut={() => setOpen(false)}
+              />
+            ) : null}
             {user ? (
               <DeskLink
                 locale={locale}

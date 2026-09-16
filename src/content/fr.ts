@@ -34,6 +34,8 @@ export const fr: Copy = {
     menu: "Menu",
     login: "Connexion",
     account: "Compte",
+    signOut: "Se déconnecter",
+    signingOut: "Déconnexion…",
   },
   cta: {
     pricing: "Voir les tarifs",
