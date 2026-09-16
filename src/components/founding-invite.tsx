@@ -1,6 +1,7 @@
 import type { Copy } from "@/content/types";
 import type { Locale } from "@/lib/locale";
 import { AuthLink, HomeLink } from "./app-link";
+import { offerTerms } from "@/lib/offer";
 
 export function FoundingInvite({ locale, copy }: { locale: Locale; copy: Copy }) {
   const p = copy.foundingPage;
@@ -15,7 +16,7 @@ export function FoundingInvite({ locale, copy }: { locale: Locale; copy: Copy })
           locale={locale}
           className="inline-flex items-center justify-center rounded-lg bg-ridge px-6 py-3.5 text-base font-medium text-paper shadow-sm hover:bg-ridge-deep"
         >
-          {copy.cta.start}
+          {offerTerms(copy).cta}
         </AuthLink>
       </div>
       <p className="mt-8 text-sm leading-relaxed text-ink-soft">{p.note}</p>

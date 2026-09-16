@@ -8,7 +8,7 @@ import type { Copy } from "./types";
 export const fi: Copy = {
   metaTitle: "Polku- ja ultratreenin viikkosuunnitelma | Ridgework",
   metaDescription:
-    "Mitä juokset tällä viikolla, kun edessä on 20 km polku, 50 tai 100 km ultra tai alppipäivä. Väsynyt viikko kevenee. 14 päivää ilmaiseksi, sitten 19 €/kk.",
+    "Mitä juokset tällä viikolla, kun edessä on 20 km polku, 50 tai 100 km ultra tai alppipäivä. Väsynyt viikko kevenee. Ei korttia aloittaessa.",
   footerTag: "Vuoritreeniä sen viikon mukaan joka sinulla oikeasti on.",
   legalEntity: "Ridgework, Ranska.",
   support: "support@ridgework.org",
@@ -36,16 +36,66 @@ export const fi: Copy = {
     account: "Tili",
   },
   cta: {
-    start: "Aloita 14 pv ilmaiseksi",
     pricing: "Katso hinnat",
     openTools: "Avaa työkalut",
+  },
+  pageMeta: {
+    who: {
+      title: "Kenelle Ridgework on — Ridgework",
+      description:
+        "Kenelle itseään uudelleen kirjoittava treeniviikko sopii, kenelle ei, ja mitä oikeasti saat. Vuori- ja polkutreeniä, ei kiinteää PDF:ää.",
+    },
+    after: {
+      title: "Mitä tapahtuu kirjautumisen jälkeen — Ridgework",
+      description:
+        "Ensimmäiset kaksi viikkoa päivä kerrallaan: valitse tavoitepäivä, kolme viikkoa ilmestyy kalenteriin, ja suunnitelma kirjoitetaan uusiksi sen mukaan mitä teit.",
+    },
+    method: {
+      title: "Menetelmä ja lähteet — Ridgework",
+      description:
+        "Useimmat päivät kevyitä, yksi kova jos olet virkeä, kevennys kohti päivää. Viikkorakenteen takana oleva tutkimus lähdeviitteineen ja rajoituksineen.",
+    },
+  },
+  offer: {
+    free: {
+      cta: "Aloita ilmaiseksi",
+      title: "Nyt ilmainen.",
+      lead: "Ridgework on ilmainen niin kauan kuin yhtiön rekisteröinti on kesken — emme saa vielä ottaa maksuja, emmekä esitä muuta. Kun kassa aukeaa, jäsenyys on 19 €/kk.",
+      badge: "Ilmainen, ei korttia",
+      line: "Ilmainen niin kauan kuin yhtiön rekisteröinti on kesken. Ei korttia, ei mitään peruttavaa.",
+      features: [
+        "Seitsemän ohjelmaa peruskunnosta 100 kilometriin ja vuoripäiviin",
+        "Korttia ei kysytä missään — maksut eivät ole vielä auki",
+        "Viikot kirjoitetaan uusiksi kun nukut huonosti, jätät treenin väliin tai matkustat",
+        "Treeniviikkoja, ei lääketieteellisiä väitteitä",
+      ],
+      laterTitle: "Kun maksut avautuvat",
+      laterBody:
+        "Jäsenyys tulee maksamaan 19 €/kk, ja sinulta kysytään ennen kuin mitään veloitetaan. Sitä ennen sinulta ei voi ottaa mitään: korttia ei ole tallessa, koska sivusto ei pysty ottamaan sitä vastaan.",
+    },
+    trial: {
+      cta: "Aloita 14 päivää ilmaiseksi",
+      title: "14 päivää kalenterissa. Sitten 19 €/kk.",
+      lead: "Juokse ensin oikea viikko. Sen jälkeen 19 €/kk jos jäät. Peru milloin tahansa, myös 14 päivän aikana.",
+      badge: "14 päivää ilmaiseksi",
+      line: "14 päivää ilmaiseksi, ei korttia. Sen jälkeen 19 €/kk jos lisäät kortin. Peru milloin tahansa.",
+      features: [
+        "Seitsemän ohjelmaa peruskunnosta 100 kilometriin ja vuoripäiviin",
+        "Ei korttia 14 päivään — lisää se milloin tahansa ja jatka hintaan 19 €/kk",
+        "Peru 14 päivän aikana, eikä Polar veloita mitään",
+        "Treeniviikkoja, ei lääketieteellisiä väitteitä",
+      ],
+      laterTitle: "14 päivän jälkeen",
+      laterBody:
+        "Lisää kortti milloin tahansa ja jatka hintaan 19 €/kk. Mitään ei veloiteta automaattisesti — ilman korttia työpöytä yksinkertaisesti pysähtyy kunnes lisäät sen. Muuta hintaa ei tällä sivustolla ole.",
+    },
   },
   hero: {
     kicker: "Vuoritreeni",
     h1: "Treenaa sitä päivää varten jolla on väliä.",
     lead: "Valitse päivä jolloin sinun pitää olla valmis. Jokainen viikko kirjoitetaan siitä taaksepäin — ja kirjoitetaan uusiksi kun elämä tulee väliin.",
-    trial:
-      "Ilmainen niin kauan kuin yhtiön rekisteröinti on kesken. Ei korttia, ei mitään peruttavaa.",
+    proofLabel: "Mitä viiden tunnin yö tekee",
+    proofHeld: "Yksi treeni muuttui. Muu viikko ja päivä johon tähtäät pysyivät paikallaan.",
   },
   about: {
     kicker: "Mitä tämä on",
@@ -95,10 +145,6 @@ export const fi: Copy = {
       "Tämä kirjoittaa lähtöviikon siitä mitä kerrot sille. Se ei näe sinua treenaamassa ja tietää vain ne treenit jotka kirjaat.",
     ],
     sourcesTitle: "Lähteet",
-    teaserH2: "Mitä tämä voi luvata ja mitä ei",
-    teaserLead:
-      "Suurin osa päivistä kevyitä, yksi kova jos olet virkeä, taper kohti päivää — se muoto tulee kourallisesta hyvin siteerattuja kestävyysjulkaisuja, ei mallipohjasta johon on liimattu nimesi. Tässä se osa jonka useimmat treenituotteet jättävät sanomatta.",
-    teaserCta: "Lue koko metodi",
     allSourcesCta: "Kaikki lähteet ja mihin kutakin käytetään",
   },
   projects: {
@@ -348,7 +394,7 @@ export const fi: Copy = {
     note: "Ei diagnoosi. Jos polvi turpoaa, lukittuu tai pahenee, mene lääkäriin. Tässä muutetaan vain treeniviikkoa.",
   },
   firstWeek: {
-    kicker: "Ensimmäiset 14 päivää",
+    kicker: "Ensimmäiset kaksi viikkoa",
     h2: "Mitä tapahtuu kun kirjaudut",
     lead: "Valitse tavoitepäivä. Kolme viikkoa ilmestyy kalenteriin. Jos sessio oli rikki tai johonkin sattuu, seuraavat päivät kirjoitetaan uusiksi. Retki pysyy siinä mihin sen laitoit.",
     days: [
@@ -383,27 +429,10 @@ export const fi: Copy = {
   },
   pricing: {
     kicker: "Hinta",
-    h2: "Nyt ilmainen.",
-    lead: "Ridgework on ilmainen niin kauan kuin yhtiön rekisteröinti on kesken — emme saa vielä ottaa maksuja, emmekä esitä muuta. Kun kassa aukeaa, jäsenyys on 19 €/kk.",
-    badge: "Nykyinen hinta",
-    trialBadge: "14 päivää ilmaiseksi",
     name: "Ridgework-jäsenyys",
     price: "€19",
     freeTag: "Ilmainen",
-    freeNow:
-      "Ilmainen niin kauan kuin yhtiön rekisteröinti on kesken. Ei korttia, ei mitään peruttavaa. 19 €/kk kun kassa aukeaa.",
     per: "/kk",
-    blurb:
-      "14 päivää ilmaiseksi, ei korttia. 19 €/kk jos lisäät sen myöhemmin. Peru milloin tahansa.",
-    features: [
-      "Seitsemän ohjelmaa: aerobinen moottori, polku, ultra ja alppipäivät",
-      "Ei korttia 14 päivään — lisää se milloin tahansa jatkaaksesi 19 €/kk hintaan",
-      "Peru 14 päivän aikana, niin Polar ei veloita",
-      "Treeniviikkoja, ei lääketieteellisiä väitteitä",
-    ],
-    laterTitle: "14 päivän jälkeen",
-    laterBody:
-      "Lisää kortti milloin tahansa jatkaaksesi 19 €/kk hintaan. Mitään ei koskaan veloiteta automaattisesti — ilman korttia pöytä vain pysähtyy kunnes lisäät sen. Tällä sivulla ei ole muita hintoja.",
   },
   checkout: {
     kicker: "Aloita",
@@ -427,7 +456,7 @@ export const fi: Copy = {
     payFail: "Kassa ei auennut. Yritä uudelleen, tai kirjoita support@ridgework.org mitä näit.",
     closedTitle: "Korttimaksut eivät ole vielä auki",
     closedBody:
-      "Ridgework ei ota maksuja ennen kuin yhtiön rekisteröinti on valmis. 14 päivääsi jatkuu normaalisti, eikä mitään voi veloittaa sillä välin — korttia ei tallenneta mihinkään.",
+      "Ridgework ei ota maksuja ennen kuin yhtiön rekisteröinti on valmis. Mitään ei voi veloittaa sillä välin — korttia ei tallenneta mihinkään.",
     paying: "Avataan kassaa…",
     dueToday: "Maksettavaa tänään",
     dueAmount: "0 €",
@@ -471,12 +500,12 @@ export const fi: Copy = {
         a: "Kyllä, milloin tahansa kortin lisäämisen jälkeen. Pöydässä on Peru-nappi. Ilman korttia mitään ei veloiteta lainkaan. Maksetun kuukauden jälkeen pääsy kestää sen kuun loppuun.",
       },
       {
-        q: "Mitä tapahtuu 14 päivän jälkeen?",
+        q: "Voiko minulta veloittaa huomaamatta?",
         a: "Jos et lisännyt korttia, pöytä pysähtyy kunnes lisäät sen — mitään ei veloiteta automaattisesti. Jos lisäsit kortin, tilaus jatkuu 19 €/kk ellet peru ensin.",
       },
       {
         q: "Pitääkö kortti antaa heti?",
-        a: "Ei. Aloita ilmaiseksi 14 päiväksi ilman sitä. Lisää kortti milloin tahansa, kokeilun aikana tai sen jälkeen, jatkaaksesi 19 €/kk hintaan.",
+        a: "Ei. Korttia ei kysytä missään kohtaa sivustoa. Kun maksut avautuvat, jäsenyys on 19 €/kk ja sinulta kysytään ensin.",
       },
       {
         q: "Onko tämä lääketiedettä tai valmennusta livenä?",
@@ -514,13 +543,13 @@ export const fi: Copy = {
   },
   foundingPage: {
     kicker: "Perustajille",
-    h1: "Aloita 14 päivää ilmaiseksi",
-    lead: "Sama treeni. 14 päivää ilmaiseksi, sitten 19 €/kk.",
-    trial: "14 päivää ilmaiseksi. Ei korttia. Lisää se milloin tahansa jatkaaksesi.",
-    note: "Ei korttia 14 päivään. Lisää se myöhemmin jatkaaksesi 19 €/kk hintaan. Se on ainoa hinta tällä sivulla.",
+    h1: "Aloita ensimmäisestä viikosta",
+    lead: "Sama treeni. Ei korttia.",
+    trial: "Ei korttia. Jäsenyys on 19 €/kk kun maksut avautuvat.",
+    note: "Korttia ei kysytä missään. 19 €/kk kun maksut avautuvat — se on ainoa hinta tällä sivulla.",
     back: "← Ridgework",
     title: "Perustajahinta, Ridgework",
-    description: "Viikkotreeni. 14 päivää ilmaiseksi, sitten 19 €/kk. Peru milloin tahansa.",
+    description: "Viikkotreeni. Ei korttia aloittaessa. 19 €/kk kun maksut avautuvat.",
   },
   legalPage: {
     title: "Oikeudelliset tiedot",
@@ -591,7 +620,7 @@ export const fi: Copy = {
     lead: "Vedä alla olevia liukusäätimiä sen mukaan miltä oikeasti tuntuu jonain aamuna. Katso miten tämän päivän treeni ja perustelut muuttuvat mukana — sama pöytä jonka kirjautunut käyttäjä näkee, ajaen esimerkki-50 km-ultraohjelmaa.",
     noteTitle: "Mitään ei tallenneta",
     noteBody:
-      "Tämä esimerkki nollautuu kun poistut. Tee tili saadaksesi oman viikkosi, rakennettu omasta lajistasi, tavoitteestasi ja tavoitepäivästä — 14 päivää ilmaiseksi, ei korttia.",
+      "Tämä esimerkki nollautuu kun poistut. Tee tili saadaksesi oman viikkosi, rakennettu omasta lajistasi, tavoitteestasi ja tavoitepäivästä — ilmaiseksi, ei korttia.",
   },
   sourcesPage: {
     title: "Lähteet — Ridgework",

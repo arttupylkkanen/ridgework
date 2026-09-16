@@ -1,5 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
 import { LOCALES } from "./locale.ts";
 import { englishOnlyPages, sitemapXml, translatedPages } from "./sitemap.ts";
 
@@ -66,4 +69,30 @@ test("the plan and guide pages are all listed", () => {
   assert.ok(locs.includes(`${SITE}/fi/guides/100km-ultra-training-plan`));
   assert.ok(locs.includes(`${SITE}/de/field`));
   assert.ok(locs.includes(`${SITE}/founding`));
+});
+
+const routesDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../routes");
+
+/**
+ * The failure this catches: a page is added to the sitemap, or given an English
+ * route, without the `$locale` twin — so three of its four listed URLs 404.
+ * Guide and plan slugs are covered by their own `$slug` routes, so only the
+ * fixed paths are checked here.
+ */
+test("every translated page has both an English and a $locale route file", () => {
+  const fixed = translatedPages()
+    .map((pathOf) => pathOf("en"))
+    .filter((p) => p !== "/" && p.split("/").length === 2);
+  assert.ok(fixed.length > 0, "expected some fixed translated paths");
+  for (const p of fixed) {
+    const slug = p.slice(1);
+    assert.ok(
+      existsSync(path.join(routesDir, `${slug}.tsx`)),
+      `sitemap lists ${p} but src/routes/${slug}.tsx does not exist`,
+    );
+    assert.ok(
+      existsSync(path.join(routesDir, "$locale", `${slug}.tsx`)),
+      `sitemap lists ${p} in every locale but src/routes/$locale/${slug}.tsx does not exist`,
+    );
+  }
 });

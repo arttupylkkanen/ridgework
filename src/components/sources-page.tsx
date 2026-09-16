@@ -1,7 +1,7 @@
 import type { Copy } from "@/content/types";
 import { SOURCES } from "@/content";
 import type { Locale } from "@/lib/locale";
-import { HomeLink } from "./app-link";
+import { HomeLink, MethodLink } from "./app-link";
 
 export function SourcesPage({ locale, copy }: { locale: Locale; copy: Copy }) {
   const p = copy.sourcesPage;
@@ -38,13 +38,12 @@ export function SourcesPage({ locale, copy }: { locale: Locale; copy: Copy }) {
       <div className="mt-10 rounded-2xl border border-line bg-paper-warm/60 px-6 py-8 sm:px-8">
         <p className="font-display text-lg font-semibold text-ink">{p.noteTitle}</p>
         <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-muted">{p.noteBody}</p>
-        <HomeLink
+        <MethodLink
           locale={locale}
-          hash="method"
-          className="mt-6 inline-flex items-center text-sm font-medium text-ridge underline-offset-2 hover:underline"
+          className="mt-6 inline-flex min-h-11 items-center text-sm font-medium text-ridge underline-offset-2 hover:underline"
         >
-          {copy.method.teaserCta}
-        </HomeLink>
+          {copy.method.h2} →
+        </MethodLink>
       </div>
     </article>
   );

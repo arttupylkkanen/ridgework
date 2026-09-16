@@ -21,6 +21,17 @@ export function SiteFooter({ locale, copy }: { locale: Locale; copy: Copy }) {
             <p className="mt-4 text-sm text-ink-soft">{copy.legalEntity}</p>
           </div>
           <div className="flex flex-col gap-2 text-sm">
+            {/* The three pages the homepage used to carry as sections. They keep
+                their links here so cutting the landing page did not orphan them. */}
+            <Link to={pagePath(locale, "who")} className="text-ink-muted hover:text-ink">
+              {copy.nav.who}
+            </Link>
+            <Link to={pagePath(locale, "after")} className="text-ink-muted hover:text-ink">
+              {copy.firstWeek.h2}
+            </Link>
+            <Link to={pagePath(locale, "method")} className="text-ink-muted hover:text-ink">
+              {copy.nav.method}
+            </Link>
             <a href={`mailto:${copy.support}`} className="text-ink-muted hover:text-ink">
               {copy.support}
             </a>

@@ -39,9 +39,11 @@ export function LoginPage({ locale, copy }: { locale: Locale; copy: Copy }) {
     screenFromQuery(unquote(query.get("token")), unquote(query.get("error"))),
   );
   const [mode, setMode] = useState<Mode>("signin");
+  // `?qa=1` fills in the two fields that are not secret. The password is not
+  // in this bundle on purpose — see the note in `@/lib/test-account`.
   const [name, setName] = useState(qa ? TEST_ACCOUNT.name : "");
   const [email, setEmail] = useState(qa ? TEST_ACCOUNT.email : "");
-  const [password, setPassword] = useState(qa ? TEST_ACCOUNT.password : "");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [pending, setPending] = useState(false);

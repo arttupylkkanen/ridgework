@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LocaleRouteImport } from './routes/$locale'
+import { Route as AfterRouteImport } from './routes/after'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as ExampleRouteImport } from './routes/example'
 import { Route as FieldRouteImport } from './routes/field'
@@ -18,12 +19,15 @@ import { Route as FoundingRouteImport } from './routes/founding'
 import { Route as GuidesRouteImport } from './routes/guides'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
+import { Route as MethodRouteImport } from './routes/method'
 import { Route as OwnerRouteImport } from './routes/owner'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SourcesRouteImport } from './routes/sources'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as WhoRouteImport } from './routes/who'
 import { Route as LocaleIndexRouteImport } from './routes/$locale/index'
+import { Route as LocaleAfterRouteImport } from './routes/$locale/after'
 import { Route as LocaleAppRouteImport } from './routes/$locale/app'
 import { Route as LocaleExampleRouteImport } from './routes/$locale/example'
 import { Route as LocaleFieldRouteImport } from './routes/$locale/field'
@@ -31,9 +35,11 @@ import { Route as LocaleFoundingRouteImport } from './routes/$locale/founding'
 import { Route as LocaleGuidesRouteImport } from './routes/$locale/guides'
 import { Route as LocaleLoginRouteImport } from './routes/$locale/login'
 import { Route as LocaleMentionsLegalesRouteImport } from './routes/$locale/mentions-legales'
+import { Route as LocaleMethodRouteImport } from './routes/$locale/method'
 import { Route as LocalePrivacyRouteImport } from './routes/$locale/privacy'
 import { Route as LocaleSourcesRouteImport } from './routes/$locale/sources'
 import { Route as LocaleTermsRouteImport } from './routes/$locale/terms'
+import { Route as LocaleWhoRouteImport } from './routes/$locale/who'
 import { Route as CalendarTokenRouteImport } from './routes/calendar.$token'
 import { Route as GuidesIndexRouteImport } from './routes/guides/index'
 import { Route as GuidesSlugRouteImport } from './routes/guides/$slug'
@@ -54,6 +60,11 @@ const IndexRoute = IndexRouteImport.update({
 const LocaleRoute = LocaleRouteImport.update({
   id: '/$locale',
   path: '/$locale',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AfterRoute = AfterRouteImport.update({
+  id: '/after',
+  path: '/after',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppRoute = AppRouteImport.update({
@@ -91,6 +102,11 @@ const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
   path: '/mentions-legales',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MethodRoute = MethodRouteImport.update({
+  id: '/method',
+  path: '/method',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OwnerRoute = OwnerRouteImport.update({
   id: '/owner',
   path: '/owner',
@@ -116,9 +132,19 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WhoRoute = WhoRouteImport.update({
+  id: '/who',
+  path: '/who',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LocaleIndexRoute = LocaleIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => LocaleRoute,
+} as any)
+const LocaleAfterRoute = LocaleAfterRouteImport.update({
+  id: '/after',
+  path: '/after',
   getParentRoute: () => LocaleRoute,
 } as any)
 const LocaleAppRoute = LocaleAppRouteImport.update({
@@ -156,6 +182,11 @@ const LocaleMentionsLegalesRoute = LocaleMentionsLegalesRouteImport.update({
   path: '/mentions-legales',
   getParentRoute: () => LocaleRoute,
 } as any)
+const LocaleMethodRoute = LocaleMethodRouteImport.update({
+  id: '/method',
+  path: '/method',
+  getParentRoute: () => LocaleRoute,
+} as any)
 const LocalePrivacyRoute = LocalePrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -169,6 +200,11 @@ const LocaleSourcesRoute = LocaleSourcesRouteImport.update({
 const LocaleTermsRoute = LocaleTermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => LocaleRoute,
+} as any)
+const LocaleWhoRoute = LocaleWhoRouteImport.update({
+  id: '/who',
+  path: '/who',
   getParentRoute: () => LocaleRoute,
 } as any)
 const CalendarTokenRoute = CalendarTokenRouteImport.update({
@@ -230,6 +266,7 @@ const ApiPolarWebhookRoute = ApiPolarWebhookRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$locale': typeof LocaleRouteWithChildren
+  '/after': typeof AfterRoute
   '/app': typeof AppRoute
   '/example': typeof ExampleRoute
   '/field': typeof FieldRoute
@@ -237,11 +274,14 @@ export interface FileRoutesByFullPath {
   '/guides': typeof GuidesRouteWithChildren
   '/login': typeof LoginRoute
   '/mentions-legales': typeof MentionsLegalesRoute
+  '/method': typeof MethodRoute
   '/owner': typeof OwnerRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sources': typeof SourcesRoute
   '/terms': typeof TermsRoute
+  '/who': typeof WhoRoute
+  '/$locale/after': typeof LocaleAfterRoute
   '/$locale/app': typeof LocaleAppRoute
   '/$locale/example': typeof LocaleExampleRoute
   '/$locale/field': typeof LocaleFieldRoute
@@ -249,9 +289,11 @@ export interface FileRoutesByFullPath {
   '/$locale/guides': typeof LocaleGuidesRouteWithChildren
   '/$locale/login': typeof LocaleLoginRoute
   '/$locale/mentions-legales': typeof LocaleMentionsLegalesRoute
+  '/$locale/method': typeof LocaleMethodRoute
   '/$locale/privacy': typeof LocalePrivacyRoute
   '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
+  '/$locale/who': typeof LocaleWhoRoute
   '/calendar/$token': typeof CalendarTokenRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
@@ -267,26 +309,32 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/after': typeof AfterRoute
   '/app': typeof AppRoute
   '/example': typeof ExampleRoute
   '/field': typeof FieldRoute
   '/founding': typeof FoundingRoute
   '/login': typeof LoginRoute
   '/mentions-legales': typeof MentionsLegalesRoute
+  '/method': typeof MethodRoute
   '/owner': typeof OwnerRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sources': typeof SourcesRoute
   '/terms': typeof TermsRoute
+  '/who': typeof WhoRoute
+  '/$locale/after': typeof LocaleAfterRoute
   '/$locale/app': typeof LocaleAppRoute
   '/$locale/example': typeof LocaleExampleRoute
   '/$locale/field': typeof LocaleFieldRoute
   '/$locale/founding': typeof LocaleFoundingRoute
   '/$locale/login': typeof LocaleLoginRoute
   '/$locale/mentions-legales': typeof LocaleMentionsLegalesRoute
+  '/$locale/method': typeof LocaleMethodRoute
   '/$locale/privacy': typeof LocalePrivacyRoute
   '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
+  '/$locale/who': typeof LocaleWhoRoute
   '/calendar/$token': typeof CalendarTokenRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
@@ -304,6 +352,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$locale': typeof LocaleRouteWithChildren
+  '/after': typeof AfterRoute
   '/app': typeof AppRoute
   '/example': typeof ExampleRoute
   '/field': typeof FieldRoute
@@ -311,11 +360,14 @@ export interface FileRoutesById {
   '/guides': typeof GuidesRouteWithChildren
   '/login': typeof LoginRoute
   '/mentions-legales': typeof MentionsLegalesRoute
+  '/method': typeof MethodRoute
   '/owner': typeof OwnerRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sources': typeof SourcesRoute
   '/terms': typeof TermsRoute
+  '/who': typeof WhoRoute
+  '/$locale/after': typeof LocaleAfterRoute
   '/$locale/app': typeof LocaleAppRoute
   '/$locale/example': typeof LocaleExampleRoute
   '/$locale/field': typeof LocaleFieldRoute
@@ -323,9 +375,11 @@ export interface FileRoutesById {
   '/$locale/guides': typeof LocaleGuidesRouteWithChildren
   '/$locale/login': typeof LocaleLoginRoute
   '/$locale/mentions-legales': typeof LocaleMentionsLegalesRoute
+  '/$locale/method': typeof LocaleMethodRoute
   '/$locale/privacy': typeof LocalePrivacyRoute
   '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
+  '/$locale/who': typeof LocaleWhoRoute
   '/calendar/$token': typeof CalendarTokenRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
@@ -344,6 +398,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/$locale'
+    | '/after'
     | '/app'
     | '/example'
     | '/field'
@@ -351,11 +406,14 @@ export interface FileRouteTypes {
     | '/guides'
     | '/login'
     | '/mentions-legales'
+    | '/method'
     | '/owner'
     | '/privacy'
     | '/sitemap.xml'
     | '/sources'
     | '/terms'
+    | '/who'
+    | '/$locale/after'
     | '/$locale/app'
     | '/$locale/example'
     | '/$locale/field'
@@ -363,9 +421,11 @@ export interface FileRouteTypes {
     | '/$locale/guides'
     | '/$locale/login'
     | '/$locale/mentions-legales'
+    | '/$locale/method'
     | '/$locale/privacy'
     | '/$locale/sources'
     | '/$locale/terms'
+    | '/$locale/who'
     | '/calendar/$token'
     | '/guides/$slug'
     | '/passport/$token'
@@ -381,26 +441,32 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/after'
     | '/app'
     | '/example'
     | '/field'
     | '/founding'
     | '/login'
     | '/mentions-legales'
+    | '/method'
     | '/owner'
     | '/privacy'
     | '/sitemap.xml'
     | '/sources'
     | '/terms'
+    | '/who'
+    | '/$locale/after'
     | '/$locale/app'
     | '/$locale/example'
     | '/$locale/field'
     | '/$locale/founding'
     | '/$locale/login'
     | '/$locale/mentions-legales'
+    | '/$locale/method'
     | '/$locale/privacy'
     | '/$locale/sources'
     | '/$locale/terms'
+    | '/$locale/who'
     | '/calendar/$token'
     | '/guides/$slug'
     | '/passport/$token'
@@ -417,6 +483,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/$locale'
+    | '/after'
     | '/app'
     | '/example'
     | '/field'
@@ -424,11 +491,14 @@ export interface FileRouteTypes {
     | '/guides'
     | '/login'
     | '/mentions-legales'
+    | '/method'
     | '/owner'
     | '/privacy'
     | '/sitemap.xml'
     | '/sources'
     | '/terms'
+    | '/who'
+    | '/$locale/after'
     | '/$locale/app'
     | '/$locale/example'
     | '/$locale/field'
@@ -436,9 +506,11 @@ export interface FileRouteTypes {
     | '/$locale/guides'
     | '/$locale/login'
     | '/$locale/mentions-legales'
+    | '/$locale/method'
     | '/$locale/privacy'
     | '/$locale/sources'
     | '/$locale/terms'
+    | '/$locale/who'
     | '/calendar/$token'
     | '/guides/$slug'
     | '/passport/$token'
@@ -456,6 +528,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LocaleRoute: typeof LocaleRouteWithChildren
+  AfterRoute: typeof AfterRoute
   AppRoute: typeof AppRoute
   ExampleRoute: typeof ExampleRoute
   FieldRoute: typeof FieldRoute
@@ -463,11 +536,13 @@ export interface RootRouteChildren {
   GuidesRoute: typeof GuidesRouteWithChildren
   LoginRoute: typeof LoginRoute
   MentionsLegalesRoute: typeof MentionsLegalesRoute
+  MethodRoute: typeof MethodRoute
   OwnerRoute: typeof OwnerRoute
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SourcesRoute: typeof SourcesRoute
   TermsRoute: typeof TermsRoute
+  WhoRoute: typeof WhoRoute
   CalendarTokenRoute: typeof CalendarTokenRoute
   PassportTokenRoute: typeof PassportTokenRoute
   PlansSlugRoute: typeof PlansSlugRoute
@@ -490,6 +565,13 @@ declare module '@tanstack/react-router' {
       path: '/$locale'
       fullPath: '/$locale'
       preLoaderRoute: typeof LocaleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/after': {
+      id: '/after'
+      path: '/after'
+      fullPath: '/after'
+      preLoaderRoute: typeof AfterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app': {
@@ -541,6 +623,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MentionsLegalesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/method': {
+      id: '/method'
+      path: '/method'
+      fullPath: '/method'
+      preLoaderRoute: typeof MethodRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/owner': {
       id: '/owner'
       path: '/owner'
@@ -576,11 +665,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/who': {
+      id: '/who'
+      path: '/who'
+      fullPath: '/who'
+      preLoaderRoute: typeof WhoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/$locale/': {
       id: '/$locale/'
       path: '/'
       fullPath: '/$locale/'
       preLoaderRoute: typeof LocaleIndexRouteImport
+      parentRoute: typeof LocaleRoute
+    }
+    '/$locale/after': {
+      id: '/$locale/after'
+      path: '/after'
+      fullPath: '/$locale/after'
+      preLoaderRoute: typeof LocaleAfterRouteImport
       parentRoute: typeof LocaleRoute
     }
     '/$locale/app': {
@@ -632,6 +735,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocaleMentionsLegalesRouteImport
       parentRoute: typeof LocaleRoute
     }
+    '/$locale/method': {
+      id: '/$locale/method'
+      path: '/method'
+      fullPath: '/$locale/method'
+      preLoaderRoute: typeof LocaleMethodRouteImport
+      parentRoute: typeof LocaleRoute
+    }
     '/$locale/privacy': {
       id: '/$locale/privacy'
       path: '/privacy'
@@ -651,6 +761,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/$locale/terms'
       preLoaderRoute: typeof LocaleTermsRouteImport
+      parentRoute: typeof LocaleRoute
+    }
+    '/$locale/who': {
+      id: '/$locale/who'
+      path: '/who'
+      fullPath: '/$locale/who'
+      preLoaderRoute: typeof LocaleWhoRouteImport
       parentRoute: typeof LocaleRoute
     }
     '/calendar/$token': {
@@ -748,6 +865,7 @@ const LocaleGuidesRouteWithChildren = LocaleGuidesRoute._addFileChildren(
 )
 
 interface LocaleRouteChildren {
+  LocaleAfterRoute: typeof LocaleAfterRoute
   LocaleAppRoute: typeof LocaleAppRoute
   LocaleExampleRoute: typeof LocaleExampleRoute
   LocaleFieldRoute: typeof LocaleFieldRoute
@@ -755,14 +873,17 @@ interface LocaleRouteChildren {
   LocaleGuidesRoute: typeof LocaleGuidesRouteWithChildren
   LocaleLoginRoute: typeof LocaleLoginRoute
   LocaleMentionsLegalesRoute: typeof LocaleMentionsLegalesRoute
+  LocaleMethodRoute: typeof LocaleMethodRoute
   LocalePrivacyRoute: typeof LocalePrivacyRoute
   LocaleSourcesRoute: typeof LocaleSourcesRoute
   LocaleTermsRoute: typeof LocaleTermsRoute
+  LocaleWhoRoute: typeof LocaleWhoRoute
   LocaleIndexRoute: typeof LocaleIndexRoute
   LocalePassportTokenRoute: typeof LocalePassportTokenRoute
 }
 
 const LocaleRouteChildren: LocaleRouteChildren = {
+  LocaleAfterRoute: LocaleAfterRoute,
   LocaleAppRoute: LocaleAppRoute,
   LocaleExampleRoute: LocaleExampleRoute,
   LocaleFieldRoute: LocaleFieldRoute,
@@ -770,9 +891,11 @@ const LocaleRouteChildren: LocaleRouteChildren = {
   LocaleGuidesRoute: LocaleGuidesRouteWithChildren,
   LocaleLoginRoute: LocaleLoginRoute,
   LocaleMentionsLegalesRoute: LocaleMentionsLegalesRoute,
+  LocaleMethodRoute: LocaleMethodRoute,
   LocalePrivacyRoute: LocalePrivacyRoute,
   LocaleSourcesRoute: LocaleSourcesRoute,
   LocaleTermsRoute: LocaleTermsRoute,
+  LocaleWhoRoute: LocaleWhoRoute,
   LocaleIndexRoute: LocaleIndexRoute,
   LocalePassportTokenRoute: LocalePassportTokenRoute,
 }
@@ -796,6 +919,7 @@ const GuidesRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LocaleRoute: LocaleRouteWithChildren,
+  AfterRoute: AfterRoute,
   AppRoute: AppRoute,
   ExampleRoute: ExampleRoute,
   FieldRoute: FieldRoute,
@@ -803,11 +927,13 @@ const rootRouteChildren: RootRouteChildren = {
   GuidesRoute: GuidesRouteWithChildren,
   LoginRoute: LoginRoute,
   MentionsLegalesRoute: MentionsLegalesRoute,
+  MethodRoute: MethodRoute,
   OwnerRoute: OwnerRoute,
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SourcesRoute: SourcesRoute,
   TermsRoute: TermsRoute,
+  WhoRoute: WhoRoute,
   CalendarTokenRoute: CalendarTokenRoute,
   PassportTokenRoute: PassportTokenRoute,
   PlansSlugRoute: PlansSlugRoute,

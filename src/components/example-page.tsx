@@ -2,6 +2,7 @@ import type { Copy } from "@/content/types";
 import type { Locale } from "@/lib/locale";
 import { HomeLink, AuthLink } from "./app-link";
 import { ExampleDesk } from "./example-desk";
+import { offerTerms } from "@/lib/offer";
 
 export function ExamplePage({ locale, copy }: { locale: Locale; copy: Copy }) {
   const p = copy.examplePage;
@@ -27,7 +28,7 @@ export function ExamplePage({ locale, copy }: { locale: Locale; copy: Copy }) {
           locale={locale}
           className="mt-6 inline-flex items-center justify-center rounded-lg bg-ridge px-5 py-3 text-sm font-medium text-paper hover:bg-ridge-deep"
         >
-          {copy.cta.start}
+          {offerTerms(copy).cta}
         </AuthLink>
       </div>
     </article>
