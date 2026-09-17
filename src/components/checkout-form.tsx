@@ -187,11 +187,15 @@ export function PaywallPanel({
         {noCardTrial ? offerTerms(copy).badge : copy.checkout.successTitle}
       </h3>
       <p className="mt-3 text-ink-muted leading-relaxed">
-        {membership.status === "active"
-          ? copy.checkout.subscribed
-          : noCardTrial
-            ? fillTemplate(copy.checkout.trialNoCard, { n: membership.daysLeft })
-            : copy.checkout.trialOn}
+        {/* No trial exists until Polar can take a card, so do not count days
+            down at someone while checkout is closed. */}
+        {!CHECKOUT_OPEN
+          ? offerTerms(copy).line
+          : membership.status === "active"
+            ? copy.checkout.subscribed
+            : noCardTrial
+              ? fillTemplate(copy.checkout.trialNoCard, { n: membership.daysLeft })
+              : copy.checkout.trialOn}
       </p>
       {noCardTrial ? null : (
         <p className="mt-3 text-ink-muted leading-relaxed">{copy.checkout.successBody}</p>

@@ -103,10 +103,17 @@ export function LoginPage({ locale, copy }: { locale: Locale; copy: Copy }) {
           }
           return;
         }
+        // Ask whether THIS account is signed in, not merely whether some
+        // session exists. Signing up while already signed in as somebody else
+        // used to fall straight through to the desk, so the new account looked
+        // like it had been logged into when it was the old session all along —
+        // and the verification screen it should have seen never appeared.
         const { data: session } = await authClient.getSession();
-        if (!session) {
-          // Verification is on, so there is no session yet and the form has
-          // nothing left to do. Replace it.
+        const signedInAs = session?.user?.email?.trim().toLowerCase() ?? null;
+        if (signedInAs !== email.trim().toLowerCase()) {
+          // Either verification is on and there is no session yet, or the
+          // session belongs to someone else. Both mean the new account is not
+          // usable until its address is confirmed.
           setScreen({ kind: "verifySent", email: email.trim() });
           return;
         }

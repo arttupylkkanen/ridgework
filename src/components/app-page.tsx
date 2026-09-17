@@ -6,6 +6,8 @@ import type { Copy } from "@/content/types";
 import type { Locale } from "@/lib/locale";
 import { getFounding, grantFounding } from "@/lib/founding";
 import { isNoCardTrial, type Membership } from "@/lib/membership";
+import { CHECKOUT_OPEN } from "@/lib/billing";
+import { offerTerms } from "@/lib/offer";
 import { confirmMembershipCheckout, getMembership } from "@/lib/membership-server";
 import { homeHash, pagePath } from "@/lib/locale";
 import {
@@ -57,6 +59,7 @@ function checkoutFromSearch(searchStr: string): string | null {
 }
 
 export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
+  const offer = offerTerms(copy);
   const { user, isPending } = useCurrentUserState();
   const searchStr = useRouterState({ select: (s) => s.location.searchStr });
   const wantProgram = programFromSearch(searchStr);
@@ -292,11 +295,16 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
       <p className="text-sm font-medium uppercase tracking-wider text-accent">
         {copy.appPage.kicker}
       </p>
+      {/* The desk used to count down "14 days left" while the site said the
+          opposite everywhere else. There is no trial until Polar can take a
+          card, so until then it says what the rest of the site says. */}
       {membership?.status === "trialing" ? (
         <p className="mt-4 max-w-2xl rounded-2xl border border-line bg-paper-warm/70 px-4 py-3 text-sm leading-relaxed text-ink">
-          {isNoCardTrial(membership)
-            ? fillTemplate(copy.checkout.trialNoCard, { n: membership.daysLeft })
-            : copy.checkout.trialOn}
+          {!CHECKOUT_OPEN
+            ? offer.line
+            : isNoCardTrial(membership)
+              ? fillTemplate(copy.checkout.trialNoCard, { n: membership.daysLeft })
+              : copy.checkout.trialOn}
         </p>
       ) : null}
       <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
@@ -307,15 +315,17 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
           <p className="mt-3 max-w-2xl text-ink-muted leading-relaxed">{copy.appPage.lead}</p>
         </div>
         <p className="rounded-full border border-line bg-card px-3 py-1 text-xs font-medium text-ink-muted">
-          {membership?.status === "active"
-            ? membership.cancelScheduled
-              ? copy.checkout.canceledLater
-              : copy.checkout.subscribed
-            : membership?.status === "trialing"
-              ? isNoCardTrial(membership)
-                ? fillTemplate(copy.checkout.trialLeft, { n: membership.daysLeft })
-                : copy.checkout.trialOn
-              : copy.dashboard.billingTest}
+          {!CHECKOUT_OPEN
+            ? offer.badge
+            : membership?.status === "active"
+              ? membership.cancelScheduled
+                ? copy.checkout.canceledLater
+                : copy.checkout.subscribed
+              : membership?.status === "trialing"
+                ? isNoCardTrial(membership)
+                  ? fillTemplate(copy.checkout.trialLeft, { n: membership.daysLeft })
+                  : copy.checkout.trialOn
+                : copy.dashboard.billingTest}
         </p>
       </div>
       {membership && (membership.canCancel || membership.cancelScheduled) ? (
