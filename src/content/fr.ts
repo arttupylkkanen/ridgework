@@ -451,6 +451,10 @@ export const fr: Copy = {
     lead: "77 km et six semaines. 100 km. Fatigue. Journées alpines. Checklist de course.",
     cta: "Ouvrir les guides",
     read: "Lire",
+    nextTitle: "Mettez maintenant votre propre date",
+    nextBody:
+      "Ce guide est un exemple travaillé. Le planificateur écrit de la même façon pour le jour où vous devez être prêt — trois semaines à la fois, sans compte, sans carte.",
+    nextCta: "Voir mes trois semaines →",
   },
   pricing: {
     kicker: "Tarifs",

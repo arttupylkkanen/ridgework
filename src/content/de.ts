@@ -445,6 +445,10 @@ export const de: Copy = {
     lead: "77 km und sechs Wochen. 100 km. Müdigkeit. Alpentage. Renn-Checkliste.",
     cta: "Guides öffnen",
     read: "Lesen",
+    nextTitle: "Jetzt dein eigenes Datum",
+    nextBody:
+      "Dieser Guide ist ein durchgerechnetes Beispiel. Der Planer schreibt genauso für den Tag, an dem du bereit sein musst — drei Wochen auf einmal, ohne Konto, ohne Karte.",
+    nextCta: "Meine drei Wochen ansehen →",
   },
   pricing: {
     kicker: "Preise",

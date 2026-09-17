@@ -446,6 +446,10 @@ export const fi: Copy = {
     lead: "77 km ja kuusi viikkoa. 100 km aika jaloilla. Väsymys. Alppipäivät. Kisaviikon lista.",
     cta: "Avaa oppaat",
     read: "Lue",
+    nextTitle: "Laita nyt oma päiväsi",
+    nextBody:
+      "Tämä opas on yksi esimerkki. Suunnittelija kirjoittaa samalla tavalla sille päivälle, jona sinun on oltava valmis — kolme viikkoa kerrallaan, ilman tiliä ja ilman korttia.",
+    nextCta: "Näytä kolme viikkoani →",
   },
   pricing: {
     kicker: "Hinta",

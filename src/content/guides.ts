@@ -1,7 +1,14 @@
 import type { Locale } from "@/lib/locale";
+import type { FirstObjective } from "@/lib/first-person";
 
 export type GuideCopy = {
   slug: string;
+  /**
+   * Which objective the end-of-guide link opens the planner on. Coarse on
+   * purpose: the planner writes for a first 50 km or a first 20 km trail race,
+   * so every guide lands on whichever of those two its reader is closer to.
+   */
+  goal: FirstObjective;
   title: Record<Locale, string>;
   description: Record<Locale, string>;
   kicker: Record<Locale, string>;
@@ -11,6 +18,7 @@ export type GuideCopy = {
 export const GUIDES: GuideCopy[] = [
   {
     slug: "six-weeks-to-a-77k-ultra",
+    goal: "fifty",
     title: {
       en: "Six weeks to a 77 km ultra: what to run this week",
       fi: "Kuusi viikkoa 77 km ultraan: mitä juokset tällä viikolla",
@@ -64,6 +72,7 @@ export const GUIDES: GuideCopy[] = [
   },
   {
     slug: "100km-ultra-training-plan",
+    goal: "fifty",
     title: {
       en: "100 km ultra training plan: time on feet, then back-to-backs",
       fi: "100 km ultran treenisuunnitelma: aika jaloilla, sitten peräkkäiset päivät",
@@ -115,6 +124,7 @@ export const GUIDES: GuideCopy[] = [
   },
   {
     slug: "trail-running-training-plan",
+    goal: "trail20",
     title: {
       en: "Trail running training plan for 20 km and 50 km",
       fi: "Polkujuoksun treenisuunnitelma 20 km ja 50 km",
@@ -166,6 +176,7 @@ export const GUIDES: GuideCopy[] = [
   },
   {
     slug: "trail-running-fatigue",
+    goal: "trail20",
     title: {
       en: "Trail running fatigue: when the week should train less",
       fi: "Polkujuoksun väsymys: milloin viikko treenaa vähemmän",
@@ -213,6 +224,7 @@ export const GUIDES: GuideCopy[] = [
   },
   {
     slug: "mountain-running-preparation",
+    goal: "fifty",
     title: {
       en: "Mountain running preparation for an alpine day",
       fi: "Vuorijuoksun valmistelu alppipäivään",
@@ -260,6 +272,7 @@ export const GUIDES: GuideCopy[] = [
   },
   {
     slug: "ultra-race-preparation-checklist",
+    goal: "fifty",
     title: {
       en: "Ultra race preparation checklist for the last two weeks",
       fi: "Ultra-kisan checklist kahdelle viimeiselle viikolle",
@@ -307,6 +320,7 @@ export const GUIDES: GuideCopy[] = [
   },
   {
     slug: "aerobic-engine-low-heart-rate",
+    goal: "trail20",
     title: {
       en: "Aerobic engine: more work at a low heart rate",
       fi: "Aerobinen moottori: lisää työtä matalalla sykkeellä",

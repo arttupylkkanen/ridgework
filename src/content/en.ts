@@ -468,6 +468,10 @@ export const en: Copy = {
     lead: "77 km with six weeks left. 100 km time on feet. Fatigue. Alpine days. Checklists for race week.",
     cta: "Open the guides",
     read: "Read",
+    nextTitle: "Now put your own date in",
+    nextBody:
+      "This guide is one worked example. The planner writes the same way for the day you actually have to be ready — three weeks at a time, no account, no card.",
+    nextCta: "See my three weeks →",
   },
   pricing: {
     kicker: "Pricing",

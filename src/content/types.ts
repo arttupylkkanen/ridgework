@@ -235,6 +235,15 @@ export type Copy = {
     lead: string;
     cta: string;
     read: string;
+    /**
+     * The end of a guide is the highest-intent moment on the public site: the
+     * reader has just been shown their own week. It used to offer them the
+     * guides index and the homepage. These three strings offer them step two
+     * instead — their own date, their own three weeks.
+     */
+    nextTitle: string;
+    nextBody: string;
+    nextCta: string;
   };
   /** Everything price-dependent lives on `offer`; these are the fixed labels. */
   pricing: {

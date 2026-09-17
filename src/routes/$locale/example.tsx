@@ -4,8 +4,10 @@ import { SiteShell } from "@/components/site-shell";
 import { getCopy } from "@/content";
 import { pageLinks, prefixed, siteMeta } from "@/lib/seo";
 import { isPathLocale } from "@/lib/locale";
+import { parseExampleSearch } from "@/lib/example-link";
 
 export const Route = createFileRoute("/$locale/example")({
+  validateSearch: parseExampleSearch,
   head: ({ params }) => {
     const locale = isPathLocale(params.locale) ? params.locale : "en";
     const copy = getCopy(locale);

@@ -3,10 +3,12 @@ import { ExamplePage } from "@/components/example-page";
 import { SiteShell } from "@/components/site-shell";
 import { getCopy } from "@/content";
 import { pageLinks, prefixed, siteMeta } from "@/lib/seo";
+import { parseExampleSearch } from "@/lib/example-link";
 
 const copy = getCopy("en");
 
 export const Route = createFileRoute("/example")({
+  validateSearch: parseExampleSearch,
   head: () => ({
     meta: siteMeta({
       title: copy.examplePage.title,
