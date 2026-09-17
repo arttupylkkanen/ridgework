@@ -1,12 +1,18 @@
+import { useSearch } from "@tanstack/react-router";
 import type { Copy } from "@/content/types";
 import type { Locale } from "@/lib/locale";
 import { HomeLink, AuthLink } from "./app-link";
 import { ExampleDesk } from "./example-desk";
 import { ExamplePlanner } from "./example-planner";
+import { NotifyForm } from "./notify-form";
+import { exampleSelection, type ExampleSearch } from "@/lib/example-link";
 import { offerTerms } from "@/lib/offer";
 
 export function ExamplePage({ locale, copy }: { locale: Locale; copy: Copy }) {
   const p = copy.examplePage;
+  // Same search the planner reads, so the address a stranger leaves is filed
+  // against the race they were actually looking at.
+  const selection = exampleSelection(useSearch({ strict: false }) as ExampleSearch);
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
       <HomeLink locale={locale} className="text-sm text-ink-muted hover:text-ink">
@@ -27,6 +33,13 @@ export function ExamplePage({ locale, copy }: { locale: Locale; copy: Copy }) {
 
       <div className="mt-10">
         <ExampleDesk locale={locale} copy={copy} />
+      </div>
+
+      {/* The address goes here rather than at the top: they have their own
+          three weeks on screen by now, which is the first moment there is
+          anything to be told about. */}
+      <div className="mt-10">
+        <NotifyForm locale={locale} copy={copy} goal={selection.goal} peak={selection.peakOn} />
       </div>
 
       <div className="mt-10 rounded-2xl border border-line bg-paper-warm/60 px-6 py-8 sm:px-8">

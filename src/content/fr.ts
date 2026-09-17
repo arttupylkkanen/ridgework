@@ -633,6 +633,7 @@ export const fr: Copy = {
       "Comment vous vous sentez. Le point quotidien : sommeil, courbatures, fatigue, stress et motivation sur une échelle de 1 à 5, plus une réponse oui/non sur ce qui limite l’entraînement. Base légale : exécution du contrat. Ce sont des ressentis d’entraînement, pas des mesures cliniques ; nous ne demandons ni ne souhaitons diagnostics, traitements, résultats d’examens ou tout autre dossier médical. Ridgework n’est pas un service de santé et ne pose aucun diagnostic.",
       "Ce que vous avez fait. La séance prévue, si vous l’avez marquée faite, manquée ou déplacée, et les minutes saisies. Base légale : exécution du contrat — c’est ce qui permet au plan de réagir à la semaine que vous avez réellement eue.",
       "Intégrations, seulement si vous le demandez. Le flux calendrier crée une adresse secrète pour vos séances. Connecter intervals.icu enregistre la clé API que vous collez. Les deux sont désactivées tant que vous ne les activez pas, les deux se déconnectent, et la déconnexion supprime ce qui était stocké. Base légale : consentement.",
+      "La liste de rappel, seulement si vous le demandez. Si vous laissez une adresse pour être prévenu à l’ouverture de la caisse, nous conservons cette adresse, l’objectif et la date que vous regardiez alors, et le fait que vous ayez confirmé ou non. Base légale : consentement. Hormis la confirmation elle-même, rien n’est envoyé à une adresse non confirmée ; chaque message contient un lien qui supprime l’entrée sans compte ; et la liste ne sert qu’à ce message unique.",
     ],
     bodyAfter: [
       "Qui d’autre y a accès. Seulement les prestataires qui font tourner le service, listés avec adresses et régions sur la page Mentions légales : Vercel (hébergement, région Paris), Neon (base de données, Francfort), Resend (e-mails de confirmation et de mot de passe, Irlande) et Cloudflare (DNS et routage du courrier). Chacun agit sur nos instructions sous accord de sous-traitance. Nous ne vendons pas de données et n’en partageons pas à des fins publicitaires.",
@@ -642,6 +643,30 @@ export const fr: Copy = {
       "Réclamations. Si notre réponse ne vous satisfait pas, vous pouvez saisir la CNIL, 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07, ou cnil.fr. Vous pouvez aussi saisir l’autorité de votre pays de résidence.",
       "Modifications. En cas de changement important, nous l’indiquerons sur cette page et, si le changement concerne l’usage de données déjà fournies, par e-mail.",
     ],
+  },
+  notify: {
+    title: "Prévenez-moi à l’ouverture",
+    body: "Un message, le jour où la caisse ouvre. Pas de newsletter, pas de conseils d’entraînement, pas de rappels pour noter vos sorties. Vous pouvez retirer votre adresse depuis le message lui-même.",
+    label: "E-mail",
+    placeholder: "vous@exemple.fr",
+    cta: "Prévenez-moi",
+    pending: "Envoi…",
+    sentTitle: "Regardez votre boîte",
+    sentBody:
+      "Si cette adresse peut recevoir du courrier, une confirmation est en route. Rien n’est sur la liste tant que vous n’ouvrez pas le lien.",
+    badEmail: "Cela ne ressemble pas à une adresse e-mail.",
+    failed: "L’envoi a échoué. Réessayez dans un instant.",
+    pageTitle: "Votre adresse — Ridgework",
+    pageDescription: "Confirmez ou retirez l’adresse que vous avez laissée à Ridgework.",
+    confirmedTitle: "Confirmé",
+    confirmedBody: "Vous recevrez un message, le jour où la caisse ouvre. C’est toute la liste.",
+    leftTitle: "Retirée",
+    leftBody: "Votre adresse est supprimée. Rien n’est conservé et rien ne sera envoyé.",
+    unknownTitle: "Ce lien a déjà servi",
+    unknownBody:
+      "Il a déjà été utilisé une fois, ou l’adresse a été retirée. Dans les deux cas il n’y a plus rien à faire ici.",
+    leaveCta: "Retirer mon adresse",
+    back: "← Accueil Ridgework",
   },
   examplePage: {
     title: "Essayez une vraie journée — Ridgework",

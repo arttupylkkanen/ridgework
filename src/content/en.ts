@@ -664,6 +664,7 @@ export const en: Copy = {
       "How you feel. The daily check-in: sleep, soreness, fatigue, stress and motivation on a 1–5 scale, plus a yes/no flag for anything currently limiting training. Legal basis: performance of the contract. These are subjective training inputs, not clinical measurements, and we do not ask for and do not want diagnoses, medication, test results or any other medical record. Ridgework is not a medical service and makes no diagnosis.",
       "What you did. Which session was planned, whether you marked it done, missed or moved, and the minutes you entered. Legal basis: performance of the contract — it is what lets the plan respond to the week you actually had rather than the one that was written.",
       "Integrations, only if you ask. A calendar feed creates a secret address for your sessions. Connecting intervals.icu stores the API key you paste, so we can push sessions to it. Both are off until you turn them on, both can be disconnected, and disconnecting deletes what was stored. Legal basis: consent.",
+      "The reminder list, only if you ask. Leave an address to be told when the checkout opens and we store that address, the objective and date you were looking at when you left it, and whether you confirmed. Legal basis: consent. Apart from the confirmation itself, nothing is sent to an address that has not confirmed; every message carries a link that deletes the entry without an account; and the list is used for that one message and nothing else.",
     ],
     bodyAfter: [
       "Who else sees it. Only the providers that run the service, listed with their addresses and regions on the Legal notice page: Vercel (hosting, Paris region), Neon (database, Frankfurt), Resend (confirmation and password emails, Ireland) and Cloudflare (DNS and mail routing). Each acts on our instructions under a data processing agreement. We do not sell personal data, and we do not share it for advertising.",
@@ -673,6 +674,31 @@ export const en: Copy = {
       "Complaints. If our answer does not satisfy you, you can complain to the French supervisory authority: CNIL, 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07, or cnil.fr. You may also complain to the authority where you live.",
       "Changes. If this notice changes materially we will say so on this page and, where the change affects how we use data you have already given us, by email.",
     ],
+  },
+  notify: {
+    title: "Tell me when it opens",
+    body: "One message, on the day the checkout opens. No newsletter, no training tips, no reminders to log your run. You can remove your address from the mail itself.",
+    label: "Email",
+    placeholder: "you@example.com",
+    cta: "Tell me",
+    pending: "Sending…",
+    sentTitle: "Check your inbox",
+    sentBody:
+      "If that address can receive mail, a confirmation is on its way. Nothing is on the list until you open the link in it.",
+    badEmail: "That does not look like an email address.",
+    failed: "That did not send. Try again in a moment.",
+    pageTitle: "Your address — Ridgework",
+    pageDescription: "Confirm or remove the address you left with Ridgework.",
+    confirmedTitle: "Confirmed",
+    confirmedBody:
+      "You will get one message, on the day the checkout opens. That is the whole list.",
+    leftTitle: "Removed",
+    leftBody: "Your address is deleted. Nothing is kept, and nothing will be sent.",
+    unknownTitle: "That link has already been used",
+    unknownBody:
+      "It was either used once already or the address has been removed. Either way there is nothing left to do here.",
+    leaveCta: "Remove my address",
+    back: "← Ridgework home",
   },
   examplePage: {
     title: "Try a real day — Ridgework",

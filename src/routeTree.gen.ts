@@ -20,6 +20,7 @@ import { Route as GuidesRouteImport } from './routes/guides'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as MethodRouteImport } from './routes/method'
+import { Route as NotifyRouteImport } from './routes/notify'
 import { Route as OwnerRouteImport } from './routes/owner'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -36,6 +37,7 @@ import { Route as LocaleGuidesRouteImport } from './routes/$locale/guides'
 import { Route as LocaleLoginRouteImport } from './routes/$locale/login'
 import { Route as LocaleMentionsLegalesRouteImport } from './routes/$locale/mentions-legales'
 import { Route as LocaleMethodRouteImport } from './routes/$locale/method'
+import { Route as LocaleNotifyRouteImport } from './routes/$locale/notify'
 import { Route as LocalePrivacyRouteImport } from './routes/$locale/privacy'
 import { Route as LocaleSourcesRouteImport } from './routes/$locale/sources'
 import { Route as LocaleTermsRouteImport } from './routes/$locale/terms'
@@ -105,6 +107,11 @@ const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
 const MethodRoute = MethodRouteImport.update({
   id: '/method',
   path: '/method',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotifyRoute = NotifyRouteImport.update({
+  id: '/notify',
+  path: '/notify',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OwnerRoute = OwnerRouteImport.update({
@@ -185,6 +192,11 @@ const LocaleMentionsLegalesRoute = LocaleMentionsLegalesRouteImport.update({
 const LocaleMethodRoute = LocaleMethodRouteImport.update({
   id: '/method',
   path: '/method',
+  getParentRoute: () => LocaleRoute,
+} as any)
+const LocaleNotifyRoute = LocaleNotifyRouteImport.update({
+  id: '/notify',
+  path: '/notify',
   getParentRoute: () => LocaleRoute,
 } as any)
 const LocalePrivacyRoute = LocalePrivacyRouteImport.update({
@@ -275,6 +287,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/method': typeof MethodRoute
+  '/notify': typeof NotifyRoute
   '/owner': typeof OwnerRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -290,6 +303,7 @@ export interface FileRoutesByFullPath {
   '/$locale/login': typeof LocaleLoginRoute
   '/$locale/mentions-legales': typeof LocaleMentionsLegalesRoute
   '/$locale/method': typeof LocaleMethodRoute
+  '/$locale/notify': typeof LocaleNotifyRoute
   '/$locale/privacy': typeof LocalePrivacyRoute
   '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
@@ -317,6 +331,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/method': typeof MethodRoute
+  '/notify': typeof NotifyRoute
   '/owner': typeof OwnerRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -331,6 +346,7 @@ export interface FileRoutesByTo {
   '/$locale/login': typeof LocaleLoginRoute
   '/$locale/mentions-legales': typeof LocaleMentionsLegalesRoute
   '/$locale/method': typeof LocaleMethodRoute
+  '/$locale/notify': typeof LocaleNotifyRoute
   '/$locale/privacy': typeof LocalePrivacyRoute
   '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
@@ -361,6 +377,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/method': typeof MethodRoute
+  '/notify': typeof NotifyRoute
   '/owner': typeof OwnerRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -376,6 +393,7 @@ export interface FileRoutesById {
   '/$locale/login': typeof LocaleLoginRoute
   '/$locale/mentions-legales': typeof LocaleMentionsLegalesRoute
   '/$locale/method': typeof LocaleMethodRoute
+  '/$locale/notify': typeof LocaleNotifyRoute
   '/$locale/privacy': typeof LocalePrivacyRoute
   '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
@@ -407,6 +425,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/mentions-legales'
     | '/method'
+    | '/notify'
     | '/owner'
     | '/privacy'
     | '/sitemap.xml'
@@ -422,6 +441,7 @@ export interface FileRouteTypes {
     | '/$locale/login'
     | '/$locale/mentions-legales'
     | '/$locale/method'
+    | '/$locale/notify'
     | '/$locale/privacy'
     | '/$locale/sources'
     | '/$locale/terms'
@@ -449,6 +469,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/mentions-legales'
     | '/method'
+    | '/notify'
     | '/owner'
     | '/privacy'
     | '/sitemap.xml'
@@ -463,6 +484,7 @@ export interface FileRouteTypes {
     | '/$locale/login'
     | '/$locale/mentions-legales'
     | '/$locale/method'
+    | '/$locale/notify'
     | '/$locale/privacy'
     | '/$locale/sources'
     | '/$locale/terms'
@@ -492,6 +514,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/mentions-legales'
     | '/method'
+    | '/notify'
     | '/owner'
     | '/privacy'
     | '/sitemap.xml'
@@ -507,6 +530,7 @@ export interface FileRouteTypes {
     | '/$locale/login'
     | '/$locale/mentions-legales'
     | '/$locale/method'
+    | '/$locale/notify'
     | '/$locale/privacy'
     | '/$locale/sources'
     | '/$locale/terms'
@@ -537,6 +561,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   MentionsLegalesRoute: typeof MentionsLegalesRoute
   MethodRoute: typeof MethodRoute
+  NotifyRoute: typeof NotifyRoute
   OwnerRoute: typeof OwnerRoute
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -628,6 +653,13 @@ declare module '@tanstack/react-router' {
       path: '/method'
       fullPath: '/method'
       preLoaderRoute: typeof MethodRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notify': {
+      id: '/notify'
+      path: '/notify'
+      fullPath: '/notify'
+      preLoaderRoute: typeof NotifyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/owner': {
@@ -740,6 +772,13 @@ declare module '@tanstack/react-router' {
       path: '/method'
       fullPath: '/$locale/method'
       preLoaderRoute: typeof LocaleMethodRouteImport
+      parentRoute: typeof LocaleRoute
+    }
+    '/$locale/notify': {
+      id: '/$locale/notify'
+      path: '/notify'
+      fullPath: '/$locale/notify'
+      preLoaderRoute: typeof LocaleNotifyRouteImport
       parentRoute: typeof LocaleRoute
     }
     '/$locale/privacy': {
@@ -874,6 +913,7 @@ interface LocaleRouteChildren {
   LocaleLoginRoute: typeof LocaleLoginRoute
   LocaleMentionsLegalesRoute: typeof LocaleMentionsLegalesRoute
   LocaleMethodRoute: typeof LocaleMethodRoute
+  LocaleNotifyRoute: typeof LocaleNotifyRoute
   LocalePrivacyRoute: typeof LocalePrivacyRoute
   LocaleSourcesRoute: typeof LocaleSourcesRoute
   LocaleTermsRoute: typeof LocaleTermsRoute
@@ -892,6 +932,7 @@ const LocaleRouteChildren: LocaleRouteChildren = {
   LocaleLoginRoute: LocaleLoginRoute,
   LocaleMentionsLegalesRoute: LocaleMentionsLegalesRoute,
   LocaleMethodRoute: LocaleMethodRoute,
+  LocaleNotifyRoute: LocaleNotifyRoute,
   LocalePrivacyRoute: LocalePrivacyRoute,
   LocaleSourcesRoute: LocaleSourcesRoute,
   LocaleTermsRoute: LocaleTermsRoute,
@@ -928,6 +969,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   MentionsLegalesRoute: MentionsLegalesRoute,
   MethodRoute: MethodRoute,
+  NotifyRoute: NotifyRoute,
   OwnerRoute: OwnerRoute,
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

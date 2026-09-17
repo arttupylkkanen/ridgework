@@ -353,6 +353,33 @@ export type Copy = {
     bodyBefore: string[];
     bodyAfter: string[];
   };
+  /**
+   * The only way to leave an address without inventing a password. Kept
+   * deliberately small: one line about what arrives, one field, one button.
+   */
+  notify: {
+    title: string;
+    body: string;
+    label: string;
+    placeholder: string;
+    cta: string;
+    pending: string;
+    sentTitle: string;
+    sentBody: string;
+    badEmail: string;
+    failed: string;
+    /** The /notify page, reached from the confirmation mail. */
+    pageTitle: string;
+    pageDescription: string;
+    confirmedTitle: string;
+    confirmedBody: string;
+    leftTitle: string;
+    leftBody: string;
+    unknownTitle: string;
+    unknownBody: string;
+    leaveCta: string;
+    back: string;
+  };
   examplePage: {
     title: string;
     description: string;

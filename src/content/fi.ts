@@ -636,6 +636,7 @@ export const fi: Copy = {
       "Miltä tuntuu. Päivittäinen kirjaus: uni, lihasarkuus, väsymys, stressi ja motivaatio asteikolla 1–5, sekä kyllä/ei-tieto siitä rajoittaako jokin harjoittelua juuri nyt. Peruste: sopimuksen täyttäminen. Nämä ovat subjektiivisia harjoitustietoja, eivät kliinisiä mittauksia, emmekä kysy emmekä halua diagnooseja, lääkityksiä, tutkimustuloksia tai muita potilastietoja. Ridgework ei ole terveydenhuollon palvelu eikä tee diagnooseja.",
       "Mitä teit. Mikä harjoitus oli suunniteltu, merkitsitkö sen tehdyksi, väliin jääneeksi vai siirretyksi, ja kirjaamasi minuutit. Peruste: sopimuksen täyttäminen — juuri tämä antaa suunnitelman mukautua siihen viikkoon joka sinulla oikeasti oli.",
       "Integraatiot, vain pyynnöstä. Kalenterisyöte luo harjoituksillesi salaisen osoitteen. intervals.icu:n kytkeminen tallentaa liittämäsi API-avaimen, jotta voimme työntää harjoitukset sinne. Molemmat ovat pois päältä kunnes kytket ne, molemmat voi katkaista, ja katkaisu poistaa tallennetun. Peruste: suostumus.",
+      "Muistutuslista, vain jos pyydät. Jos jätät osoitteen saadaksesi tiedon kassan avautumisesta, tallennamme osoitteen, sen tavoitteen ja päivän jota katsoit sitä jättäessäsi, sekä sen vahvistitko. Peruste: suostumus. Vahvistusviestiä lukuun ottamatta vahvistamattomaan osoitteeseen ei lähetetä mitään; jokaisessa viestissä on linkki joka poistaa merkinnän ilman tiliä; ja listaa käytetään siihen yhteen viestiin eikä mihinkään muuhun.",
     ],
     bodyAfter: [
       "Kuka muu näkee. Vain palvelun ajavat toimittajat, listattuna osoitteineen ja alueineen Oikeudelliset tiedot -sivulla: Vercel (ylläpito, Pariisin alue), Neon (tietokanta, Frankfurt), Resend (vahvistus- ja salasanaviestit, Irlanti) ja Cloudflare (DNS ja postin reititys). Kukin toimii ohjeidemme mukaan käsittelysopimuksen alla. Emme myy henkilötietoja emmekä jaa niitä mainontaan.",
@@ -645,6 +646,30 @@ export const fi: Copy = {
       "Valitukset. Jos vastauksemme ei tyydytä, voit tehdä valituksen Ranskan valvontaviranomaiselle: CNIL, 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07, tai cnil.fr. Voit valittaa myös oman asuinmaasi viranomaiselle.",
       "Muutokset. Jos tämä seloste muuttuu olennaisesti, kerromme siitä tällä sivulla ja, kun muutos koskee jo antamiesi tietojen käyttöä, sähköpostitse.",
     ],
+  },
+  notify: {
+    title: "Kerro kun aukeaa",
+    body: "Yksi viesti sinä päivänä kun kassa aukeaa. Ei uutiskirjettä, ei treenivinkkejä, ei muistutuksia kirjata juoksujasi. Osoitteen voi poistaa suoraan viestistä.",
+    label: "Sähköposti",
+    placeholder: "sina@esimerkki.fi",
+    cta: "Kerro minulle",
+    pending: "Lähetetään…",
+    sentTitle: "Katso sähköpostisi",
+    sentBody:
+      "Jos osoite voi vastaanottaa postia, vahvistus on matkalla. Listalla ei ole mitään ennen kuin avaat siinä olevan linkin.",
+    badEmail: "Tuo ei näytä sähköpostiosoitteelta.",
+    failed: "Lähetys ei onnistunut. Yritä hetken päästä uudelleen.",
+    pageTitle: "Osoitteesi — Ridgework",
+    pageDescription: "Vahvista tai poista Ridgeworkille jättämäsi osoite.",
+    confirmedTitle: "Vahvistettu",
+    confirmedBody: "Saat yhden viestin sinä päivänä kun kassa aukeaa. Siinä on koko lista.",
+    leftTitle: "Poistettu",
+    leftBody: "Osoitteesi on poistettu. Mitään ei säilytetä eikä mitään lähetetä.",
+    unknownTitle: "Tämä linkki on jo käytetty",
+    unknownBody:
+      "Se on joko käytetty kerran tai osoite on poistettu. Kummassakin tapauksessa täällä ei ole enää tehtävää.",
+    leaveCta: "Poista osoitteeni",
+    back: "← Ridgeworkin etusivu",
   },
   examplePage: {
     title: "Kokeile oikeaa päivää — Ridgework",
