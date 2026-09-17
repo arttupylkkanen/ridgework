@@ -25,6 +25,56 @@ type Mode = "signin" | "signup" | "forgot";
  * could say "we sent you a link" and then sign the next submit straight in.
  * Every branch below either shows the form or replaces it.
  */
+/**
+ * Both of these live outside `LoginPage` on purpose.
+ *
+ * Declared inside it, they were new function identities on every render, so
+ * React treated each keystroke as a different component type, unmounted the
+ * subtree and mounted a fresh one. The email and password inputs became new
+ * DOM nodes mid-typing, lost focus, and a phone's on-screen keyboard closed
+ * after every single character.
+ */
+function Panel({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className="mt-8 rounded-2xl border border-ridge bg-paper-warm/70 p-5">
+      <p className="font-display text-lg font-semibold text-ink">{title}</p>
+      <div className="mt-2 space-y-3 text-sm leading-relaxed text-ink-muted">{children}</div>
+    </div>
+  );
+}
+
+function Shell({
+  locale,
+  copy,
+  title,
+  children,
+}: {
+  locale: Locale;
+  copy: Copy;
+  /** What the form below actually does, not always "Sign in". */
+  title?: string;
+  children: ReactNode;
+}) {
+  return (
+    <SiteShell locale={locale} copy={copy} page="login">
+      <section className="mx-auto max-w-md px-4 py-16 sm:px-6 sm:py-24">
+        <p className="text-sm font-medium uppercase tracking-wider text-accent">
+          {copy.appPage.kicker}
+        </p>
+        <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight text-ink">
+          {title ?? copy.auth.title}
+        </h1>
+        {children}
+        <p className="mt-8 text-center text-sm">
+          <HomeLink locale={locale} className="text-ink-muted hover:text-ink">
+            Ridgework
+          </HomeLink>
+        </p>
+      </section>
+    </SiteShell>
+  );
+}
+
 export function LoginPage({ locale, copy }: { locale: Locale; copy: Copy }) {
   const searchStr = useRouterState({ select: (s) => s.location.searchStr });
   const query = new URLSearchParams(searchStr.startsWith("?") ? searchStr.slice(1) : searchStr);
@@ -173,39 +223,9 @@ export function LoginPage({ locale, copy }: { locale: Locale; copy: Copy }) {
     "w-full rounded-lg bg-ridge px-4 py-3.5 text-sm font-medium text-paper hover:bg-ridge-deep disabled:opacity-60";
   const quiet = "mt-6 w-full text-sm text-ridge underline-offset-2 hover:underline";
 
-  function Panel({ title, children }: { title: string; children: ReactNode }) {
-    return (
-      <div className="mt-8 rounded-2xl border border-ridge bg-paper-warm/70 p-5">
-        <p className="font-display text-lg font-semibold text-ink">{title}</p>
-        <div className="mt-2 space-y-3 text-sm leading-relaxed text-ink-muted">{children}</div>
-      </div>
-    );
-  }
-
-  function Shell({ children }: { children: ReactNode }) {
-    return (
-      <SiteShell locale={locale} copy={copy} page="login">
-        <section className="mx-auto max-w-md px-4 py-16 sm:px-6 sm:py-24">
-          <p className="text-sm font-medium uppercase tracking-wider text-accent">
-            {copy.appPage.kicker}
-          </p>
-          <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight text-ink">
-            {a.title}
-          </h1>
-          {children}
-          <p className="mt-8 text-center text-sm">
-            <HomeLink locale={locale} className="text-ink-muted hover:text-ink">
-              Ridgework
-            </HomeLink>
-          </p>
-        </section>
-      </SiteShell>
-    );
-  }
-
   if (screen.kind === "verifySent") {
     return (
-      <Shell>
+      <Shell locale={locale} copy={copy}>
         <Panel title={a.verifyTitle}>
           <p>{a.verifyBody}</p>
           {notice ? <p className="text-ink">{notice}</p> : null}
@@ -227,7 +247,7 @@ export function LoginPage({ locale, copy }: { locale: Locale; copy: Copy }) {
 
   if (screen.kind === "resetSent") {
     return (
-      <Shell>
+      <Shell locale={locale} copy={copy}>
         <Panel title={a.resetSentTitle}>
           <p>{a.resetSentBody}</p>
         </Panel>
@@ -240,7 +260,7 @@ export function LoginPage({ locale, copy }: { locale: Locale; copy: Copy }) {
 
   if (screen.kind === "linkExpired") {
     return (
-      <Shell>
+      <Shell locale={locale} copy={copy}>
         <Panel title={a.linkExpiredTitle}>
           <p>{a.linkExpiredBody}</p>
         </Panel>
@@ -254,7 +274,7 @@ export function LoginPage({ locale, copy }: { locale: Locale; copy: Copy }) {
   if (screen.kind === "setPassword") {
     const token = screen.token;
     return (
-      <Shell>
+      <Shell locale={locale} copy={copy}>
         <Panel title={a.setPasswordTitle}>
           <p>{a.setPasswordBody}</p>
         </Panel>
@@ -283,8 +303,10 @@ export function LoginPage({ locale, copy }: { locale: Locale; copy: Copy }) {
 
   const forgot = mode === "forgot";
 
+  const heading = forgot ? a.forgotTitle : mode === "signup" ? a.signUp : a.title;
+
   return (
-    <Shell>
+    <Shell locale={locale} copy={copy} title={heading}>
       {screen.kind === "resetDone" ? (
         <Panel title={a.resetDoneTitle}>
           <p>{a.resetDoneBody}</p>

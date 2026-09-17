@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { SignOutButton, UserButton } from "@/lib/auth/gates";
+import { fillTemplate } from "@/lib/utils";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
 import type { Copy } from "@/content/types";
 import {
@@ -193,6 +194,15 @@ export function SiteHeader({ locale, copy, page }: Props) {
 
       {open ? (
         <div id="mobile-nav" className="border-t border-line bg-paper px-4 py-4 xl:hidden">
+          {/* The identity chip is hidden below 640px, so on a phone this menu
+              was the only place that could say who you are — and it did not. */}
+          {user ? (
+            <p className="mb-3 border-b border-line px-3 pb-3 text-sm text-ink-muted">
+              {fillTemplate(copy.nav.signedInAs, {
+                who: user.displayName ?? user.primaryEmail ?? "",
+              })}
+            </p>
+          ) : null}
           <nav className="flex flex-col gap-1" aria-label="Mobile">
             <GuideLink
               locale={locale}
