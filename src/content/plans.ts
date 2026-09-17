@@ -230,7 +230,7 @@ export const PLAN_PAGES: PlanPage[] = [
     metaTitle: "Aerobic Base Training Plan (Low Heart Rate) — Ridgework",
     metaDescription:
       "A 16-week aerobic base plan: easy volume at conversational pace, no race required. Build the engine before the next objective. No card needed.",
-    kicker: "Aerobic engine",
+    kicker: "Easy base",
     h1: "Aerobic base training plan",
     lead: "No race on the calendar, on purpose. Easy volume at a pace you can talk through — the block that makes every later objective possible, and the one most people skip.",
     body: [

@@ -136,7 +136,7 @@ export const planEn: PlanToolsCopy = {
   donePhase: "Target week",
   objectives: {
     engine: {
-      name: "Aerobic engine",
+      name: "Easy base",
       length: "Recommended 16 weeks / 4 months",
       blurb:
         "No race required. Teach the body to do more work at conversation pace. Fat as the default fuel, low heart rate as the point. Ready is the week you want the engine settled.",
@@ -280,7 +280,7 @@ export const planFi: PlanToolsCopy = {
   donePhase: "Tavoiteviikko",
   objectives: {
     engine: {
-      name: "Aerobinen moottori",
+      name: "Peruskunto",
       length: "Suositus 16 viikkoa / 4 kk",
       blurb:
         "Kisaa ei tarvita. Opettaa kropan tekemään enemmän työtä puhevauhdissa. Rasva oletuspolttoaineena, matala syke on tavoite. Valmis on se viikko jolloin moottorin haluat olevan paikallaan.",
@@ -427,7 +427,7 @@ export const planFr: PlanToolsCopy = {
   donePhase: "Semaine de pic",
   objectives: {
     engine: {
-      name: "Moteur aérobie",
+      name: "Base aérobie",
       length: "Recommandé 16 semaines / 4 mois",
       blurb:
         "Pas de course obligatoire. Apprendre au corps à faire plus de travail à allure conversationnelle — le gras comme carburant par défaut, la basse fréquence cardiaque comme but. Le pic est la semaine où le moteur doit être en place.",
@@ -572,7 +572,7 @@ export const planDe: PlanToolsCopy = {
   donePhase: "Peak-Woche",
   objectives: {
     engine: {
-      name: "Aerober Motor",
+      name: "Grundlagenausdauer",
       length: "Empfohlen 16 Wochen / 4 Monate",
       blurb:
         "Kein Rennen nötig. Dem Körper beibringen, mehr Arbeit im Gesprächstempo zu leisten — Fett als Standardkraftstoff, niedrige Herzfrequenz als Ziel. Peak ist die Woche, in der der Motor sitzen soll.",

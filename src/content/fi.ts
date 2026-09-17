@@ -256,7 +256,7 @@ export const fi: Copy = {
     rows: [
       {
         id: "engine",
-        name: "Aerobinen moottori",
+        name: "Peruskunto",
         duration: "Noin 16 viikkoa kevyttä juoksua",
         focus: "Lisää kevyttä. Rasva polttoaineena. Kisaa ei tarvita.",
         locked:
