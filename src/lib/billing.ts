@@ -2,7 +2,7 @@ import { isBillingExemptEmail } from "./test-account.ts";
 
 /**
  * Polar is the merchant of record. New accounts add a card at Polar checkout.
- * Polar collects the card, charges €0 for 14 days, then €5/month unless cancelled.
+ * Polar collects the card, charges €0 for 14 days, then €19/month unless cancelled.
  * tester@ridgework.org and the owner Google login never hit Polar.
  *
  * Polar checkout link is public (Polar dashboard → Checkout Links).

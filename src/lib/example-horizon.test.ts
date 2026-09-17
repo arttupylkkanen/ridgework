@@ -4,10 +4,16 @@ import { exampleHorizon } from "./example-horizon.ts";
 import { addDaysIso, recommendedWeeks } from "./rolling-plan.ts";
 
 const TODAY = "2026-09-16";
-const out = (weeks: number, goal: "fifty" | "trail20" = "fifty") =>
+const out = (weeks: number, goal: "fifty" | "trail20" | "engine" = "fifty") =>
   exampleHorizon(goal, addDaysIso(TODAY, weeks * 7), TODAY);
 
 describe("the three weeks a stranger sees", () => {
+  it("writes a week for easy base with no race", () => {
+    const h = out(recommendedWeeks("engine"), "engine");
+    assert.equal(h.weeks.length, 3);
+    assert.ok(h.weeks.some((w) => w.days.some((d) => d.key !== "rest")));
+  });
+
   it("writes a full horizon for a full build", () => {
     const h = out(recommendedWeeks("fifty"));
     assert.equal(h.weeks.length, 3);

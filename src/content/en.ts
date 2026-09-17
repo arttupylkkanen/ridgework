@@ -45,9 +45,9 @@ export const en: Copy = {
   },
   examplePlanner: {
     h2: "Pick the day you need to be ready",
-    lead: "Written for a first 50 km or first 20 km trail race on three to five hours a week — finish well, not a time. Change the date and the three weeks below are rewritten by the same engine the desk runs.",
+    lead: "Easy base with no race, a first 20 km trail, or a first 50 km — three to five hours a week, finish well, not a time. Change the date and the three weeks below are rewritten by the same engine the desk runs.",
     goalLabel: "Objective",
-    goals: { fifty: "First 50 km", trail20: "First 20 km trail" },
+    goals: { fifty: "First 50 km", trail20: "First 20 km trail", engine: "Easy base" },
     dateLabel: "Ready on",
     windowOk: "{n} weeks from today. That is the full build.",
     windowShort:
@@ -84,7 +84,7 @@ export const en: Copy = {
       badge: "Free, no card",
       line: "Free while we finish registering the company. No card, nothing to cancel.",
       features: [
-        "Seven programs from aerobic engine to 100 km and alpine days",
+        "Easy base, 20 km and 50 km, plus longer mountain days",
         "No card anywhere on the site — payments are not open yet",
         "Weeks that get rewritten when you sleep badly, miss one, or travel",
         "Training weeks, not medical claims",
@@ -106,7 +106,7 @@ export const en: Copy = {
       badge: "14 days free",
       line: "14 days free, no card. €19/month if you add one after. Cancel anytime.",
       features: [
-        "Seven programs from aerobic engine to 100 km and alpine days",
+        "Easy base, 20 km and 50 km, plus longer mountain days",
         "No card for 14 days — add one anytime to keep training at €19/month",
         "Cancel during the 14 days and Polar does not charge",
         "Training weeks, not medical claims",
@@ -282,8 +282,8 @@ export const en: Copy = {
   },
   programs: {
     kicker: "Programs",
-    h2: "Seven programs. Tell us when you need to be ready.",
-    lead: "No race on the calendar? Start with easy volume at a low heart rate. More weeks before the day almost always means a sturdier base.",
+    h2: "Start here.",
+    lead: "No race? Easy base. Already running most weeks? 20 km trail. A first ultra? 50 km. The longer mountain days are on the plans page.",
     columns: {
       name: "Program",
       duration: "Duration",
@@ -295,27 +295,29 @@ export const en: Copy = {
         id: "engine",
         name: "Easy base",
         duration: "About 16 weeks of easy running",
-        focus: "More work at conversation pace. Fat as default fuel. No race required.",
+        focus:
+          "The block most people skip. A sweaty hour every time does not make you fitter. This does: more minutes at a pace you can talk.",
         locked:
-          "Most days easy enough to talk. The long grows toward 90 minutes. There is no separate quality session: this is the quality.",
+          "Most days easy enough to talk. The long grows toward 90 minutes from whatever you already do. There is no separate hard session — this is the work.",
         pull: "If you can finish a sentence, you are in the work.",
         layout: "textFirst",
       },
       {
         id: "trail20",
         name: "20 km trail",
-        duration: "Ten weeks is enough for most",
-        focus: "Easy volume, one quality dose, a long toward 90–110 min",
+        duration: "About ten weeks",
+        focus: "If you already run most weeks and want a trail race you finish well.",
         locked:
-          "Week 8: 6×3 min at 10k effort on rolling trail, 2 min easy. Long 90–110 min. Then a 7-day taper.",
+          "Most days: 40–60 minutes, slow enough to talk. One longer day that starts from the hour you already do. Race week you run less, not more.",
         layout: "sessionLead",
       },
       {
         id: "fifty",
         name: "50 km ultra",
-        duration: "About half a year",
-        focus: "Aerobic base, then long-run progression, peak race week",
-        locked: "Week 20: 3×12 min at marathon effort on trail. Then 10–14 days of easing off.",
+        duration: "About six months",
+        focus: "If 20–30 km or a road marathon is already behind you. Finish well, not a time.",
+        locked:
+          "Most days easy enough to talk. The long starts from what you can do now, not four hours in week one. The last two weeks are shorter, not harder.",
         tag: "A first ultra for a lot of people",
         pull: "Finish well, not just finish.",
         layout: "wide",
@@ -358,13 +360,14 @@ export const en: Copy = {
     ],
     lockHint: "This week’s key session",
     cta: "Start this program",
+    more: "100 km, alpine days, and expeditions",
   },
   who: {
     h2: "Who it’s for, and who it isn’t",
     forTitle: "Built for",
     forItems: [
       "Endurance athletes planning training weeks around real life and terrain",
-      "People training toward an aerobic engine, a 20 km trail, a 50 or 100 km ultra, an alpine day, a linked route, or a high-altitude expedition",
+      "People training toward easy base, a 20 km trail, a 50 or 100 km ultra, an alpine day, a linked route, or a high-altitude expedition",
       "Anyone who prefers calm tools over motivational spam",
     ],
     notTitle: "Not for",
@@ -456,7 +459,7 @@ export const en: Copy = {
       {
         day: "Day 1",
         title: "Pick the peak and build the week",
-        body: "77 km, alpine day, or just the engine. The next three weeks appear on the calendar.",
+        body: "77 km, alpine day, or easy base. The next three weeks appear on the calendar.",
       },
       {
         day: "Day 3",
@@ -556,7 +559,7 @@ export const en: Copy = {
       },
       {
         q: "Can I cancel?",
-        a: "Yes. There is a Cancel button in the desk once you have added a card. Without a card, nothing is ever charged — just stop, or let the trial end. After a paid month, access lasts through that month.",
+        a: "There is nothing to pay right now, so there is nothing to cancel. When payments open, a Cancel button sits in the desk.",
       },
       {
         q: "Will I be charged without noticing?",
@@ -572,11 +575,11 @@ export const en: Copy = {
       },
       {
         q: "Does the plan update itself?",
-        a: "In the product, yes. Three weeks stay written. Log the week and the next one appears. Fatigue shortens this week. It does not move the race.",
+        a: "Three weeks stay written. Log the week and the next one appears. A tired week trains less. It does not move the race.",
       },
       {
         q: "Why does more time help?",
-        a: "Easy aerobic volume is slow to accumulate. Six weeks still gets a written week. It just has less base under it.",
+        a: "Easy running takes months to add up. Six weeks still gets a written week. It just has less easy running under it.",
       },
       {
         q: "Who is this?",
@@ -732,9 +735,9 @@ export const en: Copy = {
     lead: "A few facts about how you train. Today’s session follows sleep, fatigue, and the week already written. Tired days train less. The ready date stays.",
     lockedTitle: "Sign in to save the week",
     lockedBody: "Create an account to keep the program, the week, and the log on this login.",
-    trialLabel: "14-day trial",
-    testBanner: "14 days free, no card needed. Then €19/month if you add one.",
-    signInToTrain: "Sign in, pick a peak date. 14 days free, no card needed.",
+    trialLabel: "Free for now",
+    testBanner: "Free while we finish registering the company. No card.",
+    signInToTrain: "Sign in, pick the day you need to be ready. No card.",
     tabs: {
       today: "Today",
       plan: "Program",
@@ -749,7 +752,7 @@ export const en: Copy = {
   },
   auth: {
     title: "Sign in",
-    lead: "Create an account to enroll in a program. Peak date first, then the weeks.",
+    lead: "Save the week you just saw. No card. You pick the day you need to be ready.",
     email: "Email",
     password: "Password",
     name: "Name",

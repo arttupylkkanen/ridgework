@@ -45,9 +45,9 @@ export const fr: Copy = {
   },
   examplePlanner: {
     h2: "Choisissez le jour où vous devez être prêt",
-    lead: "Écrit pour un premier 50 km ou un premier trail de 20 km sur trois à cinq heures par semaine — finir bien, pas un chrono. Changez la date et les trois semaines ci-dessous sont réécrites par le moteur qui fait tourner le bureau.",
+    lead: "Base sans course, premier trail 20 km, ou premier 50 km — trois à cinq heures par semaine, finir bien, pas un chrono. Changez la date et les trois semaines ci-dessous sont réécrites par le moteur qui fait tourner le bureau.",
     goalLabel: "Objectif",
-    goals: { fifty: "Premier 50 km", trail20: "Premier trail 20 km" },
+    goals: { fifty: "Premier 50 km", trail20: "Premier trail 20 km", engine: "Base aérobie" },
     dateLabel: "Prêt le",
     windowOk: "{n} semaines à partir d’aujourd’hui. C’est la préparation complète.",
     windowShort:
@@ -261,8 +261,8 @@ export const fr: Copy = {
   },
   programs: {
     kicker: "Programmes",
-    h2: "Choisissez la sortie — ou le moteur. Puis le pic.",
-    lead: "Vous choisissez quand vous voulez être au pic. Pas de course ? Commencez par le moteur aérobie : plus de travail à basse fréquence cardiaque, le gras comme carburant par défaut. Toute durée convient — plus long est clairement mieux.",
+    h2: "Commencez ici.",
+    lead: "Pas de course ? La base. Déjà une semaine de sorties ? Trail 20 km. Premier ultra ? 50 km. Les journées montagne plus longues sont sur la page des plans.",
     columns: {
       name: "Programme",
       duration: "Durée",
@@ -275,28 +275,28 @@ export const fr: Copy = {
         name: "Base aérobie",
         duration: "Recommandé 16 semaines / 4 mois",
         focus:
-          "Plus de travail à allure conversationnelle. Gras comme carburant par défaut. Pas de course obligatoire.",
+          "Le bloc que la plupart sautent. Une heure suante à chaque sortie ne vous rend pas plus fort. Celle-ci oui : plus de minutes à une allure où vous parlez.",
         locked:
-          "La plupart des jours conversationnels. La longue vers 90 min. Si vous parlez en phrases, vous êtes dans le travail. Pas de dose de qualité — le moteur est la qualité.",
+          "La plupart des jours assez faciles pour parler. La longue grandit vers 90 min à partir de ce que vous faites déjà. Pas de séance dure à part — c’est le travail.",
         pull: "Si vous sortez une phrase entière, vous êtes dans le travail.",
         layout: "textFirst",
       },
       {
         id: "trail20",
         name: "Trail 20 km",
-        duration: "Recommandé 10 semaines",
-        focus: "Volume facile, une dose de qualité, longue vers 90–110 min",
+        duration: "Environ dix semaines",
+        focus: "Si vous courez déjà la plupart des semaines et voulez un trail dont vous sortez entier.",
         locked:
-          "Semaine 8 : 6×3 min à allure 10 km sur trail roulant, 2 min facile. Longue 90–110 min. Puis 7 jours d’affûtage.",
+          "La plupart des jours : 40–60 minutes, assez lent pour parler. Un jour plus long qui part de l’heure que vous faites déjà. La semaine de course, on court moins, pas plus.",
         layout: "sessionLead",
       },
       {
         id: "fifty",
         name: "Ultra 50 km",
-        duration: "Recommandé 24 sem. / 6 mois",
-        focus: "Base aérobie, puis progression de la longue, pic la semaine de course",
+        duration: "Environ six mois",
+        focus: "Si 20–30 km ou un marathon route sont déjà derrière vous. Finir bien, pas un chrono.",
         locked:
-          "Semaine 20 (fin du spécifique) : 3×12 min à effort marathon sur trail roulant, 4 min facile. Puis 10–14 jours d’affûtage.",
+          "La plupart des jours assez faciles pour parler. La longue part de ce que vous savez faire maintenant, pas de quatre heures en semaine un. Les deux dernières semaines sont plus courtes, pas plus dures.",
         tag: "Souvent un premier ultra",
         pull: "Finir bien, pas seulement finir.",
         layout: "wide",
@@ -340,6 +340,7 @@ export const fr: Copy = {
     ],
     lockHint: "Séance clé",
     cta: "Commencer ce programme",
+    more: "100 km, journées alpines et expéditions",
   },
   who: {
     h2: "Pour qui — et pour qui non",
@@ -546,7 +547,7 @@ export const fr: Copy = {
         a: "Si vous n’avez pas ajouté de carte, le bureau se met en pause jusqu’à ce que vous en ajoutiez une — rien n’est facturé automatiquement. Si vous en avez ajouté une, l’abonnement continue à 19 €/mois sauf résiliation.",
       },
       {
-        q: "Faut-il une carte pour l’essai ?",
+        q: "Faut-il une carte pour commencer ?",
         a: "Non. Aucune carte n’est demandée nulle part sur le site. À l’ouverture des paiements, l’abonnement sera de 19 €/mois et votre accord sera demandé d’abord.",
       },
       {
@@ -701,10 +702,10 @@ export const fr: Copy = {
     lead: "Choisissez le jour où vous voulez être au pic. Le programme glissant écrit les semaines dans cette fenêtre. Fatigué : moins de travail. Rien ici n’est un avis médical.",
     lockedTitle: "Compte requis",
     lockedBody:
-      "Créez un compte pour les 14 jours gratuits : programme, semaine, préparation du jour et journal. Puis 19 €/mois si vous restez.",
-    trialLabel: "Essai 14 jours",
-    testBanner: "14 jours gratuits, sans carte. Puis 19 €/mois si vous en ajoutez une.",
-    signInToTrain: "Connectez-vous, choisissez une date de pic. 14 jours gratuits, sans carte.",
+      "Créez un compte pour garder le programme, la semaine et le journal. Sans carte.",
+    trialLabel: "Gratuit pour l’instant",
+    testBanner: "Gratuit tant que l’immatriculation n’est pas terminée. Sans carte.",
+    signInToTrain: "Connectez-vous, choisissez le jour où vous devez être prêt. Sans carte.",
     tabs: {
       today: "Aujourd’hui",
       plan: "Programme",
@@ -719,7 +720,7 @@ export const fr: Copy = {
   },
   auth: {
     title: "Connexion",
-    lead: "Créez un compte pour vous inscrire à un programme. Le jour du pic d’abord, puis les semaines.",
+    lead: "Gardez la semaine que vous venez de voir. Sans carte. Vous choisissez le jour où vous devez être prêt.",
     email: "E-mail",
     password: "Mot de passe",
     name: "Nom",

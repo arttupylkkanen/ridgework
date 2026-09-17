@@ -45,9 +45,9 @@ export const de: Copy = {
   },
   examplePlanner: {
     h2: "Wähle den Tag, an dem du bereit sein musst",
-    lead: "Geschrieben für einen ersten 50er oder einen ersten 20-km-Trail bei drei bis fünf Stunden pro Woche — gut ankommen, keine Zeit jagen. Ändere das Datum, und die drei Wochen unten werden von derselben Engine neu geschrieben, die auch der Schreibtisch nutzt.",
+    lead: "Grundlagenausdauer ohne Rennen, erster 20-km-Trail oder erste 50 km — drei bis fünf Stunden pro Woche, gut ankommen, keine Zeit jagen. Ändere das Datum, und die drei Wochen unten werden von derselben Engine neu geschrieben, die auch der Schreibtisch nutzt.",
     goalLabel: "Ziel",
-    goals: { fifty: "Erste 50 km", trail20: "Erster 20-km-Trail" },
+    goals: { fifty: "Erste 50 km", trail20: "Erster 20-km-Trail", engine: "Grundlagenausdauer" },
     dateLabel: "Bereit am",
     windowOk: "{n} Wochen ab heute. Das ist der volle Aufbau.",
     windowShort:
@@ -257,8 +257,8 @@ export const de: Copy = {
   },
   programs: {
     kicker: "Programme",
-    h2: "Tour wählen — oder den Motor. Dann den Peak.",
-    lead: "Du wählst, wann du in Peak-Form sein willst. Kein Rennen? Starte mit dem aeroben Motor: mehr Arbeit bei niedriger Herzfrequenz, Fett als Standardkraftstoff. Jede Länge geht — länger ist klar besser.",
+    h2: "Hier anfangen.",
+    lead: "Kein Rennen? Grundlagenausdauer. Schon jede Woche unterwegs? 20-km-Trail. Erster Ultra? 50 km. Die längeren Berge stehen auf der Plans-Seite.",
     columns: {
       name: "Programm",
       duration: "Dauer",
@@ -270,28 +270,29 @@ export const de: Copy = {
         id: "engine",
         name: "Grundlagenausdauer",
         duration: "Empfohlen 16 Wochen / 4 Monate",
-        focus: "Mehr Arbeit im Gesprächstempo. Fett als Standardkraftstoff. Kein Rennen nötig.",
+        focus:
+          "Der Block, den die meisten überspringen. Eine schwitzige Stunde jedes Mal macht dich nicht fitter. Das hier schon: mehr Minuten in einem Tempo, in dem du sprechen kannst.",
         locked:
-          "Die meisten Tage gesprächig. Der Lange wächst Richtung 90 min. Wenn du in Sätzen sprechen kannst, bist du in der Arbeit. Keine Qualitätsdosis — der Motor ist die Qualität.",
+          "Die meisten Tage locker genug zum Reden. Der Lange wächst Richtung 90 min von dem, was du schon kannst. Keine extra harte Einheit — das ist die Arbeit.",
         pull: "Wenn du einen ganzen Satz rauskriegst, bist du in der Arbeit.",
         layout: "textFirst",
       },
       {
         id: "trail20",
         name: "20-km-Trail",
-        duration: "Empfohlen 10 Wochen",
-        focus: "Lockeres Volumen, eine Qualitätsdosis, Langer auf 90–110 min",
+        duration: "Etwa zehn Wochen",
+        focus: "Wenn du die meisten Wochen schon läufst und ein Trailrennen willst, aus dem du heil ankommst.",
         locked:
-          "Woche 8: 6×3 min im 10-km-Tempo auf rollendem Trail, 2 min locker. Langer 90–110 min. Dann 7 Tage Taper.",
+          "Die meisten Tage: 40–60 Minuten, langsam genug zum Reden. Ein längerer Tag, der bei der Stunde beginnt, die du schon kannst. In der Rennwoche läufst du weniger, nicht mehr.",
         layout: "sessionLead",
       },
       {
         id: "fifty",
         name: "50-km-Ultra",
-        duration: "Empfohlen 24 Wochen / 6 Monate",
-        focus: "Aerobe Basis, dann Long-run-Progression, Peak in der Rennwoche",
+        duration: "Etwa sechs Monate",
+        focus: "Wenn 20–30 km oder ein Straßenmarathon schon hinter dir liegen. Gut ankommen, keine Zeit jagen.",
         locked:
-          "Woche 20 (Ende spezifisch): 3×12 min im Marathon-Effort auf rollendem Trail, 4 min locker. Dann 10–14 Tage Taper.",
+          "Die meisten Tage locker genug zum Reden. Der Lange startet bei dem, was du jetzt kannst, nicht bei vier Stunden in Woche eins. Die letzten zwei Wochen sind kürzer, nicht härter.",
         tag: "Oft der erste Ultra",
         pull: "Gut ankommen, nicht nur ankommen.",
         layout: "wide",
@@ -334,6 +335,7 @@ export const de: Copy = {
     ],
     lockHint: "Schlüsseleinheit",
     cta: "Dieses Programm starten",
+    more: "100 km, Alpentage und Expeditionen",
   },
   who: {
     h2: "Für wen — und für wen nicht",
@@ -540,7 +542,7 @@ export const de: Copy = {
         a: "Ohne Karte pausiert der Tisch, bis du eine hinzufügst — es wird nichts automatisch belastet. Mit Karte läuft das Abo weiter zu 19 €/Monat, außer du kündigst.",
       },
       {
-        q: "Brauche ich eine Karte für die Testphase?",
+        q: "Brauche ich eine Karte zum Start?",
         a: "Nein. Es wird nirgends auf der Seite eine Karte verlangt. Wenn Zahlungen öffnen, kostet die Mitgliedschaft 19 €/Monat und du wirst vorher gefragt.",
       },
       {
@@ -567,7 +569,7 @@ export const de: Copy = {
   foundingPage: {
     kicker: "Founding",
     h1: "Starte mit 14 Tagen kostenlos",
-    lead: "Dieselben Wochen. 14 Tage kostenlos, dann 19 €/Monat.",
+    lead: "Dieselben Wochen. Keine Karte.",
     trial: "14 Tage kostenlos. Dann 19 €/Monat. Jederzeit kündbar.",
     note: "14 Tage ohne Karte. Füge jederzeit eine hinzu, um für 19 €/Monat weiterzutrainieren. Das ist der einzige Preis hier.",
     back: "← Ridgework",
@@ -693,10 +695,10 @@ export const de: Copy = {
     lead: "Wähle den Tag, an dem du peak sein willst. Der rollende Plan schreibt die Wochen in dieses Fenster. Müde: weniger trainieren. Nichts hiervon ist medizinischer Rat.",
     lockedTitle: "Konto nötig",
     lockedBody:
-      "Konto anlegen für 14 Tage kostenlos: Plan, Woche, Tagesvorbereitung und Log. Dann 19 €/Monat, wenn du bleibst.",
-    trialLabel: "14-Tage-Test",
-    testBanner: "14 Tage kostenlos, ohne Karte. Dann 19 €/Monat, wenn du eine hinzufügst.",
-    signInToTrain: "Anmelden, Peak-Datum wählen. 14 Tage kostenlos, ohne Karte.",
+      "Konto anlegen, damit Plan, Woche und Log bleiben. Keine Karte.",
+    trialLabel: "Vorerst kostenlos",
+    testBanner: "Kostenlos, solange die Registrierung läuft. Keine Karte.",
+    signInToTrain: "Anmelden, den Tag wählen, an dem du bereit sein musst. Keine Karte.",
     tabs: {
       today: "Heute",
       plan: "Programm",
@@ -711,7 +713,7 @@ export const de: Copy = {
   },
   auth: {
     title: "Anmelden",
-    lead: "Konto anlegen und ein Programm starten. Peak-Tag zuerst, dann die Wochen.",
+    lead: "Speichere die Woche, die du gerade gesehen hast. Keine Karte. Du wählst den Tag, an dem du bereit sein musst.",
     email: "E-Mail",
     password: "Passwort",
     name: "Name",

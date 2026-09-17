@@ -243,7 +243,7 @@ export const PLAN_PAGES: PlanPage[] = [
       base: "Twelve weeks of easy running and one long, all at talking pace. Fat becomes the default fuel for ordinary sessions.",
       specific:
         "Three weeks that add a hike or longer aerobic day — still conversational, just more of it.",
-      taper: "One quiet week to consolidate before you point the engine at something.",
+      taper: "One quiet week to consolidate before you point this block at a race or a mountain day.",
     },
     forWhom: [
       "Runners with no race booked who want the months to count",
@@ -397,7 +397,7 @@ export const PLAN_PAGES: PlanPage[] = [
       "A 40-week expedition training plan: hiking volume, pack carries, muscular endurance, and a final block that is sleep and logistics rather than more load.",
     kicker: "High-altitude expedition",
     h1: "High-altitude expedition training plan",
-    lead: "A high camp, months out. Hiking and easy volume, progressive pack carries and muscular endurance — with a last block that is about sleep, food and packing, not one more hard carry.",
+    lead: "A high-altitude expedition, months out. Hiking and easy volume, progressive pack carries and muscular endurance — with a last block that is about sleep, food and packing, not one more hard carry.",
     body: [
       "Expedition training is a long game played mostly at low intensity. The work that matters is the ability to carry a load, day after day, at an effort that leaves something in reserve, while eating enough when altitude has quietly removed your appetite.",
       "Twenty-two weeks of base come first: hiking, easy aerobic volume, and strength established early. The specific block adds muscular endurance and loaded carries on hiking days, building the tolerance that rotation days will demand.",

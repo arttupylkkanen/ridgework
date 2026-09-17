@@ -129,7 +129,7 @@ export type Copy = {
     h2: string;
     lead: string;
     goalLabel: string;
-    goals: { fifty: string; trail20: string };
+    goals: { fifty: string; trail20: string; engine: string };
     dateLabel: string;
     /** {n} weeks available, {want} weeks the objective wants. */
     windowOk: string;
@@ -203,6 +203,7 @@ export type Copy = {
     rows: ProgramRow[];
     lockHint: string;
     cta: string;
+    more: string;
   };
   who: {
     h2: string;
