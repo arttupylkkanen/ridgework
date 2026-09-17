@@ -654,6 +654,9 @@ export const de: Copy = {
       "Du bekommst eine Nachricht, an dem Tag, an dem die Kasse öffnet. Das ist die ganze Liste.",
     leftTitle: "Entfernt",
     leftBody: "Deine Adresse ist gelöscht. Nichts wird aufbewahrt und nichts wird gesendet.",
+    stoppedTitle: "Gestoppt",
+    stoppedBody:
+      "Keine wöchentlichen Notizen mehr. Konto und Plan bleiben unangetastet — der Schreibtisch schreibt die Woche weiter, er schreibt dir nur nicht mehr darüber.",
     unknownTitle: "Dieser Link wurde schon benutzt",
     unknownBody:
       "Er wurde entweder bereits einmal verwendet oder die Adresse ist entfernt. So oder so gibt es hier nichts mehr zu tun.",

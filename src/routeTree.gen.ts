@@ -42,6 +42,7 @@ import { Route as LocalePrivacyRouteImport } from './routes/$locale/privacy'
 import { Route as LocaleSourcesRouteImport } from './routes/$locale/sources'
 import { Route as LocaleTermsRouteImport } from './routes/$locale/terms'
 import { Route as LocaleWhoRouteImport } from './routes/$locale/who'
+import { Route as ApiWeeklyRouteImport } from './routes/api/weekly'
 import { Route as CalendarTokenRouteImport } from './routes/calendar.$token'
 import { Route as GuidesIndexRouteImport } from './routes/guides/index'
 import { Route as GuidesSlugRouteImport } from './routes/guides/$slug'
@@ -219,6 +220,11 @@ const LocaleWhoRoute = LocaleWhoRouteImport.update({
   path: '/who',
   getParentRoute: () => LocaleRoute,
 } as any)
+const ApiWeeklyRoute = ApiWeeklyRouteImport.update({
+  id: '/api/weekly',
+  path: '/api/weekly',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CalendarTokenRoute = CalendarTokenRouteImport.update({
   id: '/calendar/$token',
   path: '/calendar/$token',
@@ -308,6 +314,7 @@ export interface FileRoutesByFullPath {
   '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
   '/$locale/who': typeof LocaleWhoRoute
+  '/api/weekly': typeof ApiWeeklyRoute
   '/calendar/$token': typeof CalendarTokenRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
@@ -351,6 +358,7 @@ export interface FileRoutesByTo {
   '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
   '/$locale/who': typeof LocaleWhoRoute
+  '/api/weekly': typeof ApiWeeklyRoute
   '/calendar/$token': typeof CalendarTokenRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
@@ -398,6 +406,7 @@ export interface FileRoutesById {
   '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
   '/$locale/who': typeof LocaleWhoRoute
+  '/api/weekly': typeof ApiWeeklyRoute
   '/calendar/$token': typeof CalendarTokenRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
@@ -446,6 +455,7 @@ export interface FileRouteTypes {
     | '/$locale/sources'
     | '/$locale/terms'
     | '/$locale/who'
+    | '/api/weekly'
     | '/calendar/$token'
     | '/guides/$slug'
     | '/passport/$token'
@@ -489,6 +499,7 @@ export interface FileRouteTypes {
     | '/$locale/sources'
     | '/$locale/terms'
     | '/$locale/who'
+    | '/api/weekly'
     | '/calendar/$token'
     | '/guides/$slug'
     | '/passport/$token'
@@ -535,6 +546,7 @@ export interface FileRouteTypes {
     | '/$locale/sources'
     | '/$locale/terms'
     | '/$locale/who'
+    | '/api/weekly'
     | '/calendar/$token'
     | '/guides/$slug'
     | '/passport/$token'
@@ -568,6 +580,7 @@ export interface RootRouteChildren {
   SourcesRoute: typeof SourcesRoute
   TermsRoute: typeof TermsRoute
   WhoRoute: typeof WhoRoute
+  ApiWeeklyRoute: typeof ApiWeeklyRoute
   CalendarTokenRoute: typeof CalendarTokenRoute
   PassportTokenRoute: typeof PassportTokenRoute
   PlansSlugRoute: typeof PlansSlugRoute
@@ -809,6 +822,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocaleWhoRouteImport
       parentRoute: typeof LocaleRoute
     }
+    '/api/weekly': {
+      id: '/api/weekly'
+      path: '/api/weekly'
+      fullPath: '/api/weekly'
+      preLoaderRoute: typeof ApiWeeklyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/calendar/$token': {
       id: '/calendar/$token'
       path: '/calendar/$token'
@@ -976,6 +996,7 @@ const rootRouteChildren: RootRouteChildren = {
   SourcesRoute: SourcesRoute,
   TermsRoute: TermsRoute,
   WhoRoute: WhoRoute,
+  ApiWeeklyRoute: ApiWeeklyRoute,
   CalendarTokenRoute: CalendarTokenRoute,
   PassportTokenRoute: PassportTokenRoute,
   PlansSlugRoute: PlansSlugRoute,

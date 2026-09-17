@@ -665,6 +665,9 @@ export const fi: Copy = {
     confirmedBody: "Saat yhden viestin sinä päivänä kun kassa aukeaa. Siinä on koko lista.",
     leftTitle: "Poistettu",
     leftBody: "Osoitteesi on poistettu. Mitään ei säilytetä eikä mitään lähetetä.",
+    stoppedTitle: "Lopetettu",
+    stoppedBody:
+      "Viikkoviestejä ei enää tule. Tili ja suunnitelma säilyvät ennallaan — työpöytä kirjoittaa viikon edelleen, se ei vain kerro siitä sinulle.",
     unknownTitle: "Tämä linkki on jo käytetty",
     unknownBody:
       "Se on joko käytetty kerran tai osoite on poistettu. Kummassakin tapauksessa täällä ei ole enää tehtävää.",

@@ -662,6 +662,9 @@ export const fr: Copy = {
     confirmedBody: "Vous recevrez un message, le jour où la caisse ouvre. C’est toute la liste.",
     leftTitle: "Retirée",
     leftBody: "Votre adresse est supprimée. Rien n’est conservé et rien ne sera envoyé.",
+    stoppedTitle: "Arrêté",
+    stoppedBody:
+      "Plus de note hebdomadaire. Votre compte et votre plan sont intacts — le bureau écrit toujours la semaine, il ne vous en parlera simplement plus.",
     unknownTitle: "Ce lien a déjà servi",
     unknownBody:
       "Il a déjà été utilisé une fois, ou l’adresse a été retirée. Dans les deux cas il n’y a plus rien à faire ici.",

@@ -2,26 +2,34 @@ import { useEffect, useState } from "react";
 import type { Copy } from "@/content/types";
 import type { Locale } from "@/lib/locale";
 import { HomeLink } from "./app-link";
-import { confirmNotify, leaveNotify, type TokenOutcome } from "@/lib/notify/list-server";
+import {
+  confirmNotify,
+  leaveNotify,
+  stopWeekly,
+  type TokenOutcome,
+} from "@/lib/notify/list-server";
 
 type State = { kind: "working" } | { kind: "done"; outcome: TokenOutcome; token: string | null };
 
 /**
- * Where the confirmation mail lands. It does one of two things depending on
- * which parameter the link carried, and offers the other one afterwards, so
- * somebody who confirms and immediately changes their mind never has to find
- * the older message to get back off.
+ * Where every link Ridgework mails to an address lands: confirming the reminder
+ * list, removing an address from it, and stopping the weekly note. One page, so
+ * nobody has to work out which message held the right link — and after a
+ * confirmation it offers the removal straight away, so somebody who changes
+ * their mind a second later does not have to go back to their inbox.
  */
 export function NotifyPage({
   locale,
   copy,
   confirm,
   leave,
+  stop,
 }: {
   locale: Locale;
   copy: Copy;
   confirm?: string;
   leave?: string;
+  stop?: string;
 }) {
   const t = copy.notify;
   const [state, setState] = useState<State>({ kind: "working" });
@@ -29,6 +37,7 @@ export function NotifyPage({
   useEffect(() => {
     let cancelled = false;
     const run = async (): Promise<{ outcome: TokenOutcome; token: string | null }> => {
+      if (stop) return { outcome: await stopWeekly({ data: { token: stop } }), token: null };
       if (leave) return { outcome: await leaveNotify({ data: { token: leave } }), token: null };
       if (confirm) {
         return { outcome: await confirmNotify({ data: { token: confirm } }), token: confirm };
@@ -45,7 +54,7 @@ export function NotifyPage({
     return () => {
       cancelled = true;
     };
-  }, [confirm, leave]);
+  }, [confirm, leave, stop]);
 
   const said =
     state.kind === "working"
@@ -54,7 +63,9 @@ export function NotifyPage({
         ? { title: t.confirmedTitle, body: t.confirmedBody }
         : state.outcome === "left"
           ? { title: t.leftTitle, body: t.leftBody }
-          : { title: t.unknownTitle, body: t.unknownBody };
+          : state.outcome === "stopped"
+            ? { title: t.stoppedTitle, body: t.stoppedBody }
+            : { title: t.unknownTitle, body: t.unknownBody };
 
   return (
     <article className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24">

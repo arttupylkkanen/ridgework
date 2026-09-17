@@ -375,6 +375,8 @@ export type Copy = {
     confirmedBody: string;
     leftTitle: string;
     leftBody: string;
+    stoppedTitle: string;
+    stoppedBody: string;
     unknownTitle: string;
     unknownBody: string;
     leaveCta: string;

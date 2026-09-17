@@ -123,7 +123,12 @@ export const joinNotifyList = createServerFn({ method: "POST" })
     return { ok: true };
   });
 
-export type TokenOutcome = "confirmed" | "left" | "unknown";
+/**
+ * `left` means the address is gone from the reminder list; `stopped` means the
+ * weekly note is off but the account and its plan are untouched. They are
+ * different promises, so they are different words.
+ */
+export type TokenOutcome = "confirmed" | "left" | "stopped" | "unknown";
 
 export const confirmNotify = createServerFn({ method: "POST" })
   .validator(z.object({ token: z.string().min(8).max(128) }))
@@ -150,4 +155,17 @@ export const leaveNotify = createServerFn({ method: "POST" })
       delete from notify_list where token = ${data.token} returning email
     `;
     return rows[0] ? "left" : "unknown";
+  });
+
+/**
+ * The weekly note's stop link, handled here so /notify is the single page an
+ * address is ever sent to. It lives beside the reminder list rather than in
+ * the sender because this is the client-facing half; the sender never runs in
+ * a browser.
+ */
+export const stopWeekly = createServerFn({ method: "POST" })
+  .validator(z.object({ token: z.string().min(8).max(128) }))
+  .handler(async ({ data }): Promise<TokenOutcome> => {
+    const { stopWeeklyNotes } = await import("./weekly-server");
+    return (await stopWeeklyNotes(data.token)) ? "stopped" : "unknown";
   });

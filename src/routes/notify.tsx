@@ -19,6 +19,6 @@ export const Route = createFileRoute("/notify")({
 });
 
 function Page() {
-  const { confirm, leave } = Route.useSearch();
-  return <NotifyPage locale="en" copy={copy} confirm={confirm} leave={leave} />;
+  const { confirm, leave, stop } = Route.useSearch();
+  return <NotifyPage locale="en" copy={copy} confirm={confirm} leave={leave} stop={stop} />;
 }

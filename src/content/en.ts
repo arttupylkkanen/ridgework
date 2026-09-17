@@ -694,6 +694,9 @@ export const en: Copy = {
       "You will get one message, on the day the checkout opens. That is the whole list.",
     leftTitle: "Removed",
     leftBody: "Your address is deleted. Nothing is kept, and nothing will be sent.",
+    stoppedTitle: "Stopped",
+    stoppedBody:
+      "No more weekly notes. Your account and your plan are untouched — the desk still writes the week, it just will not write to you about it.",
     unknownTitle: "That link has already been used",
     unknownBody:
       "It was either used once already or the address has been removed. Either way there is nothing left to do here.",

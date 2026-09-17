@@ -143,6 +143,34 @@ characters, so this is worth the one-time authorization.
 copy. Do not invent a second address for outgoing mail: people reply to
 verification emails, and a reply to an address nobody reads is lost.
 
+### The weekly note
+
+`vercel.json` schedules `GET /api/weekly` for 17:00 UTC on Sundays, which sends
+each enrolled athlete one message describing the week that starts the next day.
+
+| Variable              | Value                                      |
+| --------------------- | ------------------------------------------ |
+| `WEEKLY_CRON_SECRET`  | any long random string, Production only    |
+
+Vercel Cron sends `Authorization: Bearer $CRON_SECRET`, so setting `CRON_SECRET`
+works too — the route accepts either name, preferring `WEEKLY_CRON_SECRET`.
+
+**⚠** With neither set the route answers **503 and sends nothing**. That is
+deliberate: this endpoint mails every enrolled athlete, so an unguarded URL is a
+way for anyone to make Ridgework spam its own users. A silent no-op is the safe
+failure; a silent open one is not.
+
+To check it by hand before trusting the schedule:
+
+```
+curl -s -H "Authorization: Bearer $WEEKLY_CRON_SECRET" \
+  https://ridgework.org/api/weekly
+```
+
+It answers `{"considered":N,"sent":N,"failed":N}`. Running it twice in the same
+week is safe — the sender claims the week in `weekly_notes.last_sent_on` before
+it sends, so the second run finds nothing to do.
+
 ### Billing (only once the SIREN exists)
 
 `CHECKOUT_OPEN` in `src/lib/billing.ts` is `false`, so the server refuses to

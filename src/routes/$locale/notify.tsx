@@ -21,6 +21,6 @@ export const Route = createFileRoute("/$locale/notify")({
 function Page() {
   const { locale: raw } = Route.useParams();
   const locale = isPathLocale(raw) ? raw : "fi";
-  const { confirm, leave } = Route.useSearch();
-  return <NotifyPage locale={locale} copy={getCopy(locale)} confirm={confirm} leave={leave} />;
+  const { confirm, leave, stop } = Route.useSearch();
+  return <NotifyPage locale={locale} copy={getCopy(locale)} confirm={confirm} leave={leave} stop={stop} />;
 }

@@ -39,6 +39,19 @@ export type OwnerCounts = {
   /** Signups in the last 7 and 30 days. */
   signups7d: number;
   signups30d: number;
+
+  /**
+   * The two lists that exist for the day payments open: athletes recorded as
+   * founding members, and strangers who left an address without making an
+   * account. `notifyPending` have not opened the confirmation link, so they are
+   * not on the list — they are counted separately rather than folded in, since
+   * folding them in would flatter the number.
+   */
+  foundingMembers: number;
+  notifyConfirmed: number;
+  notifyPending: number;
+  /** …of which have the weekly note switched off. */
+  weeklyOptOuts: number;
 };
 
 export const EMPTY_COUNTS: OwnerCounts = {
@@ -56,6 +69,10 @@ export const EMPTY_COUNTS: OwnerCounts = {
   intervalsLinks: 0,
   signups7d: 0,
   signups30d: 0,
+  foundingMembers: 0,
+  notifyConfirmed: 0,
+  notifyPending: 0,
+  weeklyOptOuts: 0,
 };
 
 export type FunnelStep = {
