@@ -45,9 +45,9 @@ export const fr: Copy = {
   },
   examplePlanner: {
     h2: "Choisissez le jour où vous devez être prêt",
-    lead: "Écrit pour un premier 50 km ou un premier trail de 20 km sur trois à cinq heures par semaine — finir bien, pas un chrono. Changez la date et les trois semaines ci-dessous sont réécrites par le moteur qui fait tourner le bureau.",
+    lead: "Base sans course, premier trail 20 km, ou premier 50 km — trois à cinq heures par semaine, finir bien, pas un chrono. Changez la date et les trois semaines ci-dessous sont réécrites par le moteur qui fait tourner le bureau.",
     goalLabel: "Objectif",
-    goals: { fifty: "Premier 50 km", trail20: "Premier trail 20 km" },
+    goals: { fifty: "Premier 50 km", trail20: "Premier trail 20 km", engine: "Base aérobie" },
     dateLabel: "Prêt le",
     windowOk: "{n} semaines à partir d’aujourd’hui. C’est la préparation complète.",
     windowShort:
@@ -249,8 +249,8 @@ export const fr: Copy = {
   },
   programs: {
     kicker: "Programmes",
-    h2: "Choisissez la sortie — ou le moteur. Puis le pic.",
-    lead: "Vous choisissez quand vous voulez être au pic. Pas de course ? Commencez par le moteur aérobie : plus de travail à basse fréquence cardiaque, le gras comme carburant par défaut. Toute durée convient — plus long est clairement mieux.",
+    h2: "Commencez ici.",
+    lead: "Pas de course ? La base. Déjà une semaine de sorties ? Trail 20 km. Premier ultra ? 50 km. Les journées montagne plus longues sont sur la page des plans.",
     columns: {
       name: "Programme",
       duration: "Durée",
@@ -263,9 +263,9 @@ export const fr: Copy = {
         name: "Base aérobie",
         duration: "Recommandé 16 semaines / 4 mois",
         focus:
-          "Plus de travail à allure conversationnelle. Gras comme carburant par défaut. Pas de course obligatoire.",
+          "Le bloc que la plupart sautent. Une heure suante à chaque sortie ne vous rend pas plus fort. Celle-ci oui : plus de minutes à une allure où vous parlez.",
         locked:
-          "La plupart des jours conversationnels. La longue vers 90 min. Si vous parlez en phrases, vous êtes dans le travail. Pas de dose de qualité — le moteur est la qualité.",
+          "La plupart des jours assez faciles pour parler. La longue grandit vers 90 min à partir de ce que vous faites déjà. Pas de séance dure à part — c’est le travail.",
         pull: "Si vous sortez une phrase entière, vous êtes dans le travail.",
         layout: "textFirst",
       },
@@ -328,6 +328,7 @@ export const fr: Copy = {
     ],
     lockHint: "Séance clé",
     cta: "Commencer ce programme",
+    more: "100 km, journées alpines et expéditions",
   },
   who: {
     h2: "Pour qui — et pour qui non",

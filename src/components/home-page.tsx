@@ -3,6 +3,7 @@ import { CHECKOUT_OPEN } from "@/lib/billing";
 import { planPageFor } from "@/content/plans";
 import type { Locale } from "@/lib/locale";
 import { PROGRAM_MEDIA } from "@/lib/program-media";
+import { HOME_PROGRAMS } from "@/lib/first-person";
 import { PhotoImage } from "@/components/photo-image";
 import { HeroProof } from "@/components/hero-proof";
 import { offerTerms } from "@/lib/offer";
@@ -183,7 +184,9 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
             {copy.programs.lead}
           </p>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            {copy.programs.rows.map((row) => {
+            {copy.programs.rows
+              .filter((row) => (HOME_PROGRAMS as readonly string[]).includes(row.id))
+              .map((row) => {
               const photo = PROGRAM_MEDIA[row.id];
               const cardClass =
                 "group cursor-pointer overflow-hidden rounded-2xl border border-line bg-card hover:border-ridge";
@@ -231,6 +234,11 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
               );
             })}
           </div>
+          <p className="mt-8">
+            <PlanLink className="text-sm font-medium text-ridge hover:text-ridge-deep">
+              {copy.programs.more} →
+            </PlanLink>
+          </p>
         </div>
       </section>
 

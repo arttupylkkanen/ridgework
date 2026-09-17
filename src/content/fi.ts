@@ -45,9 +45,9 @@ export const fi: Copy = {
   },
   examplePlanner: {
     h2: "Valitse päivä jolloin sinun pitää olla valmis",
-    lead: "Kirjoitettu ensimmäiseen 50 kilometriin tai ensimmäiseen 20 km polkujuoksuun 3–5 tunnilla viikossa — maaliin hyvin, ei aikaa vastaan. Vaihda päivä, niin alla olevat kolme viikkoa kirjoitetaan uusiksi samalla moottorilla jota työpöytä ajaa.",
+    lead: "Peruskunto ilman kisaa, ensimmäinen 20 km polku, tai ensimmäinen 50 km — 3–5 tuntia viikossa, maaliin hyvin, ei aikaa vastaan. Vaihda päivä, niin alla olevat kolme viikkoa kirjoitetaan uusiksi samalla moottorilla jota työpöytä ajaa.",
     goalLabel: "Tavoite",
-    goals: { fifty: "Ensimmäinen 50 km", trail20: "Ensimmäinen 20 km polku" },
+    goals: { fifty: "Ensimmäinen 50 km", trail20: "Ensimmäinen 20 km polku", engine: "Peruskunto" },
     dateLabel: "Valmiina",
     windowOk: "{n} viikkoa tästä päivästä. Se on täysi rakennus.",
     windowShort:
@@ -245,8 +245,8 @@ export const fi: Copy = {
   },
   programs: {
     kicker: "Ohjelmat",
-    h2: "Seitsemän ohjelmaa. Kerro milloin haluat olla valmis.",
-    lead: "Jos ei ole kisaa, aloita peruskunnosta: paljon kevyttä, matalalla sykkeellä. Mitä enemmän viikkoja ennen päivää, sen vakaampi pohja.",
+    h2: "Aloita tästä.",
+    lead: "Ei kisaa? Peruskunto. Juokset jo viikoittain? 20 km polku. Ensimmäinen ultra? 50 km. Pidemmät vuoripäivät ovat ohjelmasivulla.",
     columns: {
       name: "Ohjelma",
       duration: "Kesto",
@@ -258,9 +258,10 @@ export const fi: Copy = {
         id: "engine",
         name: "Peruskunto",
         duration: "Noin 16 viikkoa kevyttä juoksua",
-        focus: "Lisää kevyttä. Rasva polttoaineena. Kisaa ei tarvita.",
+        focus:
+          "Jakso jonka useimmat ohittavat. Hikinen tunti joka kerta ei kasvata. Tämä kasvattaa: lisää minuutteja vauhdilla jolla puhut.",
         locked:
-          "Useimmat päivät niin kevyitä että pystyt puhumaan. Pitkä kasvaa kohti 90 minuuttia. Erillistä tehoa ei ole: tämä on teho.",
+          "Useimmat päivät niin kevyitä että pystyt puhumaan. Pitkä kasvaa kohti 90 minuuttia siitä mitä jo osaat. Erillistä tehoa ei ole — tämä on työ.",
         pull: "Jos saat kokonaisen lauseen ulos, olet oikeassa työssä.",
         layout: "textFirst",
       },
@@ -323,13 +324,14 @@ export const fi: Copy = {
     ],
     lockHint: "Avainharjoitus",
     cta: "Aloita tämä ohjelma",
+    more: "100 km, alppipäivät ja retkikunnat",
   },
   who: {
     h2: "Kenelle tämä on, ja kenelle ei",
     forTitle: "Rakennettu",
     forItems: [
       "Kestävyysurheilijoille, jotka suunnittelevat viikkoja elämän ja maaston ympärille",
-      "Niille jotka treenaavat kohti aerobista moottoria, 20 km polkua, 50 tai 100 km ultraa, alppipäivää, ketjutettua reittiä tai korkealla tehtävää retkikuntaa",
+      "Niille jotka treenaavat kohti peruskuntoa, 20 km polkua, 50 tai 100 km ultraa, alppipäivää, ketjutettua reittiä tai korkealla tehtävää retkikuntaa",
       "Kaikille, jotka haluavat rauhalliset työkalut, ei motivaatio-spamia",
     ],
     notTitle: "Ei",
@@ -421,7 +423,7 @@ export const fi: Copy = {
       {
         day: "Päivä 1",
         title: "Valitse tavoite ja rakenna viikko",
-        body: "77 km, alppipäivä tai pelkkä moottori. Seuraavat kolme viikkoa ilmestyvät kalenteriin.",
+        body: "77 km, alppipäivä tai peruskunto. Seuraavat kolme viikkoa ilmestyvät kalenteriin.",
       },
       {
         day: "Päivä 3",

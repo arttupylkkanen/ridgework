@@ -139,7 +139,7 @@ export const planEn: PlanToolsCopy = {
       name: "Easy base",
       length: "Recommended 16 weeks / 4 months",
       blurb:
-        "No race required. Teach the body to do more work at conversation pace. Fat as the default fuel, low heart rate as the point. Ready is the week you want the engine settled.",
+        "No race required. The block most people skip. A sweaty hour every time does not make you fitter — more minutes at a pace you can talk does. Ready is the week you want that settled.",
     },
     trail20: {
       name: "20 km trail",
@@ -283,7 +283,7 @@ export const planFi: PlanToolsCopy = {
       name: "Peruskunto",
       length: "Suositus 16 viikkoa / 4 kk",
       blurb:
-        "Kisaa ei tarvita. Opettaa kropan tekemään enemmän työtä puhevauhdissa. Rasva oletuspolttoaineena, matala syke on tavoite. Valmis on se viikko jolloin moottorin haluat olevan paikallaan.",
+        "Kisaa ei tarvita. Jakso jonka useimmat ohittavat. Hikinen tunti joka kerta ei kasvata — lisää minuutteja vauhdilla jolla puhut kasvattaa. Valmis on se viikko jolloin tämän haluat olevan paikallaan.",
     },
     trail20: {
       name: "20 km polku",
@@ -430,7 +430,7 @@ export const planFr: PlanToolsCopy = {
       name: "Base aérobie",
       length: "Recommandé 16 semaines / 4 mois",
       blurb:
-        "Pas de course obligatoire. Apprendre au corps à faire plus de travail à allure conversationnelle — le gras comme carburant par défaut, la basse fréquence cardiaque comme but. Le pic est la semaine où le moteur doit être en place.",
+        "Pas de course obligatoire. Le bloc que la plupart sautent. Une heure suante à chaque sortie ne vous rend pas plus fort — plus de minutes à une allure où vous parlez, si. Le pic est la semaine où cela doit être en place.",
     },
     trail20: {
       name: "Trail 20 km",
@@ -575,7 +575,7 @@ export const planDe: PlanToolsCopy = {
       name: "Grundlagenausdauer",
       length: "Empfohlen 16 Wochen / 4 Monate",
       blurb:
-        "Kein Rennen nötig. Dem Körper beibringen, mehr Arbeit im Gesprächstempo zu leisten — Fett als Standardkraftstoff, niedrige Herzfrequenz als Ziel. Peak ist die Woche, in der der Motor sitzen soll.",
+        "Kein Rennen nötig. Der Block, den die meisten überspringen. Eine schwitzige Stunde jedes Mal macht dich nicht fitter — mehr Minuten in einem Tempo, in dem du sprechen kannst, schon. Peak ist die Woche, in der das sitzen soll.",
     },
     trail20: {
       name: "20-km-Trail",

@@ -45,9 +45,9 @@ export const de: Copy = {
   },
   examplePlanner: {
     h2: "Wähle den Tag, an dem du bereit sein musst",
-    lead: "Geschrieben für einen ersten 50er oder einen ersten 20-km-Trail bei drei bis fünf Stunden pro Woche — gut ankommen, keine Zeit jagen. Ändere das Datum, und die drei Wochen unten werden von derselben Engine neu geschrieben, die auch der Schreibtisch nutzt.",
+    lead: "Grundlagenausdauer ohne Rennen, erster 20-km-Trail oder erste 50 km — drei bis fünf Stunden pro Woche, gut ankommen, keine Zeit jagen. Ändere das Datum, und die drei Wochen unten werden von derselben Engine neu geschrieben, die auch der Schreibtisch nutzt.",
     goalLabel: "Ziel",
-    goals: { fifty: "Erste 50 km", trail20: "Erster 20-km-Trail" },
+    goals: { fifty: "Erste 50 km", trail20: "Erster 20-km-Trail", engine: "Grundlagenausdauer" },
     dateLabel: "Bereit am",
     windowOk: "{n} Wochen ab heute. Das ist der volle Aufbau.",
     windowShort:
@@ -245,8 +245,8 @@ export const de: Copy = {
   },
   programs: {
     kicker: "Programme",
-    h2: "Tour wählen — oder den Motor. Dann den Peak.",
-    lead: "Du wählst, wann du in Peak-Form sein willst. Kein Rennen? Starte mit dem aeroben Motor: mehr Arbeit bei niedriger Herzfrequenz, Fett als Standardkraftstoff. Jede Länge geht — länger ist klar besser.",
+    h2: "Hier anfangen.",
+    lead: "Kein Rennen? Grundlagenausdauer. Schon jede Woche unterwegs? 20-km-Trail. Erster Ultra? 50 km. Die längeren Berge stehen auf der Plans-Seite.",
     columns: {
       name: "Programm",
       duration: "Dauer",
@@ -258,9 +258,10 @@ export const de: Copy = {
         id: "engine",
         name: "Grundlagenausdauer",
         duration: "Empfohlen 16 Wochen / 4 Monate",
-        focus: "Mehr Arbeit im Gesprächstempo. Fett als Standardkraftstoff. Kein Rennen nötig.",
+        focus:
+          "Der Block, den die meisten überspringen. Eine schwitzige Stunde jedes Mal macht dich nicht fitter. Das hier schon: mehr Minuten in einem Tempo, in dem du sprechen kannst.",
         locked:
-          "Die meisten Tage gesprächig. Der Lange wächst Richtung 90 min. Wenn du in Sätzen sprechen kannst, bist du in der Arbeit. Keine Qualitätsdosis — der Motor ist die Qualität.",
+          "Die meisten Tage locker genug zum Reden. Der Lange wächst Richtung 90 min von dem, was du schon kannst. Keine extra harte Einheit — das ist die Arbeit.",
         pull: "Wenn du einen ganzen Satz rauskriegst, bist du in der Arbeit.",
         layout: "textFirst",
       },
@@ -322,6 +323,7 @@ export const de: Copy = {
     ],
     lockHint: "Schlüsseleinheit",
     cta: "Dieses Programm starten",
+    more: "100 km, Alpentage und Expeditionen",
   },
   who: {
     h2: "Für wen — und für wen nicht",
