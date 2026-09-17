@@ -48,11 +48,15 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
               >
                 {copy.cta.seeWeek}
               </ExampleLink>
+              {/* Not "Sign in": that is already in the header and the mobile
+                  menu, and it tells a first-time reader they need an account
+                  they do not have. Seeing the week stays the filled button;
+                  this is for the stranger the hero already convinced. */}
               <AuthLink
                 locale={locale}
                 className="inline-flex min-h-11 items-center justify-center rounded-lg border border-line bg-card px-6 py-3.5 text-base font-medium text-ink hover:bg-paper-warm"
               >
-                {copy.nav.login}
+                {offer.cta}
               </AuthLink>
             </div>
           </div>

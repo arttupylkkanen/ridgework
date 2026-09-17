@@ -280,7 +280,7 @@ export const en: Copy = {
     rows: [
       {
         id: "engine",
-        name: "Aerobic engine",
+        name: "Easy base",
         duration: "About 16 weeks of easy running",
         focus: "More work at conversation pace. Fat as default fuel. No race required.",
         locked:

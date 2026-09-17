@@ -256,7 +256,7 @@ export const de: Copy = {
     rows: [
       {
         id: "engine",
-        name: "Aerober Motor",
+        name: "Grundlagenausdauer",
         duration: "Empfohlen 16 Wochen / 4 Monate",
         focus: "Mehr Arbeit im Gesprächstempo. Fett als Standardkraftstoff. Kein Rennen nötig.",
         locked:

@@ -260,7 +260,7 @@ export const fr: Copy = {
     rows: [
       {
         id: "engine",
-        name: "Moteur aérobie",
+        name: "Base aérobie",
         duration: "Recommandé 16 semaines / 4 mois",
         focus:
           "Plus de travail à allure conversationnelle. Gras comme carburant par défaut. Pas de course obligatoire.",

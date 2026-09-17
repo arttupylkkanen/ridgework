@@ -122,7 +122,7 @@ const reasonsEn: Record<string, string> = {
     "This week lands {share}% under the {target} min this phase is built on — {short} min short. One week here is fine. Three in a row is a different plan.",
   travelSwap:
     "Travel until {until}. Mountain and climbing days become easy work from wherever you are.",
-  engineConversational: "Aerobic engine: every run stays conversational.",
+  engineConversational: "Easy base: every run stays conversational.",
   altitudeAcclimatization:
     "Above 3500 m, sleep lower than your high point this week — the climbing is the training; altitude adaptation happens on rotations, not in one push.",
   peakUnchanged: "Ready date {peak} does not move unless you change it.",
@@ -322,7 +322,7 @@ const reasonsFi: Record<string, string> = {
   weekUnderTarget:
     "Viikko jää {share}% alle sen {target} minuutin, jolle tämä jakso rakentuu — {short} min vajaa. Yksi tällainen viikko ei haittaa. Kolme peräkkäin on eri suunnitelma.",
   travelSwap: "Matka {until} asti. Vuori- ja kiipeilypäivät ovat kevyttä sieltä missä olet.",
-  engineConversational: "Aerobinen moottori: jokainen veto pysyy puhevauhdissa.",
+  engineConversational: "Peruskunto: jokainen veto pysyy puhevauhdissa.",
   altitudeAcclimatization:
     "Yli 3500 m: nuku matalammalla kuin päivän korkein kohta tällä viikolla — kiipeäminen on treeni, korkeuteen sopeutuminen tapahtuu kierroksilla, ei yhdellä työnnöllä.",
   peakUnchanged: "Tavoitepäivä {peak} ei siirry, ellet itse siirrä.",
@@ -523,7 +523,7 @@ const reasonsFr: Record<string, string> = {
   weekUnderTarget:
     "La semaine finit {share}% sous les {target} min sur lesquelles cette phase est construite — {short} min de moins. Une semaine ainsi, ce n’est rien. Trois de suite, c’est un autre plan.",
   travelSwap: "Voyage jusqu’au {until}. Montagne et escalade deviennent du facile sur place.",
-  engineConversational: "Moteur aérobie : chaque sortie reste conversationnelle.",
+  engineConversational: "Base aérobie : chaque sortie reste conversationnelle.",
   altitudeAcclimatization:
     "Au-dessus de 3500 m, dormez plus bas que votre point culminant cette semaine — l’ascension est l’entraînement, l’acclimatation se fait par rotations, pas en une seule poussée.",
   peakUnchanged: "La date cible {peak} ne bouge que si vous la changez.",
@@ -726,7 +726,7 @@ const reasonsDe: Record<string, string> = {
   weekUnderTarget:
     "Diese Woche landet {share}% unter den {target} Min, auf denen diese Phase aufbaut — {short} Min zu wenig. Eine solche Woche ist in Ordnung. Drei hintereinander sind ein anderer Plan.",
   travelSwap: "Reise bis {until}. Berg und Klettern werden locker vor Ort.",
-  engineConversational: "Aerobic Engine: jeder Lauf bleibt gesprächig.",
+  engineConversational: "Grundlagenausdauer: jeder Lauf bleibt gesprächig.",
   altitudeAcclimatization:
     "Über 3500 m: schlafe niedriger als dein Tageshöhepunkt diese Woche — das Klettern ist das Training, die Höhenanpassung passiert über Rotationen, nicht in einem Zug.",
   peakUnchanged: "Zieldatum {peak} bewegt sich nur, wenn du es änderst.",
