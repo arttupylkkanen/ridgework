@@ -79,6 +79,15 @@ export type OfferTerms = {
   features: string[];
   laterTitle: string;
   laterBody: string;
+  /**
+   * The price-dependent paragraphs of the terms of service, in order, rendered
+   * before `termsPage.body`. They live here rather than on the page because the
+   * terms went on promising "14 days free, then €19/month" for months after the
+   * checkout was closed — the one page where a wrong price matters most.
+   */
+  legal: string[];
+  /** The Payments paragraph of the privacy policy. */
+  privacyPayments: string;
 };
 
 export type Copy = {
@@ -307,6 +316,7 @@ export type Copy = {
     title: string;
     description: string;
   };
+  /** `body` is the part that does not depend on price; see `OfferTerms.legal`. */
   termsPage: { title: string; updated: string; body: string[] };
   /** Mentions légales — the publisher and host disclosure French law requires. */
   legalPage: {
@@ -336,7 +346,13 @@ export type Copy = {
     contactTitle: string;
     contactBody: string;
   };
-  privacyPage: { title: string; updated: string; body: string[] };
+  /** The Payments paragraph goes between the two halves; see `OfferTerms`. */
+  privacyPage: {
+    title: string;
+    updated: string;
+    bodyBefore: string[];
+    bodyAfter: string[];
+  };
   examplePage: {
     title: string;
     description: string;

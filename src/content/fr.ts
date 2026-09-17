@@ -92,6 +92,12 @@ export const fr: Copy = {
       laterTitle: "À l’ouverture des paiements",
       laterBody:
         "L’abonnement sera de 19 €/mois, et votre accord sera demandé avant tout prélèvement. D’ici là rien ne peut vous être prélevé : aucune carte n’est enregistrée, le site ne pouvant pas en accepter.",
+      legal: [
+        "Ridgework fournit des plans d’entraînement hebdomadaires — pas de soins médicaux, pas de diagnostics. Prix : rien, tant que l’immatriculation de la société est en cours — la caisse est fermée et le site ne peut pas accepter de carte. Vous restez responsable de la sécurité en montagne et à l’entraînement. Les droits impératifs des consommateurs français/UE ne sont pas limités.",
+        "Prix. Ridgework est gratuit tant que l’immatriculation de la société est en cours. Aucune carte n’est enregistrée et il n’est pas possible d’en ajouter une : rien ne peut être facturé et il n’y a rien à résilier. À l’ouverture de la caisse, l’abonnement sera de 19 €/mois, et cette page le dira avant que quiconque ne soit invité à payer.",
+      ],
+      privacyPayments:
+        "Paiements. Aucun n’est encaissé aujourd’hui ; la caisse est fermée. À son ouverture, les paiements par carte seront traités par Polar en tant que merchant of record. Nous conservons l’état de votre abonnement, jamais votre numéro de carte.",
     },
     trial: {
       cta: "Commencer 14 jours gratuits",
@@ -108,6 +114,12 @@ export const fr: Copy = {
       laterTitle: "Après les 14 jours",
       laterBody:
         "Ajoutez une carte quand vous voulez pour continuer à 19 €/mois. Rien n’est jamais prélevé automatiquement — sans carte, le bureau se met simplement en pause. Aucun autre tarif n’est indiqué sur ce site.",
+      legal: [
+        "Ridgework fournit des plans d’entraînement hebdomadaires — pas de soins médicaux, pas de diagnostics. Prix : 14 jours gratuits, puis 19 €/mois. Résiliez à tout moment (support@ridgework.org). Pendant les 14 jours, la résiliation signifie aucune facture. Vous restez responsable de la sécurité en montagne et à l’entraînement. Les droits impératifs des consommateurs français/UE ne sont pas limités.",
+        "Prix et essai. Le prix est de 19 €/mois, après 14 jours gratuits. Aucune carte n’est nécessaire pour commencer. Si vous ajoutez une carte et restez au-delà de ces 14 jours, Polar facture 19 €/mois. Sans carte, rien n’est jamais facturé automatiquement — le bureau se met en pause au 14e jour jusqu’à ce que vous en ajoutiez une. C’est le seul prix affiché.",
+      ],
+      privacyPayments:
+        "Paiements. Les paiements par carte sont traités par Polar en tant que merchant of record. Nous conservons l’état de votre abonnement, jamais votre numéro de carte.",
     },
   },
   hero: {
@@ -608,14 +620,12 @@ export const fr: Copy = {
   termsPage: {
     title: "Conditions d’utilisation",
     updated: "Dernière mise à jour : septembre 2026",
-    body: [
-      "Ridgework fournit des plans d’entraînement hebdomadaires — pas de soins médicaux, pas de diagnostics. Prix : 14 jours gratuits, puis 19 €/mois. Résiliez à tout moment (support@ridgework.org). Pendant les 14 jours, la résiliation signifie aucune facture. Vous restez responsable de la sécurité en montagne et à l’entraînement. Les droits impératifs des consommateurs français/UE ne sont pas limités.",
-    ],
+    body: [],
   },
   privacyPage: {
     title: "Politique de confidentialité",
     updated: "Dernière mise à jour : septembre 2026",
-    body: [
+    bodyBefore: [
       "Qui nous sommes. Ridgework est responsable du traitement des données décrites ici. Notre identité, notre adresse et notre hébergeur sont publiés intégralement sur la page Mentions légales. Toute question, et toute demande ci-dessous, à support@ridgework.org — une personne répond.",
       "Aucun traçage. Ridgework n’utilise aucune mesure d’audience — ni la nôtre, ni celle d’un tiers. Pas de pixel publicitaire, pas d’empreinte numérique, pas de bandeau cookies, car il n’y a rien à accepter. Le seul cookie déposé vous garde connecté ; il est strictement nécessaire et disparaît à la déconnexion.",
       "Votre compte. Nom, adresse e-mail et empreinte du mot de passe. Le mot de passe lui-même n’est jamais conservé. Base légale : exécution du contrat — sans compte, aucun plan à afficher.",
@@ -623,7 +633,8 @@ export const fr: Copy = {
       "Comment vous vous sentez. Le point quotidien : sommeil, courbatures, fatigue, stress et motivation sur une échelle de 1 à 5, plus une réponse oui/non sur ce qui limite l’entraînement. Base légale : exécution du contrat. Ce sont des ressentis d’entraînement, pas des mesures cliniques ; nous ne demandons ni ne souhaitons diagnostics, traitements, résultats d’examens ou tout autre dossier médical. Ridgework n’est pas un service de santé et ne pose aucun diagnostic.",
       "Ce que vous avez fait. La séance prévue, si vous l’avez marquée faite, manquée ou déplacée, et les minutes saisies. Base légale : exécution du contrat — c’est ce qui permet au plan de réagir à la semaine que vous avez réellement eue.",
       "Intégrations, seulement si vous le demandez. Le flux calendrier crée une adresse secrète pour vos séances. Connecter intervals.icu enregistre la clé API que vous collez. Les deux sont désactivées tant que vous ne les activez pas, les deux se déconnectent, et la déconnexion supprime ce qui était stocké. Base légale : consentement.",
-      "Paiements. Aucun n’est encaissé aujourd’hui ; la caisse est fermée. À son ouverture, les paiements par carte seront traités par Polar en tant que merchant of record. Nous conservons l’état de votre abonnement, jamais votre numéro de carte.",
+    ],
+    bodyAfter: [
       "Qui d’autre y a accès. Seulement les prestataires qui font tourner le service, listés avec adresses et régions sur la page Mentions légales : Vercel (hébergement, région Paris), Neon (base de données, Francfort), Resend (e-mails de confirmation et de mot de passe, Irlande) et Cloudflare (DNS et routage du courrier). Chacun agit sur nos instructions sous accord de sous-traitance. Nous ne vendons pas de données et n’en partageons pas à des fins publicitaires.",
       "Données hors UE. Ces prestataires sont des sociétés américaines. Les données sont stockées dans l’UE lorsque le prestataire le permet — base de données à Francfort, e-mail en Irlande — mais un accès support depuis les États-Unis reste possible. Les transferts reposent sur les clauses contractuelles types de la Commission et, lorsque le prestataire est certifié, sur le cadre EU–US Data Privacy Framework.",
       "Durée de conservation. Compte et historique d’entraînement restent tant que le compte existe. Supprimez le compte et nous les supprimons, sauf ce que la comptabilité ou la loi imposera de garder une fois l’activité commencée, et pour cette seule durée.",

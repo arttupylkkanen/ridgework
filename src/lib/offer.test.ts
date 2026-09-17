@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { pickOffer } from "./offer.ts";
+import { pickOffer, privacyBody, termsBody } from "./offer.ts";
 import { CHECKOUT_OPEN } from "./billing.ts";
 import { getCopy } from "../content/index.ts";
 import { LOCALES } from "./locale.ts";
@@ -29,9 +29,41 @@ describe("the offer has one state at a time", () => {
         free.line,
         free.laterTitle,
         free.laterBody,
+        free.privacyPayments,
         ...free.features,
+        ...free.legal,
       ].join(" ");
       assert.doesNotMatch(text, /\b14\b/, `free terms mention 14 in ${locale}: ${text}`);
+    });
+
+    it(`keeps the price off the fixed half of the legal pages in ${locale}`, () => {
+      // The whole point of `OfferTerms.legal`: if a euro sign or a trial length
+      // survives in copy that CHECKOUT_OPEN does not reach, the terms page will
+      // contradict the rest of the site again the moment the switch flips.
+      const fixed = [
+        ...copy.termsPage.body,
+        ...copy.privacyPage.bodyBefore,
+        ...copy.privacyPage.bodyAfter,
+      ].join(" ");
+      assert.doesNotMatch(
+        fixed,
+        /€|\b14 (days|päivää|jours|Tage)\b/,
+        `price stuck in fixed legal copy in ${locale}`,
+      );
+    });
+
+    it(`renders both legal pages whole in ${locale}`, () => {
+      const terms = termsBody(copy);
+      assert.deepEqual(terms.slice(0, copy.offer.free.legal.length), copy.offer.free.legal);
+      assert.equal(terms.length, copy.offer.free.legal.length + copy.termsPage.body.length);
+
+      const privacy = privacyBody(copy);
+      assert.equal(
+        privacy.length,
+        copy.privacyPage.bodyBefore.length + 1 + copy.privacyPage.bodyAfter.length,
+      );
+      assert.equal(privacy[copy.privacyPage.bodyBefore.length], copy.offer.free.privacyPayments);
+      for (const paragraph of privacy) assert.ok(paragraph.trim().length > 0);
     });
 
     it(`fills every field of both variants in ${locale}`, () => {
@@ -51,6 +83,14 @@ describe("the offer has one state at a time", () => {
           assert.ok(terms[key].trim().length > 0, `${locale}.${name}.${key} is empty`);
         }
         assert.equal(terms.features.length, 4, `${locale}.${name}.features should have 4 bullets`);
+        assert.ok(terms.legal.length > 0, `${locale}.${name}.legal is empty`);
+        for (const paragraph of terms.legal) {
+          assert.ok(paragraph.trim().length > 0, `${locale}.${name}.legal has a blank paragraph`);
+        }
+        assert.ok(
+          terms.privacyPayments.trim().length > 0,
+          `${locale}.${name}.privacyPayments is empty`,
+        );
       }
     });
   }

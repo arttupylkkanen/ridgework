@@ -92,6 +92,12 @@ export const en: Copy = {
       laterTitle: "When payments open",
       laterBody:
         "Membership will be €19/month, and you will be asked before anything is charged. Nothing can be taken from you in the meantime: there is no card on file because the site cannot accept one yet.",
+      legal: [
+        "Ridgework writes training weeks for trail and mountain. Not medical care, no diagnoses. Price: nothing, while the company registration is being completed — the checkout is closed and the site cannot take a card. You remain responsible for training and mountain safety. Mandatory consumer rights under French/EU law are not limited.",
+        "Price. Ridgework is free while the company registration is being completed. There is no card on file and no way to add one, so nothing can be charged and there is nothing to cancel. When the checkout opens, membership will be €19/month, and this page will say so before anyone is asked to pay.",
+      ],
+      privacyPayments:
+        "Payments. None are taken today; the checkout is closed. When it opens, card payments will be handled by Polar as merchant of record. We will hold your subscription status, never your card number.",
     },
     trial: {
       cta: "Start 14 days free",
@@ -108,6 +114,13 @@ export const en: Copy = {
       laterTitle: "After the 14 days",
       laterBody:
         "Add a card anytime to keep training at €19/month. Nothing is ever charged automatically — without a card, the desk simply pauses until you add one. No other price is listed on this site.",
+      legal: [
+        "Ridgework writes training weeks for trail and mountain. Not medical care, no diagnoses. Price: 14 days free, no card needed. Add a card anytime after to keep training at €19/month (support@ridgework.org). You remain responsible for training and mountain safety. Mandatory consumer rights under French/EU law are not limited.",
+        "Price and trial. Current price is €19/month, after 14 free days. No card is needed to start. If you add a card and stay after those 14 days, Polar charges €19/month. Without a card, nothing is ever charged automatically — the desk pauses at day 14 until you add one. That is the only listed price.",
+        "Cancel anytime. Use the Cancel button in the desk, or Card and invoices, once a card is on file. Without a card, nothing is charged in the first place. After a paid month, access continues through the end of the period already paid.",
+      ],
+      privacyPayments:
+        "Payments. Card payments are handled by Polar as merchant of record. We hold your subscription status and never your card number.",
     },
   },
   hero: {
@@ -634,10 +647,7 @@ export const en: Copy = {
     title: "Terms of Service",
     updated: "Last updated: September 2026",
     body: [
-      "Ridgework writes training weeks for trail and mountain. Not medical care, no diagnoses. Price: 14 days free, no card needed. Add a card anytime after to keep training at €19/month (support@ridgework.org). You remain responsible for training and mountain safety. Mandatory consumer rights under French/EU law are not limited.",
       "Service. Ridgework provides weekly training plans for trail and mountain. It is not medical care and makes no diagnoses.",
-      "Price and trial. Current price is €19/month, after 14 free days. No card is needed to start. If you add a card and stay after those 14 days, Polar charges €19/month. Without a card, nothing is ever charged automatically — the desk pauses at day 14 until you add one. That is the only listed price.",
-      "Cancel anytime. Use the Cancel button in the desk, or Card and invoices, once a card is on file. Without a card, nothing is charged in the first place. After a paid month, access continues through the end of the period already paid.",
       "Your responsibility. You remain solely responsible for training and mountain safety decisions. Ridgework does not provide rescue, guiding, or emergency services.",
       "Liability. To the extent permitted by French and EU consumer law, the service is provided as-is. Nothing in these terms limits mandatory consumer rights.",
       "Contact. support@ridgework.org. Ridgework, France.",
@@ -646,7 +656,7 @@ export const en: Copy = {
   privacyPage: {
     title: "Privacy Policy",
     updated: "Last updated: September 2026",
-    body: [
+    bodyBefore: [
       "Who we are. Ridgework is the controller of the personal data described here. Our identity, address and host are published in full on the Legal notice page. Questions, or any request below, go to support@ridgework.org and are answered by a person.",
       "No tracking. Ridgework runs no analytics — not our own, not a third party's. There is no advertising pixel, no fingerprinting and no cookie banner, because there is nothing to consent to. The only cookie we set is the one that keeps you signed in, which is strictly necessary and disappears when you sign out.",
       "Your account. Your name, email address and a hash of your password. We never store the password itself. Legal basis: performance of the contract — without an account there is no plan to show you.",
@@ -654,7 +664,8 @@ export const en: Copy = {
       "How you feel. The daily check-in: sleep, soreness, fatigue, stress and motivation on a 1–5 scale, plus a yes/no flag for anything currently limiting training. Legal basis: performance of the contract. These are subjective training inputs, not clinical measurements, and we do not ask for and do not want diagnoses, medication, test results or any other medical record. Ridgework is not a medical service and makes no diagnosis.",
       "What you did. Which session was planned, whether you marked it done, missed or moved, and the minutes you entered. Legal basis: performance of the contract — it is what lets the plan respond to the week you actually had rather than the one that was written.",
       "Integrations, only if you ask. A calendar feed creates a secret address for your sessions. Connecting intervals.icu stores the API key you paste, so we can push sessions to it. Both are off until you turn them on, both can be disconnected, and disconnecting deletes what was stored. Legal basis: consent.",
-      "Payments. None are taken today; the checkout is closed. When it opens, card payments will be handled by Polar as merchant of record. We will hold your subscription status, never your card number.",
+    ],
+    bodyAfter: [
       "Who else sees it. Only the providers that run the service, listed with their addresses and regions on the Legal notice page: Vercel (hosting, Paris region), Neon (database, Frankfurt), Resend (confirmation and password emails, Ireland) and Cloudflare (DNS and mail routing). Each acts on our instructions under a data processing agreement. We do not sell personal data, and we do not share it for advertising.",
       "Data outside the EU. Those providers are US companies. Your data is stored in the EU where the provider offers it — the database is in Frankfurt and email in Ireland — but support access from the United States is possible. Transfers rely on the European Commission's standard contractual clauses and, where the provider is certified, the EU–US Data Privacy Framework.",
       "How long we keep it. Your account and training history stay while the account exists. Delete the account and we delete them, except anything we must keep for accounting or legal reasons once we begin trading, which we keep for the period the law requires and for nothing else.",

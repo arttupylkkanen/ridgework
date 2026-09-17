@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage } from "@/components/legal-page";
 import { SiteShell } from "@/components/site-shell";
 import { getCopy } from "@/content";
+import { termsBody } from "@/lib/offer";
 import { isPathLocale } from "@/lib/locale";
 
 export const Route = createFileRoute("/$locale/terms")({
@@ -19,7 +20,12 @@ function Page() {
   const copy = getCopy(locale);
   return (
     <SiteShell locale={locale} copy={copy} page="terms">
-      <LegalPage copy={copy} title={copy.termsPage.title} updated={copy.termsPage.updated} body={copy.termsPage.body} />
+      <LegalPage
+        copy={copy}
+        title={copy.termsPage.title}
+        updated={copy.termsPage.updated}
+        body={termsBody(copy)}
+      />
     </SiteShell>
   );
 }
