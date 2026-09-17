@@ -92,6 +92,12 @@ export const fi: Copy = {
       laterTitle: "Kun maksut avautuvat",
       laterBody:
         "Jäsenyys tulee maksamaan 19 €/kk, ja sinulta kysytään ennen kuin mitään veloitetaan. Sitä ennen sinulta ei voi ottaa mitään: korttia ei ole tallessa, koska sivusto ei pysty ottamaan sitä vastaan.",
+      legal: [
+        "Ridgework kirjoittaa treeniviikkoja polulle ja vuorille. Tämä ei ole hoitoa eikä diagnooseja. Hinta: ei mitään, niin kauan kuin yrityksen rekisteröinti on kesken — kassa on kiinni eikä sivusto voi ottaa korttia vastaan. Olet vastuussa treeni- ja vuoristoturvallisuudesta. Ranskan ja EU:n pakottavia kuluttajanoikeuksia ei rajata.",
+        "Hinta. Ridgework on ilmainen niin kauan kuin yrityksen rekisteröinti on kesken. Korttia ei ole tallessa eikä sitä voi lisätä, joten mitään ei voi veloittaa eikä ole mitään peruttavaa. Kun kassa avataan, jäsenyys maksaa 19 €/kk, ja tämä sivu kertoo sen ennen kuin keneltäkään pyydetään maksua.",
+      ],
+      privacyPayments:
+        "Maksut. Niitä ei oteta vastaan tällä hetkellä; kassa on kiinni. Kun se avataan, korttimaksut hoitaa Polar merchant of record -roolissa. Meillä on tilauksesi tila, ei koskaan korttinumeroasi.",
     },
     trial: {
       cta: "Aloita 14 päivää ilmaiseksi",
@@ -108,6 +114,12 @@ export const fi: Copy = {
       laterTitle: "14 päivän jälkeen",
       laterBody:
         "Lisää kortti milloin tahansa ja jatka hintaan 19 €/kk. Mitään ei veloiteta automaattisesti — ilman korttia työpöytä yksinkertaisesti pysähtyy kunnes lisäät sen. Muuta hintaa ei tällä sivustolla ole.",
+      legal: [
+        "Ridgework kirjoittaa treeniviikkoja polulle ja vuorille. Tämä ei ole hoitoa eikä diagnooseja. Hinta: 14 päivää ilmaiseksi, sitten 19 €/kk. Peru milloin tahansa (support@ridgework.org). 14 päivän aikana peruminen tarkoittaa ettei veloiteta. Olet vastuussa treeni- ja vuoristoturvallisuudesta. Ranskan ja EU:n pakottavia kuluttajanoikeuksia ei rajata.",
+        "Hinta ja kokeilu. Hinta on 19 €/kk, ensimmäiset 14 päivää ilmaiseksi. Aloittaminen ei vaadi korttia. Jos lisäät kortin ja jatkat noiden 14 päivän jälkeen, Polar veloittaa 19 €/kk. Ilman korttia mitään ei veloiteta automaattisesti — työpöytä pysähtyy päivänä 14 kunnes lisäät kortin. Tämä on ainoa ilmoitettu hinta.",
+      ],
+      privacyPayments:
+        "Maksut. Korttimaksut hoitaa Polar merchant of record -roolissa. Meillä on tilauksesi tila, ei koskaan korttinumeroasi.",
     },
   },
   hero: {
@@ -609,14 +621,12 @@ export const fi: Copy = {
   termsPage: {
     title: "Käyttöehdot",
     updated: "Päivitetty: syyskuu 2026",
-    body: [
-      "Ridgework kirjoittaa treeniviikkoja polulle ja vuorille. Tämä ei ole hoitoa eikä diagnooseja. Hinta: 14 päivää ilmaiseksi, sitten 19 €/kk. Peru milloin tahansa (support@ridgework.org). 14 päivän aikana peruminen tarkoittaa ettei veloiteta. Olet vastuussa treeni- ja vuoristoturvallisuudesta. Ranskan ja EU:n pakottavia kuluttajanoikeuksia ei rajata.",
-    ],
+    body: [],
   },
   privacyPage: {
     title: "Tietosuojaseloste",
     updated: "Päivitetty: syyskuu 2026",
-    body: [
+    bodyBefore: [
       "Keitä olemme. Ridgework on tässä kuvatun henkilötiedon rekisterinpitäjä. Nimemme, osoitteemme ja ylläpitäjämme on julkaistu kokonaisuudessaan Oikeudelliset tiedot -sivulla. Kysymykset ja kaikki alla mainitut pyynnöt osoitteeseen support@ridgework.org — vastaajana on ihminen.",
       "Ei seurantaa. Ridgework ei käytä analytiikkaa — ei omaa eikä kolmannen osapuolen. Ei mainospikseliä, ei sormenjälkitunnistusta, ei evästebanneria, koska ei ole mitään mihin suostua. Ainoa asettamamme eväste pitää sinut kirjautuneena, se on välttämätön ja katoaa kun kirjaudut ulos.",
       "Tilisi. Nimi, sähköpostiosoite ja salasanan tiiviste. Salasanaa itseään emme koskaan tallenna. Peruste: sopimuksen täyttäminen — ilman tiliä ei ole suunnitelmaa näytettäväksi.",
@@ -624,7 +634,8 @@ export const fi: Copy = {
       "Miltä tuntuu. Päivittäinen kirjaus: uni, lihasarkuus, väsymys, stressi ja motivaatio asteikolla 1–5, sekä kyllä/ei-tieto siitä rajoittaako jokin harjoittelua juuri nyt. Peruste: sopimuksen täyttäminen. Nämä ovat subjektiivisia harjoitustietoja, eivät kliinisiä mittauksia, emmekä kysy emmekä halua diagnooseja, lääkityksiä, tutkimustuloksia tai muita potilastietoja. Ridgework ei ole terveydenhuollon palvelu eikä tee diagnooseja.",
       "Mitä teit. Mikä harjoitus oli suunniteltu, merkitsitkö sen tehdyksi, väliin jääneeksi vai siirretyksi, ja kirjaamasi minuutit. Peruste: sopimuksen täyttäminen — juuri tämä antaa suunnitelman mukautua siihen viikkoon joka sinulla oikeasti oli.",
       "Integraatiot, vain pyynnöstä. Kalenterisyöte luo harjoituksillesi salaisen osoitteen. intervals.icu:n kytkeminen tallentaa liittämäsi API-avaimen, jotta voimme työntää harjoitukset sinne. Molemmat ovat pois päältä kunnes kytket ne, molemmat voi katkaista, ja katkaisu poistaa tallennetun. Peruste: suostumus.",
-      "Maksut. Niitä ei oteta vastaan tällä hetkellä; kassa on kiinni. Kun se avataan, korttimaksut hoitaa Polar merchant of record -roolissa. Meillä on tilauksesi tila, ei koskaan korttinumeroasi.",
+    ],
+    bodyAfter: [
       "Kuka muu näkee. Vain palvelun ajavat toimittajat, listattuna osoitteineen ja alueineen Oikeudelliset tiedot -sivulla: Vercel (ylläpito, Pariisin alue), Neon (tietokanta, Frankfurt), Resend (vahvistus- ja salasanaviestit, Irlanti) ja Cloudflare (DNS ja postin reititys). Kukin toimii ohjeidemme mukaan käsittelysopimuksen alla. Emme myy henkilötietoja emmekä jaa niitä mainontaan.",
       "Tieto EU:n ulkopuolella. Nuo toimittajat ovat yhdysvaltalaisia yhtiöitä. Tieto säilytetään EU:ssa siellä missä toimittaja sen tarjoaa — tietokanta on Frankfurtissa ja sähköposti Irlannissa — mutta tukipääsy Yhdysvalloista on mahdollista. Siirrot nojaavat komission vakiosopimuslausekkeisiin ja, toimittajan ollessa sertifioitu, EU–US Data Privacy Frameworkiin.",
       "Kuinka kauan. Tili ja harjoitushistoria säilyvät niin kauan kuin tili on olemassa. Poista tili, niin poistamme ne — pois lukien se mitä kirjanpito tai laki vaatii säilyttämään sitten kun toiminta alkaa, ja senkin vain lain vaatiman ajan.",

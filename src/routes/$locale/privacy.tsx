@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage } from "@/components/legal-page";
 import { SiteShell } from "@/components/site-shell";
 import { getCopy } from "@/content";
+import { privacyBody } from "@/lib/offer";
 import { isPathLocale } from "@/lib/locale";
 
 export const Route = createFileRoute("/$locale/privacy")({
@@ -23,7 +24,7 @@ function Page() {
         copy={copy}
         title={copy.privacyPage.title}
         updated={copy.privacyPage.updated}
-        body={copy.privacyPage.body}
+        body={privacyBody(copy)}
       />
     </SiteShell>
   );

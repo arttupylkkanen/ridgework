@@ -92,6 +92,12 @@ export const de: Copy = {
       laterTitle: "Wenn Zahlungen öffnen",
       laterBody:
         "Die Mitgliedschaft wird 19 €/Monat kosten, und du wirst gefragt, bevor irgendetwas abgebucht wird. Bis dahin kann dir nichts abgebucht werden: Es ist keine Karte hinterlegt, weil die Seite gar keine annehmen kann.",
+      legal: [
+        "Ridgework schreibt Trainingswochen für Trail und Berg. Keine medizinische Versorgung, keine Diagnosen. Preis: nichts, solange die Eintragung des Unternehmens läuft — die Kasse ist geschlossen und die Seite kann keine Karte annehmen. Du bleibst verantwortlich für Berg- und Trainingssicherheit. Zwingende Verbraucherrechte nach französischem/EU-Recht werden nicht eingeschränkt.",
+        "Preis. Ridgework ist kostenlos, solange die Eintragung des Unternehmens läuft. Es ist keine Karte hinterlegt und es lässt sich auch keine hinterlegen, also kann nichts abgebucht werden und es gibt nichts zu kündigen. Wenn die Kasse öffnet, kostet die Mitgliedschaft 19 €/Monat, und diese Seite sagt es, bevor jemand zur Zahlung aufgefordert wird.",
+      ],
+      privacyPayments:
+        "Zahlungen. Heute werden keine entgegengenommen; die Kasse ist geschlossen. Wenn sie öffnet, wickelt Polar Kartenzahlungen als Merchant of Record ab. Wir halten den Status deines Abos, nie deine Kartennummer.",
     },
     trial: {
       cta: "14 Tage kostenlos starten",
@@ -108,6 +114,12 @@ export const de: Copy = {
       laterTitle: "Nach den 14 Tagen",
       laterBody:
         "Hinterlege jederzeit eine Karte, um für 19 €/Monat weiterzutrainieren. Es wird nie automatisch abgebucht — ohne Karte pausiert der Schreibtisch einfach. Ein anderer Preis steht nirgends auf dieser Seite.",
+      legal: [
+        "Ridgework schreibt Trainingswochen für Trail und Berg. Keine medizinische Versorgung, keine Diagnosen. Preis: 14 Tage kostenlos, dann 19 €/Monat. Jederzeit kündbar (support@ridgework.org). Kündigung in den 14 Tagen bedeutet keine Rechnung. Du bleibst verantwortlich für Berg- und Trainingssicherheit. Zwingende Verbraucherrechte nach französischem/EU-Recht werden nicht eingeschränkt.",
+        "Preis und Testphase. Der Preis beträgt 19 €/Monat, nach 14 kostenlosen Tagen. Zum Start ist keine Karte nötig. Hinterlegst du eine Karte und bleibst über diese 14 Tage hinaus, bucht Polar 19 €/Monat ab. Ohne Karte wird nie automatisch abgebucht — der Schreibtisch pausiert an Tag 14, bis du eine hinterlegst. Das ist der einzige genannte Preis.",
+      ],
+      privacyPayments:
+        "Zahlungen. Kartenzahlungen wickelt Polar als Merchant of Record ab. Wir halten den Status deines Abos, nie deine Kartennummer.",
     },
   },
   hero: {
@@ -597,14 +609,12 @@ export const de: Copy = {
   termsPage: {
     title: "Nutzungsbedingungen",
     updated: "Zuletzt aktualisiert: September 2026",
-    body: [
-      "Ridgework schreibt Trainingswochen für Trail und Berg. Keine medizinische Versorgung, keine Diagnosen. Preis: 14 Tage kostenlos, dann 19 €/Monat. Jederzeit kündbar (support@ridgework.org). Kündigung in den 14 Tagen bedeutet keine Rechnung. Du bleibst verantwortlich für Berg- und Trainingssicherheit. Zwingende Verbraucherrechte nach französischem/EU-Recht werden nicht eingeschränkt.",
-    ],
+    body: [],
   },
   privacyPage: {
     title: "Datenschutzerklärung",
     updated: "Zuletzt aktualisiert: September 2026",
-    body: [
+    bodyBefore: [
       "Wer wir sind. Ridgework ist Verantwortlicher für die hier beschriebenen Daten. Identität, Anschrift und Hoster stehen vollständig im Impressum. Fragen und alle unten genannten Anliegen an support@ridgework.org — es antwortet ein Mensch.",
       "Kein Tracking. Ridgework betreibt keine Analyse — weder eigene noch fremde. Kein Werbepixel, kein Fingerprinting, kein Cookie-Banner, weil es nichts einzuwilligen gibt. Das einzige Cookie hält dich angemeldet, ist unbedingt erforderlich und verschwindet beim Abmelden.",
       "Dein Konto. Name, E-Mail-Adresse und ein Hash des Passworts. Das Passwort selbst speichern wir nie. Rechtsgrundlage: Vertragserfüllung — ohne Konto gibt es keinen Plan zu zeigen.",
@@ -612,7 +622,8 @@ export const de: Copy = {
       "Wie du dich fühlst. Der tägliche Check-in: Schlaf, Muskelkater, Müdigkeit, Stress und Motivation auf einer Skala von 1 bis 5, dazu eine Ja/Nein-Angabe, ob etwas das Training gerade einschränkt. Rechtsgrundlage: Vertragserfüllung. Das sind subjektive Trainingsangaben, keine klinischen Messwerte; wir fragen nicht nach Diagnosen, Medikamenten, Befunden oder sonstigen Patientenakten und wollen sie auch nicht. Ridgework ist kein Gesundheitsdienst und stellt keine Diagnosen.",
       "Was du gemacht hast. Welche Einheit geplant war, ob du sie als erledigt, verpasst oder verschoben markiert hast, und die eingetragenen Minuten. Rechtsgrundlage: Vertragserfüllung — genau das lässt den Plan auf die Woche reagieren, die du wirklich hattest.",
       "Integrationen, nur auf Wunsch. Der Kalender-Feed erzeugt eine geheime Adresse für deine Einheiten. Die Verbindung zu intervals.icu speichert den API-Schlüssel, den du einfügst. Beides ist aus, bis du es einschaltest, beides lässt sich trennen, und beim Trennen wird das Gespeicherte gelöscht. Rechtsgrundlage: Einwilligung.",
-      "Zahlungen. Heute werden keine entgegengenommen; die Kasse ist geschlossen. Wenn sie öffnet, wickelt Polar Kartenzahlungen als Merchant of Record ab. Wir halten den Status deines Abos, nie deine Kartennummer.",
+    ],
+    bodyAfter: [
       "Wer sonst Zugriff hat. Nur die Anbieter, die den Dienst betreiben, mit Anschrift und Region im Impressum aufgeführt: Vercel (Hosting, Region Paris), Neon (Datenbank, Frankfurt), Resend (Bestätigungs- und Passwort-Mails, Irland) und Cloudflare (DNS und Mail-Routing). Jeder handelt auf unsere Weisung unter einem Auftragsverarbeitungsvertrag. Wir verkaufen keine personenbezogenen Daten und geben sie nicht für Werbung weiter.",
       "Daten außerhalb der EU. Diese Anbieter sind US-Unternehmen. Gespeichert wird in der EU, wo der Anbieter das anbietet — Datenbank in Frankfurt, E-Mail in Irland — ein Support-Zugriff aus den USA ist jedoch möglich. Übermittlungen stützen sich auf die Standardvertragsklauseln der Kommission und, sofern der Anbieter zertifiziert ist, auf das EU–US Data Privacy Framework.",
       "Speicherdauer. Konto und Trainingsverlauf bleiben, solange das Konto besteht. Lösche das Konto, und wir löschen sie — außer dem, was Buchhaltung oder Gesetz nach Aufnahme der Geschäftstätigkeit verlangen, und nur für diese Dauer.",
