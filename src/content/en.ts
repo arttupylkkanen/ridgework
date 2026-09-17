@@ -305,18 +305,19 @@ export const en: Copy = {
       {
         id: "trail20",
         name: "20 km trail",
-        duration: "Ten weeks is enough for most",
-        focus: "Easy volume, one quality dose, a long toward 90–110 min",
+        duration: "About ten weeks",
+        focus: "If you already run most weeks and want a trail race you finish well.",
         locked:
-          "Week 8: 6×3 min at 10k effort on rolling trail, 2 min easy. Long 90–110 min. Then a 7-day taper.",
+          "Most days: 40–60 minutes, slow enough to talk. One longer day that starts from the hour you already do. Race week you run less, not more.",
         layout: "sessionLead",
       },
       {
         id: "fifty",
         name: "50 km ultra",
-        duration: "About half a year",
-        focus: "Aerobic base, then long-run progression, peak race week",
-        locked: "Week 20: 3×12 min at marathon effort on trail. Then 10–14 days of easing off.",
+        duration: "About six months",
+        focus: "If 20–30 km or a road marathon is already behind you. Finish well, not a time.",
+        locked:
+          "Most days easy enough to talk. The long starts from what you can do now, not four hours in week one. The last two weeks are shorter, not harder.",
         tag: "A first ultra for a lot of people",
         pull: "Finish well, not just finish.",
         layout: "wide",
@@ -554,7 +555,7 @@ export const en: Copy = {
       },
       {
         q: "Can I cancel?",
-        a: "Yes. There is a Cancel button in the desk once you have added a card. Without a card, nothing is ever charged — just stop, or let the trial end. After a paid month, access lasts through that month.",
+        a: "There is nothing to pay right now, so there is nothing to cancel. When payments open, a Cancel button sits in the desk.",
       },
       {
         q: "Will I be charged without noticing?",
@@ -570,11 +571,11 @@ export const en: Copy = {
       },
       {
         q: "Does the plan update itself?",
-        a: "In the product, yes. Three weeks stay written. Log the week and the next one appears. Fatigue shortens this week. It does not move the race.",
+        a: "Three weeks stay written. Log the week and the next one appears. A tired week trains less. It does not move the race.",
       },
       {
         q: "Why does more time help?",
-        a: "Easy aerobic volume is slow to accumulate. Six weeks still gets a written week. It just has less base under it.",
+        a: "Easy running takes months to add up. Six weeks still gets a written week. It just has less easy running under it.",
       },
       {
         q: "Who is this?",
@@ -701,9 +702,9 @@ export const en: Copy = {
     lead: "A few facts about how you train. Today’s session follows sleep, fatigue, and the week already written. Tired days train less. The ready date stays.",
     lockedTitle: "Sign in to save the week",
     lockedBody: "Create an account to keep the program, the week, and the log on this login.",
-    trialLabel: "14-day trial",
-    testBanner: "14 days free, no card needed. Then €19/month if you add one.",
-    signInToTrain: "Sign in, pick a peak date. 14 days free, no card needed.",
+    trialLabel: "Free for now",
+    testBanner: "Free while we finish registering the company. No card.",
+    signInToTrain: "Sign in, pick the day you need to be ready. No card.",
     tabs: {
       today: "Today",
       plan: "Program",
@@ -718,7 +719,7 @@ export const en: Copy = {
   },
   auth: {
     title: "Sign in",
-    lead: "Create an account to enroll in a program. Peak date first, then the weeks.",
+    lead: "Save the week you just saw. No card. You pick the day you need to be ready.",
     email: "Email",
     password: "Password",
     name: "Name",

@@ -280,18 +280,19 @@ export const fi: Copy = {
       {
         id: "trail20",
         name: "20 km polku",
-        duration: "Kymmenen viikkoa riittää useimmille",
-        focus: "Kevyttä pohjaa, yksi teho, pitkä 90–110 min.",
+        duration: "Noin kymmenen viikkoa",
+        focus: "Jos juokset jo useimpina viikkoina ja haluat polkukisan josta tulet ehjänä maaliin.",
         locked:
-          "Viikko 8: kuusi kertaa 3 min kympin teholla, 2 min kevyttä välissä. Sitten viikon kevennys.",
+          "Useimmat päivät: 40–60 minuuttia, niin hidasta että pystyt puhumaan. Yksi pidempi päivä, joka alkaa siitä tunnista jonka jo osaat. Kisaviikolla juostaan vähemmän, ei enemmän.",
         layout: "sessionLead",
       },
       {
         id: "fifty",
         name: "50 km ultra",
         duration: "Noin puoli vuotta",
-        focus: "Pitkä peruskunto, sitten pitkät kasvavat, huippu kisaviikolla.",
-        locked: "Viikko 20: 3×12 min maratonteholla polulla. Sitten 10–14 päivän kevennys.",
+        focus: "Jos 20–30 km tai maraton on jo alla. Maaliin hallitusti, ei aikaa vastaan.",
+        locked:
+          "Useimmat päivät niin kevyitä että pystyt puhumaan. Pitkä alkaa siitä mitä jo osaat, ei neljästä tunnista viikolla yksi. Kaksi viimeistä viikkoa ovat lyhyempiä, ei kovempia.",
         tag: "Monen ensimmäinen ultra",
         pull: "Maaliin hallitusti, ei vain maaliin.",
         layout: "wide",
@@ -526,12 +527,12 @@ export const fi: Copy = {
         a: "Kirjoitettu treeniviikko polulle, ultralle ja alppipäiville. Kerrot milloin pitää olla valmis. Viikko ilmestyy kalenteriin.",
       },
       {
-        q: "Mitä 5 euroa kuussa tarkoittaa?",
-        a: "Se on nykyinen hinta 14 ilmaisen päivän jälkeen. Korttia ei tarvita aloittaessa — lisää se milloin tahansa jatkaaksesi päivän 14 jälkeen.",
+        q: "Mitä tämä maksaa?",
+        a: "Ei mitään juuri nyt. Emme voi ottaa maksua ennen kuin yrityksen rekisteröinti Ranskassa on valmis, joten pöytä on ilmaiseksi eikä korttia tallenneta. Jäsenyys on 19 €/kk kun kassa aukeaa, ja saat tietää sen etukäteen.",
       },
       {
         q: "Voiko perua?",
-        a: "Kyllä, milloin tahansa kortin lisäämisen jälkeen. Pöydässä on Peru-nappi. Ilman korttia mitään ei veloiteta lainkaan. Maksetun kuukauden jälkeen pääsy kestää sen kuun loppuun.",
+        a: "Nyt ei ole mitään maksettavaa, joten ei ole mitään peruttavaa. Kun maksut avautuvat, pöydässä on Peru-nappi.",
       },
       {
         q: "Voiko minulta veloittaa huomaamatta?",
@@ -547,11 +548,11 @@ export const fi: Copy = {
       },
       {
         q: "Päivittyykö ohjelma itsestään?",
-        a: "Tuotteessa kyllä. Kolme viikkoa on aina valmiina. Kun kirjaat viikon, seuraava ilmestyy. Väsymys lyhentää tätä viikkoa. Se ei siirrä kisaa.",
+        a: "Kolme viikkoa on aina valmiina. Kun kirjaat viikon, seuraava ilmestyy. Väsynyt viikko treenaa vähemmän. Se ei siirrä kisaa.",
       },
       {
         q: "Miksi enemmän aikaa auttaa?",
-        a: "Kevyt aerobinen volyymi kertyy hitaasti. Kuuden viikon ikkuna saa silti kirjoitetun viikon. Pohjaa on vain vähemmän.",
+        a: "Kevyt juoksu kertyy kuukausissa. Kuuden viikon ikkuna saa silti kirjoitetun viikon. Helppoa juoksua on vain vähemmän alla.",
       },
       {
         q: "Kuka tämän tekee?",
@@ -674,9 +675,9 @@ export const fi: Copy = {
     lead: "Muutama fakta siitä miten treenaat. Tämän päivän sessio seuraa unta, väsymystä ja jo kirjoitettua viikkoa. Väsynyt päivä treenaa vähemmän. Tavoitepäivä pysyy.",
     lockedTitle: "Kirjaudu jotta viikko tallentuu",
     lockedBody: "Tilin takana ohjelma, viikko ja loki pysyvät tallessa.",
-    trialLabel: "14 päivän kokeilu",
-    testBanner: "14 päivää ilmaiseksi, ei korttia. Sitten 19 €/kk jos lisäät sen.",
-    signInToTrain: "Kirjaudu, valitse tavoitepäivä. 14 päivää ilmaiseksi, ei korttia.",
+    trialLabel: "Ilmaista toistaiseksi",
+    testBanner: "Ilmaista kunnes yritys on rekisteröity. Ei korttia.",
+    signInToTrain: "Kirjaudu, valitse päivä jolloin sinun pitää olla valmis. Ei korttia.",
     tabs: {
       today: "Tänään",
       plan: "Ohjelma",
@@ -691,7 +692,7 @@ export const fi: Copy = {
   },
   auth: {
     title: "Kirjaudu",
-    lead: "Tee tili ja valitse ohjelma. Tavoitepäivä ensin, sitten viikot.",
+    lead: "Tallenna viikko jonka juuri näit. Ei korttia. Valitset päivän jolloin sinun pitää olla valmis.",
     email: "Sähköposti",
     password: "Salasana",
     name: "Nimi",

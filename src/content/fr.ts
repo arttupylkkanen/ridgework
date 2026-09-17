@@ -284,19 +284,19 @@ export const fr: Copy = {
       {
         id: "trail20",
         name: "Trail 20 km",
-        duration: "Recommandé 10 semaines",
-        focus: "Volume facile, une dose de qualité, longue vers 90–110 min",
+        duration: "Environ dix semaines",
+        focus: "Si vous courez déjà la plupart des semaines et voulez un trail dont vous sortez entier.",
         locked:
-          "Semaine 8 : 6×3 min à allure 10 km sur trail roulant, 2 min facile. Longue 90–110 min. Puis 7 jours d’affûtage.",
+          "La plupart des jours : 40–60 minutes, assez lent pour parler. Un jour plus long qui part de l’heure que vous faites déjà. La semaine de course, on court moins, pas plus.",
         layout: "sessionLead",
       },
       {
         id: "fifty",
         name: "Ultra 50 km",
-        duration: "Recommandé 24 sem. / 6 mois",
-        focus: "Base aérobie, puis progression de la longue, pic la semaine de course",
+        duration: "Environ six mois",
+        focus: "Si 20–30 km ou un marathon route sont déjà derrière vous. Finir bien, pas un chrono.",
         locked:
-          "Semaine 20 (fin du spécifique) : 3×12 min à effort marathon sur trail roulant, 4 min facile. Puis 10–14 jours d’affûtage.",
+          "La plupart des jours assez faciles pour parler. La longue part de ce que vous savez faire maintenant, pas de quatre heures en semaine un. Les deux dernières semaines sont plus courtes, pas plus dures.",
         tag: "Souvent un premier ultra",
         pull: "Finir bien, pas seulement finir.",
         layout: "wide",
@@ -543,7 +543,7 @@ export const fr: Copy = {
         a: "Si vous n’avez pas ajouté de carte, le bureau se met en pause jusqu’à ce que vous en ajoutiez une — rien n’est facturé automatiquement. Si vous en avez ajouté une, l’abonnement continue à 19 €/mois sauf résiliation.",
       },
       {
-        q: "Faut-il une carte pour l’essai ?",
+        q: "Faut-il une carte pour commencer ?",
         a: "Non. Aucune carte n’est demandée nulle part sur le site. À l’ouverture des paiements, l’abonnement sera de 19 €/mois et votre accord sera demandé d’abord.",
       },
       {
@@ -670,10 +670,10 @@ export const fr: Copy = {
     lead: "Choisissez le jour où vous voulez être au pic. Le programme glissant écrit les semaines dans cette fenêtre. Fatigué : moins de travail. Rien ici n’est un avis médical.",
     lockedTitle: "Compte requis",
     lockedBody:
-      "Créez un compte pour les 14 jours gratuits : programme, semaine, préparation du jour et journal. Puis 19 €/mois si vous restez.",
-    trialLabel: "Essai 14 jours",
-    testBanner: "14 jours gratuits, sans carte. Puis 19 €/mois si vous en ajoutez une.",
-    signInToTrain: "Connectez-vous, choisissez une date de pic. 14 jours gratuits, sans carte.",
+      "Créez un compte pour garder le programme, la semaine et le journal. Sans carte.",
+    trialLabel: "Gratuit pour l’instant",
+    testBanner: "Gratuit tant que l’immatriculation n’est pas terminée. Sans carte.",
+    signInToTrain: "Connectez-vous, choisissez le jour où vous devez être prêt. Sans carte.",
     tabs: {
       today: "Aujourd’hui",
       plan: "Programme",
@@ -688,7 +688,7 @@ export const fr: Copy = {
   },
   auth: {
     title: "Connexion",
-    lead: "Créez un compte pour vous inscrire à un programme. Le jour du pic d’abord, puis les semaines.",
+    lead: "Gardez la semaine que vous venez de voir. Sans carte. Vous choisissez le jour où vous devez être prêt.",
     email: "E-mail",
     password: "Mot de passe",
     name: "Nom",

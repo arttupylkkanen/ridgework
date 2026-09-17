@@ -280,19 +280,19 @@ export const de: Copy = {
       {
         id: "trail20",
         name: "20-km-Trail",
-        duration: "Empfohlen 10 Wochen",
-        focus: "Lockeres Volumen, eine Qualitätsdosis, Langer auf 90–110 min",
+        duration: "Etwa zehn Wochen",
+        focus: "Wenn du die meisten Wochen schon läufst und ein Trailrennen willst, aus dem du heil ankommst.",
         locked:
-          "Woche 8: 6×3 min im 10-km-Tempo auf rollendem Trail, 2 min locker. Langer 90–110 min. Dann 7 Tage Taper.",
+          "Die meisten Tage: 40–60 Minuten, langsam genug zum Reden. Ein längerer Tag, der bei der Stunde beginnt, die du schon kannst. In der Rennwoche läufst du weniger, nicht mehr.",
         layout: "sessionLead",
       },
       {
         id: "fifty",
         name: "50-km-Ultra",
-        duration: "Empfohlen 24 Wochen / 6 Monate",
-        focus: "Aerobe Basis, dann Long-run-Progression, Peak in der Rennwoche",
+        duration: "Etwa sechs Monate",
+        focus: "Wenn 20–30 km oder ein Straßenmarathon schon hinter dir liegen. Gut ankommen, keine Zeit jagen.",
         locked:
-          "Woche 20 (Ende spezifisch): 3×12 min im Marathon-Effort auf rollendem Trail, 4 min locker. Dann 10–14 Tage Taper.",
+          "Die meisten Tage locker genug zum Reden. Der Lange startet bei dem, was du jetzt kannst, nicht bei vier Stunden in Woche eins. Die letzten zwei Wochen sind kürzer, nicht härter.",
         tag: "Oft der erste Ultra",
         pull: "Gut ankommen, nicht nur ankommen.",
         layout: "wide",
@@ -538,7 +538,7 @@ export const de: Copy = {
         a: "Ohne Karte pausiert der Tisch, bis du eine hinzufügst — es wird nichts automatisch belastet. Mit Karte läuft das Abo weiter zu 19 €/Monat, außer du kündigst.",
       },
       {
-        q: "Brauche ich eine Karte für die Testphase?",
+        q: "Brauche ich eine Karte zum Start?",
         a: "Nein. Es wird nirgends auf der Seite eine Karte verlangt. Wenn Zahlungen öffnen, kostet die Mitgliedschaft 19 €/Monat und du wirst vorher gefragt.",
       },
       {
@@ -565,7 +565,7 @@ export const de: Copy = {
   foundingPage: {
     kicker: "Founding",
     h1: "Starte mit 14 Tagen kostenlos",
-    lead: "Dieselben Wochen. 14 Tage kostenlos, dann 19 €/Monat.",
+    lead: "Dieselben Wochen. Keine Karte.",
     trial: "14 Tage kostenlos. Dann 19 €/Monat. Jederzeit kündbar.",
     note: "14 Tage ohne Karte. Füge jederzeit eine hinzu, um für 19 €/Monat weiterzutrainieren. Das ist der einzige Preis hier.",
     back: "← Ridgework",
@@ -662,10 +662,10 @@ export const de: Copy = {
     lead: "Wähle den Tag, an dem du peak sein willst. Der rollende Plan schreibt die Wochen in dieses Fenster. Müde: weniger trainieren. Nichts hiervon ist medizinischer Rat.",
     lockedTitle: "Konto nötig",
     lockedBody:
-      "Konto anlegen für 14 Tage kostenlos: Plan, Woche, Tagesvorbereitung und Log. Dann 19 €/Monat, wenn du bleibst.",
-    trialLabel: "14-Tage-Test",
-    testBanner: "14 Tage kostenlos, ohne Karte. Dann 19 €/Monat, wenn du eine hinzufügst.",
-    signInToTrain: "Anmelden, Peak-Datum wählen. 14 Tage kostenlos, ohne Karte.",
+      "Konto anlegen, damit Plan, Woche und Log bleiben. Keine Karte.",
+    trialLabel: "Vorerst kostenlos",
+    testBanner: "Kostenlos, solange die Registrierung läuft. Keine Karte.",
+    signInToTrain: "Anmelden, den Tag wählen, an dem du bereit sein musst. Keine Karte.",
     tabs: {
       today: "Heute",
       plan: "Programm",
@@ -680,7 +680,7 @@ export const de: Copy = {
   },
   auth: {
     title: "Anmelden",
-    lead: "Konto anlegen und ein Programm starten. Peak-Tag zuerst, dann die Wochen.",
+    lead: "Speichere die Woche, die du gerade gesehen hast. Keine Karte. Du wählst den Tag, an dem du bereit sein musst.",
     email: "E-Mail",
     password: "Passwort",
     name: "Name",
