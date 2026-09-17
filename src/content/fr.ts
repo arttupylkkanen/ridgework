@@ -36,6 +36,7 @@ export const fr: Copy = {
     account: "Compte",
     signOut: "Se déconnecter",
     signingOut: "Déconnexion…",
+    signedInAs: "Connecté en tant que {who}",
   },
   cta: {
     pricing: "Voir les tarifs",

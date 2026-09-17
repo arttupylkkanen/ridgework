@@ -36,6 +36,7 @@ export const fi: Copy = {
     account: "Tili",
     signOut: "Kirjaudu ulos",
     signingOut: "Kirjaudutaan ulos…",
+    signedInAs: "Kirjautuneena: {who}",
   },
   cta: {
     pricing: "Katso hinnat",

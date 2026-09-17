@@ -111,6 +111,8 @@ export type Copy = {
     account: string;
     signOut: string;
     signingOut: string;
+    /** {who} is the name or email of the signed-in athlete. */
+    signedInAs: string;
   };
   cta: { pricing: string; openTools: string; seeWeek: string };
   /** The pick-a-date, three-week planner on /example. */
