@@ -69,7 +69,7 @@ export const PLAN_PAGES: PlanPage[] = [
       "A 24-week 50 km ultra training plan that rewrites itself around missed sessions, bad sleep and travel. You pick the race date. No card needed.",
     kicker: "50 km ultra",
     h1: "50K ultra training plan",
-    lead: "Twenty-four weeks from where you are now to a 50 km trail ultra you finish well, not just finish. You set the race date; the weeks are written backwards from it and rewritten forward as life happens.",
+    lead: "A first ultra for a lot of people — finish well, not just finish. Mostly easy running, one quality session once the base is there, and a long run that grows toward the day you picked.",
     body: [
       "A 50 km is the distance where most runners discover that a marathon plan does not transfer. The problem is rarely speed. It is time on feet, climbing, eating while moving, and arriving at the start line without six months of accumulated fatigue in your legs.",
       "This plan puts the bulk of its work at conversational pace — easy enough to hold a full sentence. That is not a soft option, it is the part most people skip and then wonder why the last 15 km falls apart. One quality session per week appears only once you have the base to absorb it, and only when you turned up rested.",
@@ -124,7 +124,7 @@ export const PLAN_PAGES: PlanPage[] = [
       "A 36-week 100 km ultra training plan with back-to-back long runs, night running and a four-week taper. Adapts to missed sessions. No card needed.",
     kicker: "80–120 km ultra",
     h1: "100K ultra training plan",
-    lead: "Thirty-six weeks for a 100 km trail ultra. Months of easy time on feet, late back-to-back long runs, and a four-week taper — written around the date you gave, and rewritten every time a week does not go to plan.",
+    lead: "Not a first ultra. Months of easy time on feet, late back-to-back long runs and a four-week taper, all written around the date you gave.",
     body: [
       "A 100 km day goes through a sunset. That single fact changes the training: you are preparing for hours of movement at an effort that feels almost embarrassingly easy, eating on a schedule, and staying functional when it gets dark, cold and slow.",
       "Most of this block is unglamorous aerobic volume. The back-to-back long weekends arrive late, not early, because they are the sessions that leave the deepest hole — stacking them before the base is there is the classic way to arrive at the start line already cooked.",
@@ -180,7 +180,7 @@ export const PLAN_PAGES: PlanPage[] = [
       "A 10-week 20 km trail race training plan: easy volume, one quality session a week, a long run toward 110 minutes, and a 7-day taper. No card needed.",
     kicker: "20 km trail",
     h1: "20K trail race training plan",
-    lead: "Ten weeks is enough for most people to arrive at a 20 km trail race in shape. Easy volume, one quality dose a week, a long run that grows toward two hours, and a week of easing off before the day.",
+    lead: "A first trail race, for someone who already runs. Easy volume, one quality session a week, and a long run growing toward two hours.",
     body: [
       "Twenty kilometres on trail is long enough that pacing and climbing matter, and short enough that you can still race it. That combination makes it the best first trail objective: you get a real result without needing to rearrange your life for six months.",
       "The week here is simple. Most days are easy enough to talk through. One session a week has real intensity in it — intervals at around 10 km effort on rolling ground — and the long run works toward 90 to 110 minutes on terrain that looks like the course.",
@@ -232,7 +232,7 @@ export const PLAN_PAGES: PlanPage[] = [
       "A 16-week aerobic base plan: easy volume at conversational pace, no race required. Build the engine before the next objective. No card needed.",
     kicker: "Aerobic engine",
     h1: "Aerobic base training plan",
-    lead: "Sixteen weeks of easy volume at a pace you can talk through. No race on the calendar required. This is the block that makes every later objective possible, and the one most people skip.",
+    lead: "No race on the calendar, on purpose. Easy volume at a pace you can talk through — the block that makes every later objective possible, and the one most people skip.",
     body: [
       "If you can only do one thing well, do this. Aerobic base is slow to accumulate and quick to reveal itself: it is why one runner fades at hour three and another does not, and it cannot be bought back with a hard month before a race.",
       "The rule here is uncomfortable in its simplicity. If you cannot finish a sentence, you are going too fast. That applies to almost every session in this block. Roughly 60 to 75 percent of maximum heart rate, or below aerobic threshold if you have tested it properly — but the talk test works without any device.",
@@ -285,7 +285,7 @@ export const PLAN_PAGES: PlanPage[] = [
       "A 10-week alpine day training plan: aerobic approaches, climbing sessions, mountain strength and muscular endurance, then the summit day. No card needed.",
     kicker: "Alpine day",
     h1: "Alpine climbing training plan",
-    lead: "Ten weeks to a single big mountain day. Aerobic approaches, real climbing sessions, mountain-specific strength and muscular endurance — then a taper into your weather window.",
+    lead: "One big mountain day, for someone who already climbs. Aerobic approaches, real climbing sessions and mountain-specific strength, then a taper into your weather window.",
     body: [
       "An alpine day is an endurance event with technical sections inside it, and training for it as though it were only one or the other is the usual mistake. Pure hill fitness leaves you gripped on the pitches; pure climbing leaves you wrecked on the approach.",
       "So this block runs both. Approaches and hiking days stay aerobic and conversational. Specific weeks add a climbing session — rock, ice, or the gym when the weather refuses — plus a muscular endurance day and a short strength dose: lock-offs, pull-ups, step-ups with load, core that holds a body position under fatigue.",
@@ -342,7 +342,7 @@ export const PLAN_PAGES: PlanPage[] = [
       "A 32-week training plan for a multi-day alpine route: hiking base, climbing, loaded back-to-back days, and peaking on day one. No card needed.",
     kicker: "Multi-day route",
     h1: "Multi-day alpine traverse training plan",
-    lead: "Thirty-two weeks for a linked alpine route. Hiking base, then climbing plus loaded back-to-back days — built so you peak on day one and still have something left on day three.",
+    lead: "A linked alpine route over several days. Hiking base, then climbing plus loaded back-to-back days — built so you peak on day one and still have something left on day three.",
     body: [
       "A traverse is not one hard day repeated. It is a hard day, followed by another one on legs that have not recovered, with a pack, at altitude, possibly after a poor night in a hut. The training has to rehearse that second and third day, not just the first.",
       "The base here is long and deliberately unexciting: twenty weeks of hiking and easy aerobic volume, because the thing that fails on day three is almost never technical skill. It is accumulated fatigue and a body that has never been asked to go again.",
@@ -397,7 +397,7 @@ export const PLAN_PAGES: PlanPage[] = [
       "A 40-week expedition training plan: hiking volume, pack carries, muscular endurance, and a final block that is sleep and logistics rather than more load.",
     kicker: "High-altitude expedition",
     h1: "High-altitude expedition training plan",
-    lead: "Forty weeks for a high-altitude expedition. Hiking and easy volume, progressive pack carries, muscular endurance — and a final block that is sleep, food and packing rather than one more hard carry.",
+    lead: "A high camp, months out. Hiking and easy volume, progressive pack carries and muscular endurance — with a last block that is about sleep, food and packing, not one more hard carry.",
     body: [
       "Expedition training is a long game played mostly at low intensity. The work that matters is the ability to carry a load, day after day, at an effort that leaves something in reserve, while eating enough when altitude has quietly removed your appetite.",
       "Twenty-two weeks of base come first: hiking, easy aerobic volume, and strength established early. The specific block adds muscular endurance and loaded carries on hiking days, building the tolerance that rotation days will demand.",
