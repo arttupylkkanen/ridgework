@@ -10,7 +10,6 @@ import {
 import type { Copy } from "@/content/types";
 import type { Locale } from "@/lib/locale";
 import { appProgramPath, pagePath } from "@/lib/locale";
-import { grantFounding } from "@/lib/founding";
 import { TEST_ACCOUNT } from "@/lib/test-account";
 import { HomeLink } from "./app-link";
 import { SiteShell } from "./site-shell";
@@ -185,10 +184,8 @@ export function LoginPage({ locale, copy }: { locale: Locale; copy: Copy }) {
         }
       }
 
-      grantFounding({
-        name: name.trim() || email.split("@")[0] || "Athlete",
-        email: email.trim(),
-      });
+      // The founding record is written by the desk, from the address the
+      // database holds, not from the one just typed into this form.
       window.location.href = dest;
     } catch (err) {
       setError(err instanceof Error ? err.message : a.error);

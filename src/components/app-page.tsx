@@ -4,7 +4,8 @@ import { RedirectToSignIn } from "@/lib/auth/gates";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
 import type { Copy } from "@/content/types";
 import type { Locale } from "@/lib/locale";
-import { getFounding, grantFounding } from "@/lib/founding";
+import { cacheFounding } from "@/lib/founding";
+import { joinFounding } from "@/lib/founding-server";
 import { isNoCardTrial, type Membership } from "@/lib/membership";
 import { CHECKOUT_OPEN } from "@/lib/billing";
 import { offerTerms } from "@/lib/offer";
@@ -74,12 +75,14 @@ export function AppPage({ locale, copy }: { locale: Locale; copy: Copy }) {
 
   useEffect(() => {
     if (!user) return;
-    if (!getFounding() || isTestAccountEmail(user.primaryEmail)) {
-      grantFounding({
-        name: user.displayName ?? "Athlete",
-        email: user.primaryEmail ?? "",
+    // Record the founding membership on every desk visit. The insert is an
+    // upsert and `started_at` never moves, so this is the cheapest way to make
+    // the cohort survive a cleared browser and a second device.
+    void joinFounding({ data: { name: user.displayName ?? "" } })
+      .then(cacheFounding)
+      .catch(() => {
+        /* the desk works without it; the next visit tries again */
       });
-    }
     const local = loadProfile();
     if (local) setProfile(local);
     let cancelled = false;
