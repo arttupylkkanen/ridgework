@@ -10,8 +10,8 @@ import {
   AfterLink,
   AuthLink,
   DeskLink,
+  ExampleLink,
   GuideLink,
-  HomeLink,
   MethodLink,
   PlanLink,
   WhoLink,
@@ -42,19 +42,18 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
               {offer.line}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <AuthLink
+              <ExampleLink
                 locale={locale}
                 className="inline-flex min-h-11 items-center justify-center rounded-lg bg-ridge px-6 py-3.5 text-base font-medium text-paper hover:bg-ridge-deep"
               >
-                {offer.cta}
-              </AuthLink>
-              <HomeLink
+                {copy.cta.seeWeek}
+              </ExampleLink>
+              <AuthLink
                 locale={locale}
-                hash="example"
                 className="inline-flex min-h-11 items-center justify-center rounded-lg border border-line bg-card px-6 py-3.5 text-base font-medium text-ink hover:bg-paper-warm"
               >
-                {copy.nav.example}
-              </HomeLink>
+                {copy.nav.login}
+              </AuthLink>
             </div>
           </div>
         </div>

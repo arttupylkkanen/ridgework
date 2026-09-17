@@ -112,7 +112,7 @@ export type Copy = {
     signOut: string;
     signingOut: string;
   };
-  cta: { pricing: string; openTools: string };
+  cta: { pricing: string; openTools: string; seeWeek: string };
   /** The pick-a-date, three-week planner on /example. */
   examplePlanner: {
     h2: string;

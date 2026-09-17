@@ -40,6 +40,7 @@ export const fr: Copy = {
   cta: {
     pricing: "Voir les tarifs",
     openTools: "Ouvrir les outils",
+    seeWeek: "Voir cette semaine",
   },
   examplePlanner: {
     h2: "Choisissez le jour où vous devez être prêt",

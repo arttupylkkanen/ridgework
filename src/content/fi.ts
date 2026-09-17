@@ -40,6 +40,7 @@ export const fi: Copy = {
   cta: {
     pricing: "Katso hinnat",
     openTools: "Avaa työkalut",
+    seeWeek: "Katso tämä viikko",
   },
   examplePlanner: {
     h2: "Valitse päivä jolloin sinun pitää olla valmis",

@@ -40,6 +40,7 @@ export const en: Copy = {
   cta: {
     pricing: "See pricing",
     openTools: "Open tools",
+    seeWeek: "See this week",
   },
   examplePlanner: {
     h2: "Pick the day you need to be ready",
