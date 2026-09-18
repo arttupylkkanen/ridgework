@@ -6,9 +6,9 @@ import { passportFi, whatIfFi } from "./passport.ts";
 import type { Copy } from "./types";
 
 export const fi: Copy = {
-  metaTitle: "Polku- ja ultratreenin viikkosuunnitelma | Ridgework",
+  metaTitle: "Polku- ja ultratreeni joka joustaa | Ridgework",
   metaDescription:
-    "Mitä juokset tällä viikolla, kun edessä on 20 km polku, 50 tai 100 km ultra tai alppipäivä. Väsynyt viikko kevenee. Ei korttia aloittaessa.",
+    "Valitse päivä jolloin pitää olla valmis. Viikko joustaa huonon yön mukaan, päivä ei liiku. 20 km polulta 100 km ultraan. Ei korttia.",
   footerTag: "Vuoritreeniä sen viikon mukaan joka sinulla oikeasti on.",
   legalEntity: "Ridgework, Ranska.",
   support: "support@ridgework.org",
@@ -123,11 +123,15 @@ export const fi: Copy = {
     },
   },
   hero: {
-    kicker: "Vuoritreeni",
-    h1: "Treenaa sitä päivää varten jolla on väliä.",
-    lead: "Valitse päivä jolloin sinun pitää olla valmis. Jokainen viikko kirjoitetaan siitä taaksepäin — ja kirjoitetaan uusiksi kun elämä tulee väliin.",
+    kicker: "Polku- ja vuoritreeni",
+    h1: "Viikko joustaa. Valitsemasi päivä ei.",
+    lead: "Valitse päivä jolloin sinun pitää olla valmis. Ridgework kirjoittaa kolme viikkoa siitä taaksepäin ja kirjoittaa ne uusiksi sen unen, väliin jääneen treenin ja sen viikon mukaan joka sinulla oikeasti oli.",
     proofLabel: "Mitä viiden tunnin yö tekee",
     proofHeld: "Yksi treeni muuttui. Muu viikko ja päivä johon tähtäät pysyivät paikallaan.",
+    noCard: "Ei korttia, ei tiliä pelkkään katsomiseen.",
+    sourced:
+      "Jokainen sääntö jota suunnitelma noudattaa on kirjoitettu auki, lähteineen — myös se mitä lähde ei todista.",
+    sourcedCta: "Lue menetelmä",
   },
   about: {
     kicker: "Mitä tämä on",
@@ -281,7 +285,8 @@ export const fi: Copy = {
         id: "trail20",
         name: "20 km polku",
         duration: "Noin kymmenen viikkoa",
-        focus: "Jos juokset jo useimpina viikkoina ja haluat polkukisan josta tulet ehjänä maaliin.",
+        focus:
+          "Jos juokset jo useimpina viikkoina ja haluat polkukisan josta tulet ehjänä maaliin.",
         locked:
           "Useimmat päivät: 40–60 minuuttia, niin hidasta että pystyt puhumaan. Yksi pidempi päivä, joka alkaa siitä tunnista jonka jo osaat. Kisaviikolla juostaan vähemmän, ei enemmän.",
         layout: "sessionLead",
@@ -680,6 +685,11 @@ export const fi: Copy = {
   examplePage: {
     title: "Kokeile oikeaa päivää — Ridgework",
     description: "Siirrä liukusäätimiä. Katso miten treeni muuttuu. Ei vaadi tiliä.",
+    shared: {
+      title: "{goal} — valmiina {date} | Ridgework",
+      description:
+        "{goal}. Kolme treeniviikkoa kirjoitettuna taaksepäin päivästä {date} — vaihda päivä, niin ne kirjoitetaan uusiksi. Katsominen ei vaadi tiliä.",
+    },
     back: "← Ridgework",
     kicker: "Live-esimerkki",
     h1: "Tämä on oikea päivä, ei kuvakaappaus",

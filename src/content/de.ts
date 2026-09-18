@@ -6,9 +6,9 @@ import { passportDe, whatIfDe } from "./passport.ts";
 import type { Copy } from "./types";
 
 export const de: Copy = {
-  metaTitle: "Ridgework — Trainingsprogramme für Trail, Alpin und Höhe",
+  metaTitle: "Trail- und Ultrawochen, die sich neu schreiben | Ridgework",
   metaDescription:
-    "Was du diese Woche läufst — 20-km-Trail, 50 oder 100 km Ultra, Alpentag. Eine müde Woche wird leichter. Ohne Karte zum Start.",
+    "Wähl den Tag, an dem du bereit sein musst. Die Woche passt sich einer schlechten Nacht an, das Datum bleibt. 20-km-Trail bis 100-km-Ultra.",
   footerTag: "Bergtraining, das der Woche folgt, die du wirklich hast.",
   legalEntity: "Ridgework, Frankreich.",
   support: "support@ridgework.org",
@@ -123,12 +123,16 @@ export const de: Copy = {
     },
   },
   hero: {
-    kicker: "Bergtraining",
-    h1: "Trainiere für den Tag, auf den es ankommt.",
-    lead: "Wähle den Tag, an dem du bereit sein musst. Jede Woche wird von dort rückwärts geschrieben — und neu geschrieben, wenn das Leben dazwischenkommt.",
+    kicker: "Trail- und Bergtraining",
+    h1: "Die Woche bewegt sich. Dein Tag nicht.",
+    lead: "Wähl den Tag, an dem du bereit sein musst. Ridgework schreibt drei Wochen von dort rückwärts und schreibt sie neu — nach dem Schlaf, den du hattest, der Einheit, die ausfiel, und der Woche, die du wirklich hattest.",
     proofLabel: "Was eine Fünf-Stunden-Nacht bewirkt",
     proofHeld:
-      "Eine Einheit hat sich geändert. Der Rest der Woche und der Tag, auf den du hinarbeitest, blieben unverändert.",
+      "Eine Einheit hat sich geändert. Der Rest der Woche und der Tag, auf den du hinarbeitest, blieben, wo sie waren.",
+    noCard: "Keine Karte, kein Konto, nur zum Ansehen.",
+    sourced:
+      "Jede Regel, der der Plan folgt, steht ausgeschrieben da, mit der Studie dahinter — auch das, was sie nicht belegt.",
+    sourcedCta: "Die Methode lesen",
   },
   about: {
     kicker: "Was das ist",
@@ -281,7 +285,8 @@ export const de: Copy = {
         id: "trail20",
         name: "20-km-Trail",
         duration: "Etwa zehn Wochen",
-        focus: "Wenn du die meisten Wochen schon läufst und ein Trailrennen willst, aus dem du heil ankommst.",
+        focus:
+          "Wenn du die meisten Wochen schon läufst und ein Trailrennen willst, aus dem du heil ankommst.",
         locked:
           "Die meisten Tage: 40–60 Minuten, langsam genug zum Reden. Ein längerer Tag, der bei der Stunde beginnt, die du schon kannst. In der Rennwoche läufst du weniger, nicht mehr.",
         layout: "sessionLead",
@@ -290,7 +295,8 @@ export const de: Copy = {
         id: "fifty",
         name: "50-km-Ultra",
         duration: "Etwa sechs Monate",
-        focus: "Wenn 20–30 km oder ein Straßenmarathon schon hinter dir liegen. Gut ankommen, keine Zeit jagen.",
+        focus:
+          "Wenn 20–30 km oder ein Straßenmarathon schon hinter dir liegen. Gut ankommen, keine Zeit jagen.",
         locked:
           "Die meisten Tage locker genug zum Reden. Der Lange startet bei dem, was du jetzt kannst, nicht bei vier Stunden in Woche eins. Die letzten zwei Wochen sind kürzer, nicht härter.",
         tag: "Oft der erste Ultra",
@@ -668,6 +674,11 @@ export const de: Copy = {
   examplePage: {
     title: "Probier einen echten Tag aus — Ridgework",
     description: "Bewege die Regler. Sieh, wie sich die Einheit ändert. Kein Konto nötig.",
+    shared: {
+      title: "{goal} — bereit am {date} | Ridgework",
+      description:
+        "{goal}. Drei Trainingswochen, rückwärts geschrieben vom {date} — änder das Datum, und sie werden neu geschrieben. Zum Ansehen kein Konto nötig.",
+    },
     back: "← Ridgework",
     kicker: "Live-Beispiel",
     h1: "Das ist ein echter Tag, kein Screenshot",
@@ -694,8 +705,7 @@ export const de: Copy = {
     h1: "Training dieser Woche",
     lead: "Wähle den Tag, an dem du peak sein willst. Der rollende Plan schreibt die Wochen in dieses Fenster. Müde: weniger trainieren. Nichts hiervon ist medizinischer Rat.",
     lockedTitle: "Konto nötig",
-    lockedBody:
-      "Konto anlegen, damit Plan, Woche und Log bleiben. Keine Karte.",
+    lockedBody: "Konto anlegen, damit Plan, Woche und Log bleiben. Keine Karte.",
     trialLabel: "Vorerst kostenlos",
     testBanner: "Kostenlos, solange die Registrierung läuft. Keine Karte.",
     signInToTrain: "Anmelden, den Tag wählen, an dem du bereit sein musst. Keine Karte.",

@@ -160,6 +160,11 @@ export type Copy = {
     lead: string;
     proofLabel: string;
     proofHeld: string;
+    /** One short reassurance at the button, not the whole registration story. */
+    noCard: string;
+    /** The band under the fold: the proof nobody else in this market has. */
+    sourced: string;
+    sourcedCta: string;
   };
   about: {
     kicker: string;
@@ -386,6 +391,11 @@ export type Copy = {
   examplePage: {
     title: string;
     description: string;
+    /**
+     * What a link to somebody's own three weeks previews as, in a message or a
+     * feed. `{goal}` and `{date}` are theirs, not ours.
+     */
+    shared: { title: string; description: string };
     back: string;
     kicker: string;
     h1: string;

@@ -167,3 +167,46 @@ export function hardestDayToKeep(findings: AdherenceFinding[]): number | null {
 export function isLoadKey(key: SessionKey): boolean {
   return HARD_KEYS.has(key);
 }
+
+/**
+ * Most the plan will follow the athlete down.
+ *
+ * Reading the shortfall straight would let one bad month set the ceiling for
+ * the season: every week written shorter is a week logged shorter, which writes
+ * a shorter week again. Bounded, it is a nudge — and because the lookback is
+ * six weeks, it fades on its own once the athlete catches up.
+ */
+export const MAX_FOLLOW_DOWN = 0.7;
+
+/**
+ * How much of the written long run is actually getting done, or null.
+ *
+ * The finding this comes from is the one a plan cannot infer any other way:
+ * the session is marked done, so nothing looks wrong, while the time on feet
+ * the phase is built on never accumulates. A ramp that ignores it is writing
+ * numbers at somebody rather than for them.
+ */
+export function longShortfall(findings: AdherenceFinding[]): number | null {
+  const found = findings.find((f) => f.id === "longShort");
+  if (!found || found.id !== "longShort") return null;
+  return Math.max(MAX_FOLLOW_DOWN, found.share);
+}
+
+/**
+ * The hard session kind the planner should stop writing, or null.
+ *
+ * Never the long run, whatever the history says. It is the spine of every
+ * objective here — swapping it for easy work because it keeps being missed
+ * would quietly turn an ultra build into a jogging schedule, which is the
+ * opposite of telling somebody the truth. `longBeingSkipped` is for that case:
+ * it is worth saying, and it is not worth acting on alone.
+ */
+export function keyToSoften(findings: AdherenceFinding[]): SessionKey | null {
+  const worst = findings.find((f) => f.id === "keySkipped" && f.key !== "long" && isLoadKey(f.key));
+  return worst && worst.id === "keySkipped" ? worst.key : null;
+}
+
+/** Whether the long run itself is the session being missed. */
+export function longBeingSkipped(findings: AdherenceFinding[]): boolean {
+  return findings.some((f) => f.id === "keySkipped" && f.key === "long");
+}

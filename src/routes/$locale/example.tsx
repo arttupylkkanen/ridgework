@@ -4,17 +4,19 @@ import { SiteShell } from "@/components/site-shell";
 import { getCopy } from "@/content";
 import { pageLinks, prefixed, siteMeta } from "@/lib/seo";
 import { isPathLocale } from "@/lib/locale";
-import { parseExampleSearch } from "@/lib/example-link";
+import { parseExampleSearch, sharedWeekMeta } from "@/lib/example-link";
 
 export const Route = createFileRoute("/$locale/example")({
   validateSearch: parseExampleSearch,
-  head: ({ params }) => {
+  // See the English route: `head` cannot read search, so it rides the loader.
+  loaderDeps: ({ search }) => ({ goal: search.goal, peak: search.peak }),
+  loader: ({ deps }) => deps,
+  head: ({ params, loaderData }) => {
     const locale = isPathLocale(params.locale) ? params.locale : "en";
     const copy = getCopy(locale);
     return {
       meta: siteMeta({
-        title: copy.examplePage.title,
-        description: copy.examplePage.description,
+        ...sharedWeekMeta(copy, loaderData ?? {}, undefined, locale),
         path: `/${locale}/example`,
         locale,
       }),

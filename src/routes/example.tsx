@@ -3,16 +3,20 @@ import { ExamplePage } from "@/components/example-page";
 import { SiteShell } from "@/components/site-shell";
 import { getCopy } from "@/content";
 import { pageLinks, prefixed, siteMeta } from "@/lib/seo";
-import { parseExampleSearch } from "@/lib/example-link";
+import { parseExampleSearch, sharedWeekMeta } from "@/lib/example-link";
 
 const copy = getCopy("en");
 
 export const Route = createFileRoute("/example")({
   validateSearch: parseExampleSearch,
-  head: () => ({
+  // `head` cannot read search on its own, so the selection travels through the
+  // loader. This is the whole point of the page being linkable: a week sent to
+  // a training partner has to preview as that week.
+  loaderDeps: ({ search }) => ({ goal: search.goal, peak: search.peak }),
+  loader: ({ deps }) => deps,
+  head: ({ loaderData }) => ({
     meta: siteMeta({
-      title: copy.examplePage.title,
-      description: copy.examplePage.description,
+      ...sharedWeekMeta(copy, loaderData ?? {}, undefined, "en"),
       path: "/example",
       locale: "en",
     }),

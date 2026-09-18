@@ -6,9 +6,9 @@ import { passportEn, whatIfEn } from "./passport.ts";
 import type { Copy } from "./types";
 
 export const en: Copy = {
-  metaTitle: "Ultra and trail training plans — Ridgework",
+  metaTitle: "Trail and ultra weeks that rewrite themselves | Ridgework",
   metaDescription:
-    "What to run this week for a 20 km trail, 50 km or 100 km ultra, or an alpine day. You pick the peak date. No card needed to start.",
+    "Pick the day you need to be ready. The week bends around a bad night or a missed session; the date does not move. 20 km trail to 100 km ultra.",
   footerTag: "Mountain training that follows the week you actually have.",
   legalEntity: "Ridgework, France.",
   support: "support@ridgework.org",
@@ -124,12 +124,16 @@ export const en: Copy = {
     },
   },
   hero: {
-    kicker: "Mountain training",
-    h1: "Train for the day that matters.",
-    lead: "Pick the day you need to be ready. Every week is written backwards from it — and rewritten when life gets in the way.",
+    kicker: "Trail and mountain training",
+    h1: "The week moves. The day you picked doesn’t.",
+    lead: "Choose the day you need to be ready. Ridgework writes three weeks backwards from it, then rewrites them around the sleep you got, the session you missed and the week you actually had.",
     proofLabel: "What a five-hour night does",
     proofHeld:
       "One session changed. The rest of the week, and the day you are aiming at, stayed where they were.",
+    noCard: "No card, no account needed to look.",
+    sourced:
+      "Every rule the plan follows is written out, with the paper behind it — including what that paper does not prove.",
+    sourcedCta: "Read the method",
   },
   about: {
     kicker: "What this is",
@@ -709,6 +713,11 @@ export const en: Copy = {
   examplePage: {
     title: "Try a real day — Ridgework",
     description: "Move the sliders. Watch the session change. No account needed.",
+    shared: {
+      title: "{goal} — ready on {date} | Ridgework",
+      description:
+        "{goal}. Three weeks of training written backwards from {date} — change the date and they are rewritten. No account needed to look.",
+    },
     back: "← Ridgework home",
     kicker: "Live example",
     h1: "This is a real day, not a screenshot",
