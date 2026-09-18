@@ -110,6 +110,8 @@ const reasonsEn: Record<string, string> = {
   limitationsConservative:
     "You noted a limitation. Long and quality stay conservative. This is not a rehab plan.",
   longFromBand: "The long is {n} min because that matches your current longest outing.",
+  taperVolume:
+    "Taper: the week drops to about {n} min. Keep the days and keep the efforts — take the minutes off instead. Feeling underworked now is the point.",
   volumeSplit: "Easy days share the rest of a {n} min week.",
   missedNoStack: "A hard session was missed. Nothing is stacked on top. No makeup quality.",
   adherenceDeadDay:
@@ -311,6 +313,8 @@ const reasonsFi: Record<string, string> = {
   limitationsConservative:
     "Merkitsit rajoitteen. Pitkä ja teho pysyvät varovaisina. Tämä ei ole kuntoutusohjelma.",
   longFromBand: "Pitkä on {n} min, koska se vastaa nykyistä pisintä vetoa.",
+  taperVolume:
+    "Kevennys: viikko putoaa noin {n} minuuttiin. Pidä päivät ja pidä tehot — ota minuutit pois. Tunne siitä ettei tee tarpeeksi kuuluu asiaan.",
   volumeSplit: "Kevyet päivät jakavat {n} minuutin viikon.",
   missedNoStack: "Kova sessio jäi väliin. Päälle ei pinota. Ei korvaavaa tehoa.",
   adherenceDeadDay:
@@ -512,6 +516,8 @@ const reasonsFr: Record<string, string> = {
   limitationsConservative:
     "Vous avez noté une limite. Longue et qualité restent prudentes. Pas un plan de rééducation.",
   longFromBand: "La longue fait {n} min, alignée sur votre sortie actuelle la plus longue.",
+  taperVolume:
+    "Affûtage : la semaine tombe à environ {n} min. Gardez les jours et les intensités — retirez les minutes. Se sentir sous-entraîné maintenant, c’est le but.",
   volumeSplit: "Les jours faciles se partagent une semaine de {n} min.",
   missedNoStack: "Une séance dure a été manquée. Rien n’est empilé. Pas de rattrapage.",
   adherenceDeadDay:
@@ -715,6 +721,8 @@ const reasonsDe: Record<string, string> = {
   limitationsConservative:
     "Du hast eine Einschränkung notiert. Lang und Qualität bleiben vorsichtig. Kein Reha-Plan.",
   longFromBand: "Der Lange ist {n} min, passend zu deiner aktuellen längsten Einheit.",
+  taperVolume:
+    "Taper: Die Woche fällt auf etwa {n} min. Behalte die Tage und die Intensitäten — nimm die Minuten weg. Dass es sich jetzt nach zu wenig anfühlt, ist der Sinn der Sache.",
   volumeSplit: "Lockere Tage teilen eine {n}-Minuten-Woche.",
   missedNoStack: "Harte Einheit verpasst. Nichts wird gestapelt. Kein Nachhol-Qualität.",
   adherenceDeadDay:

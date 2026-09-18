@@ -258,7 +258,10 @@ describe("per-day time windows", () => {
     });
     const week = buildWeek(state, 1, athlete);
     assert.ok(week);
-    assert.equal(week.days.findIndex((d) => d.key === "long"), 2);
+    assert.equal(
+      week.days.findIndex((d) => d.key === "long"),
+      2,
+    );
   });
 
   it("leaves the week alone when no window is set", () => {
@@ -283,7 +286,16 @@ describe("per-day time windows", () => {
 });
 
 describe("weeks that history has already answered", () => {
-  const HARD = new Set(["long", "quality", "sharpness", "climb", "strength", "pack", "mountain", "me"]);
+  const HARD = new Set([
+    "long",
+    "quality",
+    "sharpness",
+    "climb",
+    "strength",
+    "pack",
+    "mountain",
+    "me",
+  ]);
 
   function missedEvery(state: RollingState, dayIndex: number, weeks: number[]): RollingState {
     return {
@@ -343,5 +355,78 @@ describe("weeks that history has already answered", () => {
     const untouched = buildWeek(state, 5, athlete);
     // Honouring the hint here would leave one day to carry the whole week.
     assert.deepEqual(week, untouched);
+  });
+});
+
+/**
+ * The bug: `longFactor` cut the taper's long run, but the week's minute budget
+ * stayed at the athlete's full weekly hours, so `assignMinutes` handed the
+ * freed minutes to the easy days. A taper week totalled the same 239 minutes as
+ * the specific week before it. The shape changed and the load did not, which is
+ * the one thing a taper must not do.
+ */
+describe("the taper takes minutes off the week, not just off the long", () => {
+  /** `fifty` is base 10 + specific 12 + taper 2, so week 23 is the first taper. */
+  const LAST_SPECIFIC = 22;
+  const FIRST_TAPER = 23;
+
+  const total = (week: { days: { minutes?: number }[] }) =>
+    week.days.reduce((n, d) => n + (d.minutes ?? 0), 0);
+
+  it("cuts the week by a third or more, at every volume band", () => {
+    for (const weeklyHours of ["h3_5", "h5_8", "h8_12"] as const) {
+      const { state, athlete } = plan({ weeklyHours });
+      const before = total(buildWeek(state, LAST_SPECIFIC, athlete)!);
+      const taper = total(buildWeek(state, FIRST_TAPER, athlete)!);
+      assert.ok(
+        taper <= before * 0.67,
+        `${weeklyHours}: taper ${taper} min against ${before} min is not a taper`,
+      );
+    }
+  });
+
+  it("still cuts the week for an athlete with very little time", () => {
+    // The per-session floor eats into the reduction here, so the cut is
+    // smaller. It must not vanish: this athlete tapers too.
+    const { state, athlete } = plan({ weeklyHours: "h0_3" });
+    const before = total(buildWeek(state, LAST_SPECIFIC, athlete)!);
+    const taper = total(buildWeek(state, FIRST_TAPER, athlete)!);
+    assert.ok(taper < before * 0.85, `taper ${taper} min against ${before} min is barely a cut`);
+  });
+
+  it("keeps the training days it had", () => {
+    // Bosquet 2007: cut volume, hold intensity and frequency. Turning a taper
+    // day into a rest day would be the wrong lever, and it is the lever a naive
+    // "make the week smaller" would reach for first.
+    const { state, athlete } = plan();
+    const rests = (c: number) =>
+      buildWeek(state, c, athlete)!.days.filter((d) => d.key === "rest").length;
+    assert.equal(rests(FIRST_TAPER), rests(LAST_SPECIFIC));
+  });
+
+  it("says so, rather than letting the week quietly shrink", () => {
+    const { state, athlete } = plan();
+    const week = buildWeek(state, FIRST_TAPER, athlete)!;
+    assert.ok(
+      week.reasons.some((r) => r.id === "taperVolume"),
+      "a lighter week with no explanation reads as a broken plan",
+    );
+  });
+
+  it("leaves base and specific weeks alone", () => {
+    // The fix is to the taper. If it moved the rest of the season it would be
+    // a different change than the one that was asked for.
+    const { state, athlete } = plan();
+    for (const c of [1, 10, 11, LAST_SPECIFIC]) {
+      const week = buildWeek(state, c, athlete)!;
+      assert.ok(
+        total(week) > 300,
+        `week ${c} totals ${total(week)} min — volume moved outside the taper`,
+      );
+      assert.ok(
+        !week.reasons.some((r) => r.id === "taperVolume"),
+        `week ${c} claims to be a taper`,
+      );
+    }
   });
 });

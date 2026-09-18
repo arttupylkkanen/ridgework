@@ -77,6 +77,45 @@ function longFactor(phase: PlannedWeek["phase"]): number {
   return 0.85;
 }
 
+/**
+ * How much of the athlete's weekly volume the phase asks for.
+ *
+ * This used to not exist, and the taper did not taper. `longFactor` cut the
+ * long run from 80 min to 44, but the week's budget stayed at the athlete's
+ * full weekly hours, so `assignMinutes` handed the 36 freed minutes straight to
+ * the easy days. A taper week totalled the same 239 minutes as the specific
+ * week before it. The shape changed; the load did not. An athlete following
+ * that arrived at the start line unrested, which is the one thing a taper is
+ * for.
+ *
+ * 0.6 sits inside the range the taper literature supports — Bosquet, Montpetit
+ * et al. (Med Sci Sports Exerc 2007) find the largest performance gain from
+ * cutting volume 41–60% while holding intensity and frequency, over about two
+ * weeks. Which is why only the volume moves here: the quality day stays, and no
+ * training day is turned into a rest day.
+ */
+function weekFactor(phase: PlannedWeek["phase"]): number {
+  return phase === "taper" ? 0.6 : 1;
+}
+
+/**
+ * Shortest session worth writing, per day.
+ *
+ * Lower in the taper, and not for cosmetic reasons. The floor is binding, not
+ * advisory — `assignMinutes` hands every easy day at least this much whatever
+ * the week's budget says — so with seven training days a 25-minute floor puts
+ * 175 minutes of easy work on the board before anything else is counted, and
+ * the taper cancels itself. A 15-minute shakeout in race week is an ordinary
+ * session, so the floor drops rather than the training days.
+ *
+ * With this and the shortened quality day, the floor stops binding: every
+ * profile tried — three to twelve hours, five days or seven, beginner to
+ * veteran — lands on the same 40% cut.
+ */
+function minSession(phase: PlannedWeek["phase"]): number {
+  return phase === "taper" ? 15 : 25;
+}
+
 function qualityMinutes(profile: AthleteProfile, phase: PlannedWeek["phase"]): number {
   if (phase === "base" && profile.experience !== "veteran") return 0;
   if (profile.experience === "beginner") return 30;
@@ -292,7 +331,8 @@ function assignMinutes(
   phase: PlannedWeek["phase"],
   reasons: Reason[],
 ): DaySession[] {
-  const weekly = weeklyMinutes(profile.weeklyHours);
+  const weekly = Math.round(weeklyMinutes(profile.weeklyHours) * weekFactor(phase));
+  const floor = minSession(phase);
   let cap = Math.round(longestMinutes(profile.longest) * longFactor(phase));
   if (profile.constraints.includes("youngKids")) {
     cap = Math.min(cap, phase === "base" ? 90 : 120);
@@ -305,6 +345,9 @@ function assignMinutes(
   const qMin = qualityMinutes(profile, phase);
   reasons.push({ id: "longFromBand", values: { n: cap, band: profile.longest } });
   reasons.push({ id: "volumeSplit", values: { n: weekly } });
+  // Say it, rather than leaving the athlete to notice their week got smaller
+  // and wonder whether something is broken.
+  if (phase === "taper") reasons.push({ id: "taperVolume", values: { n: weekly } });
 
   let remaining = weekly;
   const stamped = days.map((day) => {
@@ -320,14 +363,18 @@ function assignMinutes(
       day.key === "strength" ||
       day.key === "sharpness"
     ) {
-      const minutes = Math.max(25, qMin || 40);
+      // Volume comes off the quality day too, while the efforts inside it stay
+      // what they were. "Hold the intensity" means hold the pace, not the
+      // minute count — a taper that keeps a full-length session and shortens
+      // only the easy days is cutting the wrong thing.
+      const minutes = Math.max(floor, Math.round((qMin || 40) * weekFactor(phase)));
       remaining -= minutes;
       return { ...day, minutes };
     }
     return day;
   });
   const easyIdx = stamped.map((d, i) => (d.minutes === undefined ? i : -1)).filter((i) => i >= 0);
-  const each = easyIdx.length ? Math.max(25, Math.round(remaining / easyIdx.length)) : 0;
+  const each = easyIdx.length ? Math.max(floor, Math.round(remaining / easyIdx.length)) : 0;
   const spread = stamped.map((day, i) => (easyIdx.includes(i) ? { ...day, minutes: each } : day));
   return fitToWindows(spread, profile, reasons);
 }
