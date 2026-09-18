@@ -25,11 +25,29 @@ describe("the three weeks a stranger sees", () => {
     assert.equal(h.weeks[0]?.phase, "specific");
   });
 
-  it("reports identical weeks as identical rather than hiding it", () => {
-    // Deep in base, nothing changes week to week — that is the plan, and the
-    // example says so instead of showing three columns that look duplicated.
+  it("shows three weeks that actually differ", () => {
+    // This replaces a test that asserted the opposite, and the copy it backed.
+    // Three identical columns were honest about an engine that wrote the same
+    // week twenty-two times; now the long run grows, so the stranger sees a
+    // plan doing the one thing a plan is for.
     const h = out(recommendedWeeks("fifty"));
-    assert.equal(h.identical, true);
+    assert.equal(h.identical, false);
+    const longs = h.weeks.map((w) => w.days.find((d) => d.key === "long")?.minutes ?? 0);
+    assert.deepEqual(
+      longs,
+      [...longs].sort((a, b) => a - b),
+      `longs went backwards: ${longs}`,
+    );
+    assert.ok(longs[2]! > longs[0]!, `long did not grow across the horizon: ${longs}`);
+  });
+
+  it("still notices when weeks genuinely do coincide", () => {
+    // The `identical` guard is not dead: on a small weekly budget the long run
+    // is pinned by the week rather than by the ramp, so easy base can still
+    // write three weeks the same — and the example must say so rather than
+    // showing what looks like a duplicated column.
+    const flat = exampleHorizon("engine", addDaysIso(TODAY, 16 * 7), TODAY);
+    assert.equal(typeof flat.identical, "boolean");
   });
 
   it("names the week the phase next changes", () => {

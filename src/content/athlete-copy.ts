@@ -109,10 +109,17 @@ const reasonsEn: Record<string, string> = {
   kidsCapLong: "Family constraint: the long is capped at {n} min.",
   limitationsConservative:
     "You noted a limitation. Long and quality stay conservative. This is not a rehab plan.",
-  longFromBand: "The long is {n} min because that matches your current longest outing.",
   taperVolume:
     "Taper: the week drops to about {n} min. Keep the days and keep the efforts — take the minutes off instead. Feeling underworked now is the point.",
   volumeSplit: "Easy days share the rest of a {n} min week.",
+  fewerEasyDays:
+    "{n} training days this week, not more. A {week} min week split any further is a handful of 25-minute fragments — fewer real sessions do more, and the rest days are training too.",
+  longThisWeek:
+    "The long is {n} min this week, on the way to {target}. It grows a little each week — that is the plan working, not the plan getting harder for its own sake.",
+  longCappedByWeek:
+    "The long is {n} min, not the {want} min the build wants. Your legs are not the limit here, your week is: one session may not take more than half of it. More hours would buy a longer long.",
+  downWeek:
+    "Down week: about {n} min. Every fourth week comes back down so the last three weeks turn into fitness. Nothing has gone wrong.",
   missedNoStack: "A hard session was missed. Nothing is stacked on top. No makeup quality.",
   adherenceDeadDay:
     "{day} has not happened for three weeks running, so the hard session moved off it. Easy work stays — an easy day missed costs the season very little.",
@@ -312,10 +319,17 @@ const reasonsFi: Record<string, string> = {
   kidsCapLong: "Perhe: pitkä on enintään {n} min.",
   limitationsConservative:
     "Merkitsit rajoitteen. Pitkä ja teho pysyvät varovaisina. Tämä ei ole kuntoutusohjelma.",
-  longFromBand: "Pitkä on {n} min, koska se vastaa nykyistä pisintä vetoa.",
   taperVolume:
     "Kevennys: viikko putoaa noin {n} minuuttiin. Pidä päivät ja pidä tehot — ota minuutit pois. Tunne siitä ettei tee tarpeeksi kuuluu asiaan.",
   volumeSplit: "Kevyet päivät jakavat {n} minuutin viikon.",
+  fewerEasyDays:
+    "Tällä viikolla {n} treenipäivää, ei enempää. {week} minuutin viikko pilkottuna pidemmälle on kasa 25 minuutin sirpaleita — harvempi kunnon treeni tekee enemmän, ja lepopäivätkin ovat treeniä.",
+  longThisWeek:
+    "Pitkä on tällä viikolla {n} min, matkalla {target} minuuttiin. Se kasvaa vähän joka viikko — niin sen kuuluu mennä.",
+  longCappedByWeek:
+    "Pitkä on {n} min, ei {want} min jota ohjelma haluaisi. Raja ei ole jaloissa vaan viikossa: yksi treeni ei saa viedä siitä yli puolta. Enemmän tunteja ostaisi pidemmän pitkän.",
+  downWeek:
+    "Purkuviikko, noin {n} min. Joka neljäs viikko kevennetään, jotta kolme edellistä muuttuu kunnoksi. Mikään ei ole mennyt vikaan.",
   missedNoStack: "Kova sessio jäi väliin. Päälle ei pinota. Ei korvaavaa tehoa.",
   adherenceDeadDay:
     "{day} ei ole toteutunut kolmeen viikkoon, joten kova sessio siirtyi pois siitä. Kevyt työ jää — väliin jäänyt kevyt päivä maksaa kaudelle hyvin vähän.",
@@ -515,10 +529,17 @@ const reasonsFr: Record<string, string> = {
   kidsCapLong: "Contrainte familiale : la longue est plafonnée à {n} min.",
   limitationsConservative:
     "Vous avez noté une limite. Longue et qualité restent prudentes. Pas un plan de rééducation.",
-  longFromBand: "La longue fait {n} min, alignée sur votre sortie actuelle la plus longue.",
   taperVolume:
     "Affûtage : la semaine tombe à environ {n} min. Gardez les jours et les intensités — retirez les minutes. Se sentir sous-entraîné maintenant, c’est le but.",
   volumeSplit: "Les jours faciles se partagent une semaine de {n} min.",
+  fewerEasyDays:
+    "{n} jours d’entraînement cette semaine, pas plus. Une semaine de {week} min découpée davantage ne donne que des fragments de 25 minutes — moins de vraies séances font mieux, et les jours de repos sont aussi de l’entraînement.",
+  longThisWeek:
+    "La longue fait {n} min cette semaine, en route vers {target}. Elle grandit un peu chaque semaine — c’est le plan qui fonctionne.",
+  longCappedByWeek:
+    "La longue fait {n} min, pas les {want} min visées. La limite n’est pas dans vos jambes mais dans votre semaine : une séance ne peut pas en prendre plus de la moitié.",
+  downWeek:
+    "Semaine de récupération, environ {n} min. Une semaine sur quatre redescend pour que les trois précédentes deviennent de la forme. Rien ne va mal.",
   missedNoStack: "Une séance dure a été manquée. Rien n’est empilé. Pas de rattrapage.",
   adherenceDeadDay:
     "{day} n’a pas eu lieu trois semaines de suite : la séance dure en est retirée. Le travail facile reste — un jour facile manqué coûte très peu à la saison.",
@@ -720,10 +741,17 @@ const reasonsDe: Record<string, string> = {
   kidsCapLong: "Familie: Langer auf {n} min gedeckelt.",
   limitationsConservative:
     "Du hast eine Einschränkung notiert. Lang und Qualität bleiben vorsichtig. Kein Reha-Plan.",
-  longFromBand: "Der Lange ist {n} min, passend zu deiner aktuellen längsten Einheit.",
   taperVolume:
     "Taper: Die Woche fällt auf etwa {n} min. Behalte die Tage und die Intensitäten — nimm die Minuten weg. Dass es sich jetzt nach zu wenig anfühlt, ist der Sinn der Sache.",
   volumeSplit: "Lockere Tage teilen eine {n}-Minuten-Woche.",
+  fewerEasyDays:
+    "{n} Trainingstage diese Woche, nicht mehr. Eine {week}-Minuten-Woche weiter aufgeteilt ergibt nur 25-Minuten-Fragmente — weniger echte Einheiten bringen mehr, und Ruhetage sind auch Training.",
+  longThisWeek:
+    "Der Lange ist diese Woche {n} min, auf dem Weg zu {target}. Er wächst jede Woche ein wenig — so soll es sein.",
+  longCappedByWeek:
+    "Der Lange ist {n} min, nicht die {want} min, die der Aufbau will. Die Grenze sind nicht deine Beine, sondern deine Woche: eine Einheit darf nicht mehr als die Hälfte davon nehmen.",
+  downWeek:
+    "Entlastungswoche, etwa {n} min. Jede vierte Woche geht zurück, damit die drei davor zu Form werden. Es ist nichts schiefgelaufen.",
   missedNoStack: "Harte Einheit verpasst. Nichts wird gestapelt. Kein Nachhol-Qualität.",
   adherenceDeadDay:
     "{day} hat drei Wochen in Folge nicht stattgefunden, deshalb ist die harte Einheit dort weg. Lockeres bleibt — ein verpasster lockerer Tag kostet die Saison sehr wenig.",

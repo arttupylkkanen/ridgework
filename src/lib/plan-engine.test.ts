@@ -11,6 +11,7 @@ import {
   visiblePersonalizedWeeks,
 } from "./plan-engine.ts";
 import { addDaysIso, startPlan, todayIso, type RollingState } from "./rolling-plan.ts";
+import { LONG_TARGET } from "./progression.ts";
 
 const FROM = new Date(2026, 0, 5); // Monday 5 Jan 2026
 
@@ -68,14 +69,19 @@ describe("personalized plan engine", () => {
     assert.ok(week.reasons.some((r) => r.id === "beginnerNoQuality"));
   });
 
-  it("caps the long to the athlete's current longest outing", () => {
+  it("starts the long at the athlete's current longest outing, and grows past it", () => {
+    // This replaces a test that asserted the opposite. The entry band used to
+    // be a ceiling: an athlete who arrived on a 90-minute longest outing could
+    // never be written more than 80 minutes, all the way to a 50 km start line.
+    // It is the starting point now, and the objective's target is the ceiling.
     const { state, athlete } = plan({ longest: "m90", weeklyHours: "h8_12" });
-    const week = buildWeek(state, 1, athlete);
-    assert.ok(week);
-    const long = week.days.find((d) => d.key === "long");
-    assert.ok(long);
-    assert.ok((long.minutes ?? 99) <= 80);
-    assert.ok(week.reasons.some((r) => r.id === "longFromBand" && r.values.n));
+    const first = buildWeek(state, 1, athlete)!.days.find((d) => d.key === "long");
+    const late = buildWeek(state, 20, athlete)!.days.find((d) => d.key === "long");
+    assert.equal(first?.minutes, 80, "week one should be the outing they already do");
+    assert.ok(
+      (late?.minutes ?? 0) > 80,
+      `week 20 long is ${late?.minutes} min — still stuck at the entry band`,
+    );
   });
 
   it("replaces alpine climbing with gym strength when there is no ice kit", () => {
@@ -428,5 +434,135 @@ describe("the taper takes minutes off the week, not just off the long", () => {
         `week ${c} claims to be a taper`,
       );
     }
+  });
+});
+
+/**
+ * The bug: `assignMinutes` never looked at the week number. A 24-week build for
+ * a first 50 km wrote the same 240-minute week twenty-two times, with the long
+ * run stuck at 68 minutes through base and 80 through specific — so the longest
+ * session the plan ever asked for was 80 minutes, for a race that would take
+ * that athlete seven to nine hours. Progressive overload was simply absent.
+ */
+describe("the plan gets harder", () => {
+  const BUILD_WEEKS = 22; // fifty: base 10 + specific 12
+
+  const longOf = (state: RollingState, athlete: AthleteProfile, c: number) =>
+    buildWeek(state, c, athlete)!.days.find((d) => d.key === "long")?.minutes ?? 0;
+  const totalOf = (state: RollingState, athlete: AthleteProfile, c: number) =>
+    buildWeek(state, c, athlete)!.days.reduce((n, d) => n + (d.minutes ?? 0), 0);
+
+  it("does not write the same week twenty-two times", () => {
+    const { state, athlete } = plan();
+    const shapes = new Set<string>();
+    for (let c = 1; c <= BUILD_WEEKS; c += 1) {
+      shapes.add(
+        buildWeek(state, c, athlete)!
+          .days.map((d) => `${d.key}:${d.minutes}`)
+          .join("|"),
+      );
+    }
+    assert.ok(shapes.size > 4, `only ${shapes.size} distinct weeks across the whole build`);
+  });
+
+  it("finishes the build with a longer long run than it started", () => {
+    const { state, athlete } = plan();
+    assert.ok(
+      longOf(state, athlete, BUILD_WEEKS) > longOf(state, athlete, 1) * 1.3,
+      `long went ${longOf(state, athlete, 1)} -> ${longOf(state, athlete, BUILD_WEEKS)} min`,
+    );
+  });
+
+  it("comes back down every fourth week", () => {
+    const { state, athlete } = plan();
+    // Week 4 is a down week; 3 and 5 are not.
+    assert.ok(totalOf(state, athlete, 4) < totalOf(state, athlete, 3));
+    assert.ok(totalOf(state, athlete, 4) < totalOf(state, athlete, 5));
+    assert.ok(buildWeek(state, 4, athlete)!.reasons.some((r) => r.id === "downWeek"));
+    assert.ok(!buildWeek(state, 5, athlete)!.reasons.some((r) => r.id === "downWeek"));
+  });
+
+  it("never asks for more than the hours the athlete said they have", () => {
+    // The band is a ceiling, not a starting point. The per-session floor can
+    // push a very small week a little over; nothing else may.
+    const { state, athlete } = plan({ weeklyHours: "h5_8" });
+    for (let c = 1; c <= BUILD_WEEKS; c += 1) {
+      assert.ok(
+        totalOf(state, athlete, c) <= 390,
+        `week ${c} asks for ${totalOf(state, athlete, c)} min against a 390 min week`,
+      );
+    }
+  });
+
+  it("never lets one session take more than half the week", () => {
+    for (const weeklyHours of ["h0_3", "h3_5", "h5_8", "h8_12"] as const) {
+      const { state, athlete } = plan({ weeklyHours, longest: "m240p" });
+      for (const c of [1, 8, 16, BUILD_WEEKS]) {
+        const long = longOf(state, athlete, c);
+        const total = totalOf(state, athlete, c);
+        assert.ok(long <= total * 0.55, `${weeklyHours} week ${c}: long ${long} of ${total} min`);
+      }
+    }
+  });
+
+  it("tells the athlete when their week, not their legs, is the limit", () => {
+    const { state, athlete } = plan({ weeklyHours: "h0_3", longest: "m240p" });
+    const week = buildWeek(state, BUILD_WEEKS, athlete)!;
+    const capped = week.reasons.find((r) => r.id === "longCappedByWeek");
+    assert.ok(capped, "a long run pinned by the weekly budget must say so");
+    assert.ok(Number(capped.values.want) > Number(capped.values.n));
+  });
+
+  it("names the long and where it is heading when nothing is in the way", () => {
+    const { state, athlete } = plan({ weeklyHours: "h8_12" });
+    const said = buildWeek(state, 6, athlete)!.reasons.find((r) => r.id === "longThisWeek");
+    assert.ok(said, "the athlete should be told what the long is for");
+    assert.equal(said.values.target, LONG_TARGET.fifty);
+  });
+});
+
+describe("the week costs what the athlete said they had", () => {
+  /** Upper edge of each stated band, in minutes. */
+  const CEILING = { h0_3: 180, h3_5: 300, h5_8: 480, h8_12: 720 } as const;
+
+  it("never writes a week past the top of the band, on any number of days", () => {
+    // An athlete on the lowest band who marked all seven days available was
+    // being written 230 minutes against a ceiling of 180: the per-session floor
+    // multiplied by seven beats the budget. A plan that quietly costs more than
+    // it said is the thing this product exists not to be.
+    for (const days of [3, 5, 7]) {
+      for (const band of ["h0_3", "h3_5", "h5_8", "h8_12"] as const) {
+        const { state, athlete } = plan({
+          weeklyHours: band,
+          availableDays: [0, 1, 2, 3, 4, 5, 6].map(
+            (i) => i < days,
+          ) as AthleteProfile["availableDays"],
+        });
+        for (let c = 1; c <= 22; c += 1) {
+          const week = buildWeek(state, c, athlete)!;
+          const total = week.days.reduce((n, d) => n + (d.minutes ?? 0), 0);
+          assert.ok(
+            total <= CEILING[band],
+            `${days}d ${band} week ${c}: ${total} min against a ${CEILING[band]} min ceiling`,
+          );
+        }
+      }
+    }
+  });
+
+  it("keeps three easy days rather than collapsing the week", () => {
+    // Frequency is most of what a beginner is buying. One long run and one jog
+    // is not a training week, however tidy the arithmetic.
+    const { state, athlete } = plan({ weeklyHours: "h0_3" });
+    for (const c of [1, 11, 22]) {
+      const working = buildWeek(state, c, athlete)!.days.filter((d) => d.key !== "rest");
+      assert.ok(working.length >= 4, `week ${c} left only ${working.length} training days`);
+    }
+  });
+
+  it("says when it dropped a day, instead of silently resting it", () => {
+    const { state, athlete } = plan({ weeklyHours: "h0_3" });
+    const week = buildWeek(state, 22, athlete)!;
+    assert.ok(week.reasons.some((r) => r.id === "fewerEasyDays"));
   });
 });
