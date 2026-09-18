@@ -49,6 +49,9 @@ export type AthleteCopy = {
     title: string;
     wakeTitle: string;
     wakeLead: string;
+    registerCta: string;
+    registerUpdate: string;
+    registerFlash: string;
     sleep: string;
     soreness: string;
     motivation: string;
@@ -95,7 +98,7 @@ const reasonsEn: Record<string, string> = {
   availableDays: "You have {n} training days. Rest sits on the others.",
   dayWindowCap: "{n} session(s) were trimmed to fit the time you said those days have.",
   beginnerNoQuality:
-    "Base weeks stay easy while you are still building the habit. Quality waits for the specific block.",
+    "Base weeks keep the running easy. Strength is the other hard session. Intervals wait for the specific block.",
   noQualityBase: "This is still aerobic base. No quality dose this week.",
   gymInsteadOfClimb: "No ice or rock kit listed, so climbing is gym strength.",
   noClimbGear: "No climbing kit listed, so the mountain pull becomes a hike.",
@@ -249,7 +252,10 @@ export const athleteEn: AthleteCopy = {
     title: "What you run today",
     wakeTitle: "How did you wake up?",
     wakeLead:
-      "Five marks. Optional heart numbers if you have them. The call is the strictest rule that fires — not a hidden score.",
+      "Mark how you woke up, then press the button. Today's session does not change until you do.",
+    registerCta: "Write today's session",
+    registerUpdate: "Update this morning",
+    registerFlash: "Logged. Today's session is below.",
     sleep: "Sleep",
     soreness: "Soreness",
     motivation: "Motivation",
@@ -314,7 +320,8 @@ export const athleteEn: AthleteCopy = {
 const reasonsFi: Record<string, string> = {
   availableDays: "Treenipäiviä on {n}. Muut ovat lepoa.",
   dayWindowCap: "{n} treeni(ä) lyhennettiin mahtumaan siihen aikaan jonka noille päiville annoit.",
-  beginnerNoQuality: "Pohjaviikot pysyvät kevyinä. Tehot tulevat vasta kisajaksoon.",
+  beginnerNoQuality:
+    "Pohjaviikoilla juoksu pysyy kevyenä. Voima on toinen kova treeni. Vedot tulevat vasta kisajaksoon.",
   noQualityBase: "Tämä on vielä peruskuntoa. Ei tehoannosta tällä viikolla.",
   gymInsteadOfClimb: "Jää- tai kalliokamoja ei ole, joten kiipeily on salivoimaa.",
   noClimbGear: "Kiipeilykamoja ei ole, joten veto on vaellus.",
@@ -466,7 +473,10 @@ export const athleteFi: AthleteCopy = {
     title: "Mitä tänään juostaan",
     wakeTitle: "Miltä herätys tuntui?",
     wakeLead:
-      "Viisi merkintää. Sykeluvut jos ne on. Suositus on tiukin sääntö joka täyttyy — ei piiloscorea.",
+      "Merkitse miltä herätys tuntui, sitten paina nappia. Tämän päivän treeni ei muutu ennen sitä.",
+    registerCta: "Kirjaa aamu — kirjoita tämän päivän treeni",
+    registerUpdate: "Päivitä aamu",
+    registerFlash: "Kirjattu. Tämän päivän treeni on alla.",
     sleep: "Uni",
     soreness: "Arkkuus",
     motivation: "Motivaatio",
@@ -532,7 +542,8 @@ const reasonsFr: Record<string, string> = {
   availableDays: "Vous avez {n} jours d’entraînement. Le reste est du repos.",
   dayWindowCap:
     "{n} séance(s) ont été raccourcies pour tenir dans le temps indiqué pour ces jours.",
-  beginnerNoQuality: "La base reste facile. La qualité attend le bloc spécifique.",
+  beginnerNoQuality:
+    "En base, la course reste facile. La force est l’autre séance dure. Les intervalles attendent le bloc spécifique.",
   noQualityBase: "Encore de la base aérobie. Pas de qualité cette semaine.",
   gymInsteadOfClimb: "Pas de matériel glace/rocher : l’escalade devient de la force en salle.",
   noClimbGear: "Pas de matériel d’escalade : la séance devient une rando.",
@@ -684,7 +695,10 @@ export const athleteFr: AthleteCopy = {
     title: "Ce que vous faites aujourd’hui",
     wakeTitle: "Comment s’est passé le réveil ?",
     wakeLead:
-      "Cinq notes. Fréquence si vous l’avez. L’appel est la règle la plus stricte, pas un score caché.",
+      "Notez le réveil, puis appuyez. La séance du jour ne change pas avant.",
+    registerCta: "Écrire la séance du jour",
+    registerUpdate: "Mettre à jour ce matin",
+    registerFlash: "Enregistré. La séance du jour est en dessous.",
     sleep: "Sommeil",
     soreness: "Courbatures",
     motivation: "Motivation",
@@ -752,7 +766,8 @@ export const athleteFr: AthleteCopy = {
 const reasonsDe: Record<string, string> = {
   availableDays: "Du hast {n} Trainingstage. Der Rest ist Ruhe.",
   dayWindowCap: "{n} Einheit(en) wurden gekürzt, damit sie in die angegebene Zeit passen.",
-  beginnerNoQuality: "Basiswochen bleiben locker. Qualität kommt erst im Spezifischen.",
+  beginnerNoQuality:
+    "In der Basis bleibt das Laufen locker. Kraft ist die andere harte Einheit. Intervalle kommen erst im Spezifischen.",
   noQualityBase: "Noch aerobe Basis. Keine Qualität diese Woche.",
   gymInsteadOfClimb: "Kein Eis-/Felsmaterial: Klettern wird Kraft im Gym.",
   noClimbGear: "Kein Klettermaterial: die Einheit wird eine Wanderung.",
@@ -902,7 +917,10 @@ export const athleteDe: AthleteCopy = {
     title: "Was du heute läufst",
     wakeTitle: "Wie war das Aufwachen?",
     wakeLead:
-      "Fünf Marken. Herzwerte optional. Der Call ist die strengste Regel — kein versteckter Score.",
+      "Markiere das Aufwachen, dann drück den Knopf. Die heutige Einheit ändert sich erst dann.",
+    registerCta: "Heutige Einheit schreiben",
+    registerUpdate: "Diesen Morgen aktualisieren",
+    registerFlash: "Gespeichert. Die heutige Einheit steht darunter.",
     sleep: "Schlaf",
     soreness: "Muskelkater",
     motivation: "Motivation",

@@ -409,6 +409,17 @@ function daysFor(
         { kind: "easy", key: "easy" },
       ];
     }
+    if (objective === "fifty" || objective === "trail20" || objective === "ultra100") {
+      return [
+        { kind: "easy", key: "easy" },
+        { kind: "easy", key: "easy" },
+        { kind: "rest", key: "rest" },
+        { kind: "hard", key: "strength" },
+        { kind: "rest", key: "rest" },
+        { kind: "easy", key: "long" },
+        { kind: "easy", key: "easy" },
+      ];
+    }
     return EASY_WEEK;
   }
   if (objective === "expedition") {
@@ -437,8 +448,8 @@ function daysFor(
     return [
       { kind: "easy", key: "easy" },
       { kind: "hard", key: "quality" },
-      { kind: "easy", key: "easy" },
-      { kind: "easy", key: "easy" },
+      { kind: "rest", key: "rest" },
+      { kind: "hard", key: "strength" },
       { kind: "rest", key: "rest" },
       { kind: "easy", key: "long" },
       { kind: "easy", key: "easy" },
@@ -448,18 +459,18 @@ function daysFor(
     return [
       { kind: "easy", key: "easy" },
       { kind: "hard", key: "quality" },
-      { kind: "easy", key: "easy" },
       { kind: "rest", key: "rest" },
-      { kind: "easy", key: "easy" },
+      { kind: "hard", key: "strength" },
+      { kind: "rest", key: "rest" },
       { kind: "easy", key: "long" },
-      { kind: "rest", key: "rest" },
+      { kind: "easy", key: "easy" },
     ];
   }
   return [
     { kind: "easy", key: "easy" },
     { kind: "hard", key: "quality" },
-    { kind: "easy", key: "easy" },
-    { kind: "steady", key: "steady" },
+    { kind: "rest", key: "rest" },
+    { kind: "hard", key: "strength" },
     { kind: "rest", key: "rest" },
     { kind: "easy", key: "long" },
     { kind: "easy", key: "easy" },

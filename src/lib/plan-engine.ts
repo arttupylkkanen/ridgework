@@ -220,9 +220,11 @@ function swapAccess(
     return cloneDay(day, { kind: "easy", key: "hike" });
   }
   if (day.key === "strength") {
-    if (gymOk) return day;
-    reasons.push({ id: "noGym", values: {} });
-    return easyDay(day.minutes ?? 40, "easy");
+    // Running strength is single-leg and trunk work. Blagrove 2018 and
+    // Lauersen 2014 do not require a gym — a step and bodyweight are enough.
+    // Dropping it to an easy jog whenever the athlete had not ticked "gym"
+    // is how a first 50 km week became five identical runs.
+    return day;
   }
   if (day.key === "mountain" || day.key === "vert") {
     if (profile.terrain === "flat" || !mountainOk) {
@@ -337,7 +339,16 @@ function placeWork(
     out[qualitySlot] = cloneDay(seedQuality);
   }
 
-  const remaining = slots.filter((i) => i !== longSlot && i !== qualitySlot);
+  const seedStrength = seed.find((d) => d.key === "strength");
+  let strengthSlot: number | undefined;
+  if (seedStrength && seedQuality?.key !== "strength" && n >= 4) {
+    const taken = new Set([longSlot, qualitySlot]);
+    strengthSlot = workSlots.find((i) => !taken.has(i) && (qualitySlot === undefined || Math.abs(i - qualitySlot) >= 1));
+    if (strengthSlot === undefined) strengthSlot = workSlots.find((i) => !taken.has(i));
+    if (strengthSlot !== undefined) out[strengthSlot] = cloneDay(seedStrength);
+  }
+
+  const remaining = slots.filter((i) => i !== longSlot && i !== qualitySlot && i !== strengthSlot);
   const easyPool = seedEasy.length ? seedEasy : [{ kind: "easy" as const, key: "easy" as const }];
   remaining.forEach((slot, idx) => {
     if (profile.constraints.includes("shortSleep") && idx > 0) {
@@ -424,6 +435,7 @@ function assignMinutes(
   if (phase === "taper") reasons.push({ id: "taperVolume", values: { n: weekly } });
 
   let remaining = weekly;
+  let qualityBudget = 0;
   const stamped = days.map((day) => {
     if (day.key === "rest") return { ...day, minutes: 0 };
     if (LONG_KEYS.has(day.key)) {
@@ -460,6 +472,13 @@ function assignMinutes(
           Math.round(weekly * QUALITY_SHARE_MAX),
         ),
       );
+      // A 3-hour week cannot pay a long, an interval session, strength, and
+      // two easy days. Keep the first hard session; drop strength rather than
+      // blowing the hours they said they had.
+      if (day.key === "strength" && qualityBudget > 0 && remaining - minutes < 2 * floor) {
+        return restDay();
+      }
+      qualityBudget += minutes;
       remaining -= minutes;
       return { ...day, minutes };
     }
@@ -476,7 +495,17 @@ function assignMinutes(
   //
   // Never below three easy days, though: frequency is most of what a beginner
   // is buying, and a week of one long run and one jog is not a training week.
-  const MIN_EASY_DAYS = 3;
+  // Strength or quality already on the week counts as the other session, so
+  // two easy days plus those is still a week — three-plus-strength on the
+  // lowest band is how a 180-minute ceiling became 195.
+  const MIN_EASY_DAYS = stamped.some(
+    (d) =>
+      d.key !== "rest" &&
+      d.minutes !== undefined &&
+      (QUALITY_KEYS.has(d.key) || d.key === "strength" || d.key === "climb"),
+  )
+    ? 2
+    : 3;
   let keep = easyIdx;
   let dropped = false;
   if (easyIdx.length > MIN_EASY_DAYS && remaining < easyIdx.length * floor) {

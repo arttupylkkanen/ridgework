@@ -66,13 +66,23 @@ describe("personalized plan engine", () => {
     assert.equal(weeks[2]?.calendar, 3);
   });
 
-  it("keeps a beginner base week free of quality doses", () => {
-    const { state, athlete } = plan({ experience: "beginner" });
+  it("keeps beginner base free of running intervals, and writes strength instead", () => {
+    const { state, athlete } = plan({
+      experience: "beginner",
+      goal: "fifty",
+      weeklyHours: "h3_5",
+      longest: "m90",
+      availableDays: [true, true, true, true, false, true, false],
+      equipment: ["trailShoes"],
+    });
     const week = buildWeek(state, 1, athlete);
     assert.ok(week);
     assert.equal(week.phase, "base");
-    assert.ok(week.days.every((d) => d.key !== "quality" && d.kind !== "hard"));
-    assert.ok(week.reasons.some((r) => r.id === "beginnerNoQuality"));
+    assert.ok(week.days.every((d) => d.key !== "quality"));
+    assert.ok(week.days.some((d) => d.key === "strength"));
+    assert.ok(week.days.some((d) => d.key === "long"));
+    const kinds = new Set(week.days.filter((d) => d.key !== "rest").map((d) => d.key));
+    assert.ok(kinds.size >= 3, "a 50 km week is not five identical jogs");
   });
 
   it("starts the long at the athlete's current longest outing, and grows past it", () => {

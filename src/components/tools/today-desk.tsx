@@ -115,7 +115,9 @@ export function TodayDesk({
   const dayNames = copy.tools.week.days;
   const [ready, setReady] = useState(false);
   const [state, setState] = useState<RollingState | null>(null);
-  const [inputs, setInputs] = useState<DailyInputs>(emptyInputs);
+  const [draft, setDraft] = useState<DailyInputs>(emptyInputs);
+  const [committed, setCommitted] = useState<DailyInputs>(emptyInputs);
+  const [loggedToday, setLoggedToday] = useState(false);
   const [overridden, setOverridden] = useState(false);
   const [confirmOverride, setConfirmOverride] = useState(false);
   const [doneMinutes, setDoneMinutes] = useState("");
@@ -132,14 +134,17 @@ export function TodayDesk({
     setHistory(log);
     const existing = log.find((row) => row.date === today);
     if (existing) {
-      setInputs({
+      const loaded = {
         sleep: existing.sleep,
         soreness: existing.soreness,
         motivation: existing.motivation,
         fatigue: existing.fatigue,
         stress: existing.stress,
         lastEffort: existing.lastEffort,
-      });
+      };
+      setDraft(loaded);
+      setCommitted(loaded);
+      setLoggedToday(true);
       setOverridden(existing.overridden);
     }
     setReady(true);
@@ -155,8 +160,8 @@ export function TodayDesk({
   }
 
   const view = useMemo(
-    () => (state ? realizeToday(state, profile, inputs, today, history, overridden) : null),
-    [state, profile, inputs, today, history, overridden],
+    () => (state ? realizeToday(state, profile, committed, today, history, overridden) : null),
+    [state, profile, committed, today, history, overridden],
   );
 
   const week = useMemo(() => {
@@ -171,9 +176,9 @@ export function TodayDesk({
   );
 
   useEffect(() => {
-    if (!view) return;
+    if (!view || !loggedToday) return;
     const entry: StoredDaily = {
-      ...inputs,
+      ...committed,
       date: today,
       call: view.call,
       overridden,
@@ -184,18 +189,18 @@ export function TodayDesk({
       data: {
         date: today,
         payload: {
-          sleep: inputs.sleep,
-          soreness: inputs.soreness,
-          motivation: inputs.motivation,
-          fatigue: inputs.fatigue,
-          stress: inputs.stress,
-          lastEffort: inputs.lastEffort,
+          sleep: committed.sleep,
+          soreness: committed.soreness,
+          motivation: committed.motivation,
+          fatigue: committed.fatigue,
+          stress: committed.stress,
+          lastEffort: committed.lastEffort,
         },
         call: view.call,
         overridden,
       },
     }).catch(() => undefined);
-  }, [inputs, view?.call, overridden, today]);
+  }, [committed, view?.call, overridden, today, loggedToday]);
 
   if (!ready) {
     return <p className="text-ink-muted">{t.kicker}</p>;
@@ -242,6 +247,63 @@ export function TodayDesk({
           </button>
         ) : null}
       </div>
+
+      <section className="rounded-2xl border border-line bg-card p-5 sm:p-6">
+        <h3 className="font-display text-xl font-semibold text-ink">{t.wakeTitle}</h3>
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">{t.wakeLead}</p>
+        <div className="mt-5 space-y-5">
+          {(["sleep", "soreness", "motivation", "fatigue", "stress"] as const).map((key) => (
+            <ScaleRow
+              key={key}
+              id={`ready-${key}`}
+              label={t[key]}
+              low={t.scaleLow[key]}
+              high={t.scaleHigh[key]}
+              value={draft[key]}
+              onChange={(n) => {
+                setOverridden(false);
+                setConfirmOverride(false);
+                setDraft((prev) => ({ ...prev, [key]: n }));
+              }}
+            />
+          ))}
+        </div>
+        <div className="mt-6">
+          <p className="text-sm font-medium text-ink">{t.lastEffort}</p>
+          <div className="mt-2 grid grid-cols-5 gap-1.5">
+            {SCALE.map((n) => (
+              <button
+                key={n}
+                id={`ready-effort-${n}`}
+                type="button"
+                aria-pressed={draft.lastEffort === n}
+                onClick={() => setDraft((prev) => ({ ...prev, lastEffort: n }))}
+                className={cn(
+                  "min-h-11 rounded-lg border text-sm",
+                  draft.lastEffort === n
+                    ? "border-ridge bg-paper-warm font-medium text-ink"
+                    : "border-line bg-paper text-ink-muted",
+                )}
+              >
+                {n}
+              </button>
+            ))}
+          </div>
+        </div>
+        <button
+          id="ready-register"
+          type="button"
+          onClick={() => {
+            setCommitted(draft);
+            setLoggedToday(true);
+            setFlash(t.registerFlash);
+          }}
+          className="mt-6 inline-flex min-h-11 items-center rounded-lg bg-ridge px-4 py-2 text-sm font-medium text-paper hover:bg-ridge-deep"
+        >
+          {loggedToday ? t.registerUpdate : t.registerCta}
+        </button>
+        {flash ? <p className="mt-3 text-sm text-ridge-deep">{flash}</p> : null}
+      </section>
 
       <section className="rounded-2xl border border-line bg-card p-5 sm:p-6">
         <p className="text-xs font-semibold uppercase tracking-wider text-accent">
@@ -460,52 +522,6 @@ export function TodayDesk({
           </div>
         </section>
       ) : null}
-
-      <section className="rounded-2xl border border-line bg-card p-5 sm:p-6">
-        <h3 className="font-display text-xl font-semibold text-ink">{t.wakeTitle}</h3>
-        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">{t.wakeLead}</p>
-        <div className="mt-5 space-y-5">
-          {(["sleep", "soreness", "motivation", "fatigue", "stress"] as const).map((key) => (
-            <ScaleRow
-              key={key}
-              id={`ready-${key}`}
-              label={t[key]}
-              low={t.scaleLow[key]}
-              high={t.scaleHigh[key]}
-              value={inputs[key]}
-              onChange={(n) => {
-                setOverridden(false);
-                setConfirmOverride(false);
-                setInputs((prev) => ({ ...prev, [key]: n }));
-              }}
-            />
-          ))}
-        </div>
-        <div className="mt-6 grid gap-3 sm:grid-cols-3">
-          <div>
-            <p className="text-sm font-medium text-ink">{t.lastEffort}</p>
-            <div className="mt-2 grid grid-cols-5 gap-1.5">
-              {SCALE.map((n) => (
-                <button
-                  key={n}
-                  id={`ready-effort-${n}`}
-                  type="button"
-                  aria-pressed={inputs.lastEffort === n}
-                  onClick={() => setInputs((prev) => ({ ...prev, lastEffort: n }))}
-                  className={cn(
-                    "min-h-11 rounded-lg border text-sm",
-                    inputs.lastEffort === n
-                      ? "border-ridge bg-paper-warm font-medium text-ink"
-                      : "border-line bg-paper text-ink-muted",
-                  )}
-                >
-                  {n}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {state.adjustments && state.adjustments.length > 0 ? (
         <section>
