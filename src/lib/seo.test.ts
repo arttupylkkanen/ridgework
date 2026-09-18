@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { getCopy } from "../content/index.ts";
 import { LOCALES } from "./locale.ts";
+import { reasonText } from "./utils.ts";
 
 /**
  * A search result truncates what it cannot fit, and a sentence cut mid-word is
@@ -41,6 +42,43 @@ describe("what a search result can actually show", () => {
       for (const [key, value] of Object.entries(copy.hero)) {
         assert.ok(value.trim().length > 0, `${locale}.hero.${key} is empty`);
       }
+    });
+  }
+});
+
+/**
+ * A reason carries a session key so the engine can stay locale-free. Rendered
+ * without resolving it, "quality" was the one English word in an otherwise
+ * translated sentence — and a word the athlete has never seen, because the week
+ * itself prints the localized name.
+ */
+describe("a reason speaks the reader's language throughout", () => {
+  for (const locale of LOCALES) {
+    it(`resolves the session name in ${locale}`, () => {
+      const copy = getCopy(locale);
+      const text = reasonText(copy, "keySoftened", { key: "quality" });
+      assert.ok(text.includes(copy.tools.plan.sessions.quality), `raw key left in: ${text}`);
+      assert.ok(!text.includes("{key}"), `unfilled slot in ${locale}`);
+    });
+
+    it(`resolves the weekday in ${locale}`, () => {
+      const copy = getCopy(locale);
+      const text = reasonText(copy, "adherenceDeadDay", { day: 3 });
+      assert.ok(text.includes(copy.tools.week.days[3]!), `raw index left in: ${text}`);
+    });
+  }
+});
+
+describe("every session key in a reason is resolved, not just the first", () => {
+  for (const locale of LOCALES) {
+    it(`renders both sides of a change in ${locale}`, () => {
+      // `whyChangedToday` carries two session keys. Resolving only `key` left
+      // "Heute geändert: quality → recovery" — and the test that covered `key`
+      // passed straight over it.
+      const copy = getCopy(locale);
+      const text = reasonText(copy, "whyChangedToday", { from: "quality", to: "recovery" });
+      assert.ok(text.includes(copy.tools.plan.sessions.quality), `raw 'from' in: ${text}`);
+      assert.ok(text.includes(copy.tools.plan.sessions.recovery), `raw 'to' in: ${text}`);
     });
   }
 });

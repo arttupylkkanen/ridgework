@@ -44,8 +44,19 @@ export function ExampleFeel({
     [week, wrecked, headline, t.finish, dayNames, sessions, url],
   );
 
+  // `weekNoteFrom` only writes the "was → now" line when the session key
+  // actually changed. The screen used to render it on `wrecked` alone, so the
+  // page and the note a stranger copies could disagree about whether anything
+  // moved. One condition, read by both.
+  const changed =
+    wrecked &&
+    note.index >= 0 &&
+    !!note.written &&
+    !!note.shown &&
+    note.written.key !== note.shown.key;
+
   const why =
-    wrecked && note.written && note.shown && note.index >= 0
+    changed && note.written && note.shown
       ? fillTemplate(t.whyWrecked, {
           day: dayNames[note.index] ?? "",
           from: sessions[note.written.key],
@@ -113,7 +124,7 @@ export function ExampleFeel({
 
       {why ? <p className="mt-4 text-sm leading-relaxed text-ink">{why}</p> : null}
 
-      {wrecked && note.index >= 0 ? (
+      {changed ? (
         <p className="mt-3 text-sm text-ink-muted">
           <span className="text-ink-soft line-through">
             {dayNames[note.index]} · {note.written ? sessions[note.written.key] : ""}

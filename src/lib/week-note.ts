@@ -1,4 +1,4 @@
-import type { DaySession } from "./rolling-plan.ts";
+import { LONG_KEYS, type DaySession } from "./rolling-plan.ts";
 import { applyCallToDay, type RealizedWeek } from "./plan-engine.ts";
 
 /**
@@ -9,7 +9,11 @@ import { applyCallToDay, type RealizedWeek } from "./plan-engine.ts";
 export function rewriteIndex(days: DaySession[]): number {
   const hard = days.findIndex((d) => d.kind === "hard");
   if (hard >= 0) return hard;
-  const long = days.findIndex((d) => d.key === "long" || d.key === "pack" || d.key === "mountain");
+  // `LONG_KEYS`, not a hand-written list: this one omitted `me`, the alpine and
+  // traverse long key. Unreachable today, because every template marks its long
+  // session `kind: "hard"` and the branch above catches it — but the next
+  // template that does not is a silent no-op in the public demo.
+  const long = days.findIndex((d) => LONG_KEYS.has(d.key));
   if (long >= 0) return long;
   return days.findIndex((d) => d.key !== "rest");
 }
@@ -55,8 +59,7 @@ export function weekNoteFrom(input: {
 }): { text: string; index: number; written: DaySession | null; shown: DaySession | null } {
   const index = rewriteIndex(input.week.days);
   const written = index >= 0 ? input.week.days[index]! : null;
-  const shown =
-    written && input.wrecked ? applyCallToDay(written, "easy").shown : written;
+  const shown = written && input.wrecked ? applyCallToDay(written, "easy").shown : written;
 
   const days: NoteDay[] = input.week.days.map((day, i) => {
     const label = input.days[i] ?? "";

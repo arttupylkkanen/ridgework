@@ -237,3 +237,27 @@ test("no history means no instruction, for either of them", () => {
   assert.equal(keyToSoften([]), null);
   assert.equal(longBeingSkipped([]), false);
 });
+
+/**
+ * The guard read `f.key !== "long"`, but only a race on foot calls its long
+ * session `long`. An alpine block's is `me`, a traverse's is `pack`, a
+ * mountain week's is `mountain` — so a 195-minute mountain-endurance session
+ * was being swapped for easy running, and `longBeingSkipped` stayed false, so
+ * nothing was said about it either. Exactly the outcome `keyToSoften`'s own
+ * doc comment says must never happen.
+ */
+test("the objective's long session is never softened, whatever it is called", () => {
+  for (const key of ["long", "me", "mountain", "pack"] as const) {
+    const found = [{ id: "keySkipped" as const, key, missed: 3, of: 3 }];
+    assert.equal(keyToSoften(found), null, `${key} was handed over to be softened`);
+    assert.equal(longBeingSkipped(found), true, `${key} was missed and nobody was told`);
+  }
+});
+
+test("an ordinary hard session is still softened", () => {
+  for (const key of ["quality", "sharpness", "vert", "strength", "climb"] as const) {
+    const found = [{ id: "keySkipped" as const, key, missed: 3, of: 3 }];
+    assert.equal(keyToSoften(found), key, `${key} should be softenable`);
+    assert.equal(longBeingSkipped(found), false);
+  }
+});
