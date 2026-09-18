@@ -713,17 +713,50 @@ describe("a reason never names a number the week does not contain", () => {
     const { state, athlete } = plan({ dayWindows: windows(70) });
     const week = buildWeek(state, 20, athlete)!;
     const long = week.days.find((d) => d.key === "long")?.minutes ?? 0;
-    const said = week.reasons.find((r) => r.id === "longThisWeek" || r.id === "longCappedByWeek");
+    const said = week.reasons.find(
+      (r) => r.id === "longThisWeek" || r.id === "longCappedByWeek" || r.id === "longCappedByDay",
+    );
     assert.ok(said, "no reason named the long run at all");
     assert.equal(said.values.n, long, `reason says ${said.values.n} min, the week says ${long}`);
   });
 
-  it("calls a long run cut by the calendar what it is", () => {
-    // A 70-minute window on every day is the athlete's time, not their fitness.
+  it("blames the day's window, not the week, when the window is what cut", () => {
+    // A 70-minute window on every day is today's time, not the weekly budget.
+    // `longCappedByWeek` says "one session may not take more than half of it.
+    // More hours would buy a longer long" — three claims, all false here, next
+    // to a `dayWindowCap` that already named the real cause.
     const { state, athlete } = plan({ dayWindows: windows(70) });
     const week = buildWeek(state, 20, athlete)!;
-    assert.ok(week.reasons.some((r) => r.id === "longCappedByWeek"));
+    assert.ok(week.reasons.some((r) => r.id === "longCappedByDay"));
+    assert.ok(!week.reasons.some((r) => r.id === "longCappedByWeek"));
     assert.ok(!week.reasons.some((r) => r.id === "longThisWeek"));
+  });
+
+  it("blames the week when there is no window in the way", () => {
+    const { state, athlete } = plan({ weeklyHours: "h3_5" });
+    const week = buildWeek(state, 20, athlete)!;
+    assert.ok(week.reasons.some((r) => r.id === "longCappedByWeek"));
+    assert.ok(!week.reasons.some((r) => r.id === "longCappedByDay"));
+  });
+
+  it("claims no long run in a week that has none", () => {
+    // Moving the push past `fitToWindows` was not enough: `applySkippedKey`,
+    // `applyTravel`, `applyMissedStack` and `applyStateFlags` all run after it.
+    // A wrecked week came out as four easy days with no long at all, and still
+    // announced `longThisWeek {n:151}`.
+    const { state, athlete } = plan();
+    const wrecked = { ...state, easeThrough: 20, easeMode: "wrecked" } as RollingState;
+    const week = buildWeek(wrecked, 20, athlete)!;
+    const long = week.days.find((d) => d.key === "long");
+    assert.ok(!long, "fixture no longer produces a week without a long run");
+    for (const id of ["longThisWeek", "longCappedByWeek", "longCappedByDay"]) {
+      assert.ok(!week.reasons.some((r) => r.id === id), `${id} on a week with no long run`);
+    }
+    const few = week.reasons.find((r) => r.id === "fewerEasyDays");
+    if (few) {
+      const training = week.days.filter((d) => (d.minutes ?? 0) > 0).length;
+      assert.equal(few.values.n, training);
+    }
   });
 
   it("counts every training day when it drops one, not just the easy ones", () => {

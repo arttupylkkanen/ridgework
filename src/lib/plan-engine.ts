@@ -377,7 +377,7 @@ function assignMinutes(
   /** From `longShortfall`: how much of the written long actually gets done. */
   shortfall: number | null,
   reasons: Reason[],
-): DaySession[] {
+): { days: DaySession[]; cap: number; target: number; dropped: boolean } {
   const { week, weeks } = buildPosition(state, calendar);
   const down = phase !== "taper" && isDownWeek(week, weeks);
   const floor = minSession(phase);
@@ -493,32 +493,13 @@ function assignMinutes(
     return keep.includes(i) ? { ...day, minutes: each } : restDay();
   });
 
-  // Every number the athlete is told comes off the finished week, after
-  // `fitToWindows` has trimmed sessions into the time they said each day has.
-  // Read before that, `longThisWeek` announced a 148-minute long run on a week
-  // whose long run was 70, and `fewerEasyDays` counted the long but forgot the
-  // quality day. A reason that names a figure the week does not contain is
-  // worse than one that names none.
-  const written = fitToWindows(spread, profile, reasons);
-  const long = written.find((d) => LONG_KEYS.has(d.key))?.minutes ?? 0;
-  if (long > 0) {
-    // Against `cap`, which already carries the family cap, the declared
-    // limitation and the follow-down — each of which says its own piece above.
-    // Compared against the raw ramp instead, this told a parent of small
-    // children and an athlete nursing an achilles that their *week* was the
-    // limit and more hours would buy a longer long run. Neither was true, and
-    // the second is the worse thing to say to somebody who is injured.
-    reasons.push(
-      long < cap
-        ? { id: "longCappedByWeek", values: { n: long, want: cap } }
-        : { id: "longThisWeek", values: { n: long, target } },
-    );
-  }
-  if (dropped) {
-    const training = written.filter((d) => (d.minutes ?? 0) > 0).length;
-    reasons.push({ id: "fewerEasyDays", values: { n: training, week: weekly } });
-  }
-  return written;
+  // No reason is pushed from here. Moving these past `fitToWindows` was not
+  // enough: `applySkippedKey`, `applyTravel`, `applyMissedStack` and
+  // `applyStateFlags` all still run afterwards, and a wrecked week came out as
+  // four easy days with no long run at all while announcing `longThisWeek
+  // {n:151}`. Whatever this function knows travels back to `buildWeek`, which
+  // says it once the week has stopped changing.
+  return { days: fitToWindows(spread, profile, reasons), cap, target, dropped };
 }
 
 /**
@@ -631,6 +612,35 @@ function applySkippedKey(
   return out;
 }
 
+/**
+ * What the long run ended up being, and which limit is to blame for it.
+ *
+ * `cap` already carries the family cap, the declared limitation and the
+ * follow-down, each of which says its own piece elsewhere — so a shortfall
+ * against it is the calendar's doing, and the two calendars are different
+ * things. Half-the-week is the weekly-hours limit and buying more hours would
+ * lift it; a per-day window is today's time and more hours a week would not.
+ * Saying the first when the second is true was three false claims in one
+ * sentence.
+ */
+function describeLong(
+  days: DaySession[],
+  assigned: { cap: number; target: number },
+  reasons: Reason[],
+): void {
+  const long = days.find((d) => LONG_KEYS.has(d.key))?.minutes ?? 0;
+  if (long <= 0) return;
+  if (long >= assigned.cap) {
+    reasons.push({ id: "longThisWeek", values: { n: long, target: assigned.target } });
+    return;
+  }
+  const byWindow = reasons.some((r) => r.id === "dayWindowCap");
+  reasons.push({
+    id: byWindow ? "longCappedByDay" : "longCappedByWeek",
+    values: { n: long, want: assigned.cap },
+  });
+}
+
 function applyMissedStack(
   days: DaySession[],
   state: RollingState,
@@ -699,7 +709,16 @@ export function buildWeek(
   const history = findings(state.logs, calendar);
   let days = placeWork(seed, profile, phase, reasons, hardestDayToKeep(history));
   days = days.map((day) => swapAccess(day, profile, state, reasons));
-  days = assignMinutes(days, profile, phase, state, calendar, longShortfall(history), reasons);
+  const assigned = assignMinutes(
+    days,
+    profile,
+    phase,
+    state,
+    calendar,
+    longShortfall(history),
+    reasons,
+  );
+  days = assigned.days;
   days = applySkippedKey(days, history, reasons);
   const dates = days.map((_, i) => sessionDate(state, calendar, i));
   days = applyTravel(days, dates, state, reasons);
@@ -714,6 +733,19 @@ export function buildWeek(
     reasons.push({ id: "altitudeAcclimatization", values: {} });
   }
   const flagged = applyStateFlags({ calendar, phase, eased: false, days, reasons }, state);
+
+  // Everything below describes the week as it finally stands. Nothing above may
+  // claim a figure, because every step between here and `assignMinutes` can
+  // still remove a session.
+  describeLong(flagged.days, assigned, reasons);
+  if (assigned.dropped) {
+    const training = flagged.days.filter((d) => (d.minutes ?? 0) > 0).length;
+    reasons.push({
+      id: "fewerEasyDays",
+      values: { n: training, week: weeklyBudget(profile, phase, state, calendar) },
+    });
+  }
+
   // One fact about the finished week, after every edit has landed: the pile of
   // individual reasons above says what changed, this says whether it mattered.
   //

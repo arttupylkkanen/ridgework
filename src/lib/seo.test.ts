@@ -68,3 +68,17 @@ describe("a reason speaks the reader's language throughout", () => {
     });
   }
 });
+
+describe("every session key in a reason is resolved, not just the first", () => {
+  for (const locale of LOCALES) {
+    it(`renders both sides of a change in ${locale}`, () => {
+      // `whyChangedToday` carries two session keys. Resolving only `key` left
+      // "Heute geändert: quality → recovery" — and the test that covered `key`
+      // passed straight over it.
+      const copy = getCopy(locale);
+      const text = reasonText(copy, "whyChangedToday", { from: "quality", to: "recovery" });
+      assert.ok(text.includes(copy.tools.plan.sessions.quality), `raw 'from' in: ${text}`);
+      assert.ok(text.includes(copy.tools.plan.sessions.recovery), `raw 'to' in: ${text}`);
+    });
+  }
+});

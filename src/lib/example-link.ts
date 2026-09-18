@@ -1,6 +1,7 @@
 import { FIRST_OBJECTIVES, type FirstObjective } from "./first-person.ts";
 import { suggestedPeakOn, todayIso } from "./rolling-plan.ts";
 import { fillTemplate } from "./utils.ts";
+import { SITE } from "./seo.ts";
 import type { Copy } from "../content/types.ts";
 
 /**
@@ -116,4 +117,18 @@ export function sharedWeekMeta(
     title: fillTemplate(shared.title, { goal: objective, date }),
     description: fillTemplate(shared.description, { goal: objective, date }),
   };
+}
+
+/**
+ * An absolute link to exactly the weeks on screen.
+ *
+ * Always both values, never the browser's current URL: a visitor who has not
+ * touched the controls is on a bare `/example`, and a note that names "First
+ * 50 km, 12 June 2027" while linking to a page that recomputes the date from
+ * whenever the recipient opens it is worse than no link.
+ */
+export function shareUrl(goal: FirstObjective, peakOn: string, locale = "en"): string {
+  const prefix = locale === "en" ? "" : `/${locale}`;
+  const search = new URLSearchParams({ goal, peak: peakOn });
+  return `${SITE}${prefix}/example?${search.toString()}`;
 }

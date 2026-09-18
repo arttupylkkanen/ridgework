@@ -122,6 +122,8 @@ const reasonsEn: Record<string, string> = {
     "{n} training days this week, not more. A {week} min week split any further is a handful of 25-minute fragments — fewer real sessions do more, and the rest days are training too.",
   longThisWeek:
     "The long is {n} min this week, on the way to {target}. It grows a little each week — that is the plan working, not the plan getting harder for its own sake.",
+  longCappedByDay:
+    "The long is {n} min, not the {want} min the build wants. It is the time you said that day has, not your week and not your legs — give one day a longer window and the long run grows into it.",
   longCappedByWeek:
     "The long is {n} min, not the {want} min the build wants. Your legs are not the limit here, your week is: one session may not take more than half of it. More hours would buy a longer long.",
   downWeek:
@@ -338,6 +340,8 @@ const reasonsFi: Record<string, string> = {
     "Tällä viikolla {n} treenipäivää, ei enempää. {week} minuutin viikko pilkottuna pidemmälle on kasa 25 minuutin sirpaleita — harvempi kunnon treeni tekee enemmän, ja lepopäivätkin ovat treeniä.",
   longThisWeek:
     "Pitkä on tällä viikolla {n} min, matkalla {target} minuuttiin. Se kasvaa vähän joka viikko — niin sen kuuluu mennä.",
+  longCappedByDay:
+    "Pitkä on {n} min, ei {want} min jota ohjelma haluaisi. Raja on se aika jonka sanoit kyseisellä päivällä olevan — ei viikko eikä jalat. Anna yhdelle päivälle pidempi ikkuna, niin pitkä kasvaa siihen.",
   longCappedByWeek:
     "Pitkä on {n} min, ei {want} min jota ohjelma haluaisi. Raja ei ole jaloissa vaan viikossa: yksi treeni ei saa viedä siitä yli puolta. Enemmän tunteja ostaisi pidemmän pitkän.",
   downWeek:
@@ -554,6 +558,8 @@ const reasonsFr: Record<string, string> = {
     "{n} jours d’entraînement cette semaine, pas plus. Une semaine de {week} min découpée davantage ne donne que des fragments de 25 minutes — moins de vraies séances font mieux, et les jours de repos sont aussi de l’entraînement.",
   longThisWeek:
     "La longue fait {n} min cette semaine, en route vers {target}. Elle grandit un peu chaque semaine — c’est le plan qui fonctionne.",
+  longCappedByDay:
+    "La longue fait {n} min, pas les {want} min visées. La limite est le temps que vous avez indiqué pour ce jour-là — ni votre semaine ni vos jambes. Allongez la fenêtre d’un jour et la longue s’y installera.",
   longCappedByWeek:
     "La longue fait {n} min, pas les {want} min visées. La limite n’est pas dans vos jambes mais dans votre semaine : une séance ne peut pas en prendre plus de la moitié.",
   downWeek:
@@ -772,6 +778,8 @@ const reasonsDe: Record<string, string> = {
     "{n} Trainingstage diese Woche, nicht mehr. Eine {week}-Minuten-Woche weiter aufgeteilt ergibt nur 25-Minuten-Fragmente — weniger echte Einheiten bringen mehr, und Ruhetage sind auch Training.",
   longThisWeek:
     "Der Lange ist diese Woche {n} min, auf dem Weg zu {target}. Er wächst jede Woche ein wenig — so soll es sein.",
+  longCappedByDay:
+    "Der Lange ist {n} min, nicht die {want} min, die der Aufbau will. Die Grenze ist die Zeit, die du für diesen Tag angegeben hast — nicht deine Woche und nicht deine Beine. Gib einem Tag ein längeres Fenster, und der Lange wächst hinein.",
   longCappedByWeek:
     "Der Lange ist {n} min, nicht die {want} min, die der Aufbau will. Die Grenze sind nicht deine Beine, sondern deine Woche: eine Einheit darf nicht mehr als die Hälfte davon nehmen.",
   downWeek:

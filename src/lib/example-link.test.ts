@@ -4,6 +4,7 @@ import {
   exampleSelection,
   formatPeak,
   parseExampleSearch,
+  shareUrl,
   sharedWeekMeta,
 } from "./example-link.ts";
 import { getCopy } from "../content/index.ts";
@@ -114,5 +115,30 @@ describe("the peak date as a person would say it", () => {
 
   it("falls back to the ISO string rather than throwing inside a route head", () => {
     assert.equal(formatPeak("2027-06-12", "not-a-locale"), "12 June 2027");
+  });
+});
+
+describe("the link in a copied note", () => {
+  it("always carries both values, whatever the browser's URL says", () => {
+    // The note was built with `window.location.href`. A visitor who lands on a
+    // bare /example and never touches the controls has no goal or peak in the
+    // URL, so the note named "First 50 km, 12 June 2027" and linked to a page
+    // that recomputes the date from whenever the recipient opens it.
+    const url = new URL(shareUrl("fifty", "2027-06-12"));
+    assert.equal(url.searchParams.get("goal"), "fifty");
+    assert.equal(url.searchParams.get("peak"), "2027-06-12");
+    assert.equal(url.pathname, "/example");
+  });
+
+  it("points at the reader's own locale", () => {
+    assert.match(new URL(shareUrl("trail20", "2027-05-08", "fi")).pathname, /^\/fi\/example$/);
+  });
+
+  it("round-trips through the parser that reads it back", () => {
+    const url = new URL(shareUrl("engine", "2027-01-08"));
+    assert.deepEqual(parseExampleSearch(Object.fromEntries(url.searchParams)), {
+      goal: "engine",
+      peak: "2027-01-08",
+    });
   });
 });

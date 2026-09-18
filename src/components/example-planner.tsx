@@ -5,7 +5,7 @@ import type { Locale } from "@/lib/locale";
 import { recommendedWeeks, suggestedPeakOn, todayIso, weeksBetween } from "@/lib/rolling-plan";
 import { exampleHorizon } from "@/lib/example-horizon";
 import { FIRST_OBJECTIVES, type FirstObjective } from "@/lib/first-person";
-import { exampleSelection, formatPeak, type ExampleSearch } from "@/lib/example-link";
+import { exampleSelection, formatPeak, shareUrl, type ExampleSearch } from "@/lib/example-link";
 import { fillTemplate, cn } from "@/lib/utils";
 import { ExampleFeel } from "./example-desk";
 
@@ -162,7 +162,12 @@ export function ExamplePlanner({ copy, locale }: { copy: Copy; locale: Locale })
           copy={copy}
           week={weeks[0]}
           headline={`${t.goals[goal]} · ${formatPeak(peakOn, locale)}`}
-          url={typeof window !== "undefined" ? window.location.href : undefined}
+          // Built from the selection, not from `window.location.href`: a
+          // visitor who lands on a bare /example and never touches the controls
+          // has no goal or peak in the URL, so the note would name one week and
+          // link to another — `exampleSelection` recomputes the date from today
+          // for whoever opens it.
+          url={shareUrl(goal, peakOn)}
         />
       ) : null}
     </section>

@@ -22,16 +22,26 @@ function withDayName(copy: Copy, values: Record<string, string | number>) {
 }
 
 /**
- * A reason carries `key` as a raw `SessionKey` for the same reason it carries
- * `day` as an index: the engine has no locale. Left unresolved it rendered
- * "La séance quality" and "Die quality-Einheit" — the one English word in an
- * otherwise translated sentence, and the word the athlete has never seen,
+ * A reason carries session keys raw, for the same reason it carries `day` as an
+ * index: the engine has no locale. Left unresolved they rendered "La séance
+ * quality" and "Heute geändert: quality → recovery" — the one English word in
+ * an otherwise translated sentence, and a word the athlete has never seen,
  * since the week itself prints the localized name.
+ *
+ * All three slots, not just `key`: `whyChangedToday` carries two of them, and
+ * fixing only the one a test happened to cover is how the second survived.
  */
+const SESSION_SLOTS = ["key", "from", "to"] as const;
+
 function withSessionName(copy: Copy, values: Record<string, string | number>) {
-  if (typeof values.key !== "string") return values;
-  const name = copy.tools.plan.sessions[values.key as keyof Copy["tools"]["plan"]["sessions"]];
-  return name ? { ...values, key: name } : values;
+  let out = values;
+  for (const slot of SESSION_SLOTS) {
+    const raw = out[slot];
+    if (typeof raw !== "string") continue;
+    const name = copy.tools.plan.sessions[raw as keyof Copy["tools"]["plan"]["sessions"]];
+    if (name) out = out === values ? { ...values, [slot]: name } : { ...out, [slot]: name };
+  }
+  return out;
 }
 
 /** Look up a plan-engine reason id in `copy.tools.athlete.today.reasons` and fill its template. */
