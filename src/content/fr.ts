@@ -6,9 +6,9 @@ import { passportFr, whatIfFr } from "./passport.ts";
 import type { Copy } from "./types";
 
 export const fr: Copy = {
-  metaTitle: "Ridgework — Programmes d’entraînement trail, alpin et altitude",
+  metaTitle: "Des semaines qui se réécrivent — trail et ultra | Ridgework",
   metaDescription:
-    "Que courir cette semaine pour un trail 20 km, un ultra 50 ou 100 km, ou une journée alpine. Une semaine fatiguée s’allège. Sans carte pour commencer.",
+    "Choisissez le jour où vous devez être prêt. La semaine s’adapte à une mauvaise nuit ; la date ne bouge pas. Du 20 km au 100 km. Sans carte.",
   footerTag: "Un entraînement de montagne qui suit la semaine que vous avez vraiment.",
   legalEntity: "Ridgework, France.",
   support: "support@ridgework.org",
@@ -123,12 +123,16 @@ export const fr: Copy = {
     },
   },
   hero: {
-    kicker: "Entraînement en montagne",
-    h1: "Entraînez-vous pour le jour qui compte.",
-    lead: "Choisissez le jour où vous devez être prêt. Chaque semaine est écrite à rebours depuis cette date — et réécrite quand la vie s’en mêle.",
+    kicker: "Entraînement trail et montagne",
+    h1: "La semaine bouge. Le jour que vous avez choisi, non.",
+    lead: "Choisissez le jour où vous devez être prêt. Ridgework écrit trois semaines à rebours depuis ce jour, puis les réécrit selon le sommeil que vous avez eu, la séance manquée et la semaine que vous avez réellement vécue.",
     proofLabel: "Ce que fait une nuit de cinq heures",
     proofHeld:
-      "Une séance a changé. Le reste de la semaine, et le jour que vous visez, n’ont pas bougé.",
+      "Une séance a changé. Le reste de la semaine, et le jour que vous visez, sont restés en place.",
+    noCard: "Pas de carte, pas de compte pour regarder.",
+    sourced:
+      "Chaque règle suivie par le plan est écrite noir sur blanc, avec l’étude derrière — y compris ce qu’elle ne prouve pas.",
+    sourcedCta: "Lire la méthode",
   },
   about: {
     kicker: "Ce que c’est",
@@ -285,7 +289,8 @@ export const fr: Copy = {
         id: "trail20",
         name: "Trail 20 km",
         duration: "Environ dix semaines",
-        focus: "Si vous courez déjà la plupart des semaines et voulez un trail dont vous sortez entier.",
+        focus:
+          "Si vous courez déjà la plupart des semaines et voulez un trail dont vous sortez entier.",
         locked:
           "La plupart des jours : 40–60 minutes, assez lent pour parler. Un jour plus long qui part de l’heure que vous faites déjà. La semaine de course, on court moins, pas plus.",
         layout: "sessionLead",
@@ -294,7 +299,8 @@ export const fr: Copy = {
         id: "fifty",
         name: "Ultra 50 km",
         duration: "Environ six mois",
-        focus: "Si 20–30 km ou un marathon route sont déjà derrière vous. Finir bien, pas un chrono.",
+        focus:
+          "Si 20–30 km ou un marathon route sont déjà derrière vous. Finir bien, pas un chrono.",
         locked:
           "La plupart des jours assez faciles pour parler. La longue part de ce que vous savez faire maintenant, pas de quatre heures en semaine un. Les deux dernières semaines sont plus courtes, pas plus dures.",
         tag: "Souvent un premier ultra",
@@ -675,6 +681,11 @@ export const fr: Copy = {
   examplePage: {
     title: "Essayez une vraie journée — Ridgework",
     description: "Bougez les curseurs. Regardez la séance changer. Sans compte.",
+    shared: {
+      title: "{goal} — prêt le {date} | Ridgework",
+      description:
+        "{goal}. Trois semaines écrites à rebours depuis le {date} — changez la date et elles sont réécrites. Sans compte pour regarder.",
+    },
     back: "← Ridgework",
     kicker: "Exemple en direct",
     h1: "Une vraie journée, pas une capture d’écran",
@@ -701,8 +712,7 @@ export const fr: Copy = {
     h1: "L’entraînement de la semaine",
     lead: "Choisissez le jour où vous voulez être au pic. Le programme glissant écrit les semaines dans cette fenêtre. Fatigué : moins de travail. Rien ici n’est un avis médical.",
     lockedTitle: "Compte requis",
-    lockedBody:
-      "Créez un compte pour garder le programme, la semaine et le journal. Sans carte.",
+    lockedBody: "Créez un compte pour garder le programme, la semaine et le journal. Sans carte.",
     trialLabel: "Gratuit pour l’instant",
     testBanner: "Gratuit tant que l’immatriculation n’est pas terminée. Sans carte.",
     signInToTrain: "Connectez-vous, choisissez le jour où vous devez être prêt. Sans carte.",

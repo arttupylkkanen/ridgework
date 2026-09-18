@@ -39,28 +39,44 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
             <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg">
               {copy.hero.lead}
             </p>
-            <p className="mt-5 max-w-md border-l-2 border-ridge pl-4 text-sm text-ink-muted">
-              {offer.line}
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            {/* One thing to do here. Two buttons of equal weight make a
+                stranger choose before they know what the product is, and the
+                second one asked for an account they had no reason to want yet.
+                Signing up is still one tap away in the header, and it is a text
+                link below for the reader the hero already convinced. */}
+            <div className="mt-8">
               <ExampleLink
                 locale={locale}
                 className="inline-flex min-h-11 items-center justify-center rounded-lg bg-ridge px-6 py-3.5 text-base font-medium text-paper hover:bg-ridge-deep"
               >
                 {copy.cta.seeWeek}
               </ExampleLink>
-              {/* Not "Sign in": that is already in the header and the mobile
-                  menu, and it tells a first-time reader they need an account
-                  they do not have. Seeing the week stays the filled button;
-                  this is for the stranger the hero already convinced. */}
+              {/* The objection at the point of action, in four words. The whole
+                  registration story lives in the pricing section, where somebody
+                  is actually asking about money. */}
+              <p className="mt-3 text-sm text-ink-soft">{copy.hero.noCard}</p>
               <AuthLink
                 locale={locale}
-                className="inline-flex min-h-11 items-center justify-center rounded-lg border border-line bg-card px-6 py-3.5 text-base font-medium text-ink hover:bg-paper-warm"
+                className="mt-4 inline-block text-sm font-medium text-ridge underline-offset-4 hover:underline"
               >
-                {offer.cta}
+                {offer.cta} →
               </AuthLink>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* The one claim a competitor in this market cannot copy honestly, put
+          where it is seen rather than left on /method for the curious. */}
+      <section className="border-b border-line bg-card">
+        <div className="mx-auto flex max-w-5xl flex-col gap-2 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+          <p className="max-w-3xl text-sm leading-relaxed text-ink-muted">{copy.hero.sourced}</p>
+          <MethodLink
+            locale={locale}
+            className="shrink-0 text-sm font-medium text-ridge underline-offset-4 hover:underline"
+          >
+            {copy.hero.sourcedCta} →
+          </MethodLink>
         </div>
       </section>
 
@@ -187,52 +203,52 @@ export function HomePage({ locale, copy }: { locale: Locale; copy: Copy }) {
             {copy.programs.rows
               .filter((row) => (HOME_PROGRAMS as readonly string[]).includes(row.id))
               .map((row) => {
-              const photo = PROGRAM_MEDIA[row.id];
-              const cardClass =
-                "group cursor-pointer overflow-hidden rounded-2xl border border-line bg-card hover:border-ridge";
-              const inner = (
-                <>
-                  <PhotoImage
-                    photo={photo}
-                    alt={row.name}
-                    sizes="(min-width: 640px) 50vw, 100vw"
-                    className="aspect-[16/9] w-full object-cover"
-                  />
-                  <div className="p-5">
-                    <div className="flex flex-wrap items-start justify-between gap-2">
-                      <h3 className="font-display text-xl font-semibold text-ink group-hover:text-ridge-deep">
-                        {row.name}
-                      </h3>
-                      <span className="shrink-0 rounded-full border border-line bg-paper-warm px-2.5 py-1 text-xs font-medium text-ink-muted">
-                        {row.duration}
-                      </span>
+                const photo = PROGRAM_MEDIA[row.id];
+                const cardClass =
+                  "group cursor-pointer overflow-hidden rounded-2xl border border-line bg-card hover:border-ridge";
+                const inner = (
+                  <>
+                    <PhotoImage
+                      photo={photo}
+                      alt={row.name}
+                      sizes="(min-width: 640px) 50vw, 100vw"
+                      className="aspect-[16/9] w-full object-cover"
+                    />
+                    <div className="p-5">
+                      <div className="flex flex-wrap items-start justify-between gap-2">
+                        <h3 className="font-display text-xl font-semibold text-ink group-hover:text-ridge-deep">
+                          {row.name}
+                        </h3>
+                        <span className="shrink-0 rounded-full border border-line bg-paper-warm px-2.5 py-1 text-xs font-medium text-ink-muted">
+                          {row.duration}
+                        </span>
+                      </div>
+                      {row.tag ? (
+                        <p className="mt-2 text-xs font-medium text-ridge">{row.tag}</p>
+                      ) : null}
+                      <p className="mt-3 text-sm leading-relaxed text-ink-muted">{row.focus}</p>
+                      {row.locked ? (
+                        <p className="mt-3 rounded-lg bg-paper-warm px-3 py-2 text-sm leading-relaxed text-ink">
+                          {row.locked}
+                        </p>
+                      ) : null}
+                      <p className="mt-4 text-sm font-medium text-ridge">{copy.programs.cta}</p>
                     </div>
-                    {row.tag ? (
-                      <p className="mt-2 text-xs font-medium text-ridge">{row.tag}</p>
-                    ) : null}
-                    <p className="mt-3 text-sm leading-relaxed text-ink-muted">{row.focus}</p>
-                    {row.locked ? (
-                      <p className="mt-3 rounded-lg bg-paper-warm px-3 py-2 text-sm leading-relaxed text-ink">
-                        {row.locked}
-                      </p>
-                    ) : null}
-                    <p className="mt-4 text-sm font-medium text-ridge">{copy.programs.cta}</p>
-                  </div>
-                </>
-              );
-              // English gets the plan landing page; other locales keep going
-              // straight to the desk, since those pages are English-only.
-              const planSlug = locale === "en" ? planPageFor(row.id)?.slug : undefined;
-              return planSlug ? (
-                <PlanLink key={row.id} slug={planSlug} className={cardClass}>
-                  {inner}
-                </PlanLink>
-              ) : (
-                <DeskLink key={row.id} locale={locale} program={row.id} className={cardClass}>
-                  {inner}
-                </DeskLink>
-              );
-            })}
+                  </>
+                );
+                // English gets the plan landing page; other locales keep going
+                // straight to the desk, since those pages are English-only.
+                const planSlug = locale === "en" ? planPageFor(row.id)?.slug : undefined;
+                return planSlug ? (
+                  <PlanLink key={row.id} slug={planSlug} className={cardClass}>
+                    {inner}
+                  </PlanLink>
+                ) : (
+                  <DeskLink key={row.id} locale={locale} program={row.id} className={cardClass}>
+                    {inner}
+                  </DeskLink>
+                );
+              })}
           </div>
           <p className="mt-8">
             <PlanLink className="text-sm font-medium text-ridge hover:text-ridge-deep">
