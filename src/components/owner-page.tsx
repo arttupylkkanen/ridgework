@@ -132,6 +132,36 @@ export function OwnerPage({ report }: { report: OwnerReport | null }) {
         <Stat label="Signups, 7d / 30d" value={`${c.signups7d} / ${c.signups30d}`} />
       </div>
 
+      <h2 className="mt-10 font-display text-xl font-semibold text-ink">
+        The list for the day payments open
+      </h2>
+      <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <Stat
+          label="Founding members"
+          value={String(c.foundingMembers)}
+          hint="reached the desk at least once"
+        />
+        <Stat
+          label="Waiting, confirmed"
+          value={String(c.notifyConfirmed)}
+          hint="left an address, no account"
+        />
+        <Stat
+          label="…not confirmed"
+          value={String(c.notifyPending)}
+          hint="never opened the link — not on the list"
+        />
+        <Stat
+          label="Weekly note off"
+          value={String(c.weeklyOptOuts)}
+          hint="asked to stop hearing from us"
+        />
+      </div>
+      <p className="mt-2 text-xs leading-relaxed text-ink-soft">
+        The unconfirmed are counted apart rather than added in. Folding them into the total would
+        make the list look larger than the number of people who will actually receive anything.
+      </p>
+
       <h2 className="mt-10 font-display text-xl font-semibold text-ink">Who turned up</h2>
       {report.recent.length === 0 ? (
         <p className="mt-3 text-ink-muted">Nobody yet.</p>

@@ -21,5 +21,9 @@ Disallow: /owner
 # also carry X-Robots-Tag: noindex, since robots.txt only asks.
 Disallow: /calendar/
 Disallow: /passport/
+Disallow: /notify
+Disallow: /fi/notify
+Disallow: /fr/notify
+Disallow: /de/notify
 
 Sitemap: https://ridgework.org/sitemap.xml

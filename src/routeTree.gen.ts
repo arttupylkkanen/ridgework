@@ -20,6 +20,7 @@ import { Route as GuidesRouteImport } from './routes/guides'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as MethodRouteImport } from './routes/method'
+import { Route as NotifyRouteImport } from './routes/notify'
 import { Route as OwnerRouteImport } from './routes/owner'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -36,10 +37,12 @@ import { Route as LocaleGuidesRouteImport } from './routes/$locale/guides'
 import { Route as LocaleLoginRouteImport } from './routes/$locale/login'
 import { Route as LocaleMentionsLegalesRouteImport } from './routes/$locale/mentions-legales'
 import { Route as LocaleMethodRouteImport } from './routes/$locale/method'
+import { Route as LocaleNotifyRouteImport } from './routes/$locale/notify'
 import { Route as LocalePrivacyRouteImport } from './routes/$locale/privacy'
 import { Route as LocaleSourcesRouteImport } from './routes/$locale/sources'
 import { Route as LocaleTermsRouteImport } from './routes/$locale/terms'
 import { Route as LocaleWhoRouteImport } from './routes/$locale/who'
+import { Route as ApiWeeklyRouteImport } from './routes/api/weekly'
 import { Route as CalendarTokenRouteImport } from './routes/calendar.$token'
 import { Route as GuidesIndexRouteImport } from './routes/guides/index'
 import { Route as GuidesSlugRouteImport } from './routes/guides/$slug'
@@ -105,6 +108,11 @@ const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
 const MethodRoute = MethodRouteImport.update({
   id: '/method',
   path: '/method',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotifyRoute = NotifyRouteImport.update({
+  id: '/notify',
+  path: '/notify',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OwnerRoute = OwnerRouteImport.update({
@@ -187,6 +195,11 @@ const LocaleMethodRoute = LocaleMethodRouteImport.update({
   path: '/method',
   getParentRoute: () => LocaleRoute,
 } as any)
+const LocaleNotifyRoute = LocaleNotifyRouteImport.update({
+  id: '/notify',
+  path: '/notify',
+  getParentRoute: () => LocaleRoute,
+} as any)
 const LocalePrivacyRoute = LocalePrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -206,6 +219,11 @@ const LocaleWhoRoute = LocaleWhoRouteImport.update({
   id: '/who',
   path: '/who',
   getParentRoute: () => LocaleRoute,
+} as any)
+const ApiWeeklyRoute = ApiWeeklyRouteImport.update({
+  id: '/api/weekly',
+  path: '/api/weekly',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const CalendarTokenRoute = CalendarTokenRouteImport.update({
   id: '/calendar/$token',
@@ -275,6 +293,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/method': typeof MethodRoute
+  '/notify': typeof NotifyRoute
   '/owner': typeof OwnerRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -290,10 +309,12 @@ export interface FileRoutesByFullPath {
   '/$locale/login': typeof LocaleLoginRoute
   '/$locale/mentions-legales': typeof LocaleMentionsLegalesRoute
   '/$locale/method': typeof LocaleMethodRoute
+  '/$locale/notify': typeof LocaleNotifyRoute
   '/$locale/privacy': typeof LocalePrivacyRoute
   '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
   '/$locale/who': typeof LocaleWhoRoute
+  '/api/weekly': typeof ApiWeeklyRoute
   '/calendar/$token': typeof CalendarTokenRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
@@ -317,6 +338,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/method': typeof MethodRoute
+  '/notify': typeof NotifyRoute
   '/owner': typeof OwnerRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -331,10 +353,12 @@ export interface FileRoutesByTo {
   '/$locale/login': typeof LocaleLoginRoute
   '/$locale/mentions-legales': typeof LocaleMentionsLegalesRoute
   '/$locale/method': typeof LocaleMethodRoute
+  '/$locale/notify': typeof LocaleNotifyRoute
   '/$locale/privacy': typeof LocalePrivacyRoute
   '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
   '/$locale/who': typeof LocaleWhoRoute
+  '/api/weekly': typeof ApiWeeklyRoute
   '/calendar/$token': typeof CalendarTokenRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
@@ -361,6 +385,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/method': typeof MethodRoute
+  '/notify': typeof NotifyRoute
   '/owner': typeof OwnerRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -376,10 +401,12 @@ export interface FileRoutesById {
   '/$locale/login': typeof LocaleLoginRoute
   '/$locale/mentions-legales': typeof LocaleMentionsLegalesRoute
   '/$locale/method': typeof LocaleMethodRoute
+  '/$locale/notify': typeof LocaleNotifyRoute
   '/$locale/privacy': typeof LocalePrivacyRoute
   '/$locale/sources': typeof LocaleSourcesRoute
   '/$locale/terms': typeof LocaleTermsRoute
   '/$locale/who': typeof LocaleWhoRoute
+  '/api/weekly': typeof ApiWeeklyRoute
   '/calendar/$token': typeof CalendarTokenRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/passport/$token': typeof PassportTokenRoute
@@ -407,6 +434,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/mentions-legales'
     | '/method'
+    | '/notify'
     | '/owner'
     | '/privacy'
     | '/sitemap.xml'
@@ -422,10 +450,12 @@ export interface FileRouteTypes {
     | '/$locale/login'
     | '/$locale/mentions-legales'
     | '/$locale/method'
+    | '/$locale/notify'
     | '/$locale/privacy'
     | '/$locale/sources'
     | '/$locale/terms'
     | '/$locale/who'
+    | '/api/weekly'
     | '/calendar/$token'
     | '/guides/$slug'
     | '/passport/$token'
@@ -449,6 +479,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/mentions-legales'
     | '/method'
+    | '/notify'
     | '/owner'
     | '/privacy'
     | '/sitemap.xml'
@@ -463,10 +494,12 @@ export interface FileRouteTypes {
     | '/$locale/login'
     | '/$locale/mentions-legales'
     | '/$locale/method'
+    | '/$locale/notify'
     | '/$locale/privacy'
     | '/$locale/sources'
     | '/$locale/terms'
     | '/$locale/who'
+    | '/api/weekly'
     | '/calendar/$token'
     | '/guides/$slug'
     | '/passport/$token'
@@ -492,6 +525,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/mentions-legales'
     | '/method'
+    | '/notify'
     | '/owner'
     | '/privacy'
     | '/sitemap.xml'
@@ -507,10 +541,12 @@ export interface FileRouteTypes {
     | '/$locale/login'
     | '/$locale/mentions-legales'
     | '/$locale/method'
+    | '/$locale/notify'
     | '/$locale/privacy'
     | '/$locale/sources'
     | '/$locale/terms'
     | '/$locale/who'
+    | '/api/weekly'
     | '/calendar/$token'
     | '/guides/$slug'
     | '/passport/$token'
@@ -537,12 +573,14 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   MentionsLegalesRoute: typeof MentionsLegalesRoute
   MethodRoute: typeof MethodRoute
+  NotifyRoute: typeof NotifyRoute
   OwnerRoute: typeof OwnerRoute
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SourcesRoute: typeof SourcesRoute
   TermsRoute: typeof TermsRoute
   WhoRoute: typeof WhoRoute
+  ApiWeeklyRoute: typeof ApiWeeklyRoute
   CalendarTokenRoute: typeof CalendarTokenRoute
   PassportTokenRoute: typeof PassportTokenRoute
   PlansSlugRoute: typeof PlansSlugRoute
@@ -628,6 +666,13 @@ declare module '@tanstack/react-router' {
       path: '/method'
       fullPath: '/method'
       preLoaderRoute: typeof MethodRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notify': {
+      id: '/notify'
+      path: '/notify'
+      fullPath: '/notify'
+      preLoaderRoute: typeof NotifyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/owner': {
@@ -742,6 +787,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocaleMethodRouteImport
       parentRoute: typeof LocaleRoute
     }
+    '/$locale/notify': {
+      id: '/$locale/notify'
+      path: '/notify'
+      fullPath: '/$locale/notify'
+      preLoaderRoute: typeof LocaleNotifyRouteImport
+      parentRoute: typeof LocaleRoute
+    }
     '/$locale/privacy': {
       id: '/$locale/privacy'
       path: '/privacy'
@@ -769,6 +821,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/$locale/who'
       preLoaderRoute: typeof LocaleWhoRouteImport
       parentRoute: typeof LocaleRoute
+    }
+    '/api/weekly': {
+      id: '/api/weekly'
+      path: '/api/weekly'
+      fullPath: '/api/weekly'
+      preLoaderRoute: typeof ApiWeeklyRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/calendar/$token': {
       id: '/calendar/$token'
@@ -874,6 +933,7 @@ interface LocaleRouteChildren {
   LocaleLoginRoute: typeof LocaleLoginRoute
   LocaleMentionsLegalesRoute: typeof LocaleMentionsLegalesRoute
   LocaleMethodRoute: typeof LocaleMethodRoute
+  LocaleNotifyRoute: typeof LocaleNotifyRoute
   LocalePrivacyRoute: typeof LocalePrivacyRoute
   LocaleSourcesRoute: typeof LocaleSourcesRoute
   LocaleTermsRoute: typeof LocaleTermsRoute
@@ -892,6 +952,7 @@ const LocaleRouteChildren: LocaleRouteChildren = {
   LocaleLoginRoute: LocaleLoginRoute,
   LocaleMentionsLegalesRoute: LocaleMentionsLegalesRoute,
   LocaleMethodRoute: LocaleMethodRoute,
+  LocaleNotifyRoute: LocaleNotifyRoute,
   LocalePrivacyRoute: LocalePrivacyRoute,
   LocaleSourcesRoute: LocaleSourcesRoute,
   LocaleTermsRoute: LocaleTermsRoute,
@@ -928,12 +989,14 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   MentionsLegalesRoute: MentionsLegalesRoute,
   MethodRoute: MethodRoute,
+  NotifyRoute: NotifyRoute,
   OwnerRoute: OwnerRoute,
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SourcesRoute: SourcesRoute,
   TermsRoute: TermsRoute,
   WhoRoute: WhoRoute,
+  ApiWeeklyRoute: ApiWeeklyRoute,
   CalendarTokenRoute: CalendarTokenRoute,
   PassportTokenRoute: PassportTokenRoute,
   PlansSlugRoute: PlansSlugRoute,

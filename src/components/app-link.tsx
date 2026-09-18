@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import type { Locale } from "@/lib/locale";
+import type { FirstObjective } from "@/lib/first-person";
 
 type Props = {
   className?: string;
@@ -125,16 +126,35 @@ export function HomeLink({
   );
 }
 
-export function ExampleLink({ locale, className, children, onClick }: Props & { locale: Locale }) {
+/**
+ * `goal` opens the planner on that objective rather than its default. The date
+ * is deliberately left out: the planner fills in that objective's full build,
+ * and a link that also guessed the reader's race day would be inventing the
+ * one fact only they have.
+ */
+export function ExampleLink({
+  locale,
+  goal,
+  className,
+  children,
+  onClick,
+}: Props & { locale: Locale; goal?: FirstObjective }) {
+  const search = goal ? { goal } : {};
   if (locale === "en") {
     return (
-      <Link to="/example" className={className} onClick={onClick}>
+      <Link to="/example" search={search} className={className} onClick={onClick}>
         {children}
       </Link>
     );
   }
   return (
-    <Link to="/$locale/example" params={{ locale }} className={className} onClick={onClick}>
+    <Link
+      to="/$locale/example"
+      params={{ locale }}
+      search={search}
+      className={className}
+      onClick={onClick}
+    >
       {children}
     </Link>
   );

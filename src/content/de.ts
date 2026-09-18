@@ -459,6 +459,10 @@ export const de: Copy = {
     lead: "77 km und sechs Wochen. 100 km. Müdigkeit. Alpentage. Renn-Checkliste.",
     cta: "Guides öffnen",
     read: "Lesen",
+    nextTitle: "Jetzt dein eigenes Datum",
+    nextBody:
+      "Dieser Guide ist ein durchgerechnetes Beispiel. Der Planer schreibt genauso für den Tag, an dem du bereit sein musst — drei Wochen auf einmal, ohne Konto, ohne Karte.",
+    nextCta: "Meine drei Wochen ansehen →",
   },
   pricing: {
     kicker: "Preise",
@@ -622,6 +626,7 @@ export const de: Copy = {
       "Wie du dich fühlst. Der tägliche Check-in: Schlaf, Muskelkater, Müdigkeit, Stress und Motivation auf einer Skala von 1 bis 5, dazu eine Ja/Nein-Angabe, ob etwas das Training gerade einschränkt. Rechtsgrundlage: Vertragserfüllung. Das sind subjektive Trainingsangaben, keine klinischen Messwerte; wir fragen nicht nach Diagnosen, Medikamenten, Befunden oder sonstigen Patientenakten und wollen sie auch nicht. Ridgework ist kein Gesundheitsdienst und stellt keine Diagnosen.",
       "Was du gemacht hast. Welche Einheit geplant war, ob du sie als erledigt, verpasst oder verschoben markiert hast, und die eingetragenen Minuten. Rechtsgrundlage: Vertragserfüllung — genau das lässt den Plan auf die Woche reagieren, die du wirklich hattest.",
       "Integrationen, nur auf Wunsch. Der Kalender-Feed erzeugt eine geheime Adresse für deine Einheiten. Die Verbindung zu intervals.icu speichert den API-Schlüssel, den du einfügst. Beides ist aus, bis du es einschaltest, beides lässt sich trennen, und beim Trennen wird das Gespeicherte gelöscht. Rechtsgrundlage: Einwilligung.",
+      "Die Erinnerungsliste, nur auf Wunsch. Hinterlässt du eine Adresse, um zur Öffnung der Kasse benachrichtigt zu werden, speichern wir diese Adresse, das Ziel und das Datum, das du dabei angesehen hast, und ob du bestätigt hast. Rechtsgrundlage: Einwilligung. Außer der Bestätigung selbst geht an eine unbestätigte Adresse nichts raus; jede Nachricht enthält einen Link, der den Eintrag ohne Konto löscht; und die Liste dient dieser einen Nachricht und sonst nichts.",
     ],
     bodyAfter: [
       "Wer sonst Zugriff hat. Nur die Anbieter, die den Dienst betreiben, mit Anschrift und Region im Impressum aufgeführt: Vercel (Hosting, Region Paris), Neon (Datenbank, Frankfurt), Resend (Bestätigungs- und Passwort-Mails, Irland) und Cloudflare (DNS und Mail-Routing). Jeder handelt auf unsere Weisung unter einem Auftragsverarbeitungsvertrag. Wir verkaufen keine personenbezogenen Daten und geben sie nicht für Werbung weiter.",
@@ -631,6 +636,34 @@ export const de: Copy = {
       "Beschwerden. Wenn dich unsere Antwort nicht zufriedenstellt, kannst du dich an die französische Aufsichtsbehörde wenden: CNIL, 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07, oder cnil.fr. Ebenso an die Behörde deines Wohnsitzes.",
       "Änderungen. Ändert sich diese Erklärung wesentlich, sagen wir es auf dieser Seite und, wenn die Änderung bereits gegebene Daten betrifft, per E-Mail.",
     ],
+  },
+  notify: {
+    title: "Sag Bescheid, wenn es öffnet",
+    body: "Eine Nachricht, an dem Tag, an dem die Kasse öffnet. Kein Newsletter, keine Trainingstipps, keine Erinnerungen, deinen Lauf einzutragen. Die Adresse lässt sich direkt aus der Mail entfernen.",
+    label: "E-Mail",
+    placeholder: "du@beispiel.de",
+    cta: "Sag Bescheid",
+    pending: "Wird gesendet…",
+    sentTitle: "Schau in dein Postfach",
+    sentBody:
+      "Wenn diese Adresse Mail empfangen kann, ist eine Bestätigung unterwegs. Auf der Liste steht nichts, bis du den Link darin öffnest.",
+    badEmail: "Das sieht nicht nach einer E-Mail-Adresse aus.",
+    failed: "Das ging nicht raus. Versuch es gleich noch einmal.",
+    pageTitle: "Deine Adresse — Ridgework",
+    pageDescription: "Bestätige oder entferne die Adresse, die du bei Ridgework hinterlassen hast.",
+    confirmedTitle: "Bestätigt",
+    confirmedBody:
+      "Du bekommst eine Nachricht, an dem Tag, an dem die Kasse öffnet. Das ist die ganze Liste.",
+    leftTitle: "Entfernt",
+    leftBody: "Deine Adresse ist gelöscht. Nichts wird aufbewahrt und nichts wird gesendet.",
+    stoppedTitle: "Gestoppt",
+    stoppedBody:
+      "Keine wöchentlichen Notizen mehr. Konto und Plan bleiben unangetastet — der Schreibtisch schreibt die Woche weiter, er schreibt dir nur nicht mehr darüber.",
+    unknownTitle: "Dieser Link wurde schon benutzt",
+    unknownBody:
+      "Er wurde entweder bereits einmal verwendet oder die Adresse ist entfernt. So oder so gibt es hier nichts mehr zu tun.",
+    leaveCta: "Meine Adresse entfernen",
+    back: "← Ridgework-Startseite",
   },
   examplePage: {
     title: "Probier einen echten Tag aus — Ridgework",

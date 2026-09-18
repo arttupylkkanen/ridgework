@@ -1,8 +1,10 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import { useNavigate, useSearch } from "@tanstack/react-router";
 import type { Copy } from "@/content/types";
 import { recommendedWeeks, suggestedPeakOn, todayIso, weeksBetween } from "@/lib/rolling-plan";
 import { exampleHorizon } from "@/lib/example-horizon";
 import { FIRST_OBJECTIVES, type FirstObjective } from "@/lib/first-person";
+import { exampleSelection, type ExampleSearch } from "@/lib/example-link";
 import { fillTemplate, cn } from "@/lib/utils";
 
 /**
@@ -11,9 +13,13 @@ import { fillTemplate, cn } from "@/lib/utils";
  * card, before anything.
  *
  * Everything here runs through `buildWeek`, the same function the signed-in
- * desk calls, so the weeks a stranger reads are the weeks they would get. The
- * state is React-local and never touches localStorage or the server, so it
- * cannot collide with a signed-in athlete's own plan.
+ * desk calls, so the weeks a stranger reads are the weeks they would get.
+ *
+ * The state lives in the URL, not in `useState`: these three weeks are the one
+ * thing the public site makes that somebody might want to keep or send on, and
+ * state that cannot be linked to cannot be sent. Nothing is written to
+ * localStorage or to the server, so it still cannot collide with a signed-in
+ * athlete's own plan.
  */
 export function ExamplePlanner({ copy }: { copy: Copy }) {
   const t = copy.examplePlanner;
@@ -22,13 +28,21 @@ export function ExamplePlanner({ copy }: { copy: Copy }) {
   const minutesLabel = copy.tools.athlete.today.minutes;
   const today = todayIso();
 
-  const [goal, setGoal] = useState<FirstObjective>("fifty");
-  const [peakOn, setPeakOn] = useState(() => suggestedPeakOn("fifty", today));
+  // `strict: false` because this component renders under two routes — /example
+  // and /:locale/example — which have the same search schema but different ids.
+  const search = useSearch({ strict: false }) as ExampleSearch;
+  const navigate = useNavigate();
+  const { goal, peakOn } = exampleSelection(search, today);
+
+  // `replace` so dragging a date picker does not fill the back button, and both
+  // values are always written so the resulting link is complete on its own.
+  function show(next: { goal: FirstObjective; peakOn: string }) {
+    void navigate({ to: ".", search: { goal: next.goal, peak: next.peakOn }, replace: true });
+  }
 
   /** Switching objective moves the date to that objective's full build. */
   function pickGoal(next: FirstObjective) {
-    setGoal(next);
-    setPeakOn(suggestedPeakOn(next, today));
+    show({ goal: next, peakOn: suggestedPeakOn(next, today) });
   }
 
   const horizon = useMemo(() => exampleHorizon(goal, peakOn, today), [goal, peakOn, today]);
@@ -83,7 +97,7 @@ export function ExamplePlanner({ copy }: { copy: Copy }) {
             value={peakOn}
             min={today}
             onChange={(e) => {
-              if (e.target.value) setPeakOn(e.target.value);
+              if (e.target.value) show({ goal, peakOn: e.target.value });
             }}
             className="mt-2 block min-h-11 rounded-lg border border-line bg-card px-3 text-sm text-ink"
           />

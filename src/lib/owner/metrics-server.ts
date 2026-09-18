@@ -75,6 +75,10 @@ export const ownerReport = createServerFn({ method: "GET" })
       intervalsLinks,
       signups7d,
       signups30d,
+      foundingMembers,
+      notifyConfirmed,
+      notifyPending,
+      weeklyOptOuts,
     ] = await Promise.all([
       one(sql<CountRow>`select count(*)::int as n from "user"`),
       one(sql<CountRow>`select count(*)::int as n from "user" where "emailVerified"`),
@@ -99,6 +103,12 @@ export const ownerReport = createServerFn({ method: "GET" })
       one(sql<CountRow>`
         select count(*)::int as n from "user" where "createdAt" > now() - interval '30 days'
       `),
+      one(sql<CountRow>`select count(*)::int as n from founding_members`),
+      one(sql<CountRow>`
+        select count(*)::int as n from notify_list where confirmed_at is not null
+      `),
+      one(sql<CountRow>`select count(*)::int as n from notify_list where confirmed_at is null`),
+      one(sql<CountRow>`select count(*)::int as n from weekly_notes where not enabled`),
     ]);
 
     const logRows = await sql<{ status: string | null; has_minutes: boolean | null; n: string }>`
@@ -157,6 +167,10 @@ export const ownerReport = createServerFn({ method: "GET" })
         intervalsLinks,
         signups7d,
         signups30d,
+        foundingMembers,
+        notifyConfirmed,
+        notifyPending,
+        weeklyOptOuts,
       },
       recent: recentRows.map((row) => ({
         email: row.email,
