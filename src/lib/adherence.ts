@@ -20,7 +20,7 @@
  * decision, so this module stays pure and testable without a profile, a date,
  * or a plan.
  */
-import { HARD_KEYS, type SessionKey, type SessionLog } from "./rolling-plan.ts";
+import { HARD_KEYS, LONG_KEYS, type SessionKey, type SessionLog } from "./rolling-plan.ts";
 
 /** Weeks of history considered. Older than this says more about last season. */
 export const LOOKBACK_WEEKS = 6;
@@ -195,18 +195,28 @@ export function longShortfall(findings: AdherenceFinding[]): number | null {
 /**
  * The hard session kind the planner should stop writing, or null.
  *
- * Never the long run, whatever the history says. It is the spine of every
- * objective here — swapping it for easy work because it keeps being missed
- * would quietly turn an ultra build into a jogging schedule, which is the
- * opposite of telling somebody the truth. `longBeingSkipped` is for that case:
- * it is worth saying, and it is not worth acting on alone.
+ * Never the objective's long session, whatever the history says and whatever
+ * it is called — `long` for a race on foot, `me`, `mountain` or `pack` for the
+ * mountain blocks. It is the spine of every objective here, and swapping it for
+ * easy work because it keeps being missed would quietly turn an ultra build
+ * into a jogging schedule. `longBeingSkipped` is for that case: it is worth
+ * saying, and it is not worth acting on alone.
  */
 export function keyToSoften(findings: AdherenceFinding[]): SessionKey | null {
-  const worst = findings.find((f) => f.id === "keySkipped" && f.key !== "long" && isLoadKey(f.key));
+  const worst = findings.find(
+    (f) => f.id === "keySkipped" && !LONG_KEYS.has(f.key) && isLoadKey(f.key),
+  );
   return worst && worst.id === "keySkipped" ? worst.key : null;
 }
 
-/** Whether the long run itself is the session being missed. */
+/**
+ * Whether the objective's own long session is the one being missed.
+ *
+ * `LONG_KEYS`, not `"long"`: an alpine block's long day is `me`, a traverse's
+ * is `pack`. Checking the string let a 195-minute mountain-endurance session be
+ * quietly swapped for easy running, which is the exact outcome `keyToSoften`
+ * exists to prevent, and nothing was said about it either.
+ */
 export function longBeingSkipped(findings: AdherenceFinding[]): boolean {
-  return findings.some((f) => f.id === "keySkipped" && f.key === "long");
+  return findings.some((f) => f.id === "keySkipped" && LONG_KEYS.has(f.key));
 }

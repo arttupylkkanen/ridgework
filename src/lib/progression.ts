@@ -42,6 +42,15 @@ export const LONG_TARGET: Record<ObjectiveId, number> = {
  */
 export const LONG_SHARE_MAX = 0.5;
 
+/**
+ * The most of a week the one hard session may be.
+ *
+ * Lower than the long run's share: the point of a quality day is the effort
+ * inside it, not its length, and on a small week an hour of intervals crowds
+ * out everything the block is actually built on.
+ */
+export const QUALITY_SHARE_MAX = 0.3;
+
 /** Every fourth week comes back down. */
 export const DOWN_WEEK_EVERY = 4;
 

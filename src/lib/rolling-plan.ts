@@ -478,6 +478,14 @@ export function easeWeek(week: PlannedWeek, objective: ObjectiveId): PlannedWeek
   return adaptWeek(week, "problem", objective);
 }
 
+/**
+ * The session an objective is built around. `long` for a race on foot, but the
+ * alpine, traverse and expedition blocks carry theirs as `me`, `mountain` or
+ * `pack` — which is why anything that must never touch the long run has to ask
+ * this rather than compare against the string "long".
+ */
+export const LONG_KEYS = new Set<SessionKey>(["long", "pack", "mountain", "me"]);
+
 export const HARD_KEYS = new Set<SessionKey>([
   "quality",
   "sharpness",

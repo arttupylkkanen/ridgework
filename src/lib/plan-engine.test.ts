@@ -536,21 +536,28 @@ describe("the week costs what the athlete said they had", () => {
     // being written 230 minutes against a ceiling of 180: the per-session floor
     // multiplied by seven beats the budget. A plan that quietly costs more than
     // it said is the thing this product exists not to be.
-    for (const days of [3, 5, 7]) {
-      for (const band of ["h0_3", "h3_5", "h5_8", "h8_12"] as const) {
-        const { state, athlete } = plan({
-          weeklyHours: band,
-          availableDays: [0, 1, 2, 3, 4, 5, 6].map(
-            (i) => i < days,
-          ) as AthleteProfile["availableDays"],
-        });
-        for (let c = 1; c <= 22; c += 1) {
-          const week = buildWeek(state, c, athlete)!;
-          const total = week.days.reduce((n, d) => n + (d.minutes ?? 0), 0);
-          assert.ok(
-            total <= CEILING[band],
-            `${days}d ${band} week ${c}: ${total} min against a ${CEILING[band]} min ceiling`,
-          );
+    //
+    // Experience is in the loop because it sizes the quality day. A version of
+    // this test that ran only `intermediate` passed while a veteran on the
+    // lowest band was being written 20 minutes past their stated ceiling.
+    for (const experience of ["beginner", "intermediate", "experienced", "veteran"] as const) {
+      for (const days of [3, 5, 7]) {
+        for (const band of ["h0_3", "h3_5", "h5_8", "h8_12"] as const) {
+          const { state, athlete } = plan({
+            weeklyHours: band,
+            experience,
+            availableDays: [0, 1, 2, 3, 4, 5, 6].map(
+              (i) => i < days,
+            ) as AthleteProfile["availableDays"],
+          });
+          for (let c = 1; c <= 22; c += 1) {
+            const week = buildWeek(state, c, athlete)!;
+            const total = week.days.reduce((n, d) => n + (d.minutes ?? 0), 0);
+            assert.ok(
+              total <= CEILING[band],
+              `${experience} ${days}d ${band} week ${c}: ${total} min against ${CEILING[band]}`,
+            );
+          }
         }
       }
     }
@@ -732,6 +739,45 @@ describe("a reason never names a number the week does not contain", () => {
       if (!said) continue;
       const training = week.days.filter((d) => (d.minutes ?? 0) > 0).length;
       assert.equal(said.values.n, training, `week ${c}: reason ${said.values.n}, week ${training}`);
+    }
+  });
+});
+
+/**
+ * Four things the week said that were not true. Each shipped in this branch.
+ */
+describe("the week does not accuse itself", () => {
+  it("measures the week against the budget it was written to", () => {
+    // `weekUnderTarget` compared the finished week to the raw weekly band, but
+    // a taper week is 60% of that on purpose and a down week 80%. The plan told
+    // 16 of 24 weeks they fell short of a target it had lowered itself — both
+    // taper weeks included, one line under `taperVolume` saying so was the
+    // point. It reached the public example page too.
+    const { state, athlete } = plan();
+    for (let c = 1; c <= 24; c += 1) {
+      const week = buildWeek(state, c, athlete);
+      if (!week) continue;
+      const accused = week.reasons.find((r) => r.id === "weekUnderTarget");
+      assert.ok(!accused, `week ${c} (${week.phase}) accuses itself: ${JSON.stringify(accused)}`);
+    }
+  });
+
+  it("blames the week only when the week is what cut the long run", () => {
+    // A family cap and a declared limitation each say their own piece. Telling
+    // a parent of small children, or somebody nursing an achilles, that "your
+    // legs are not the limit here, your week is — more hours would buy a longer
+    // long" is false, and the second is a bad thing to say to an injured
+    // person.
+    for (const over of [
+      { constraints: ["youngKids"] as const },
+      { limitations: "sore achilles" },
+    ]) {
+      const { state, athlete } = plan(over as Partial<AthleteProfile>);
+      const week = buildWeek(state, 20, athlete)!;
+      assert.ok(
+        !week.reasons.some((r) => r.id === "longCappedByWeek"),
+        `${JSON.stringify(over)} was told its week was the limit`,
+      );
     }
   });
 });

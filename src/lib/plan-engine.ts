@@ -8,6 +8,7 @@ import {
 import {
   LONG_SHARE_MAX,
   LONG_TARGET,
+  QUALITY_SHARE_MAX,
   isDownWeek,
   taperLong,
   wantedLong,
@@ -27,6 +28,7 @@ import { assessReadiness, emptyLoad } from "./daily-readiness.ts";
 import {
   HARD_KEYS,
   HORIZON,
+  LONG_KEYS,
   addDaysIso,
   applyStateFlags,
   daysBetween,
@@ -69,7 +71,6 @@ export type TodayView = {
 };
 
 const QUALITY_KEYS = new Set<SessionKey>(["quality", "sharpness", "climb", "strength", "steady"]);
-const LONG_KEYS = new Set<SessionKey>(["long", "pack", "mountain", "me"]);
 const LOAD_KEYS = new Set<SessionKey>([...HARD_KEYS]);
 
 function cloneDay(day: DaySession, patch: Partial<DaySession> = {}): DaySession {
@@ -95,6 +96,22 @@ function availableSlots(profile: AthleteProfile): number[] {
  * or stretched plan changes the phase lengths — the same care `packLoadKg`
  * takes. The taper is not part of the build: it has its own shape.
  */
+/**
+ * The minutes this week was written to: the athlete's stated hours, times the
+ * share this phase and this point in the build ask for. One place, because two
+ * callers computing it separately is how they drift.
+ */
+function weeklyBudget(
+  profile: AthleteProfile,
+  phase: PlannedWeek["phase"],
+  state: RollingState,
+  calendar: number,
+): number {
+  const { week, weeks } = buildPosition(state, calendar);
+  const share = phase === "taper" ? weekFactor(phase) : weekShare(week, weeks);
+  return Math.round(weeklyMinutes(profile.weeklyHours) * share);
+}
+
 function buildPosition(state: RollingState, calendar: number): { week: number; weeks: number } {
   const spec = fitSpec(state.objective, planLength(state));
   const weeks = Math.max(1, spec.base + spec.specific);
@@ -367,8 +384,7 @@ function assignMinutes(
 
   // The stated weekly hours are a ceiling, not a starting point: they are the
   // time the athlete told us they have. The share of it moves.
-  const share = phase === "taper" ? weekFactor(phase) : weekShare(week, weeks);
-  const weekly = Math.round(weeklyMinutes(profile.weeklyHours) * share);
+  const weekly = weeklyBudget(profile, phase, state, calendar);
 
   // Where the long run wants to be. The entry band is where it starts, not
   // where it stops — that was the bug: an athlete entering on a 90-minute
@@ -380,7 +396,6 @@ function assignMinutes(
     phase === "taper"
       ? taperLong({ start, target, buildWeeks: weeks })
       : wantedLong({ start, target, weekInBuild: week, buildWeeks: weeks });
-  const wanted = cap;
 
   // The athlete has been doing the long run short, three times or more. Writing
   // the number they are not hitting, again, is the plan talking past them. The
@@ -434,7 +449,17 @@ function assignMinutes(
       // what they were. "Hold the intensity" means hold the pace, not the
       // minute count — a taper that keeps a full-length session and shortens
       // only the easy days is cutting the wrong thing.
-      const minutes = Math.max(floor, Math.round((qMin || 40) * weekFactor(phase)));
+      // Bounded by the week, like the long run. Without this the session was
+      // sized purely by experience, so a veteran on the lowest volume band was
+      // handed a 65-minute quality day inside a 120-minute week and the total
+      // ran 20 minutes past the hours they said they had.
+      const minutes = Math.max(
+        floor,
+        Math.min(
+          Math.round((qMin || 40) * weekFactor(phase)),
+          Math.round(weekly * QUALITY_SHARE_MAX),
+        ),
+      );
       remaining -= minutes;
       return { ...day, minutes };
     }
@@ -477,9 +502,15 @@ function assignMinutes(
   const written = fitToWindows(spread, profile, reasons);
   const long = written.find((d) => LONG_KEYS.has(d.key))?.minutes ?? 0;
   if (long > 0) {
+    // Against `cap`, which already carries the family cap, the declared
+    // limitation and the follow-down — each of which says its own piece above.
+    // Compared against the raw ramp instead, this told a parent of small
+    // children and an athlete nursing an achilles that their *week* was the
+    // limit and more hours would buy a longer long run. Neither was true, and
+    // the second is the worse thing to say to somebody who is injured.
     reasons.push(
-      long < wanted
-        ? { id: "longCappedByWeek", values: { n: long, want: wanted } }
+      long < cap
+        ? { id: "longCappedByWeek", values: { n: long, want: cap } }
         : { id: "longThisWeek", values: { n: long, target } },
     );
   }
@@ -685,7 +716,14 @@ export function buildWeek(
   const flagged = applyStateFlags({ calendar, phase, eased: false, days, reasons }, state);
   // One fact about the finished week, after every edit has landed: the pile of
   // individual reasons above says what changed, this says whether it mattered.
-  const shortfall = weekShortfall(flagged.days, weeklyMinutes(profile.weeklyHours));
+  //
+  // Measured against the budget this week was actually written to, not the raw
+  // band. A taper week is 60% of the band on purpose and a down week is 80%;
+  // comparing either to the full figure made the plan accuse itself of falling
+  // short of a target it had deliberately lowered — 16 of 24 weeks, including
+  // both taper weeks, one line under `taperVolume` saying the drop is the
+  // point. It reached the public example page too.
+  const shortfall = weekShortfall(flagged.days, weeklyBudget(profile, phase, state, calendar));
   if (shortfall) {
     reasons.push({
       id: "weekUnderTarget",
