@@ -58,6 +58,14 @@ export const en: Copy = {
       "These three are written the same. {phase} repeats until there is a reason to change it — the {next} block starts in week {n}, and a wrecked session or a missed week rewrites them before that.",
     phases: { base: "Base", specific: "Specific", taper: "Taper", done: "Done" },
     note: "Three weeks stay written at a time. Log the week and the next one appears. Nothing here is saved, and no account exists until you make one.",
+    finish: "Finish well, not a time.",
+    feelTitle: "How did you wake up?",
+    feelAsWritten: "As written",
+    feelWrecked: "Slept badly",
+    whyWrecked:
+      "Slept badly. {day}'s {from} is now {to}. The ready date stays.",
+    copyWeek: "Copy this week",
+    copied: "Copied — paste it to a training partner",
   },
   pageMeta: {
     who: {
@@ -712,7 +720,8 @@ export const en: Copy = {
   },
   examplePage: {
     title: "Try a real day — Ridgework",
-    description: "Move the sliders. Watch the session change. No account needed.",
+    description:
+      "Pick the day you need to be ready. Read three weeks. Tap slept badly and a session changes. The date does not move. No account needed.",
     shared: {
       title: "{goal} — ready on {date} | Ridgework",
       description:
@@ -721,7 +730,7 @@ export const en: Copy = {
     back: "← Ridgework home",
     kicker: "Live example",
     h1: "This is a real day, not a screenshot",
-    lead: "Pick the day you need to be ready and read the three weeks it writes. Then drag the sliders the way you actually feel some mornings, and watch today's session change while the ready date stays where you put it.",
+    lead: "Pick the day you need to be ready and read the three weeks it writes. Tap slept badly: one session changes, the date does not. Copy the week and send it to a training partner.",
     noteTitle: "Nothing here is saved",
     noteBody:
       "This example resets when you leave. Sign up to get your own week, built from your own sport, goal, and peak date. No card needed.",

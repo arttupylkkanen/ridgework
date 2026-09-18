@@ -1,11 +1,13 @@
 import { useMemo } from "react";
 import { useNavigate, useSearch } from "@tanstack/react-router";
 import type { Copy } from "@/content/types";
+import type { Locale } from "@/lib/locale";
 import { recommendedWeeks, suggestedPeakOn, todayIso, weeksBetween } from "@/lib/rolling-plan";
 import { exampleHorizon } from "@/lib/example-horizon";
 import { FIRST_OBJECTIVES, type FirstObjective } from "@/lib/first-person";
-import { exampleSelection, type ExampleSearch } from "@/lib/example-link";
+import { exampleSelection, formatPeak, type ExampleSearch } from "@/lib/example-link";
 import { fillTemplate, cn } from "@/lib/utils";
+import { ExampleFeel } from "./example-desk";
 
 /**
  * Step two of the commercial sequence: pick the day you need to be ready and
@@ -21,7 +23,7 @@ import { fillTemplate, cn } from "@/lib/utils";
  * localStorage or to the server, so it still cannot collide with a signed-in
  * athlete's own plan.
  */
-export function ExamplePlanner({ copy }: { copy: Copy }) {
+export function ExamplePlanner({ copy, locale }: { copy: Copy; locale: Locale }) {
   const t = copy.examplePlanner;
   const sessions = copy.tools.plan.sessions;
   const dayNames = copy.tools.week.days;
@@ -154,6 +156,15 @@ export function ExamplePlanner({ copy }: { copy: Copy }) {
       ) : null}
 
       <p className="mt-5 text-sm leading-relaxed text-ink-muted">{t.note}</p>
+
+      {weeks[0] ? (
+        <ExampleFeel
+          copy={copy}
+          week={weeks[0]}
+          headline={`${t.goals[goal]} · ${formatPeak(peakOn, locale)}`}
+          url={typeof window !== "undefined" ? window.location.href : undefined}
+        />
+      ) : null}
     </section>
   );
 }

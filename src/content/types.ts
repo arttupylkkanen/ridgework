@@ -141,6 +141,14 @@ export type Copy = {
     repeats: string;
     phases: { base: string; specific: string; taper: string; done: string };
     note: string;
+    finish: string;
+    feelTitle: string;
+    feelAsWritten: string;
+    feelWrecked: string;
+    /** {day} {from} {to} */
+    whyWrecked: string;
+    copyWeek: string;
+    copied: string;
   };
   /** Title and description for the three pages lifted off the homepage. */
   pageMeta: {

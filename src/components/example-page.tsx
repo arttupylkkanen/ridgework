@@ -2,7 +2,6 @@ import { useSearch } from "@tanstack/react-router";
 import type { Copy } from "@/content/types";
 import type { Locale } from "@/lib/locale";
 import { HomeLink, AuthLink } from "./app-link";
-import { ExampleDesk } from "./example-desk";
 import { ExamplePlanner } from "./example-planner";
 import { NotifyForm } from "./notify-form";
 import { exampleSelection, type ExampleSearch } from "@/lib/example-link";
@@ -28,11 +27,7 @@ export function ExamplePage({ locale, copy }: { locale: Locale; copy: Copy }) {
           reads three weeks. The desk below is step three, where one log
           rewrites a session without moving that date. */}
       <div className="mt-10">
-        <ExamplePlanner copy={copy} />
-      </div>
-
-      <div className="mt-10">
-        <ExampleDesk locale={locale} copy={copy} />
+        <ExamplePlanner copy={copy} locale={locale} />
       </div>
 
       {/* The address goes here rather than at the top: they have their own

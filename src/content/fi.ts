@@ -58,6 +58,14 @@ export const fi: Copy = {
       "Nämä kolme on kirjoitettu samoiksi. {phase} toistuu kunnes on syy muuttaa sitä — {next}-jakso alkaa viikolla {n}, ja romahtanut treeni tai väliin jäänyt viikko kirjoittaa ne uusiksi jo ennen sitä.",
     phases: { base: "Perus", specific: "Laji", taper: "Kevennys", done: "Valmis" },
     note: "Kolme viikkoa on kerrallaan kirjoitettuna. Kirjaa viikko, niin seuraava ilmestyy. Mitään tästä ei tallenneta, eikä tiliä ole ennen kuin teet sellaisen.",
+    finish: "Maaliin hyvin, ei aikaa vastaan.",
+    feelTitle: "Miltä herätessä tuntui?",
+    feelAsWritten: "Kuten kirjoitettu",
+    feelWrecked: "Nukuin huonosti",
+    whyWrecked:
+      "Nukuit huonosti. {day}: {from} on nyt {to}. Tavoitepäivä pysyy.",
+    copyWeek: "Kopioi tämä viikko",
+    copied: "Kopioitu — liimaa treeniparille",
   },
   pageMeta: {
     who: {
@@ -684,7 +692,8 @@ export const fi: Copy = {
   },
   examplePage: {
     title: "Kokeile oikeaa päivää — Ridgework",
-    description: "Siirrä liukusäätimiä. Katso miten treeni muuttuu. Ei vaadi tiliä.",
+    description:
+      "Valitse päivä jolloin sinun pitää olla valmis. Lue kolme viikkoa. Paina nukuin huonosti, niin yksi treeni muuttuu. Päivä ei liiku. Ei vaadi tiliä.",
     shared: {
       title: "{goal} — valmiina {date} | Ridgework",
       description:
@@ -693,7 +702,7 @@ export const fi: Copy = {
     back: "← Ridgework",
     kicker: "Live-esimerkki",
     h1: "Tämä on oikea päivä, ei kuvakaappaus",
-    lead: "Vedä alla olevia liukusäätimiä sen mukaan miltä oikeasti tuntuu jonain aamuna. Katso miten tämän päivän treeni ja perustelut muuttuvat mukana — sama pöytä jonka kirjautunut käyttäjä näkee, ajaen esimerkki-50 km-ultraohjelmaa.",
+    lead: "Valitse päivä jolloin sinun pitää olla valmis ja lue kolme viikkoa. Paina nukuin huonosti: yksi treeni muuttuu, päivä ei. Kopioi viikko ja lähetä treeniparille.",
     noteTitle: "Mitään ei tallenneta",
     noteBody:
       "Tämä esimerkki nollautuu kun poistut. Tee tili saadaksesi oman viikkosi, rakennettu omasta lajistasi, tavoitteestasi ja tavoitepäivästä — ilmaiseksi, ei korttia.",

@@ -58,6 +58,14 @@ export const de: Copy = {
       "Diese drei sind gleich geschrieben. {phase} wiederholt sich, bis es einen Grund zur Änderung gibt — der {next}-Block beginnt in Woche {n}, und eine kaputte Einheit oder eine ausgefallene Woche schreibt sie schon vorher um.",
     phases: { base: "Basis", specific: "Spezifisch", taper: "Taper", done: "Fertig" },
     note: "Drei Wochen stehen jeweils geschrieben. Trag die Woche ein, und die nächste erscheint. Hier wird nichts gespeichert, und es gibt kein Konto, bis du eines anlegst.",
+    finish: "Gut ankommen, keine Zeit jagen.",
+    feelTitle: "Wie bist du aufgewacht?",
+    feelAsWritten: "Wie geschrieben",
+    feelWrecked: "Schlecht geschlafen",
+    whyWrecked:
+      "Schlecht geschlafen. {day}: {from} ist jetzt {to}. Das Datum bleibt.",
+    copyWeek: "Diese Woche kopieren",
+    copied: "Kopiert — an den Trainingspartner schicken",
   },
   pageMeta: {
     who: {
@@ -673,7 +681,8 @@ export const de: Copy = {
   },
   examplePage: {
     title: "Probier einen echten Tag aus — Ridgework",
-    description: "Bewege die Regler. Sieh, wie sich die Einheit ändert. Kein Konto nötig.",
+    description:
+      "Wähle den Tag, an dem du bereit sein musst. Lies drei Wochen. Tippe schlecht geschlafen: eine Einheit ändert sich. Das Datum bleibt. Kein Konto nötig.",
     shared: {
       title: "{goal} — bereit am {date} | Ridgework",
       description:
@@ -682,7 +691,7 @@ export const de: Copy = {
     back: "← Ridgework",
     kicker: "Live-Beispiel",
     h1: "Das ist ein echter Tag, kein Screenshot",
-    lead: "Bewege die Regler unten so, wie du dich an manchen Morgen wirklich fühlst. Sieh, wie sich die heutige Einheit und die Begründung mitändern — derselbe Tisch, den ein angemeldeter Athlet sieht, auf einem Beispiel-50-km-Ultraplan.",
+    lead: "Wähle den Tag, an dem du bereit sein musst, und lies die drei Wochen. Tippe schlecht geschlafen: eine Einheit ändert sich, das Datum nicht. Kopiere die Woche und schick sie an den Trainingspartner.",
     noteTitle: "Hier wird nichts gespeichert",
     noteBody:
       "Dieses Beispiel setzt sich zurück, wenn du gehst. Leg ein Konto an für deine eigene Woche, gebaut aus deiner Sportart, deinem Ziel und deinem Peak-Datum . Ohne Karte.",

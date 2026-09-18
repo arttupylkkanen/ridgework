@@ -58,6 +58,14 @@ export const fr: Copy = {
       "Ces trois-là sont écrites à l’identique. {phase} se répète jusqu’à ce qu’il y ait une raison d’en changer — le bloc {next} commence en semaine {n}, et une séance cassée ou une semaine sautée les réécrit avant cela.",
     phases: { base: "Foncier", specific: "Spécifique", taper: "Affûtage", done: "Terminé" },
     note: "Trois semaines restent écrites à la fois. Enregistrez la semaine et la suivante apparaît. Rien n’est sauvegardé ici, et aucun compte n’existe tant que vous n’en créez pas un.",
+    finish: "Finir bien, pas un chrono.",
+    feelTitle: "Comment vous êtes-vous réveillé ?",
+    feelAsWritten: "Comme écrit",
+    feelWrecked: "Mal dormi",
+    whyWrecked:
+      "Mal dormi. {from} du {day} devient {to}. La date reste.",
+    copyWeek: "Copier cette semaine",
+    copied: "Copié — collez-le à un partenaire",
   },
   pageMeta: {
     who: {
@@ -680,7 +688,8 @@ export const fr: Copy = {
   },
   examplePage: {
     title: "Essayez une vraie journée — Ridgework",
-    description: "Bougez les curseurs. Regardez la séance changer. Sans compte.",
+    description:
+      "Choisissez le jour où vous devez être prêt. Lisez trois semaines. Appuyez sur mal dormi : une séance change. La date ne bouge pas. Sans compte.",
     shared: {
       title: "{goal} — prêt le {date} | Ridgework",
       description:
@@ -689,7 +698,7 @@ export const fr: Copy = {
     back: "← Ridgework",
     kicker: "Exemple en direct",
     h1: "Une vraie journée, pas une capture d’écran",
-    lead: "Déplacez les curseurs ci-dessous comme vous vous sentez vraiment certains matins. Regardez la séance du jour et les explications changer avec eux — c’est le même bureau qu’un athlète connecté, sur un plan exemple de 50 km ultra.",
+    lead: "Choisissez le jour où vous devez être prêt et lisez les trois semaines. Appuyez sur mal dormi : une séance change, la date non. Copiez la semaine et envoyez-la à un partenaire.",
     noteTitle: "Rien n’est enregistré ici",
     noteBody:
       "Cet exemple se réinitialise quand vous partez. Créez un compte pour obtenir votre propre semaine, construite pour votre sport, votre objectif et votre date de pic . Sans carte.",
