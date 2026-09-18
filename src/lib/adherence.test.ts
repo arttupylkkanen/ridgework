@@ -4,7 +4,11 @@ import {
   LOOKBACK_WEEKS,
   MIN_OBSERVATIONS,
   findings,
+  MAX_FOLLOW_DOWN,
   hardestDayToKeep,
+  keyToSoften,
+  longBeingSkipped,
+  longShortfall,
   missedDays,
   shortLongs,
   skippedKeys,
@@ -164,4 +168,72 @@ test("findings returns days, then keys, then duration", () => {
   ];
   const ids = findings(logs, 5).map((f) => f.id);
   assert.deepEqual(ids, ["dayMissed", "keySkipped", "longShort"]);
+});
+
+/**
+ * `findings` computed three things and the planner read one. `longShort` and
+ * `keySkipped` were calculated every week and thrown away — including the
+ * shortfall, which is the only signal that a ramp is too steep for the person
+ * following it.
+ */
+test("the long run's shortfall reaches the planner", () => {
+  const short = (week: number) =>
+    log(week, 5, "done", {
+      plannedKey: "long",
+      actualKey: "long",
+      plannedMinutes: 100,
+      actualMinutes: 70,
+    });
+  const got = longShortfall(findings([short(1), short(2), short(3)], 5));
+  assert.equal(got, 0.7);
+});
+
+test("the plan follows the athlete down, but only so far", () => {
+  // Reading a 40% shortfall straight would let one bad month set the ceiling
+  // for the season: shorter written, shorter logged, shorter written again.
+  const bad = (week: number) =>
+    log(week, 5, "done", {
+      plannedKey: "long",
+      actualKey: "long",
+      plannedMinutes: 100,
+      actualMinutes: 40,
+    });
+  assert.equal(longShortfall(findings([bad(1), bad(2), bad(3)], 5)), MAX_FOLLOW_DOWN);
+});
+
+test("longs that are done in full ask for no adjustment", () => {
+  const full = (week: number) =>
+    log(week, 5, "done", {
+      plannedKey: "long",
+      actualKey: "long",
+      plannedMinutes: 100,
+      actualMinutes: 98,
+    });
+  assert.equal(longShortfall(findings([full(1), full(2), full(3)], 5)), null);
+});
+
+test("a hard session nobody does is handed over to be softened", () => {
+  const skipped = (week: number) => log(week, 2, "missed", { plannedKey: "quality" });
+  assert.equal(keyToSoften(findings([skipped(1), skipped(2), skipped(3)], 5)), "quality");
+});
+
+test("the long run is never the session handed over", () => {
+  // Swapping it for easy work would turn an ultra build into a jogging
+  // schedule without telling anyone. It is reported instead.
+  const skipped = (week: number) =>
+    log(week, 5, "missed", { plannedKey: "long", actualKey: "rest" });
+  const found = findings([skipped(1), skipped(2), skipped(3)], 5);
+  assert.equal(keyToSoften(found), null);
+  assert.equal(longBeingSkipped(found), true);
+});
+
+test("an easy day nobody does is not worth rewriting the week over", () => {
+  const skipped = (week: number) => log(week, 2, "missed", { plannedKey: "easy" });
+  assert.equal(keyToSoften(findings([skipped(1), skipped(2), skipped(3)], 5)), null);
+});
+
+test("no history means no instruction, for either of them", () => {
+  assert.equal(longShortfall([]), null);
+  assert.equal(keyToSoften([]), null);
+  assert.equal(longBeingSkipped([]), false);
 });

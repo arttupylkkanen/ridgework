@@ -10,7 +10,13 @@ import {
   realizeToday,
   visiblePersonalizedWeeks,
 } from "./plan-engine.ts";
-import { addDaysIso, startPlan, todayIso, type RollingState } from "./rolling-plan.ts";
+import {
+  addDaysIso,
+  startPlan,
+  todayIso,
+  type RollingState,
+  type SessionLog,
+} from "./rolling-plan.ts";
 import { LONG_TARGET } from "./progression.ts";
 
 const FROM = new Date(2026, 0, 5); // Monday 5 Jan 2026
@@ -564,5 +570,120 @@ describe("the week costs what the athlete said they had", () => {
     const { state, athlete } = plan({ weeklyHours: "h0_3" });
     const week = buildWeek(state, 22, athlete)!;
     assert.ok(week.reasons.some((r) => r.id === "fewerEasyDays"));
+  });
+});
+
+/**
+ * `findings` computed three things and `buildWeek` read one. The shortfall and
+ * the skipped-key pattern were calculated every single week and discarded — and
+ * the shortfall is the only signal that says a ramp is too steep for the person
+ * actually following it.
+ */
+describe("the week reads what the athlete actually did", () => {
+  const logs = (state: RollingState, rows: Partial<SessionLog>[]): RollingState => ({
+    ...state,
+    logs: rows.map((r, i) => ({
+      date: addDaysIso(state.startedOn, (r.weekCalendar ?? i + 1) * 7 + (r.dayIndex ?? 5)),
+      weekCalendar: r.weekCalendar ?? i + 1,
+      dayIndex: r.dayIndex ?? 5,
+      plannedKey: "long" as const,
+      actualKey: "long" as const,
+      status: "done" as const,
+      at: "2026-01-01T00:00:00.000Z",
+      ...r,
+    })),
+  });
+
+  const shortLong = (weekCalendar: number): Partial<SessionLog> => ({
+    weekCalendar,
+    plannedKey: "long",
+    actualKey: "long",
+    status: "done",
+    plannedMinutes: 100,
+    actualMinutes: 70,
+  });
+
+  it("climbs from where the athlete is when the long keeps coming up short", () => {
+    const { state, athlete } = plan({ weeklyHours: "h8_12" });
+    const bare = buildWeek(state, 8, athlete)!;
+    const withHistory = buildWeek(
+      logs(state, [shortLong(5), shortLong(6), shortLong(7)]),
+      8,
+      athlete,
+    )!;
+    const longOf = (w: typeof bare) => w.days.find((d) => d.key === "long")?.minutes ?? 0;
+    assert.ok(
+      longOf(withHistory) < longOf(bare),
+      `${longOf(withHistory)} min was not pulled back from ${longOf(bare)}`,
+    );
+    assert.ok(withHistory.reasons.some((r) => r.id === "longFollowsYou"));
+  });
+
+  it("still climbs — following down is a nudge, not a new ceiling", () => {
+    const { state, athlete } = plan({ weeklyHours: "h8_12" });
+    const history = logs(state, [shortLong(5), shortLong(6), shortLong(7)]);
+    const longOf = (c: number) =>
+      buildWeek(history, c, athlete)!.days.find((d) => d.key === "long")?.minutes ?? 0;
+    assert.ok(longOf(20) > longOf(8), `long went ${longOf(8)} -> ${longOf(20)} min`);
+  });
+
+  it("softens a hard session that has not happened three times running", () => {
+    const { state, athlete } = plan();
+    const skipped = [9, 10, 11].map((weekCalendar) => ({
+      weekCalendar,
+      dayIndex: 0,
+      plannedKey: "quality" as const,
+      actualKey: "rest" as const,
+      status: "missed" as const,
+    }));
+    const week = buildWeek(logs(state, skipped), 12, athlete)!;
+    assert.ok(!week.days.some((d) => d.key === "quality"), "the quality day was written again");
+    assert.ok(week.reasons.some((r) => r.id === "keySoftened"));
+  });
+
+  it("keeps the minutes when it takes the hard part away", () => {
+    const { state, athlete } = plan();
+    const skipped = [9, 10, 11].map((weekCalendar) => ({
+      weekCalendar,
+      dayIndex: 0,
+      plannedKey: "quality" as const,
+      actualKey: "rest" as const,
+      status: "missed" as const,
+    }));
+    const before = buildWeek(state, 12, athlete)!;
+    const after = buildWeek(logs(state, skipped), 12, athlete)!;
+    const total = (w: typeof before) => w.days.reduce((n, d) => n + (d.minutes ?? 0), 0);
+    assert.equal(total(after), total(before));
+  });
+
+  it("never swaps the long run out, however often it is missed", () => {
+    // It is the spine of every objective here. Replacing it with easy work
+    // would turn an ultra build into a jogging schedule without saying so.
+    const { state, athlete } = plan();
+    const skipped = [9, 10, 11].map((weekCalendar) => ({
+      weekCalendar,
+      plannedKey: "long" as const,
+      actualKey: "rest" as const,
+      status: "missed" as const,
+    }));
+    const week = buildWeek(logs(state, skipped), 12, athlete)!;
+    assert.ok(
+      week.days.some((d) => d.key === "long"),
+      "the long run was written away",
+    );
+    assert.ok(
+      week.reasons.some((r) => r.id === "longBeingMissed"),
+      "and nobody was told",
+    );
+  });
+
+  it("leaves a week alone when the history says nothing", () => {
+    const { state, athlete } = plan();
+    const full = [5, 6, 7].map((weekCalendar) => ({
+      weekCalendar,
+      plannedMinutes: 100,
+      actualMinutes: 99,
+    }));
+    assert.deepEqual(buildWeek(logs(state, full), 8, athlete), buildWeek(state, 8, athlete));
   });
 });

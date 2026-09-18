@@ -1,4 +1,10 @@
-import { findings, hardestDayToKeep } from "./adherence.ts";
+import {
+  findings,
+  hardestDayToKeep,
+  keyToSoften,
+  longBeingSkipped,
+  longShortfall,
+} from "./adherence.ts";
 import {
   LONG_SHARE_MAX,
   LONG_TARGET,
@@ -351,6 +357,8 @@ function assignMinutes(
   phase: PlannedWeek["phase"],
   state: RollingState,
   calendar: number,
+  /** From `longShortfall`: how much of the written long actually gets done. */
+  shortfall: number | null,
   reasons: Reason[],
 ): DaySession[] {
   const { week, weeks } = buildPosition(state, calendar);
@@ -373,6 +381,17 @@ function assignMinutes(
       ? taperLong({ start, target, buildWeeks: weeks })
       : wantedLong({ start, target, weekInBuild: week, buildWeeks: weeks });
   const wanted = cap;
+
+  // The athlete has been doing the long run short, three times or more. Writing
+  // the number they are not hitting, again, is the plan talking past them. The
+  // ramp keeps climbing — it climbs from where they actually are.
+  if (shortfall !== null && phase !== "taper") {
+    cap = Math.round(cap * shortfall);
+    // Only the share: the week's own cap may still cut this further down, and a
+    // reason that names a number the week does not contain is worse than one
+    // that names none.
+    reasons.push({ id: "longFollowsYou", values: { share: Math.round(shortfall * 100) } });
+  }
 
   if (profile.constraints.includes("youngKids")) {
     cap = Math.min(cap, phase === "base" ? 90 : 120);
@@ -535,6 +554,38 @@ function reportTrim(before: DaySession[], after: DaySession[], reasons: Reason[]
   );
 }
 
+/**
+ * A hard session that has not happened for three weeks running.
+ *
+ * `applyMissedStack` handles one missed session inside its own week; this is
+ * the pattern across weeks. Writing the same quality day a fourth time after
+ * three misses is the plan repeating itself louder, so it becomes easy work of
+ * the same length: the minutes stay, the intensity the athlete is not doing
+ * goes, and the reason says what that costs and how to get it back.
+ */
+function applySkippedKey(
+  days: DaySession[],
+  history: ReturnType<typeof findings>,
+  reasons: Reason[],
+): DaySession[] {
+  if (longBeingSkipped(history)) {
+    // Not acted on, deliberately — see `keyToSoften`. Said, because an athlete
+    // missing every long run is not on course and deserves to hear it.
+    reasons.push({ id: "longBeingMissed", values: {} });
+  }
+  const key = keyToSoften(history);
+  if (!key) return days;
+  let swapped = 0;
+  const out = days.map((day) => {
+    if (day.key !== key || swapped > 0) return day;
+    swapped += 1;
+    return easyDay(day.minutes ?? 40, "easy");
+  });
+  if (swapped === 0) return days;
+  reasons.push({ id: "keySoftened", values: { key } });
+  return out;
+}
+
 function applyMissedStack(
   days: DaySession[],
   state: RollingState,
@@ -603,7 +654,8 @@ export function buildWeek(
   const history = findings(state.logs, calendar);
   let days = placeWork(seed, profile, phase, reasons, hardestDayToKeep(history));
   days = days.map((day) => swapAccess(day, profile, state, reasons));
-  days = assignMinutes(days, profile, phase, state, calendar, reasons);
+  days = assignMinutes(days, profile, phase, state, calendar, longShortfall(history), reasons);
+  days = applySkippedKey(days, history, reasons);
   const dates = days.map((_, i) => sessionDate(state, calendar, i));
   days = applyTravel(days, dates, state, reasons);
   days = applyMissedStack(days, state, calendar, reasons);

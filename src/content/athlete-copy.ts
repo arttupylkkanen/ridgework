@@ -112,6 +112,12 @@ const reasonsEn: Record<string, string> = {
   taperVolume:
     "Taper: the week drops to about {n} min. Keep the days and keep the efforts — take the minutes off instead. Feeling underworked now is the point.",
   volumeSplit: "Easy days share the rest of a {n} min week.",
+  longFollowsYou:
+    "Your last few long runs came in short, so this one is about {share}% of what the build asked for. The plan is climbing from where you actually are instead of repeating a number you are not hitting. It still climbs.",
+  keySoftened:
+    "The {key} session has not happened three times running, so this week it is easy work of the same length. The minutes stay; the hard part does not. Do one and it comes back.",
+  longBeingMissed:
+    "The long run has been missed three times running. It is the session every week here is built around — nothing has been swapped in its place, because nothing replaces it. If the day does not work, move it rather than dropping it.",
   fewerEasyDays:
     "{n} training days this week, not more. A {week} min week split any further is a handful of 25-minute fragments — fewer real sessions do more, and the rest days are training too.",
   longThisWeek:
@@ -322,6 +328,12 @@ const reasonsFi: Record<string, string> = {
   taperVolume:
     "Kevennys: viikko putoaa noin {n} minuuttiin. Pidä päivät ja pidä tehot — ota minuutit pois. Tunne siitä ettei tee tarpeeksi kuuluu asiaan.",
   volumeSplit: "Kevyet päivät jakavat {n} minuutin viikon.",
+  longFollowsYou:
+    "Viime pitkät jäivät lyhyiksi, joten tämä on noin {share} % siitä mitä ohjelma pyysi. Nousu lähtee siitä missä oikeasti olet eikä toista lukua jota et saavuta. Nousu jatkuu silti.",
+  keySoftened:
+    "{key} on jäänyt väliin kolmesti peräkkäin, joten tällä viikolla se on saman mittainen kevyt treeni. Minuutit pysyvät, kova osa ei. Tee yksi, niin se palaa.",
+  longBeingMissed:
+    "Pitkä on jäänyt väliin kolmesti peräkkäin. Se on treeni jonka ympärille jokainen viikko rakennetaan — tilalle ei ole vaihdettu mitään, koska mikään ei korvaa sitä. Jos päivä ei toimi, siirrä se älä pudota.",
   fewerEasyDays:
     "Tällä viikolla {n} treenipäivää, ei enempää. {week} minuutin viikko pilkottuna pidemmälle on kasa 25 minuutin sirpaleita — harvempi kunnon treeni tekee enemmän, ja lepopäivätkin ovat treeniä.",
   longThisWeek:
@@ -532,6 +544,12 @@ const reasonsFr: Record<string, string> = {
   taperVolume:
     "Affûtage : la semaine tombe à environ {n} min. Gardez les jours et les intensités — retirez les minutes. Se sentir sous-entraîné maintenant, c’est le but.",
   volumeSplit: "Les jours faciles se partagent une semaine de {n} min.",
+  longFollowsYou:
+    "Vos dernières sorties longues ont été écourtées : celle-ci fait environ {share} % de ce que le plan demandait. Il repart d’où vous êtes vraiment, et continue de monter.",
+  keySoftened:
+    "La séance {key} n’a pas eu lieu trois fois de suite ; cette semaine c’est du facile de même durée. Les minutes restent, la partie dure non. Faites-en une et elle revient.",
+  longBeingMissed:
+    "La sortie longue a été manquée trois fois de suite. C’est la séance autour de laquelle chaque semaine est construite — rien ne l’a remplacée, car rien ne la remplace. Si le jour ne va pas, déplacez-la plutôt que de la supprimer.",
   fewerEasyDays:
     "{n} jours d’entraînement cette semaine, pas plus. Une semaine de {week} min découpée davantage ne donne que des fragments de 25 minutes — moins de vraies séances font mieux, et les jours de repos sont aussi de l’entraînement.",
   longThisWeek:
@@ -744,6 +762,12 @@ const reasonsDe: Record<string, string> = {
   taperVolume:
     "Taper: Die Woche fällt auf etwa {n} min. Behalte die Tage und die Intensitäten — nimm die Minuten weg. Dass es sich jetzt nach zu wenig anfühlt, ist der Sinn der Sache.",
   volumeSplit: "Lockere Tage teilen eine {n}-Minuten-Woche.",
+  longFollowsYou:
+    "Deine letzten langen Einheiten fielen kürzer aus, also sind das hier etwa {share} % dessen, was der Aufbau wollte. Der Plan steigt von dort, wo du wirklich bist — und er steigt weiter.",
+  keySoftened:
+    "Die {key}-Einheit ist dreimal hintereinander ausgefallen, diese Woche ist sie lockere Arbeit gleicher Länge. Die Minuten bleiben, der harte Teil nicht. Mach eine, und sie kommt zurück.",
+  longBeingMissed:
+    "Der lange Lauf ist dreimal hintereinander ausgefallen. Er ist die Einheit, um die jede Woche hier gebaut ist — es wurde nichts an seine Stelle gesetzt, weil ihn nichts ersetzt. Wenn der Tag nicht passt, verschieb ihn, statt ihn zu streichen.",
   fewerEasyDays:
     "{n} Trainingstage diese Woche, nicht mehr. Eine {week}-Minuten-Woche weiter aufgeteilt ergibt nur 25-Minuten-Fragmente — weniger echte Einheiten bringen mehr, und Ruhetage sind auch Training.",
   longThisWeek:
