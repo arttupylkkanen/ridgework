@@ -421,13 +421,6 @@ function assignMinutes(
       // Half the week is the ceiling, so one session can never swallow it.
       const room = Math.round(weekly * LONG_SHARE_MAX);
       const minutes = Math.max(floor, Math.min(cap, room));
-      // The athlete deserves to know which limit bit. Their legs are not the
-      // reason the long run stopped growing; their calendar is.
-      reasons.push(
-        minutes < wanted
-          ? { id: "longCappedByWeek", values: { n: minutes, want: wanted } }
-          : { id: "longThisWeek", values: { n: minutes, target } },
-      );
       remaining -= minutes;
       return { ...day, minutes };
     }
@@ -460,11 +453,12 @@ function assignMinutes(
   // is buying, and a week of one long run and one jog is not a training week.
   const MIN_EASY_DAYS = 3;
   let keep = easyIdx;
+  let dropped = false;
   if (easyIdx.length > MIN_EASY_DAYS && remaining < easyIdx.length * floor) {
     const afford = Math.max(MIN_EASY_DAYS, Math.floor(remaining / floor));
     if (afford < easyIdx.length) {
       keep = easyIdx.slice(0, afford);
-      reasons.push({ id: "fewerEasyDays", values: { n: keep.length + 1, week: weekly } });
+      dropped = true;
     }
   }
 
@@ -473,7 +467,27 @@ function assignMinutes(
     if (!easyIdx.includes(i)) return day;
     return keep.includes(i) ? { ...day, minutes: each } : restDay();
   });
-  return fitToWindows(spread, profile, reasons);
+
+  // Every number the athlete is told comes off the finished week, after
+  // `fitToWindows` has trimmed sessions into the time they said each day has.
+  // Read before that, `longThisWeek` announced a 148-minute long run on a week
+  // whose long run was 70, and `fewerEasyDays` counted the long but forgot the
+  // quality day. A reason that names a figure the week does not contain is
+  // worse than one that names none.
+  const written = fitToWindows(spread, profile, reasons);
+  const long = written.find((d) => LONG_KEYS.has(d.key))?.minutes ?? 0;
+  if (long > 0) {
+    reasons.push(
+      long < wanted
+        ? { id: "longCappedByWeek", values: { n: long, want: wanted } }
+        : { id: "longThisWeek", values: { n: long, target } },
+    );
+  }
+  if (dropped) {
+    const training = written.filter((d) => (d.minutes ?? 0) > 0).length;
+    reasons.push({ id: "fewerEasyDays", values: { n: training, week: weekly } });
+  }
+  return written;
 }
 
 /**

@@ -687,3 +687,51 @@ describe("the week reads what the athlete actually did", () => {
     assert.deepEqual(buildWeek(logs(state, full), 8, athlete), buildWeek(state, 8, athlete));
   });
 });
+
+/**
+ * Every number in a reason has to be a number the week actually contains.
+ *
+ * Both of these shipped wrong for a day. `longThisWeek` was pushed from inside
+ * the minute assignment, before `fitToWindows` trimmed sessions into the time
+ * the athlete said each day has — so it announced a 148-minute long run on a
+ * week whose long run was 70. `fewerEasyDays` counted the easy days it kept
+ * plus the long, and forgot the quality day, so a five-session week was
+ * reported as four.
+ */
+describe("a reason never names a number the week does not contain", () => {
+  const windows = (minutes: number): AthleteProfile["dayWindows"] =>
+    Array.from({ length: 7 }, () => ({ minutes, startAt: null })) as AthleteProfile["dayWindows"];
+
+  it("reports the long run the athlete was actually given", () => {
+    const { state, athlete } = plan({ dayWindows: windows(70) });
+    const week = buildWeek(state, 20, athlete)!;
+    const long = week.days.find((d) => d.key === "long")?.minutes ?? 0;
+    const said = week.reasons.find((r) => r.id === "longThisWeek" || r.id === "longCappedByWeek");
+    assert.ok(said, "no reason named the long run at all");
+    assert.equal(said.values.n, long, `reason says ${said.values.n} min, the week says ${long}`);
+  });
+
+  it("calls a long run cut by the calendar what it is", () => {
+    // A 70-minute window on every day is the athlete's time, not their fitness.
+    const { state, athlete } = plan({ dayWindows: windows(70) });
+    const week = buildWeek(state, 20, athlete)!;
+    assert.ok(week.reasons.some((r) => r.id === "longCappedByWeek"));
+    assert.ok(!week.reasons.some((r) => r.id === "longThisWeek"));
+  });
+
+  it("counts every training day when it drops one, not just the easy ones", () => {
+    const { state, athlete } = plan({
+      weeklyHours: "h0_3",
+      longest: "m60",
+      availableDays: [true, true, true, true, true, true, true],
+    });
+    // Week 14 is specific, so the week carries a quality day as well as a long.
+    for (const c of [1, 14]) {
+      const week = buildWeek(state, c, athlete)!;
+      const said = week.reasons.find((r) => r.id === "fewerEasyDays");
+      if (!said) continue;
+      const training = week.days.filter((d) => (d.minutes ?? 0) > 0).length;
+      assert.equal(said.values.n, training, `week ${c}: reason ${said.values.n}, week ${training}`);
+    }
+  });
+});
